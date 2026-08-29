@@ -1,0 +1,159 @@
+name: Publish npm package
+
+on:
+  release:
+    types: [published]
+
+concurrency:
+  group: npm-publish-${{ github.event.release.id }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Validate and pack release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out release commit
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.3.5
+
+      - name: Validate release tag and package version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          GITHUB_REF: ${{ github.ref }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          if [[ ! "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            printf 'Release tag must be a stable SemVer tag in the form vX.Y.Z: %s\n' "$RELEASE_TAG" >&2
+            exit 1
+          fi
+
+          expected_ref="refs/tags/$RELEASE_TAG"
+          if [[ "$GITHUB_REF" != "$expected_ref" ]]; then
+            printf 'Release tag and GitHub ref differ: %s != %s\n' "$RELEASE_TAG" "$GITHUB_REF" >&2
+            exit 1
+          fi
+
+          tag_commit="$(git rev-parse "$RELEASE_TAG^{commit}")"
+          checked_out_commit="$(git rev-parse HEAD)"
+          if [[ "$tag_commit" != "$RELEASE_SHA" || "$checked_out_commit" != "$RELEASE_SHA" ]]; then
+            printf 'Release SHA, tag commit, and checked-out commit must match.\n' >&2
+            printf 'release=%s tag=%s checkout=%s\n' "$RELEASE_SHA" "$tag_commit" "$checked_out_commit" >&2
+            exit 1
+          fi
+
+          git fetch --no-tags origin '+refs/heads/master:refs/remotes/origin/master'
+          if ! git merge-base --is-ancestor "$tag_commit" "refs/remotes/origin/master"; then
+            printf 'Release tag commit is not an ancestor of remote master.\n' >&2
+            printf 'tag=%s master=%s\n' "$tag_commit" "$(git rev-parse refs/remotes/origin/master)" >&2
+            exit 1
+          fi
+
+          package_version="$(node --input-type=module -e 'import packageJson from "./package.json" with { type: "json" }; process.stdout.write(packageJson.version)')"
+          if [[ "$package_version" != "${RELEASE_TAG#v}" ]]; then
+            printf 'package.json version %s does not match release tag %s.\n' "$package_version" "$RELEASE_TAG" >&2
+            exit 1
+          fi
+
+      - name: Install frozen dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run release checks
+        run: bun run release:check
+
+      - name: Pack exactly one npm tarball
+        id: pack
+        run: |
+          set -euo pipefail
+          npm pack --json --ignore-scripts > npm-pack.json
+          node --input-type=module <<'NODE'
+          import { appendFileSync, readdirSync, readFileSync, statSync } from "node:fs";
+
+          const packResult = JSON.parse(readFileSync("npm-pack.json", "utf8"));
+          if (!Array.isArray(packResult) || packResult.length !== 1) {
+            throw new Error("npm pack must report exactly one tarball");
+          }
+
+          const tarballs = readdirSync(".").filter((file) => file.endsWith(".tgz") && statSync(file).isFile());
+          const tarball = packResult[0]?.filename;
+          if (typeof tarball !== "string" || !tarball.endsWith(".tgz") || tarballs.length !== 1 || tarballs[0] !== tarball) {
+            throw new Error("npm pack must create exactly one reported .tgz tarball");
+          }
+
+          appendFileSync(process.env.GITHUB_OUTPUT, `tarball=${tarball}\n`);
+          NODE
+
+      - name: Upload npm tarball
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: npm-tarball
+          path: ${{ steps.pack.outputs.tarball }}
+          if-no-files-found: error
+
+  publish:
+    name: Publish npm package
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+
+      - name: Download npm tarball
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: npm-tarball
+          path: npm-tarball
+
+      - name: Require npm 11.5.1 or newer
+        run: |
+          set -euo pipefail
+          NPM_VERSION="$(npm --version)" node --input-type=module <<'NODE'
+          const minimum = [11, 5, 1];
+          const version = process.env.NPM_VERSION;
+          const match = /^(\d+)\.(\d+)\.(\d+)/.exec(version);
+          const actual = match?.slice(1).map(Number);
+          if (!actual || actual[0] < minimum[0] || (actual[0] === minimum[0] && (actual[1] < minimum[1] || (actual[1] === minimum[1] && actual[2] < minimum[2])))) {
+            throw new Error(`npm ${version} is below required version 11.5.1`);
+          }
+          NODE
+
+      - name: Publish exactly one npm tarball
+        working-directory: npm-tarball
+        run: |
+          set -euo pipefail
+          tarball="$(node --input-type=module <<'NODE'
+          import { readdirSync, statSync } from "node:fs";
+
+          const tarballs = readdirSync(".").filter((file) => file.endsWith(".tgz") && statSync(file).isFile());
+          if (tarballs.length !== 1) {
+            throw new Error("Downloaded artifact must contain exactly one .tgz tarball");
+          }
+
+          process.stdout.write(tarballs[0]);
+          NODE
+          )"
+          npm publish "$tarball" --access public --provenance --ignore-scripts
