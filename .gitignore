@@ -1,5 +1,16 @@
+# Dependencies
 node_modules/
+
+# Build and test output
 dist/
 coverage/
 .turbo/
 *.tsbuildinfo
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Coding agents
+.omo/
