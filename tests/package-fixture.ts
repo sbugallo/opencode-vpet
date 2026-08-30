@@ -87,7 +87,6 @@ export const createPackageFixture = async (): Promise<PackageFixture> => {
   const root = await mkdtemp(join(tmpdir(), "opencode-vpet-package-"))
   try {
     const packageDirectory = await copyPackage(root)
-    runCommand({ args: ["bun", "run", "build"], cwd: packageDirectory })
     const packed = await packPackage(packageDirectory)
     const consumerDirectory = await createConsumer(root, packed.archivePath)
     return { root, packageDirectory, consumerDirectory, archiveMembers: packed.archiveMembers }
