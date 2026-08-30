@@ -17,7 +17,9 @@
     <a href="#settings">Settings</a> | 
     <a href="#storage">Storage</a> | 
     <a href="#partner-list">Partner list</a> |
-    <a href="#license">License</a>
+    <a href="#license">License</a> |
+    <a href="#attributions">Attributions</a>
+
   </p>
 </div>
 
@@ -823,3 +825,11 @@ lines.
 ## License
 
 This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+
+## Attributions
+
+The bundled sprites were derived from the following sources and were later edited and
+processed for this project:
+
+- [sundeth/omnipet](https://github.com/sundeth/omnipet/tree/main)
+- [Tortoiseshel's Full Color Digimon Dot Sprites post](https://withthewill.net/threads/full-color-digimon-dot-sprites.25843/) on the [With the Will forum](https://withthewill.net/members/tortoiseshel.4767/)
