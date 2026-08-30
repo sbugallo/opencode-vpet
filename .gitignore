@@ -14,3 +14,7 @@ Thumbs.db
 
 # Coding agents
 .omo/
+
+# Release workflow artifacts
+*.tgz
+npm-pack.json

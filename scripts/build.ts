@@ -8,7 +8,16 @@ const pluginResult = await Bun.build({
   target: "bun",
   format: "esm",
   splitting: false,
-  external: ["@opencode-ai/plugin", "@opencode-ai/plugin/tui", "@opencode-ai/sdk", "@opencode-ai/sdk/v2", "@opentui/core", "@opentui/keymap", "@opentui/solid", "solid-js"],
+  external: [
+    "@opencode-ai/plugin",
+    "@opencode-ai/plugin/tui",
+    "@opencode-ai/sdk",
+    "@opencode-ai/sdk/v2",
+    "@opentui/core",
+    "@opentui/keymap",
+    "@opentui/solid",
+    "solid-js",
+  ],
   sourcemap: "linked",
 })
 
@@ -29,5 +38,3 @@ if (!pluginResult.success || !cliResult.success) {
 
 const declarations = Bun.spawnSync(["bunx", "tsc", "-p", "tsconfig.build.json"])
 if (declarations.exitCode !== 0) throw new Error(new TextDecoder().decode(declarations.stderr))
-
-export {}

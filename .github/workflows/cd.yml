@@ -1,26 +1,53 @@
-name: Publish npm package
+name: CD
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Stable semantic version increment
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
 
 concurrency:
-  group: npm-publish-${{ github.event.release.id }}
+  group: npm-release-main
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Validate and pack release
+  release:
+    name: Commit and publish release
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      id-token: write
     steps:
-      - name: Check out release commit
+      - name: Check out main
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
           fetch-tags: true
+
+      - name: Validate dispatch from current main
+        id: base
+        env:
+          DISPATCH_REF: ${{ github.ref }}
+        run: |
+          set -euo pipefail
+
+          test "$DISPATCH_REF" = "refs/heads/main"
+
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main'
+
+          base_sha="$(git rev-parse HEAD)"
+          remote_main_sha="$(git rev-parse refs/remotes/origin/main)"
+
+          test "$base_sha" = "$remote_main_sha"
+
+          printf 'base_sha=%s\n' "$base_sha" >> "$GITHUB_OUTPUT"
 
       - name: Set up Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -33,127 +60,100 @@ jobs:
         with:
           bun-version: 1.3.5
 
-      - name: Validate release tag and package version
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Prepare release metadata
+        id: metadata
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
-          GITHUB_REF: ${{ github.ref }}
-          RELEASE_SHA: ${{ github.sha }}
+          BUMP: ${{ inputs.bump }}
         run: |
           set -euo pipefail
-
-          if [[ ! "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
-            printf 'Release tag must be a stable SemVer tag in the form vX.Y.Z: %s\n' "$RELEASE_TAG" >&2
-            exit 1
-          fi
-
-          expected_ref="refs/tags/$RELEASE_TAG"
-          if [[ "$GITHUB_REF" != "$expected_ref" ]]; then
-            printf 'Release tag and GitHub ref differ: %s != %s\n' "$RELEASE_TAG" "$GITHUB_REF" >&2
-            exit 1
-          fi
-
-          tag_commit="$(git rev-parse "$RELEASE_TAG^{commit}")"
-          checked_out_commit="$(git rev-parse HEAD)"
-          if [[ "$tag_commit" != "$RELEASE_SHA" || "$checked_out_commit" != "$RELEASE_SHA" ]]; then
-            printf 'Release SHA, tag commit, and checked-out commit must match.\n' >&2
-            printf 'release=%s tag=%s checkout=%s\n' "$RELEASE_SHA" "$tag_commit" "$checked_out_commit" >&2
-            exit 1
-          fi
-
-          git fetch --no-tags origin '+refs/heads/master:refs/remotes/origin/master'
-          if ! git merge-base --is-ancestor "$tag_commit" "refs/remotes/origin/master"; then
-            printf 'Release tag commit is not an ancestor of remote master.\n' >&2
-            printf 'tag=%s master=%s\n' "$tag_commit" "$(git rev-parse refs/remotes/origin/master)" >&2
-            exit 1
-          fi
-
-          package_version="$(node --input-type=module -e 'import packageJson from "./package.json" with { type: "json" }; process.stdout.write(packageJson.version)')"
-          if [[ "$package_version" != "${RELEASE_TAG#v}" ]]; then
-            printf 'package.json version %s does not match release tag %s.\n' "$package_version" "$RELEASE_TAG" >&2
-            exit 1
-          fi
-
-      - name: Install frozen dependencies
-        run: bun install --frozen-lockfile
+          release_date="$(date -u +%F)"
+          git tag --list | bun scripts/release-metadata.ts \
+            --package-json package.json \
+            --changelog CHANGELOG.md \
+            --bump "$BUMP" \
+            --date "$release_date"
 
       - name: Run release checks
         run: bun run release:check
 
-      - name: Pack exactly one npm tarball
+      - name: Pack release
         id: pack
         run: |
           set -euo pipefail
-          npm pack --json --ignore-scripts > npm-pack.json
-          node --input-type=module <<'NODE'
-          import { appendFileSync, readdirSync, readFileSync, statSync } from "node:fs";
+          package_directory="$RUNNER_TEMP/opencode-vpet-package"
+          mkdir -p "$package_directory"
 
-          const packResult = JSON.parse(readFileSync("npm-pack.json", "utf8"));
-          if (!Array.isArray(packResult) || packResult.length !== 1) {
-            throw new Error("npm pack must report exactly one tarball");
-          }
+          tarball_name="$(npm pack --loglevel silent --ignore-scripts \
+            --pack-destination "$package_directory")"
 
-          const tarballs = readdirSync(".").filter((file) => file.endsWith(".tgz") && statSync(file).isFile());
-          const tarball = packResult[0]?.filename;
-          if (typeof tarball !== "string" || !tarball.endsWith(".tgz") || tarballs.length !== 1 || tarballs[0] !== tarball) {
-            throw new Error("npm pack must create exactly one reported .tgz tarball");
-          }
+          test -f "$package_directory/$tarball_name"
 
-          appendFileSync(process.env.GITHUB_OUTPUT, `tarball=${tarball}\n`);
-          NODE
+          printf 'tarball_name=%s\n' "$tarball_name" >> "$GITHUB_OUTPUT"
 
-      - name: Upload npm tarball
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
-        with:
-          name: npm-tarball
-          path: ${{ steps.pack.outputs.tarball }}
-          if-no-files-found: error
-
-  publish:
-    name: Publish npm package
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-
-      - name: Download npm tarball
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
-        with:
-          name: npm-tarball
-          path: npm-tarball
-
-      - name: Require npm 11.5.1 or newer
+      - name: Commit and tag release
+        env:
+          RELEASE_VERSION: ${{ steps.metadata.outputs.release_version }}
         run: |
           set -euo pipefail
-          NPM_VERSION="$(npm --version)" node --input-type=module <<'NODE'
-          const minimum = [11, 5, 1];
-          const version = process.env.NPM_VERSION;
-          const match = /^(\d+)\.(\d+)\.(\d+)/.exec(version);
-          const actual = match?.slice(1).map(Number);
-          if (!actual || actual[0] < minimum[0] || (actual[0] === minimum[0] && (actual[1] < minimum[1] || (actual[1] === minimum[1] && actual[2] < minimum[2])))) {
-            throw new Error(`npm ${version} is below required version 11.5.1`);
-          }
-          NODE
 
-      - name: Publish exactly one npm tarball
-        working-directory: npm-tarball
+          git add package.json CHANGELOG.md
+
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "chore(release): v$RELEASE_VERSION"
+
+          git tag -a "v$RELEASE_VERSION" -m "v$RELEASE_VERSION"
+
+      - name: Commit next version
+        env:
+          NEXT_DEV_VERSION: ${{ steps.metadata.outputs.next_dev_version }}
         run: |
           set -euo pipefail
-          tarball="$(node --input-type=module <<'NODE'
-          import { readdirSync, statSync } from "node:fs";
 
-          const tarballs = readdirSync(".").filter((file) => file.endsWith(".tgz") && statSync(file).isFile());
-          if (tarballs.length !== 1) {
-            throw new Error("Downloaded artifact must contain exactly one .tgz tarball");
+          bun scripts/release-metadata.ts set-package-version package.json "$NEXT_DEV_VERSION"
+
+          git add package.json
+
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "chore: start $NEXT_DEV_VERSION"
+
+      - name: Push release
+        env:
+          RELEASE_VERSION: ${{ steps.metadata.outputs.release_version }}
+        run: git push --atomic origin HEAD:refs/heads/main "refs/tags/v$RELEASE_VERSION"
+
+      - name: Publish release (npm)
+        env:
+          TARBALL: ${{ runner.temp }}/opencode-vpet-package/${{ steps.pack.outputs.tarball_name }}
+        run: |
+          set -euo pipefail
+
+          npm_version="$(npm --version)"
+
+          NPM_VERSION="$npm_version" node --input-type=module <<'NODE'
+          const [major, minor, patch] = process.env.NPM_VERSION.split(".").map(Number);
+          if (
+            major < 11 ||
+            (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))
+          ) {
+            throw new Error(`npm ${process.env.NPM_VERSION} is below required version 11.5.1`);
           }
-
-          process.stdout.write(tarballs[0]);
           NODE
-          )"
-          npm publish "$tarball" --access public --provenance --ignore-scripts
+
+          npm publish "$TARBALL" \
+            --access public --provenance --ignore-scripts
+
+      - name: Publish release (GitHub)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ steps.metadata.outputs.release_version }}
+          TARBALL: ${{ runner.temp }}/opencode-vpet-package/${{ steps.pack.outputs.tarball_name }}
+        run: |
+          gh release create "v$RELEASE_VERSION" \
+            "$TARBALL" \
+            --title "v$RELEASE_VERSION" \
+            --generate-notes

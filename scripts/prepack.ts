@@ -44,5 +44,3 @@ const cliResult = Bun.spawnSync(["node", resolve(packageRoot, cliPath), "--help"
   stderr: "inherit",
 })
 if (cliResult.exitCode !== 0) throw new Error(`Node CLI help failed: ${cliPath}`)
-
-export {}

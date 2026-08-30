@@ -48,6 +48,8 @@
     "@opentui/keymap": "^0.4.5",
     "@opentui/solid": "^0.4.5",
     "@types/bun": "latest",
+    "@types/semver": "^7.7.1",
+    "semver": "^7.7.4",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
@@ -76,13 +78,14 @@
   "scripts": {
     "test": "bun test",
     "test:persistence": "bun test ./tests/persistence/sqlite-migrations.persistence.ts ./tests/persistence/sqlite-vpet-repository.persistence.ts",
-    "format": "biome format --write src tests package.json biome.json tsconfig*.json",
-    "format:check": "biome format src tests package.json biome.json tsconfig*.json",
-    "lint": "biome lint src tests package.json biome.json tsconfig*.json",
-    "lint:fix": "biome lint --write src tests package.json biome.json tsconfig*.json",
-    "check": "biome ci src tests package.json biome.json tsconfig*.json && bun run typecheck && bun run typecheck:tests",
+    "format": "biome format --write src tests scripts package.json biome.json tsconfig*.json",
+    "format:check": "biome format src tests scripts package.json biome.json tsconfig*.json",
+    "lint": "biome lint src tests scripts package.json biome.json tsconfig*.json",
+    "lint:fix": "biome lint --write src tests scripts package.json biome.json tsconfig*.json",
+    "check": "biome ci src tests scripts package.json biome.json tsconfig*.json && bun run typecheck && bun run typecheck:tests && bun run typecheck:release-metadata",
     "typecheck": "tsc --noEmit",
     "typecheck:tests": "tsc -p tsconfig.test.json --noEmit",
+    "typecheck:release-metadata": "tsc -p tsconfig.release-metadata.json --noEmit",
     "build": "bun scripts/build.ts",
     "prepack": "bun scripts/prepack.ts",
     "release:check": "bun run check && bun test && bun run prepack && npm pack --dry-run --json"

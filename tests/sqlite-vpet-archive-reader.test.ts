@@ -122,7 +122,7 @@ describe("SQLite VPet archive reader", () => {
           "INSERT INTO partners (partner_id, generation, current_node_id, gauge, is_terminal, created_at, retired_at) VALUES ('partner-a', 1, '0-001', 0, 0, '2026-07-01T00:00:00.000Z', '2026-07-02T00:00:00.000Z')",
         )
         database.run(
-          "INSERT INTO partners (partner_id, generation, current_node_id, gauge, is_terminal, created_at, retired_at) VALUES ('partner-c', 3, '2-001', 0, 0, '2026-09-01T00:00:00.000Z', NULL)",
+          "INSERT INTO partners (partner_id, generation, current_node_id, gauge, is_terminal, created_at, retired_at) VALUES ('partner-c', 3, '2-001', 0, 0, '2026-09-01T00:00:00.000Z', '2026-09-02T00:00:00.000Z')",
         )
         database.run(
           "INSERT INTO partner_events (event_id, partner_id, kind, current_node_id, gauge, is_terminal, token_delta, receipt_key, created_at) VALUES ('event-b-later', 'partner-b', 'usage_applied', '1-002', 1, 0, 1, 'receipt-b', '2026-08-01T00:01:00.000Z')",
@@ -163,7 +163,7 @@ describe("SQLite VPet archive reader", () => {
               partnerId: "partner-c",
               generation: 3,
               createdAt: "2026-09-01T00:00:00.000Z",
-              retiredAt: null,
+              retiredAt: "2026-09-02T00:00:00.000Z",
               events: [],
             },
           ],
