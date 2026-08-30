@@ -27,7 +27,6 @@ const cliResult = await Bun.build({
   target: "node",
   format: "esm",
   splitting: false,
-  external: ["jsonc-parser"],
   sourcemap: "linked",
 })
 

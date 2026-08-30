@@ -67,20 +67,16 @@ Requirements:
 - Bun `>=1.3.5` only for local development
 
 
-1. Register both plugins in your global OpenCode configuration:
+1. Install both plugins:
 
    ```sh
    npx @sbugallo/opencode-vpet init
    ```
 
-   You can also do it manually by editing `~/.config/opencode/opencode.json` and 
-   `~/.config/opencode/tui.json` to add the following entry:
-
-    ```json
-    {
-      "plugin": ["@sbugallo/opencode-vpet"]
-    }
-    ```
+   The CLI delegates to `opencode plugin @sbugallo/opencode-vpet@<installed-package-version> --global --force`.
+   It uses the package's installed exact version so OpenCode uses a version-specific cache key rather
+   than reusing a stale bare or `@latest` cache entry. `--force` replaces matching plugin
+   configuration registrations.
 
 2. Restart OpenCode when the command finishes.
 
@@ -112,7 +108,8 @@ To update the plugin, run:
 npx @sbugallo/opencode-vpet update
 ```
 
-The install CLI updates global OpenCode server and TUI configuration, understands OpenCode JSON and JSONC files, preserves unrelated configuration, and replaces an old unscoped `opencode-vpet` registration with `@sbugallo/opencode-vpet`.
+Like `init`, `update` delegates to OpenCode's native global plugin installer with the installed exact
+package version. If a legacy unscoped `opencode-vpet` registration is present, remove it manually.
 
 ## Settings
 

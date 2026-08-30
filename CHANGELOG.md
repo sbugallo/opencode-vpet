@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Exported the OpenCode server plugin entrypoint so VPet commands and the sidebar load correctly.
+- Updated `init` and `update` to delegate to OpenCode's native global plugin installer with the
+  installed exact package version, avoiding stale bare or `@latest` cache reuse.
+
 ## [0.1.0] - 2026-08-30
 
 ### Added

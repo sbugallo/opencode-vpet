@@ -63,7 +63,6 @@ const linkConsumerDependencies = async (consumerDirectory: string): Promise<void
     "@opentui/core",
     "@opentui/keymap",
     "@opentui/solid",
-    "jsonc-parser",
     "solid-js",
   ] as const
   for (const dependency of dependencies) {

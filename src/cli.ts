@@ -1,14 +1,16 @@
 #!/usr/bin/env node
-import { normalizeOpenCodeConfigs } from "./cli/config.ts"
+import { readFile } from "node:fs/promises"
+
+import { installGlobalPlugin } from "./cli/install.ts"
 
 const HELP = `Usage: opencode-vpet <init|update> [--dry-run]
 
 Commands:
-  init       Register @sbugallo/opencode-vpet in global OpenCode server and TUI configs.
-  update     Normalize the same registrations after updating the package.
+  init       Install the current package version through OpenCode's global plugin installer.
+  update     Reinstall the current package version through the same installer.
 
 Options:
-  --dry-run  Show which global config files would change without writing them.
+  --dry-run  Show the native OpenCode command without running it.
   --help      Show this help text.
 `
 
@@ -18,6 +20,25 @@ type ParsedArguments =
   | Readonly<{ readonly kind: "help" }>
   | Readonly<{ readonly kind: "command"; readonly command: Command; readonly dryRun: boolean }>
   | Readonly<{ readonly kind: "invalid"; readonly message: string }>
+
+type PackageManifest = Readonly<{ readonly name: "@sbugallo/opencode-vpet"; readonly version: string }>
+
+const EXACT_SEMVER =
+  /^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/
+
+const isPackageManifest = (value: unknown): value is PackageManifest => {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return false
+  if (!("name" in value) || !("version" in value)) return false
+  const { name, version } = value
+  return name === "@sbugallo/opencode-vpet" && typeof version === "string" && EXACT_SEMVER.test(version)
+}
+
+const readPackageManifest = async (): Promise<PackageManifest> => {
+  const source = await readFile(new URL("../package.json", import.meta.url), "utf8")
+  const manifest: unknown = JSON.parse(source)
+  if (!isPackageManifest(manifest)) throw new Error("Invalid opencode-vpet package manifest.")
+  return manifest
+}
 
 const parseArguments = (arguments_: readonly string[]): ParsedArguments => {
   if (arguments_.length === 1 && arguments_[0] === "--help") return { kind: "help" }
@@ -38,11 +59,14 @@ const run = async (): Promise<number> => {
       process.stderr.write(`${parsed.message}\n\n${HELP}`)
       return 2
     case "command": {
-      const result = await normalizeOpenCodeConfigs({ dryRun: parsed.dryRun })
-      const action = parsed.dryRun ? "Would update" : "Updated"
-      if (result.changedPaths.length === 0)
-        process.stdout.write("OpenCode configuration is already current. Restart OpenCode.\n")
-      else process.stdout.write(`${action} ${result.changedPaths.join(", ")}. Restart OpenCode.\n`)
+      const manifest = await readPackageManifest()
+      const packageSpec = `${manifest.name}@${manifest.version}`
+      if (parsed.dryRun) {
+        process.stdout.write(`opencode plugin ${packageSpec} --global --force\n`)
+        return 0
+      }
+      await installGlobalPlugin(packageSpec)
+      process.stdout.write("OpenCode plugin installation completed. Restart OpenCode.\n")
       return 0
     }
   }

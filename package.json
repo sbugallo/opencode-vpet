@@ -37,7 +37,6 @@
     "opencode-vpet": "./dist/cli.js"
   },
   "dependencies": {
-    "jsonc-parser": "^3.3.1",
     "solid-js": "^1.9.14"
   },
   "devDependencies": {
@@ -60,6 +59,11 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./server": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"

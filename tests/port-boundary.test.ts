@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, test } from "bun:test"
 import { testRender } from "@opentui/solid"
 import type { JSX } from "@opentui/solid"
+import { chmod, mkdir, readFile, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 
 import { MonsterFrame, MONSTER_FRAME_CATALOG } from "../src/data/monster-frame-catalog.ts"
@@ -272,6 +273,7 @@ describe("lightweight package boundary", () => {
       consumerScript,
       `
 import entryPlugin, { createCommandConfig } from "opencode-vpet"
+import serverPlugin from "opencode-vpet/server"
 import { testRender } from "@opentui/solid"
 
 const settings = { language: "jp", stageLabels: { en: { egg: "DigiEgg", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "SuperUltimate" }, jp: { egg: "Digitama", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "SuperUltimate" } }, stageThresholds: { egg: 1000, babyI: 5000, babyII: 25000, child: 100000, adult: 500000, perfect: 2500000, ultimate: 5000000, superUltimate: 10000000 } }
@@ -291,6 +293,7 @@ const render = async (loadInputs, ticks, refreshAfterMount) => {
   try { const setup = await testRender(slot, { width: 81, height: 24 }); renderer = setup.renderer; await setup.flush(); setup.renderer.resize(80, 24); await setup.flush(); await Promise.resolve(); await Promise.resolve(); refreshAfterMount?.(); poll?.(); await Promise.resolve(); await Promise.resolve(); for (let index = 0; index < ticks; index += 1) tick(); await setup.renderOnce(); const frame = setup.captureCharFrame(); setup.renderer.destroy(); if (registeredLayer) { const dexCmd = registeredLayer.commands.find(c => c.name === "vpet.dex"); if (dexCmd) dexCmd.run(); } return { frame, subscriptions, outputs } } finally { dispose() }
 }
 if (entryPlugin.id !== "opencode-vpet" || typeof entryPlugin.server !== "function") throw new Error("Core export failed")
+if (serverPlugin.id !== "opencode-vpet" || typeof serverPlugin.server !== "function") throw new Error("Server export failed")
 if (tuiPlugin.id !== "opencode-vpet" || typeof tuiPlugin.tui !== "function") throw new Error("TUI export failed")
 const privateTuiRejected = !(await import("opencode-vpet/tui/monster-animation").then(() => true, () => false))
 const privateCommandRejected = !(await import("opencode-vpet/commands/vpet-freeze").then(() => true, () => false))
@@ -329,44 +332,70 @@ console.log(JSON.stringify({ commandConfigs, privateCommandRejected, privateTuiR
     expect(new TextDecoder().decode(result.stdout)).toContain('"dialogOpened":true')
   })
 
-  test("Given the packed npm bin When Node runs help and dry-run Then the CLI is Node-compatible and does not write configuration", async () => {
+  test("Given the packed npm bin and a fake OpenCode executable When its CLI commands run Then only init and update execute the native exact-version installer", async () => {
     const fixture = getFixture()
     const cliPath = join(fixture.consumerDirectory, "node_modules", "opencode-vpet", "dist", "cli.js")
-    const helpResult = Bun.spawnSync([process.execPath, cliPath, "--help"], { stdout: "pipe", stderr: "pipe" })
-    const configDirectory = join(fixture.root, "cli-config")
-    const dryRunResult = Bun.spawnSync([process.execPath, cliPath, "init", "--dry-run"], {
-      cwd: fixture.consumerDirectory,
-      env: { ...process.env, OPENCODE_CONFIG_DIR: configDirectory },
-      stdout: "pipe",
-      stderr: "pipe",
+    const fakeBinDirectory = join(fixture.root, "fake-bin")
+    const callsPath = join(fixture.root, "opencode-calls.jsonl")
+    const executablePath = join(fakeBinDirectory, "opencode")
+    const manifest = JSON.parse(
+      await Bun.file(join(fixture.consumerDirectory, "node_modules", "opencode-vpet", "package.json")).text(),
+    )
+    const expected = ["plugin", `@sbugallo/opencode-vpet@${manifest.version}`, "--global", "--force"]
+    await mkdir(fakeBinDirectory)
+    await writeFile(
+      executablePath,
+      `#!/usr/bin/env node
+const { appendFileSync } = require("node:fs")
+appendFileSync(process.env.OPENCODE_FAKE_CALLS, JSON.stringify(process.argv.slice(2)) + "\\n")
+process.exit(Number(process.env.OPENCODE_FAKE_EXIT ?? "0"))
+`,
+    )
+    await chmod(executablePath, 0o755)
+    const environment = (exitCode = 0): NodeJS.ProcessEnv => ({
+      ...process.env,
+      HOME: fixture.root,
+      XDG_CONFIG_HOME: join(fixture.root, "xdg"),
+      OPENCODE_CONFIG_DIR: join(fixture.root, "opencode"),
+      OPENCODE_FAKE_CALLS: callsPath,
+      OPENCODE_FAKE_EXIT: String(exitCode),
+      PATH: `${fakeBinDirectory}:${process.env.PATH ?? ""}`,
     })
+    const runCli = (arguments_: readonly string[], exitCode = 0) =>
+      Bun.spawnSync([process.execPath, cliPath, ...arguments_], {
+        cwd: fixture.consumerDirectory,
+        env: environment(exitCode),
+        stdout: "pipe",
+        stderr: "pipe",
+      })
+
+    const helpResult = runCli(["--help"])
+    const initDryRunResult = runCli(["init", "--dry-run"])
+    const updateDryRunResult = runCli(["update", "--dry-run"])
+
     expect(helpResult.exitCode, new TextDecoder().decode(helpResult.stderr)).toBe(0)
     expect(new TextDecoder().decode(helpResult.stdout)).toContain("Usage: opencode-vpet")
-    expect(dryRunResult.exitCode, new TextDecoder().decode(dryRunResult.stderr)).toBe(0)
-    expect(new TextDecoder().decode(dryRunResult.stdout)).toContain("Would update")
-    expect(await Bun.file(join(configDirectory, "opencode.json")).exists()).toBe(false)
-    expect(await Bun.file(join(configDirectory, "tui.json")).exists()).toBe(false)
-    const initResult = Bun.spawnSync([process.execPath, cliPath, "init"], {
-      cwd: fixture.consumerDirectory,
-      env: { ...process.env, OPENCODE_CONFIG_DIR: configDirectory },
-      stdout: "pipe",
-      stderr: "pipe",
-    })
+    expect(initDryRunResult.exitCode, new TextDecoder().decode(initDryRunResult.stderr)).toBe(0)
+    expect(updateDryRunResult.exitCode, new TextDecoder().decode(updateDryRunResult.stderr)).toBe(0)
+    expect(new TextDecoder().decode(initDryRunResult.stdout)).toBe(`opencode ${expected.join(" ")}\n`)
+    expect(new TextDecoder().decode(updateDryRunResult.stdout)).toBe(`opencode ${expected.join(" ")}\n`)
+    expect(await Bun.file(callsPath).exists()).toBe(false)
+
+    const initResult = runCli(["init"])
+    const updateResult = runCli(["update"])
+    const failureResult = runCli(["update"], 7)
+
     expect(initResult.exitCode, new TextDecoder().decode(initResult.stderr)).toBe(0)
-    expect(new TextDecoder().decode(initResult.stdout)).toContain("Restart OpenCode.")
-    expect(await Bun.file(join(configDirectory, "opencode.json")).text()).toContain('"@sbugallo/opencode-vpet"')
-    expect(await Bun.file(join(configDirectory, "tui.json")).text()).toContain('"@sbugallo/opencode-vpet"')
-    const updateResult = Bun.spawnSync([process.execPath, cliPath, "update"], {
-      cwd: fixture.consumerDirectory,
-      env: { ...process.env, OPENCODE_CONFIG_DIR: configDirectory },
-      stdout: "pipe",
-      stderr: "pipe",
-    })
     expect(updateResult.exitCode, new TextDecoder().decode(updateResult.stderr)).toBe(0)
-    expect(new TextDecoder().decode(updateResult.stdout)).toContain("already current")
-    const invalidResult = Bun.spawnSync([process.execPath, cliPath, "unknown"], { stdout: "pipe", stderr: "pipe" })
-    expect(invalidResult.exitCode).toBe(2)
-    expect(new TextDecoder().decode(invalidResult.stderr)).toContain("Expected init or update.")
+    expect(failureResult.exitCode).toBe(1)
+    expect(
+      (await readFile(callsPath, "utf8"))
+        .trim()
+        .split("\n")
+        .map((line) => JSON.parse(line)),
+    ).toEqual([expected, expected, expected])
+    expect(await Bun.file(join(fixture.root, "opencode", "opencode.json")).exists()).toBe(false)
+    expect(await Bun.file(join(fixture.root, "opencode", "tui.json")).exists()).toBe(false)
   })
 
   test("Given published package metadata When a registry reads it Then it describes all four VPet commands", async () => {
