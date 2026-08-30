@@ -1,0 +1,6 @@
+[jsx]
+runtime = "automatic"
+importSource = "@opentui/solid"
+
+[test]
+preload = ["@opentui/solid/preload"]
