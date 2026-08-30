@@ -1,6 +1,6 @@
 {
   "name": "@sbugallo/opencode-vpet",
-  "version": "0.2.0-dev.0",
+  "version": "0.1.1",
   "description": "An OpenCode virtual-pet plugin with /vpet-spawn, /vpet-freeze, /vpet-unfreeze, /vpet-set, /vpet-dex, and /vpet-history commands.",
   "author": "Sergio Bugallo",
   "license": "Apache-2.0",
