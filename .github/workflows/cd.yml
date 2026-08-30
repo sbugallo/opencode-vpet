@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   release:
-    name: Commit and publish release
+    name: Publish release
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -119,7 +119,7 @@ jobs:
 
           git -c user.name="github-actions[bot]" \
             -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "chore: start $NEXT_DEV_VERSION"
+            commit -m "chore: bump v$NEXT_DEV_VERSION"
 
       - name: Push release
         env:
