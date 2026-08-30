@@ -168,15 +168,26 @@ const renderBuiltSidebar = async (
 }
 
 describe("lightweight package boundary", () => {
-  let fixture: PackageFixture
+  let fixture: PackageFixture | undefined
 
-  beforeAll(async () => {
-    fixture = await createPackageFixture()
-  })
+  const getFixture = (): PackageFixture => {
+    if (fixture === undefined) throw new Error("Expected package fixture")
+    return fixture
+  }
 
-  afterAll(async () => {
-    await removePackageFixture(fixture)
-  })
+  beforeAll(
+    async () => {
+      fixture = await createPackageFixture()
+    },
+    { timeout: 15_000 },
+  )
+
+  afterAll(
+    async () => {
+      if (fixture !== undefined) await removePackageFixture(fixture)
+    },
+    { timeout: 15_000 },
+  )
 
   test("Given the core entrypoint When OpenCode configures it Then it registers all VPet commands", async () => {
     expect(entryPlugin).toEqual({ id: "opencode-vpet", server: plugin })
@@ -197,6 +208,7 @@ describe("lightweight package boundary", () => {
   })
 
   test("Given the built core entrypoint When OpenCode loads it Then it exposes a callable server", async () => {
+    const fixture = getFixture()
     const builtModule = await import(fixtureEntryUrl(fixture, "index.js"))
     const builtEntry = builtModule.default
 
@@ -206,6 +218,7 @@ describe("lightweight package boundary", () => {
   })
 
   test("Given an isolated built TUI When a consumer ticks Digitama, walking, and unavailable partners Then it observes activity subscriptions and renders the private bundled behavior", async () => {
+    const fixture = getFixture()
     const digitama = await renderBuiltSidebar(fixture, () => partnerInputs("egg", 0))
     const unavailable = await renderBuiltSidebar(fixture, () => partnerInputs("unknown-sprite"))
     const empty = await renderBuiltSidebar(fixture, () => partnerInputs(""))
@@ -234,6 +247,7 @@ describe("lightweight package boundary", () => {
   })
 
   test("Given a packed isolated package When an external consumer imports only public roots Then all command configs survive and private modules remain unavailable", async () => {
+    const fixture = getFixture()
     expect(fixture.archiveMembers).toEqual(
       expect.arrayContaining([
         "package/package.json",
@@ -316,6 +330,7 @@ console.log(JSON.stringify({ commandConfigs, privateCommandRejected, privateTuiR
   })
 
   test("Given the packed npm bin When Node runs help and dry-run Then the CLI is Node-compatible and does not write configuration", async () => {
+    const fixture = getFixture()
     const cliPath = join(fixture.consumerDirectory, "node_modules", "opencode-vpet", "dist", "cli.js")
     const helpResult = Bun.spawnSync([process.execPath, cliPath, "--help"], { stdout: "pipe", stderr: "pipe" })
     const configDirectory = join(fixture.root, "cli-config")
