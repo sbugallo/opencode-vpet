@@ -93,6 +93,11 @@ jobs:
 
           printf 'tarball_name=%s\n' "$tarball_name" >> "$GITHUB_OUTPUT"
 
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Commit and tag release
         env:
           RELEASE_VERSION: ${{ steps.metadata.outputs.release_version }}
@@ -101,9 +106,7 @@ jobs:
 
           git add package.json CHANGELOG.md
 
-          git -c user.name="github-actions[bot]" \
-            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "chore(release): v$RELEASE_VERSION"
+          git commit -m "chore(release): v$RELEASE_VERSION"
 
           git tag -a "v$RELEASE_VERSION" -m "v$RELEASE_VERSION"
 
@@ -117,9 +120,7 @@ jobs:
 
           git add package.json
 
-          git -c user.name="github-actions[bot]" \
-            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "chore: bump v$NEXT_DEV_VERSION"
+          git commit -m "chore: bump v$NEXT_DEV_VERSION"
 
       - name: Push release
         env:
