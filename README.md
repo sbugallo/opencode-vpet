@@ -1,4 +1,10 @@
 <div align="center">
+  <img 
+    src="_images/logo.png" 
+    alt="OpenCode VPet logo" 
+    width="160" 
+    style="image-rendering: pixelated"
+  >
   <h1>opencode-vpet</h1>
   <p>
     A Digimon virtual pet for OpenCode that evolves with usage.
