@@ -20,6 +20,9 @@ jobs:
   release:
     name: Publish release
     runs-on: ubuntu-latest
+    env:
+      HAS_OVSX_PAT: ${{ secrets.OVSX_PAT != '' }}
+      HAS_VSCE_PAT: ${{ secrets.VSCE_PAT != '' }}
     permissions:
       contents: write
       id-token: write
@@ -52,7 +55,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: 24
+          node-version: 24.11.0
           registry-url: https://registry.npmjs.org/
 
       - name: Set up Bun
@@ -71,13 +74,23 @@ jobs:
           set -euo pipefail
           release_date="$(date -u +%F)"
           git tag --list | bun scripts/release-metadata.ts \
-            --package-json package.json \
+            --package-json packages/opencode-vpet/package.json \
             --changelog CHANGELOG.md \
             --bump "$BUMP" \
             --date "$release_date"
 
+      - name: Sync workspace versions
+        env:
+          RELEASE_VERSION: ${{ steps.metadata.outputs.release_version }}
+        run: |
+          bun scripts/release-metadata.ts set-package-stable-version packages/vpet-core/package.json "$RELEASE_VERSION"
+          bun scripts/release-metadata.ts set-package-stable-version packages/cursor-vpet/package.json "$RELEASE_VERSION"
+
       - name: Run release checks
         run: bun run release:check
+
+      - name: Build cursor-vpet
+        run: bun run --filter cursor-vpet build
 
       - name: Pack release
         id: pack
@@ -86,12 +99,22 @@ jobs:
           package_directory="$RUNNER_TEMP/opencode-vpet-package"
           mkdir -p "$package_directory"
 
-          tarball_name="$(npm pack --loglevel silent --ignore-scripts \
-            --pack-destination "$package_directory")"
+          tarball_name="$(npm pack --loglevel silent \
+            --pack-destination "$package_directory" \
+            --workspace @sbugallo/opencode-vpet)"
 
           test -f "$package_directory/$tarball_name"
 
           printf 'tarball_name=%s\n' "$tarball_name" >> "$GITHUB_OUTPUT"
+
+      - name: Pack VSIX
+        id: vsix
+        run: |
+          set -euo pipefail
+          vsix_path="$RUNNER_TEMP/cursor-vpet.vsix"
+          cd packages/cursor-vpet
+          npx @vscode/vsce package --no-dependencies -o "$vsix_path"
+          printf 'vsix_path=%s\n' "$vsix_path" >> "$GITHUB_OUTPUT"
 
       - name: Set up Git
         run: |
@@ -104,7 +127,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          git add package.json CHANGELOG.md
+          git add packages/opencode-vpet/package.json packages/vpet-core/package.json packages/cursor-vpet/package.json CHANGELOG.md
 
           git commit -m "chore(release): v$RELEASE_VERSION"
 
@@ -116,9 +139,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          bun scripts/release-metadata.ts set-package-version package.json "$NEXT_DEV_VERSION"
+          bun scripts/release-metadata.ts set-package-version packages/opencode-vpet/package.json "$NEXT_DEV_VERSION"
+          bun scripts/release-metadata.ts set-package-version packages/vpet-core/package.json "$NEXT_DEV_VERSION"
+          bun scripts/release-metadata.ts set-package-version packages/cursor-vpet/package.json "$NEXT_DEV_VERSION"
 
-          git add package.json
+          git add packages/opencode-vpet/package.json packages/vpet-core/package.json packages/cursor-vpet/package.json
 
           git commit -m "chore: bump v$NEXT_DEV_VERSION"
 
@@ -156,5 +181,24 @@ jobs:
         run: |
           gh release create "v$RELEASE_VERSION" \
             "$TARBALL" \
+            "${{ steps.vsix.outputs.vsix_path }}" \
             --title "v$RELEASE_VERSION" \
             --generate-notes
+
+      - name: Create Open VSX namespace
+        if: env.HAS_OVSX_PAT == 'true'
+        run: npx ovsx create-namespace sbugallo -p "$OVSX_PAT" || true
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
+      - name: Publish release (Open VSX)
+        if: env.HAS_OVSX_PAT == 'true'
+        run: npx ovsx publish "${{ steps.vsix.outputs.vsix_path }}" -p "$OVSX_PAT"
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
+      - name: Publish release (VS Code Marketplace)
+        if: env.HAS_VSCE_PAT == 'true'
+        run: npx @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.vsix_path }}"
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

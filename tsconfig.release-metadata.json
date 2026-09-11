@@ -1,8 +1,13 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
+    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "types": ["bun", "node"],
     "noEmit": true,
-    "rootDir": "scripts"
+    "rootDir": "scripts",
+    "skipLibCheck": true
   },
-  "include": ["scripts/release-metadata.ts"]
+  "include": ["scripts/release-metadata.ts", "scripts/stage-changelog.ts"]
 }
