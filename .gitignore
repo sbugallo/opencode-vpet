@@ -17,4 +17,8 @@ Thumbs.db
 
 # Release workflow artifacts
 *.tgz
+*.vsix
 npm-pack.json
+.package.json.publish.bak
+packages/opencode-vpet/CHANGELOG.md
+packages/cursor-vpet/CHANGELOG.md
