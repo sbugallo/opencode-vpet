@@ -63,8 +63,8 @@ options in that Digimon's line.
 
 Requirements:
 - OpenCode `>=1.18.10`
-- Node `>=20` to run `npx`
-- Bun `>=1.3.5` only for local development
+- Node `24.11.0` to run `npx` (pinned via Volta in this repo)
+- Bun `1.3.5` for local development and builds (pinned via Volta in this repo)
 
 
 1. Install both plugins:
@@ -816,7 +816,7 @@ To persist your partner, history, and control state, VPet uses a SQLite database
 | 7-044 | Ogudomon X | Ogudomon X |
 | 7-045 | Chaosdramon | Chaosdramon |
 
-Check out the [Digimon Data List](src/data/digimon-data.ts) for more information about evolution
+Check out the [Digimon Data List](packages/vpet-core/src/data/digimon-data.ts) for more information about evolution
 lines.
 
 ## License
