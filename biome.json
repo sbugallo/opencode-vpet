@@ -2,15 +2,15 @@
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
     "includes": [
-      "src/**",
-      "tests/**",
+      "packages/**",
       "scripts/**",
       "package.json",
       "tsconfig*.json",
-      "!src/data/monster-frame-data.ts",
+      "!packages/**/dist/**",
+      "!packages/cursor-vpet/hook-bridge.js",
+      "!packages/vpet-core/src/data/monster-frame-data.ts",
       "!tests/**/*.jsonc",
       "!.omo/",
-      "!dist/",
       "!node_modules/",
       "!coverage/",
       "!**/generated/"
@@ -44,7 +44,11 @@
   },
   "overrides": [
     {
-      "includes": ["src/tui/sidebar-card.tsx", "src/tui/vpet-dex-dialog.tsx", "src/tui/vpet-history-dialog.tsx"],
+      "includes": [
+        "packages/opencode-vpet/src/tui/sidebar-card.tsx",
+        "packages/opencode-vpet/src/tui/vpet-dex-dialog.tsx",
+        "packages/opencode-vpet/src/tui/vpet-history-dialog.tsx"
+      ],
       "linter": {
         "rules": {
           "a11y": {
