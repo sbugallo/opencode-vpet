@@ -150,6 +150,15 @@ export const runReleaseMetadataCli = async (
   return { nextDevVersion, releaseVersion }
 }
 
+export const setStablePackageVersion = async (packageJsonPath: string, version: string): Promise<void> => {
+  if (!isStableVersion(version)) {
+    throw new Error(`Package version must be stable SemVer: ${version}.`)
+  }
+  const packageMetadata = parsePackageMetadata(await readFile(packageJsonPath, "utf8"))
+  if (packageMetadata.version === version) return
+  await writeFile(packageJsonPath, `${JSON.stringify({ ...packageMetadata, version }, null, 2)}\n`)
+}
+
 export const setPackageVersion = async (packageJsonPath: string, version: string): Promise<void> => {
   if (semver.valid(version) !== version || semver.prerelease(version) === null) {
     throw new Error(`Package version must be an exact prerelease SemVer version: ${version}.`)
@@ -174,7 +183,13 @@ const writeGithubOutputs = async (result: {
 
 if (import.meta.main) {
   const [command, ...arguments_] = Bun.argv.slice(2)
-  if (command === "set-package-version") {
+  if (command === "set-package-stable-version") {
+    const [packageJsonPath, version] = arguments_
+    if (packageJsonPath === undefined || version === undefined || arguments_.length !== 2) {
+      throw new Error("Expected set-package-stable-version <package-json-path> <version>.")
+    }
+    await setStablePackageVersion(packageJsonPath, version)
+  } else if (command === "set-package-version") {
     const [packageJsonPath, version] = arguments_
     if (packageJsonPath === undefined || version === undefined || arguments_.length !== 2) {
       throw new Error("Expected set-package-version <package-json-path> <version>.")
