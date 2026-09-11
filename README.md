@@ -17,6 +17,8 @@
     <a href="#settings">Settings</a> | 
     <a href="#storage">Storage</a> | 
     <a href="#partner-list">Partner list</a> |
+    <a href="#author">Author</a> |
+    <a href="#contributors">Contributors</a> |
     <a href="#license">License</a> |
     <a href="#attributions">Attributions</a>
 
@@ -63,8 +65,8 @@ options in that Digimon's line.
 
 Requirements:
 - OpenCode `>=1.18.10`
-- Node `>=20` to run `npx`
-- Bun `>=1.3.5` only for local development
+- Node `24.11.0` to run `npx` (pinned via Volta in this repo)
+- Bun `1.3.5` for local development and builds (pinned via Volta in this repo)
 
 
 1. Install both plugins:
@@ -138,14 +140,14 @@ Default values are:
   "notifications": true,
   "language": "jp",
   "stageThresholds": {
-    "egg": 500000,
-    "babyI": 1000000,
-    "babyII": 2000000,
-    "child": 4000000,
-    "adult": 7500000,
-    "perfect": 12500000,
-    "ultimate": 20000000,
-    "superUltimate": 30000000
+    "egg": 5000000,
+    "babyI": 10000000,
+    "babyII": 20000000,
+    "child": 40000000,
+    "adult": 75000000,
+    "perfect": 125000000,
+    "ultimate": 200000000,
+    "superUltimate": 300000000
   }
 }
 ```
@@ -816,8 +818,16 @@ To persist your partner, history, and control state, VPet uses a SQLite database
 | 7-044 | Ogudomon X | Ogudomon X |
 | 7-045 | Chaosdramon | Chaosdramon |
 
-Check out the [Digimon Data List](src/data/digimon-data.ts) for more information about evolution
+Check out the [Digimon Data List](packages/vpet-core/src/data/digimon-data.ts) for more information about evolution
 lines.
+
+## Author
+
+- [Sergio Bugallo](https://github.com/sbugallo)
+
+## Contributors
+
+- [Jorge Cendal](https://github.com/jcendal)
 
 ## License
 

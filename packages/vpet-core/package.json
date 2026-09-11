@@ -1,0 +1,26 @@
+{
+  "name": "@sbugallo/vpet-core",
+  "version": "0.2.0-dev.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.11.0",
+    "bun": "1.3.5"
+  },
+  "exports": {
+    "./domain/*": "./src/domain/*",
+    "./application/*": "./src/application/*",
+    "./data/*": "./src/data/*",
+    "./config/*": "./src/config/*",
+    "./view-models/*": "./src/view-models/*",
+    "./ports/*": "./src/ports/*",
+    "./adapters/*": "./src/adapters/*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.14",
+    "typescript": "5.9.3"
+  }
+}
