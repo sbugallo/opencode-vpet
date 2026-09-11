@@ -21,7 +21,7 @@ jobs:
 
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: 24
+          node-version: 24.11.0
 
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
@@ -40,10 +40,21 @@ jobs:
         run: bun run check
 
       - name: Tests
-        run: bun test
+        run: bun run test
+
+      - name: Persistence tests
+        run: bun run test:persistence
+
+      - name: Build cursor-vpet
+        run: bun run --filter cursor-vpet build
 
       - name: Prepack
         run: bun run prepack
-      
-      - name: Pack
+
+      - name: Pack npm
+        working-directory: packages/opencode-vpet
         run: npm pack --dry-run --json
+
+      - name: Pack VSIX
+        working-directory: packages/cursor-vpet
+        run: npx @vscode/vsce package --no-dependencies
