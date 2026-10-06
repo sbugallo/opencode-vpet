@@ -1,0 +1,11 @@
+**
+!package.json
+!README.md
+!LICENSE
+!CHANGELOG.md
+!icon.png
+!images/
+!images/*.png
+!hook-bridge.js
+!dist/extension.js
+!dist/sql-wasm.wasm

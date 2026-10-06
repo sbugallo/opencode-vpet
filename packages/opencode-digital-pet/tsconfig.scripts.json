@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "types": ["bun", "node"],
+    "noEmit": true,
+    "rootDir": "scripts",
+    "skipLibCheck": true
+  },
+  "include": ["scripts/**/*.ts"]
+}

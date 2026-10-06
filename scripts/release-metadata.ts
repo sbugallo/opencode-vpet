@@ -10,7 +10,9 @@ type ReleaseMetadataCliOptions = {
   readonly bump: ReleaseBump
   readonly changelogPath: string
   readonly date: string
+  readonly legacyTagPrefix?: string
   readonly packageJsonPath: string
+  readonly tagPrefix: string
 }
 
 type JsonObject = {
@@ -44,14 +46,19 @@ const parseReleaseBump = (value: string | undefined): ReleaseBump => {
   return value
 }
 
-const getStableTagVersions = (tags: readonly string[]): readonly string[] =>
+const getStableTagVersions = (tags: readonly string[], prefix: string): readonly string[] =>
   tags.flatMap((tag) => {
-    const match = /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.exec(tag)
-    return match === null ? [] : [`${match[1]}.${match[2]}.${match[3]}`]
+    if (!tag.startsWith(prefix)) return []
+    const version = tag.slice(prefix.length)
+    return semver.valid(version) === version && semver.prerelease(version) === null ? [version] : []
   })
 
-const getLatestStableVersion = (tags: readonly string[]): string | undefined =>
-  semver.rsort([...getStableTagVersions(tags)])[0]
+const getLatestStableVersion = (tags: readonly string[], prefix: string): string | undefined =>
+  semver.rsort([...getStableTagVersions(tags, prefix)])[0]
+
+const getReleaseLineVersion = (tags: readonly string[], prefix: string, legacyPrefix?: string): string | undefined =>
+  getLatestStableVersion(tags, prefix) ??
+  (legacyPrefix === undefined ? undefined : getLatestStableVersion(tags, legacyPrefix))
 
 const parsePackageMetadata = (source: string): PackageMetadata => {
   const value: unknown = JSON.parse(source)
@@ -80,15 +87,18 @@ const parseCliOptions = (arguments_: readonly string[]): ReleaseMetadataCliOptio
   const packageJsonPath = values.get("--package-json")
   const changelogPath = values.get("--changelog")
   const date = values.get("--date")
+  const tagPrefix = values.get("--tag-prefix") ?? "v"
+  const legacyTagPrefix = values.get("--legacy-tag-prefix")
   if (packageJsonPath === undefined || changelogPath === undefined || date === undefined) {
     throw new Error("Expected --package-json, --changelog, and --date.")
   }
+  if (tagPrefix.length === 0 || legacyTagPrefix === "") throw new Error("Tag prefixes must not be empty.")
 
-  return { bump, changelogPath, date, packageJsonPath }
+  return { bump, changelogPath, date, legacyTagPrefix, packageJsonPath, tagPrefix }
 }
 
-export const calculateReleaseVersion = (tags: readonly string[], bump: ReleaseBump): string => {
-  const latestVersion = getLatestStableVersion(tags) ?? "0.0.0"
+export const calculateReleaseVersion = (tags: readonly string[], bump: ReleaseBump, prefix = "v"): string => {
+  const latestVersion = getLatestStableVersion(tags, prefix) ?? "0.0.0"
   const releaseVersion = semver.inc(latestVersion, bump)
   if (releaseVersion === null) throw new Error(`Cannot calculate ${bump} release from ${latestVersion}.`)
   return releaseVersion
@@ -96,22 +106,39 @@ export const calculateReleaseVersion = (tags: readonly string[], bump: ReleaseBu
 
 export const calculateNextDevelopmentVersion = (releaseVersion: string): string => {
   if (!isStableVersion(releaseVersion)) throw new Error(`Release version must be stable SemVer: ${releaseVersion}.`)
-  const nextDevVersion = semver.inc(releaseVersion, "preminor", "dev")
+  const nextDevVersion = semver.inc(releaseVersion, "prepatch", "dev")
   if (nextDevVersion === null) throw new Error(`Cannot calculate next development version from ${releaseVersion}.`)
   return nextDevVersion
 }
 
-const validatePrepareSourceVersion = (sourceVersion: string, tags: readonly string[]): void => {
-  const latestStableVersion = getLatestStableVersion(tags)
+const resolveReleaseVersion = (
+  sourceVersion: string,
+  tags: readonly string[],
+  options: ReleaseMetadataCliOptions,
+): string => {
+  const latestProductVersion = getLatestStableVersion(tags, options.tagPrefix)
+  const latestStableVersion =
+    latestProductVersion ?? getReleaseLineVersion(tags, options.tagPrefix, options.legacyTagPrefix)
   if (latestStableVersion === undefined) {
-    if (!isStableVersion(sourceVersion))
-      throw new Error(`Initial release source must be stable SemVer: ${sourceVersion}.`)
-    return
+    if (isStableVersion(sourceVersion)) return calculateReleaseVersion([], options.bump)
+    const initialVersion = sourceVersion.replace(/-dev\.0$/, "")
+    if (initialVersion === sourceVersion || !isStableVersion(initialVersion)) {
+      throw new Error(`Initial release source must be stable SemVer or an exact -dev.0 candidate: ${sourceVersion}.`)
+    }
+    return initialVersion
   }
   const expectedSourceVersion = calculateNextDevelopmentVersion(latestStableVersion)
-  if (sourceVersion !== expectedSourceVersion) {
+  const legacySourceVersion = semver.inc(latestStableVersion, "preminor", "dev")
+  const migratingLegacyTags = latestProductVersion === undefined && options.legacyTagPrefix !== undefined
+  if (sourceVersion !== expectedSourceVersion && !(migratingLegacyTags && sourceVersion === legacySourceVersion)) {
     throw new Error(`Release source version must match the expected development version: ${expectedSourceVersion}.`)
   }
+  const releaseVersion = semver.inc(latestStableVersion, options.bump)
+  if (releaseVersion === null) throw new Error(`Cannot calculate ${options.bump} release from ${latestStableVersion}.`)
+  if (migratingLegacyTags && sourceVersion === legacySourceVersion && sourceVersion !== `${releaseVersion}-dev.0`) {
+    throw new Error(`The first product release must match its existing development candidate: ${sourceVersion}.`)
+  }
+  return releaseVersion
 }
 
 export const insertReleaseIntoChangelog = (changelog: string, version: string, date: string): string => {
@@ -127,19 +154,32 @@ export const insertReleaseIntoChangelog = (changelog: string, version: string, d
   return `${changelog.slice(0, insertionPoint)}\n\n## [${version}] - ${date}${changelog.slice(insertionPoint)}`
 }
 
+export const extractReleaseNotes = (changelog: string, version: string): string => {
+  if (!isStableVersion(version)) throw new Error(`Release version must be stable SemVer: ${version}.`)
+  const heading = new RegExp(`^## \\[${version.replace(/\./g, "\\.")}\\] - \\d{4}-\\d{2}-\\d{2}$`, "m")
+  const match = heading.exec(changelog)
+  if (match === null) throw new Error(`CHANGELOG.md is missing release ${version}.`)
+  const rest = changelog.slice(match.index + match[0].length)
+  const nextHeading = /^## /m.exec(rest)
+  const notes = rest.slice(0, nextHeading?.index).trim()
+  if (notes.length === 0) throw new Error(`CHANGELOG.md has no notes for release ${version}.`)
+  return `${notes}\n`
+}
+
 export const runReleaseMetadataCli = async (
   arguments_: readonly string[],
 ): Promise<{ readonly nextDevVersion: string; readonly releaseVersion: string }> => {
   const options = parseCliOptions(arguments_)
+  let tagInput = ""
+  for await (const chunk of process.stdin) tagInput += chunk.toString()
   const [packageJsonSource, changelog, tags] = await Promise.all([
     readFile(options.packageJsonPath, "utf8"),
     readFile(options.changelogPath, "utf8"),
-    Bun.stdin.text(),
+    Promise.resolve(tagInput),
   ])
   const stableTags = tags.split(/\r?\n/).filter(Boolean)
   const packageMetadata = parsePackageMetadata(packageJsonSource)
-  validatePrepareSourceVersion(packageMetadata.version, stableTags)
-  const releaseVersion = calculateReleaseVersion(stableTags, options.bump)
+  const releaseVersion = resolveReleaseVersion(packageMetadata.version, stableTags, options)
   const nextDevVersion = calculateNextDevelopmentVersion(releaseVersion)
   const releasePackageJson = `${JSON.stringify({ ...packageMetadata, version: releaseVersion }, null, 2)}\n`
   const releaseChangelog = insertReleaseIntoChangelog(changelog, releaseVersion, options.date)
@@ -148,6 +188,15 @@ export const runReleaseMetadataCli = async (
     writeFile(options.changelogPath, releaseChangelog),
   ])
   return { nextDevVersion, releaseVersion }
+}
+
+export const setStablePackageVersion = async (packageJsonPath: string, version: string): Promise<void> => {
+  if (!isStableVersion(version)) {
+    throw new Error(`Package version must be stable SemVer: ${version}.`)
+  }
+  const packageMetadata = parsePackageMetadata(await readFile(packageJsonPath, "utf8"))
+  if (packageMetadata.version === version) return
+  await writeFile(packageJsonPath, `${JSON.stringify({ ...packageMetadata, version }, null, 2)}\n`)
 }
 
 export const setPackageVersion = async (packageJsonPath: string, version: string): Promise<void> => {
@@ -173,15 +222,27 @@ const writeGithubOutputs = async (result: {
 }
 
 if (import.meta.main) {
-  const [command, ...arguments_] = Bun.argv.slice(2)
-  if (command === "set-package-version") {
+  const [command, ...arguments_] = process.argv.slice(2)
+  if (command === "release-notes") {
+    const [changelogPath, version] = arguments_
+    if (changelogPath === undefined || version === undefined || arguments_.length !== 2) {
+      throw new Error("Expected release-notes <changelog-path> <version>.")
+    }
+    process.stdout.write(extractReleaseNotes(await readFile(changelogPath, "utf8"), version))
+  } else if (command === "set-package-stable-version") {
+    const [packageJsonPath, version] = arguments_
+    if (packageJsonPath === undefined || version === undefined || arguments_.length !== 2) {
+      throw new Error("Expected set-package-stable-version <package-json-path> <version>.")
+    }
+    await setStablePackageVersion(packageJsonPath, version)
+  } else if (command === "set-package-version") {
     const [packageJsonPath, version] = arguments_
     if (packageJsonPath === undefined || version === undefined || arguments_.length !== 2) {
       throw new Error("Expected set-package-version <package-json-path> <version>.")
     }
     await setPackageVersion(packageJsonPath, version)
   } else {
-    const result = await runReleaseMetadataCli(Bun.argv.slice(2))
+    const result = await runReleaseMetadataCli(process.argv.slice(2))
     await writeGithubOutputs(result)
     process.stdout.write(`${JSON.stringify(result)}\n`)
   }

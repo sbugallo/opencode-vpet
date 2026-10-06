@@ -1,0 +1,12 @@
+{
+  "extends": "../digital-pet-animation/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": false,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "dist/digital-pet-animation",
+    "rootDir": "build/digital-pet-animation-src"
+  },
+  "include": ["build/digital-pet-animation-src"]
+}

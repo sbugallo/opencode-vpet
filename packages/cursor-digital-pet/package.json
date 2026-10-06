@@ -1,0 +1,148 @@
+{
+  "name": "cursor-digital-pet",
+  "displayName": "Cursor Digital Pet",
+  "description": "Digimon virtual pet for Cursor that evolves with Agent token usage.",
+  "version": "0.2.0-dev.0",
+  "publisher": "jcendal",
+  "author": "Jorge Cendal",
+  "contributors": [
+    "Sergio Bugallo"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcendal/digital-pet.git",
+    "directory": "packages/cursor-digital-pet"
+  },
+  "homepage": "https://github.com/jcendal/digital-pet#readme",
+  "bugs": {
+    "url": "https://github.com/jcendal/digital-pet/issues"
+  },
+  "keywords": [
+    "cursor",
+    "digital-pet",
+    "virtual-pet",
+    "digimon",
+    "agent",
+    "ai",
+    "sidebar",
+    "opencode"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.101.0",
+    "node": ">=22.13.0",
+    "bun": "1.3.5"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "cursorDigitalPet.sidebar",
+          "name": "Digital Pet",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "cursorDigitalPet.spawn",
+        "title": "Cursor Digital Pet: Spawn Partner"
+      },
+      {
+        "command": "cursorDigitalPet.freeze",
+        "title": "Cursor Digital Pet: Freeze"
+      },
+      {
+        "command": "cursorDigitalPet.unfreeze",
+        "title": "Cursor Digital Pet: Unfreeze"
+      },
+      {
+        "command": "cursorDigitalPet.set",
+        "title": "Cursor Digital Pet: Set Digimon"
+      },
+      {
+        "command": "cursorDigitalPet.dex",
+        "title": "Cursor Digital Pet: Open Dex"
+      },
+      {
+        "command": "cursorDigitalPet.history",
+        "title": "Cursor Digital Pet: Open History"
+      },
+      {
+        "command": "cursorDigitalPet.installHooks",
+        "title": "Cursor Digital Pet: Install Hooks"
+      },
+      {
+        "command": "cursorDigitalPet.uninstallHooks",
+        "title": "Cursor Digital Pet: Uninstall Hooks"
+      },
+      {
+        "command": "cursorDigitalPet.dev.showMenu",
+        "title": "Cursor Digital Pet: Dev Tools"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "cursorDigitalPet.dev.showMenu",
+          "when": "cursorDigitalPet.devToolsEnabled"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Cursor Digital Pet",
+      "properties": {
+        "digital-pet.databasePath": {
+          "type": "string",
+          "default": "",
+          "description": "Override path to pet.db (default: shared opencode-digital-pet/pet.db)"
+        },
+        "digital-pet.usage.settleDelayMs": {
+          "type": "number",
+          "default": 4000,
+          "description": "Initial delay before API watermark fallback (ms)"
+        },
+        "digital-pet.devTools": {
+          "type": "boolean",
+          "default": false,
+          "scope": "window",
+          "description": "Enable development tools for previewing feed, evolution reveal, and evolution battle animations."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "test": "bun test",
+    "package": "npx @vscode/vsce package --no-dependencies",
+    "publish:openvsx": "npx ovsx publish *.vsix",
+    "vscode:prepublish": "npm run build"
+  },
+  "dependencies": {
+    "@jcendal/digital-pet-animation": "0.2.0-dev.0",
+    "@jcendal/digital-pet-core": "0.2.0-dev.0",
+    "sql.js": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.14",
+    "@types/node": "24.10.1",
+    "@types/vscode": "1.90.0",
+    "@vscode/vsce": "3.2.1",
+    "ovsx": "1.2.0",
+    "typescript": "5.9.3"
+  }
+}

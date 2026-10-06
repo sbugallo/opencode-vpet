@@ -3,6 +3,7 @@ node_modules/
 
 # Build and test output
 dist/
+packages/opencode-digital-pet/build/
 coverage/
 .turbo/
 *.tsbuildinfo
@@ -15,6 +16,29 @@ Thumbs.db
 # Coding agents
 .omo/
 
+# Local configuration and credentials
+.env*
+!.env.example
+.npmrc
+.pypirc
+.netrc
+*.pem
+*.key
+*.p12
+
+# Local user data and logs
+.cursor/
+.opencode/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.jsonl
+*.log
+
 # Release workflow artifacts
+release-artifacts/
 *.tgz
+*.vsix
 npm-pack.json
+.package.json.publish.bak
