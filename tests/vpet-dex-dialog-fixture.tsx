@@ -1,9 +1,12 @@
 /** @jsxImportSource @opentui/solid */
 import { mock } from "bun:test"
 import type { VpetDexDialogTheme } from "../src/tui/vpet-dex-dialog.tsx"
-import type { TuiDialogProps } from "@opencode-ai/plugin/tui"
 import { parseColor } from "@opentui/core"
 import type { JSX } from "solid-js"
+
+type TrackedDialogProps = {
+  readonly children?: JSX.Element
+}
 
 export const createMockTheme = (): VpetDexDialogTheme => ({
   current: {
@@ -15,7 +18,7 @@ export const createMockTheme = (): VpetDexDialogTheme => ({
 
 export const createTrackedDialogApi = () => {
   const Dialog = mock(
-    (props: TuiDialogProps): JSX.Element => (
+    (props: TrackedDialogProps): JSX.Element => (
       <box flexDirection="column" width="100%" height="100%">
         {props.children}
       </box>

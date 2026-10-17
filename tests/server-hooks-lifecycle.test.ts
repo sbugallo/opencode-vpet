@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test"
-import type { Event } from "@opencode-ai/sdk"
 
-import { createServerHooks } from "../src/adapters/opencode/create-server-hooks.ts"
+import { setupVpetServer } from "../src/adapters/opencode/server-plugin.ts"
 import type { VpetToastPayload } from "../src/adapters/opencode/vpet-toast.ts"
 import type { DigimonCatalog, DigimonNode } from "../src/data/catalog.ts"
 import { STAGE_GAUGE_THRESHOLDS } from "../src/domain/evolution.ts"
@@ -9,6 +8,8 @@ import type { ApplyUsageReceiptOutcome, UsageReceiptMetadata } from "../src/appl
 import type { PartnerLifecycle } from "../src/application/ports/partner-lifecycle.ts"
 import type { UsageLedger } from "../src/application/ports/usage-ledger.ts"
 import type { VpetControl } from "../src/application/ports/vpet-control.ts"
+import { DEFAULT_VPET_SETTINGS } from "../src/config/defaults.ts"
+import { createServerContextFixture } from "./server-context-fixture.ts"
 
 const createRepository = (outcome: ApplyUsageReceiptOutcome, onReceipt?: () => void) =>
   ({
@@ -28,7 +29,8 @@ const createRepository = (outcome: ApplyUsageReceiptOutcome, onReceipt?: () => v
     freeze: () => ({ kind: "already_frozen" as const }),
     unfreeze: () => ({ kind: "already_unfrozen" as const }),
     setCheatNode: (cheatNodeId: string) => ({ kind: "already_set" as const, cheatNodeId }),
-  }) satisfies PartnerLifecycle & UsageLedger & VpetControl
+    close: async () => {},
+  }) satisfies PartnerLifecycle & UsageLedger & VpetControl & { close(): Promise<void> }
 
 const toastNodes = [
   {
@@ -104,79 +106,76 @@ const createToastRepository = () => {
       cheatNodeId = nodeId
       return { kind: "set" as const, cheatNodeId: nodeId }
     },
-  } satisfies PartnerLifecycle & UsageLedger & VpetControl
+    close: async () => {},
+  } satisfies PartnerLifecycle & UsageLedger & VpetControl & { close(): Promise<void> }
 }
 
-const completedAssistantEvent = {
-  type: "message.updated",
-  properties: {
-    info: {
-      id: "message-1",
-      sessionID: "session-1",
-      role: "assistant",
-      time: { created: 1, completed: 2 },
-      parentID: "parent-1",
-      modelID: "model-1",
-      providerID: "provider-1",
-      mode: "build",
-      path: { cwd: "/tmp", root: "/tmp" },
-      cost: 0,
-      tokens: { input: 10, output: 20, reasoning: 30, cache: { read: 40, write: 50 } },
-    },
-  },
-} satisfies Event
+const completedAssistantMessage = (id: string) => ({
+  id,
+  type: "assistant",
+  time: { created: 1, completed: 2 },
+  tokens: { input: 10, output: 20, reasoning: 30, cache: { read: 40, write: 50 } },
+})
 
-describe("server hook lifecycle", () => {
-  test("Given unrelated OpenCode inputs and repeated disposal When hooks dispatch them Then they produce no usage or output and close the outer resource once", async () => {
+describe("server plugin lifecycle", () => {
+  test("Given unrelated events and repeated cleanup When the plugin consumes them Then they produce no usage and close the repository once", async () => {
     let appliedReceiptCount = 0
+    let fetchCount = 0
     let closeCount = 0
-    const resource = {
-      async close() {
+    const repository = createRepository({ kind: "applied" }, () => {
+      appliedReceiptCount += 1
+    })
+    const repositoryWithClose = {
+      ...repository,
+      close: async () => {
         closeCount += 1
       },
     }
-    const hooks = createServerHooks({
-      repository: createRepository({ kind: "applied" }, () => {
-        appliedReceiptCount += 1
-      }),
-      resource,
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => repositoryWithClose,
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
+      fetchMessages: async () => {
+        fetchCount += 1
+        return []
+      },
     })
-    const eventHandler = hooks.event
-    const commandHandler = hooks["command.execute.before"]
-    const dispose = hooks.dispose
-    const output = { parts: [] }
-    if (eventHandler === undefined || commandHandler === undefined || dispose === undefined)
-      throw new Error("Expected event, command, and disposal hooks")
-    await eventHandler({ event: { type: "session.compacted", properties: { sessionID: "session-1" } } satisfies Event })
-    await commandHandler({ command: "unrelated-command", sessionID: "session-1", arguments: "" }, output)
-    await dispose()
-    await dispose()
+
+    await fixture.dispatch({ type: "session.compacted", data: { sessionID: "session-1" } })
+    await cleanup()
+    await cleanup()
+
     expect(appliedReceiptCount).toBe(0)
-    expect(output.parts).toEqual([])
+    expect(fetchCount).toBe(0)
     expect(closeCount).toBe(1)
   })
 
-  test("Given an outer resource whose close rejects When disposal is repeated Then the original rejection propagates without a duplicate close", async () => {
+  test("Given a repository whose close rejects When cleanup is repeated Then the original rejection propagates without a duplicate close", async () => {
     const closeFailure = new Error("resource close failed")
     let closeCount = 0
-    const resource = {
-      async close(): Promise<void> {
+    const repository = {
+      ...createRepository({ kind: "no_active_partner" }),
+      close: async (): Promise<void> => {
         closeCount += 1
         throw closeFailure
       },
     }
-    const dispose = createServerHooks({ repository: createRepository({ kind: "no_active_partner" }), resource }).dispose
-    if (dispose === undefined) throw new Error("Expected disposal hook")
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => repository,
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
+    })
+
     await Promise.all([
-      dispose().then(
+      Promise.resolve(cleanup()).then(
         () => {
-          throw new Error("Expected disposal failure")
+          throw new Error("Expected cleanup failure")
         },
         (error: unknown) => expect(error).toBe(closeFailure),
       ),
-      dispose().then(
+      Promise.resolve(cleanup()).then(
         () => {
-          throw new Error("Expected disposal failure")
+          throw new Error("Expected cleanup failure")
         },
         (error: unknown) => expect(error).toBe(closeFailure),
       ),
@@ -184,29 +183,24 @@ describe("server hook lifecycle", () => {
     expect(closeCount).toBe(1)
   })
 
-  test("Given default-enabled command transitions When each command commits Then it appends its legacy parts before exactly one formatted toast", async () => {
+  test("Given default-enabled command transitions When each command commits Then it delivers exactly one formatted toast", async () => {
     const delivered: VpetToastPayload[] = []
-    const hooks = createServerHooks({
-      repository: createToastRepository(),
-      resource: { close: async () => {} },
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => createToastRepository(),
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
       language: "en",
       loadCatalog: async () => toastCatalog,
       notify: async (payload) => {
         delivered.push(payload)
       },
     })
-    const commandHandler = hooks["command.execute.before"]
-    if (commandHandler === undefined) throw new Error("Expected command hook")
-    const commands = ["vpet-spawn", "vpet-freeze", "vpet-unfreeze", "vpet-set"] as const
 
-    for (const command of commands) {
-      const output = { parts: [] }
-      await commandHandler(
-        { command, sessionID: "session-1", arguments: command === "vpet-set" ? "1-001" : "" },
-        output,
-      )
-      expect(output.parts).toHaveLength(1)
-    }
+    await fixture.runCommand("vpet-spawn")
+    await fixture.runCommand("vpet-freeze")
+    await fixture.runCommand("vpet-unfreeze")
+    await fixture.runCommand("vpet-set", "1-001")
+    await cleanup()
 
     expect(delivered).toEqual([
       { title: "VPet", message: "Spawned Digitama (Generation 1).", variant: "success", duration: 5_000 },
@@ -216,11 +210,12 @@ describe("server hook lifecycle", () => {
     ])
   })
 
-  test("Given committed direct and ordered idle evolutions When their receipts apply Then each evolution produces one formatted toast in processing order", async () => {
+  test("Given ordered idle evolutions When reconciliation processes them Then each evolution produces one formatted toast in processing order", async () => {
     const delivered: VpetToastPayload[] = []
-    const hooks = createServerHooks({
-      repository: createToastRepository(),
-      resource: { close: async () => {} },
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => createToastRepository(),
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
       language: "en",
       evolutionSelector: () => 0,
       evolutionThresholds: Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: 1 }),
@@ -228,19 +223,13 @@ describe("server hook lifecycle", () => {
       notify: async (payload) => {
         delivered.push(payload)
       },
-      fetchMessages: async () => [
-        completedAssistantEvent.properties.info,
-        { ...completedAssistantEvent.properties.info, id: "message-2" },
-      ],
+      fetchMessages: async () => [completedAssistantMessage("message-1"), completedAssistantMessage("message-2")],
     })
-    const eventHandler = hooks.event
-    if (eventHandler === undefined) throw new Error("Expected event hook")
 
-    await eventHandler({ event: completedAssistantEvent })
-    await eventHandler({ event: { type: "session.idle", properties: { sessionID: "session-1" } } satisfies Event })
+    await fixture.dispatch({ type: "session.idle", data: { sessionID: "session-1" } })
+    await cleanup()
 
     expect(delivered).toEqual([
-      { title: "Digi-evolution", message: "Digitama evolved into Koromon!", variant: "success", duration: 5_000 },
       { title: "Digi-evolution", message: "Digitama evolved into Koromon!", variant: "success", duration: 5_000 },
       { title: "Digi-evolution", message: "Digitama evolved into Koromon!", variant: "success", duration: 5_000 },
     ])
@@ -249,9 +238,10 @@ describe("server hook lifecycle", () => {
   test("Given notifications disabled When a name-bearing command commits Then it performs no notifier or catalog work", async () => {
     let catalogLoads = 0
     let notifications = 0
-    const hooks = createServerHooks({
-      repository: createToastRepository(),
-      resource: { close: async () => {} },
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => createToastRepository(),
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
       notificationsEnabled: false,
       loadCatalog: async () => {
         catalogLoads += 1
@@ -261,37 +251,42 @@ describe("server hook lifecycle", () => {
         notifications += 1
       },
     })
-    const commandHandler = hooks["command.execute.before"]
-    if (commandHandler === undefined) throw new Error("Expected command hook")
 
-    await commandHandler({ command: "vpet-spawn", sessionID: "session-1", arguments: "" }, { parts: [] })
+    await fixture.runCommand("vpet-spawn")
+    await cleanup()
 
     expect(catalogLoads).toBe(0)
     expect(notifications).toBe(0)
   })
 
-  test("Given idempotent, invalid, duplicate, and missing-name paths When hooks complete Then they remain silent while preserving their committed result", async () => {
+  test("Given idempotent, invalid, and duplicate paths When they complete Then rich toasts stay silent while plain results inform", async () => {
     const delivered: VpetToastPayload[] = []
-    const hooks = createServerHooks({
-      repository: createRepository({ kind: "duplicate" }),
-      resource: { close: async () => {} },
+    let catalogLoads = 0
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => createRepository({ kind: "duplicate" }),
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
       language: "en",
-      loadCatalog: async () => toastCatalog,
+      loadCatalog: async () => {
+        catalogLoads += 1
+        return toastCatalog
+      },
       notify: async (payload) => {
         delivered.push(payload)
       },
+      fetchMessages: async () => [completedAssistantMessage("duplicate-message")],
     })
-    const commandHandler = hooks["command.execute.before"]
-    const eventHandler = hooks.event
-    if (commandHandler === undefined || eventHandler === undefined) throw new Error("Expected command and event hooks")
-    const output = { parts: [] }
 
-    await commandHandler({ command: "vpet-freeze", sessionID: "session-1", arguments: "" }, output)
-    await commandHandler({ command: "vpet-set", sessionID: "session-1", arguments: "missing" }, output)
-    await eventHandler({ event: completedAssistantEvent })
+    await fixture.runCommand("vpet-freeze")
+    await fixture.runCommand("vpet-set", "missing")
+    await fixture.dispatch({ type: "session.idle", data: { sessionID: "session-1" } })
+    await cleanup()
 
-    expect(output.parts).toHaveLength(2)
-    expect(delivered).toEqual([])
+    expect(catalogLoads).toBe(2)
+    expect(delivered).toEqual([
+      { title: "VPet", message: "VPet is already frozen.", variant: "info", duration: 3_000 },
+      { title: "VPet", message: "Unknown Digimon ID: missing.", variant: "warning", duration: 3_000 },
+    ])
   })
 
   test.each([
@@ -301,39 +296,52 @@ describe("server hook lifecycle", () => {
     },
     () => Promise.reject(new Error("notification failed")),
   ])(
-    "Given a notifier that fails When a command has committed Then it still resolves after the exact text Part is appended",
+    "Given a notifier that fails When a command has committed Then it still resolves after one delivery attempt",
     async (deliver) => {
-      const hooks = createServerHooks({
-        repository: createToastRepository(),
-        resource: { close: async () => {} },
+      let attempts = 0
+      const fixture = createServerContextFixture()
+      const cleanup = await setupVpetServer(fixture.context, {
+        openRepository: async () => createToastRepository(),
+        loadSettings: async () => DEFAULT_VPET_SETTINGS,
         notify: async () => {
+          attempts += 1
           await deliver()
         },
       })
-      const commandHandler = hooks["command.execute.before"]
-      if (commandHandler === undefined) throw new Error("Expected command hook")
-      const output = { parts: [] }
 
-      await commandHandler({ command: "vpet-freeze", sessionID: "session-1", arguments: "" }, output)
+      await fixture.runCommand("vpet-freeze")
+      await cleanup()
 
-      expect(output.parts).toHaveLength(1)
+      expect(attempts).toBe(1)
     },
   )
 
-  test("Given a toast-only catalog failure after a committed spawn When delivery is attempted Then the Part remains and the hook resolves", async () => {
-    const hooks = createServerHooks({
-      repository: createToastRepository(),
-      resource: { close: async () => {} },
+  test("Given a toast-only catalog failure after a committed spawn When delivery is attempted Then the spawn remains committed and setup resolves", async () => {
+    let spawnCalls = 0
+    const delivered: VpetToastPayload[] = []
+    const repository = createToastRepository()
+    const fixture = createServerContextFixture()
+    const cleanup = await setupVpetServer(fixture.context, {
+      openRepository: async () => ({
+        ...repository,
+        spawnPartner: () => {
+          spawnCalls += 1
+          return repository.spawnPartner()
+        },
+      }),
+      loadSettings: async () => DEFAULT_VPET_SETTINGS,
       loadCatalog: async () => {
         throw new Error("catalog unavailable")
       },
+      notify: async (payload) => {
+        delivered.push(payload)
+      },
     })
-    const commandHandler = hooks["command.execute.before"]
-    if (commandHandler === undefined) throw new Error("Expected command hook")
-    const output = { parts: [] }
 
-    await commandHandler({ command: "vpet-spawn", sessionID: "session-1", arguments: "" }, output)
+    await fixture.runCommand("vpet-spawn")
+    await cleanup()
 
-    expect(output.parts).toHaveLength(1)
+    expect(spawnCalls).toBe(1)
+    expect(delivered).toEqual([])
   })
 })

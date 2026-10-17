@@ -4,7 +4,7 @@ import type { DigimonCatalog, DigimonNode } from "../../data/catalog.ts"
 export type VpetToastPayload = Readonly<{
   readonly title: string
   readonly message: string
-  readonly variant: "info" | "success"
+  readonly variant: "info" | "success" | "warning"
   readonly duration: number
 }>
 
@@ -17,7 +17,22 @@ export type VpetToastEvent =
 
 export type VpetToastNotifier = (payload: VpetToastPayload) => Promise<void>
 
-export type VpetToastTransport = (payload: VpetToastPayload) => boolean | Promise<boolean>
+export type VpetToastTransport = (payload: VpetToastPayload) => unknown | Promise<unknown>
+
+/** Narrows untyped RPC event data into a toast payload. */
+export const toVpetToastPayload = (data: unknown): VpetToastPayload | undefined => {
+  if (typeof data !== "object" || data === null || Array.isArray(data)) return undefined
+  const { title, message, variant, duration } = data as Record<string, unknown>
+  if (
+    typeof title !== "string" ||
+    typeof message !== "string" ||
+    (variant !== "info" && variant !== "success" && variant !== "warning") ||
+    typeof duration !== "number"
+  ) {
+    return undefined
+  }
+  return { title, message, variant, duration }
+}
 
 const assertNever = (value: never): never => {
   throw new Error(`Unhandled VPet toast event: ${JSON.stringify(value)}`)

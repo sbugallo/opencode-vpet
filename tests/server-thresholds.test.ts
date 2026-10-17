@@ -1,20 +1,20 @@
 import { afterEach, describe, expect, test } from "bun:test"
-import type { AssistantMessage, Event } from "@opencode-ai/sdk"
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises"
 import { homedir, tmpdir } from "node:os"
 import { join, posix } from "node:path"
 
-import { createServerHooks, type ServerHookDependencies } from "../src/adapters/opencode/create-server-hooks.ts"
-import { createSessionMessagesFetcher } from "../src/adapters/opencode/session-messages.ts"
+import { setupVpetServer, type ServerDependencies } from "../src/adapters/opencode/server-plugin.ts"
 import type { UsageReceiptMetadata } from "../src/application/models/usage.ts"
 import type { PartnerLifecycle } from "../src/application/ports/partner-lifecycle.ts"
 import type { UsageLedger } from "../src/application/ports/usage-ledger.ts"
 import type { VpetControl } from "../src/application/ports/vpet-control.ts"
 import { createSqliteVpetRepository } from "../src/adapters/sqlite/sqlite-vpet-write-store.ts"
+import { DEFAULT_VPET_SETTINGS } from "../src/config/defaults.ts"
 import { STAGE_GAUGE_THRESHOLDS, type StageThresholds } from "../src/domain/evolution.ts"
 import type { Partner, PartnerProgression } from "../src/domain/partner.ts"
 import { loadGlobalVpetSettings, resolveGlobalVpetConfigPath } from "../src/config/global-vpet-settings.ts"
 import { isBunSqliteAvailable } from "./sqlite-capability.ts"
+import { createServerContextFixture } from "./server-context-fixture.ts"
 
 const tempRoots: string[] = []
 
@@ -28,27 +28,23 @@ afterEach(async () => {
   await Promise.all(tempRoots.splice(0).map((root) => rm(root, { recursive: true, force: true })))
 })
 
-const completedAssistantMessage = (id: string): AssistantMessage => ({
+const completedAssistantMessage = (id: string) => ({
   id,
-  sessionID: "session-1",
-  role: "assistant",
+  type: "assistant",
   time: { created: 1, completed: 2 },
-  parentID: "parent-1",
-  modelID: "model-1",
-  providerID: "provider-1",
-  mode: "build",
-  path: { cwd: "/tmp", root: "/tmp" },
-  cost: 0,
   tokens: { input: 1, output: 0, reasoning: 0, cache: { read: 0, write: 0 } },
 })
 
-type TestRepository = PartnerLifecycle & UsageLedger & VpetControl & { readonly progressions: PartnerProgression[] }
+type TestRepository = PartnerLifecycle &
+  UsageLedger &
+  VpetControl & { readonly progressions: PartnerProgression[]; close(): Promise<void> }
 
 const createRepository = (partner: Partner): TestRepository => {
   const progressions: PartnerProgression[] = []
 
   return {
     progressions,
+    close: async () => {},
     spawnPartner: () => partner,
     applyUsageReceipt(_receipt: UsageReceiptMetadata, evolve) {
       progressions.push(evolve(partner))
@@ -60,14 +56,20 @@ const createRepository = (partner: Partner): TestRepository => {
   }
 }
 
-const dispatch = async (hooks: ReturnType<typeof createServerHooks>, event: Event): Promise<void> => {
-  const handler = hooks.event
-  if (handler === undefined) throw new Error("Expected usage event hook")
-  await handler({ event })
-}
+const reconcile = async (
+  repository: TestRepository,
+  dependencies: Omit<ServerDependencies, "openRepository">,
+): Promise<void> => {
+  const fixture = createServerContextFixture()
+  const cleanup = await setupVpetServer(fixture.context, {
+    loadSettings: async () => DEFAULT_VPET_SETTINGS,
+    ...dependencies,
+    openRepository: async () => repository,
+  })
 
-const createHooks = (dependencies: ServerHookDependencies): ReturnType<typeof createServerHooks> =>
-  createServerHooks(dependencies)
+  await fixture.dispatch({ type: "session.idle", data: { sessionID: "session-1" } })
+  await cleanup()
+}
 
 const childThresholds: StageThresholds = Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 3: 1 })
 
@@ -80,45 +82,54 @@ const runPluginWithConfigHome = async (
     [
       process.execPath,
       "--eval",
-      `import { createOpencodeClient } from "@opencode-ai/sdk"
-import { writeFile } from "node:fs/promises"
+      `import { writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import { plugin } from "./src/index.ts"
 
-const hooks = await plugin({
-  client: createOpencodeClient(),
-  project: { id: "project-1", worktree: "/tmp", time: { created: 0 } },
-  directory: "/tmp",
-  worktree: "/tmp",
-  experimental_workspace: { register: () => {} },
-  serverUrl: new URL("http://localhost"),
-  $: Bun.$,
-}, { appDataRoot: process.env["VPET_APP_DATA_ROOT"] })
-const command = hooks["command.execute.before"]
-if (command === undefined) throw new Error("Expected spawn command hook")
-await command({ command: "vpet-spawn", sessionID: "session-1", arguments: "" }, { parts: [] })
-if (process.env["VPET_UPDATED_THRESHOLD"] !== undefined) {
-  await writeFile(join(process.env["HOME"] ?? "", ".config", "opencode-vpet.json"), JSON.stringify({ stageThresholds: { egg: Number(process.env["VPET_UPDATED_THRESHOLD"]) } }))
+const message = {
+  id: "plugin-message",
+  type: "assistant",
+  time: { created: 1, completed: 2 },
+  tokens: { input: 1, output: 0, reasoning: 0, cache: { read: 0, write: 0 } },
 }
-const handler = hooks.event
-if (handler === undefined) throw new Error("Expected usage event hook")
-await handler({ event: {
-  type: "message.updated",
-  properties: { info: {
-    id: "plugin-message",
-    sessionID: "session-1",
-    role: "assistant",
-    time: { created: 1, completed: 2 },
-    parentID: "parent-1",
-    modelID: "model-1",
-    providerID: "provider-1",
-    mode: "build",
-    path: { cwd: "/tmp", root: "/tmp" },
-    cost: 0,
-    tokens: { input: 1, output: 0, reasoning: 0, cache: { read: 0, write: 0 } },
-  } },
-} })
-await hooks.dispose?.()`,
+let release
+const released = new Promise((resolve) => {
+  release = resolve
+})
+const context = {
+  options: { appDataRoot: process.env["VPET_APP_DATA_ROOT"] },
+  command: {
+    transform: async (callback) => {
+      const definitions = []
+      callback({ add: (definition) => definitions.push(definition) })
+      context.definitions = definitions
+      return { dispose: async () => {} }
+    },
+    definitions: [],
+  },
+  event: {
+    subscribe: () => ({
+      async *[Symbol.asyncIterator]() {
+        await released
+        yield { type: "session.idle", data: { sessionID: "session-1" } }
+      },
+    }),
+  },
+  rpc: { register: async () => ({ events: { emit: async () => {} } }) },
+  session: { context: async () => [message] },
+}
+const cleanup = await plugin.setup(context)
+const spawn = context.definitions.find((definition) => definition.name === "vpet-spawn")
+if (spawn === undefined) throw new Error("Expected vpet-spawn command")
+await spawn.execute({ prompt: { text: "" } })
+if (process.env["VPET_UPDATED_THRESHOLD"] !== undefined) {
+  await writeFile(
+    join(process.env["HOME"] ?? "", ".config", "opencode-vpet.json"),
+    JSON.stringify({ stageThresholds: { egg: Number(process.env["VPET_UPDATED_THRESHOLD"]) } }),
+  )
+}
+release()
+await cleanup()`,
     ],
     {
       cwd: process.cwd(),
@@ -149,46 +160,7 @@ describe("server threshold policy", () => {
     ).toBe(posix.join(homedir(), ".config", "opencode-vpet.json"))
   })
 
-  test("Given a controlled child threshold When direct and idle usage arrive Then both paths evolve from the same supplied policy", async () => {
-    const partner: Partner = {
-      partnerId: "partner-1",
-      generation: 1,
-      currentNodeId: "3-001",
-      gauge: 0,
-      isTerminal: false,
-      createdAt: "2026-08-21T00:00:00.000Z",
-      retiredAt: null,
-    }
-    const directRepository = createRepository(partner)
-    const idleRepository = createRepository(partner)
-    const directHooks = createHooks({
-      repository: directRepository,
-      resource: { close: async () => {} },
-      evolutionSelector: () => 0,
-      evolutionThresholds: childThresholds,
-    })
-    const idleHooks = createHooks({
-      repository: idleRepository,
-      resource: { close: async () => {} },
-      evolutionSelector: () => 0,
-      evolutionThresholds: childThresholds,
-      fetchMessages: createSessionMessagesFetcher({
-        session: { messages: async () => ({ data: [{ info: completedAssistantMessage("idle-message"), parts: [] }] }) },
-      }),
-    })
-
-    await dispatch(directHooks, {
-      type: "message.updated",
-      properties: { info: completedAssistantMessage("direct-message") },
-    } satisfies Event)
-    await dispatch(idleHooks, { type: "session.idle", properties: { sessionID: "session-1" } } satisfies Event)
-
-    expect(directRepository.progressions).toEqual(idleRepository.progressions)
-    expect(directRepository.progressions).toEqual([expect.objectContaining({ gauge: 0, isTerminal: false })])
-    expect(directRepository.progressions[0]?.currentNodeId).not.toBe(partner.currentNodeId)
-  })
-
-  test("Given default thresholds When direct usage arrives below the child threshold Then the existing timing is retained", async () => {
+  test("Given a controlled child threshold When idle usage arrives Then it evolves from the supplied policy", async () => {
     const partner: Partner = {
       partnerId: "partner-1",
       generation: 1,
@@ -199,12 +171,33 @@ describe("server threshold policy", () => {
       retiredAt: null,
     }
     const repository = createRepository(partner)
-    const hooks = createHooks({ repository, resource: { close: async () => {} }, evolutionSelector: () => 0 })
 
-    await dispatch(hooks, {
-      type: "message.updated",
-      properties: { info: completedAssistantMessage("default-message") },
-    } satisfies Event)
+    await reconcile(repository, {
+      evolutionSelector: () => 0,
+      evolutionThresholds: childThresholds,
+      fetchMessages: async () => [completedAssistantMessage("idle-message")],
+    })
+
+    expect(repository.progressions).toEqual([expect.objectContaining({ gauge: 0, isTerminal: false })])
+    expect(repository.progressions[0]?.currentNodeId).not.toBe(partner.currentNodeId)
+  })
+
+  test("Given default thresholds When idle usage arrives below the child threshold Then the existing timing is retained", async () => {
+    const partner: Partner = {
+      partnerId: "partner-1",
+      generation: 1,
+      currentNodeId: "3-001",
+      gauge: 0,
+      isTerminal: false,
+      createdAt: "2026-08-21T00:00:00.000Z",
+      retiredAt: null,
+    }
+    const repository = createRepository(partner)
+
+    await reconcile(repository, {
+      evolutionSelector: () => 0,
+      fetchMessages: async () => [completedAssistantMessage("default-message")],
+    })
 
     expect(repository.progressions).toEqual([
       {
@@ -215,7 +208,7 @@ describe("server threshold policy", () => {
     ])
   })
 
-  test("Given a threshold file changed after hook construction When loading it once Then the original snapshot remains active", async () => {
+  test("Given a threshold file changed after settings load When loading it once Then the original snapshot remains active", async () => {
     const root = await createTempRoot()
     const configDirectory = join(root, ".config")
     const configPath = join(configDirectory, "opencode-vpet.json")

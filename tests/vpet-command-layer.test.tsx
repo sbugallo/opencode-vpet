@@ -28,7 +28,6 @@ describe("VPet command dialog ownership", () => {
       if (render === undefined) throw new Error("Expected VPet dialog body")
       const setup = await testRender(render, { width: 60, height: 20 })
       await setup.flush()
-      expect(harness.dialogComponentCalls).toBe(0)
       setup.mockInput.pressEscape()
       await settle()
       const hostClose = harness.dialogStack.closeCallbacks[0]

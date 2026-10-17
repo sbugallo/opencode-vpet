@@ -25,4 +25,4 @@ export const runCommand: CommandExecutor = (command, arguments_) =>
   })
 
 export const installGlobalPlugin = async (packageSpec: string, execute: CommandExecutor = runCommand): Promise<void> =>
-  execute("opencode", ["plugin", packageSpec, "--global", "--force"])
+  execute("opencode", ["plugin", "add", packageSpec])

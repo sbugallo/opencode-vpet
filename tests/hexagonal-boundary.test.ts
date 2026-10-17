@@ -81,11 +81,13 @@ describe("hexagonal dependency direction", () => {
     )
     expect(violations.flat()).toEqual([])
   })
-  test("Given the server hook composition When scanned Then it has no SQLite or application lifecycle port dependency", async () => {
-    const hook = join(PROJECT_ROOT, "src", "adapters", "opencode", "create-server-hooks.ts")
+  test("Given the server plugin composition When scanned Then it has no SQLite or application lifecycle port dependency", async () => {
+    const serverPlugin = join(PROJECT_ROOT, "src", "adapters", "opencode", "server-plugin.ts")
     expect(
       await Bun.file(join(PROJECT_ROOT, "src", "application", "ports", "resource-lifecycle.ts")).exists(),
     ).toBeFalse()
-    expect(findForbiddenImports(hook, await readFile(hook, "utf8"), FORBIDDEN_SERVER_HOOK_IMPORTS)).toEqual([])
+    expect(
+      findForbiddenImports(serverPlugin, await readFile(serverPlugin, "utf8"), FORBIDDEN_SERVER_HOOK_IMPORTS),
+    ).toEqual([])
   })
 })

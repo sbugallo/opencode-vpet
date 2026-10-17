@@ -1,10 +1,9 @@
 /** @jsxImportSource @opentui/solid */
-import type { PluginOptions } from "@opencode-ai/plugin"
-import type { EventMessagePartUpdated, EventMessageUpdated, EventSessionStatus } from "@opencode-ai/sdk/v2"
-import type { TuiPlugin, TuiDialogProps, TuiDialogStack, TuiTheme, TuiKeymap } from "@opencode-ai/plugin/tui"
+import { Plugin } from "@opencode/plugin/tui"
 import type { JSX } from "@opentui/solid"
 import { createSignal } from "solid-js"
 
+import { toVpetToastPayload } from "./adapters/opencode/vpet-toast.ts"
 import { createSqliteSidebarSnapshotReader } from "./adapters/sqlite/sqlite-sidebar-snapshot-reader.ts"
 import { createSqliteVpetArchiveReader } from "./adapters/sqlite/sqlite-vpet-archive-reader.ts"
 import type { SidebarCardInputs } from "./application/models/sidebar-card-inputs.ts"
@@ -14,20 +13,24 @@ import { loadGlobalVpetSettings } from "./config/global-vpet-settings.ts"
 import type { ResolvedVpetSettings } from "./config/types.ts"
 import { DIGIMON_CATALOG } from "./data/catalog.ts"
 import { MONSTER_FRAME_CATALOG } from "./data/monster-frame-catalog.ts"
+import { VpetRpc } from "./rpc.ts"
 import { VpetSidebarCard } from "./tui/sidebar-card.tsx"
 import { MonsterAnimationController, type MonsterAnimationOutput } from "./tui/monster-animation.ts"
 import { createSidebarPollLoop } from "./tui/sidebar-poll-loop.ts"
 import { buildSidebarCardModel } from "./tui/sidebar-view-model.ts"
-import { registerVpetCommandLayer } from "./tui/vpet-command-layer.tsx"
+import { toVpetTheme, type VpetTheme } from "./tui/theme.ts"
+import { registerVpetCommandLayer, type VpetDialogStack, type VpetKeymapLayer } from "./tui/vpet-command-layer.tsx"
 
 const VISUAL_INTERVAL_MS = 500
 
-const getStringOption = (options: PluginOptions | undefined, name: string): string | undefined => {
-  const value = options?.[name]
+const getStringOption = (options: Readonly<Record<string, unknown>>, name: string): string | undefined => {
+  const value = options[name]
   return typeof value === "string" ? value : undefined
 }
 
-const readerOptions = (options: PluginOptions | undefined): Parameters<typeof createSqliteSidebarSnapshotReader>[0] => {
+const readerOptions = (
+  options: Readonly<Record<string, unknown>>,
+): Parameters<typeof createSqliteSidebarSnapshotReader>[0] => {
   const appDataRoot = getStringOption(options, "appDataRoot")
   const databasePath = getStringOption(options, "databasePath")
   return {
@@ -36,6 +39,21 @@ const readerOptions = (options: PluginOptions | undefined): Parameters<typeof cr
   }
 }
 
+type TuiSessionStatusEvent = {
+  readonly data: {
+    readonly status:
+      | { readonly type: "idle" }
+      | { readonly type: "busy" }
+      | { readonly type: "retry"; readonly attempt?: number; readonly message?: string }
+  }
+}
+
+type ActivitySubscription =
+  | readonly [type: "session.status", handler: (event: TuiSessionStatusEvent) => void]
+  | readonly [type: "session.text.delta", handler: () => void]
+  | readonly [type: "session.tool.called", handler: () => void]
+  | readonly [type: "session.execution.succeeded", handler: () => void]
+
 export type TuiCompositionApi = {
   readonly event: { readonly on: (...subscription: ActivitySubscription) => () => void }
   readonly renderer: { readonly requestRender: () => void }
@@ -43,18 +61,12 @@ export type TuiCompositionApi = {
   readonly slots: {
     readonly register: (plugin: { readonly slots: { readonly sidebar_content: () => JSX.Element } }) => string
   }
-  readonly keymap?: { readonly registerLayer: TuiKeymap["registerLayer"] }
+  readonly keymap?: { readonly registerLayer: (layer: VpetKeymapLayer) => () => void }
   readonly ui?: {
-    readonly dialog: Pick<TuiDialogStack, "replace" | "clear" | "setSize">
-    readonly Dialog: (props: TuiDialogProps) => JSX.Element
+    readonly dialog: VpetDialogStack
   }
-  readonly theme?: TuiTheme
+  readonly theme?: VpetTheme
 }
-
-type ActivitySubscription =
-  | readonly [type: "message.updated", handler: (event: EventMessageUpdated) => void]
-  | readonly [type: "message.part.updated", handler: (event: EventMessagePartUpdated) => void]
-  | readonly [type: "session.status", handler: (event: EventSessionStatus) => void]
 
 type TuiSchedulingOptions = {
   readonly scheduleVisualInterval?: (callback: () => void, intervalMs: number) => () => void
@@ -150,10 +162,11 @@ export const createTui =
       if (publish(controller.dispatch({ kind: "activity" }))) api.renderer.requestRender()
     }
     const unsubscribes = [
-      api.event.on("message.updated", activity),
-      api.event.on("message.part.updated", activity),
-      api.event.on("session.status", (event: EventSessionStatus) => {
-        switch (event.properties.status.type) {
+      api.event.on("session.text.delta", activity),
+      api.event.on("session.tool.called", activity),
+      api.event.on("session.execution.succeeded", activity),
+      api.event.on("session.status", (event: TuiSessionStatusEvent) => {
+        switch (event.data.status.type) {
           case "busy":
           case "retry":
             activity()
@@ -161,7 +174,7 @@ export const createTui =
           case "idle":
             return
           default: {
-            const unexpectedStatus: never = event.properties.status
+            const unexpectedStatus: never = event.data.status
             return unexpectedStatus
           }
         }
@@ -174,11 +187,7 @@ export const createTui =
       api.keymap === undefined || api.ui === undefined || api.theme === undefined
         ? () => undefined
         : scheduling.archiveReader === undefined
-          ? api.keymap.registerLayer({
-              name: "opencode-vpet.layer",
-              namespace: "opencode-vpet",
-              commands: [],
-            })
+          ? api.keymap.registerLayer({ commands: [] })
           : registerVpetCommandLayer({
               api: { keymap: api.keymap, ui: api.ui, theme: api.theme },
               reader: scheduling.archiveReader,
@@ -214,39 +223,77 @@ export const createTui =
     })
   }
 
-export const tui: TuiPlugin = async (api, options) => {
-  const reader = createSqliteSidebarSnapshotReader(readerOptions(options))
-  const archiveReader = createSqliteVpetArchiveReader(readerOptions(options))
-  const settings = await loadGlobalVpetSettings()
-  await createTui(() => getSidebarCardInputs(reader, DIGIMON_CATALOG), settings, { archiveReader })({
-    event: {
-      on: (...subscription) => {
-        switch (subscription[0]) {
-          case "message.updated":
-            return api.event.on(subscription[0], subscription[1])
-          case "message.part.updated":
-            return api.event.on(subscription[0], subscription[1])
-          case "session.status":
-            return api.event.on(subscription[0], subscription[1])
-        }
-      },
-    },
-    renderer: api.renderer,
-    lifecycle: api.lifecycle,
-    slots: api.slots,
-    keymap: { registerLayer: api.keymap.registerLayer.bind(api.keymap) },
-    ui: {
-      dialog: {
-        replace: api.ui.dialog.replace.bind(api.ui.dialog),
-        clear: api.ui.dialog.clear.bind(api.ui.dialog),
-        setSize: api.ui.dialog.setSize.bind(api.ui.dialog),
-      },
-      Dialog: api.ui.Dialog,
-    },
-    theme: api.theme,
-  })
-}
+const plugin = Plugin.define({
+  id: "opencode-vpet.tui",
+  async setup(context) {
+    const reader = createSqliteSidebarSnapshotReader(readerOptions(context.options))
+    const archiveReader = createSqliteVpetArchiveReader(readerOptions(context.options))
+    const settings = await loadGlobalVpetSettings()
 
-const plugin = { id: "opencode-vpet", tui } as const
+    const cleanups: Array<() => void> = []
+    const pushCleanup = (cleanup: () => void): (() => void) => {
+      cleanups.push(cleanup)
+      return () => {
+        const index = cleanups.indexOf(cleanup)
+        if (index >= 0) cleanups.splice(index, 1)
+      }
+    }
+
+    pushCleanup(
+      context.client.rpc(VpetRpc).events.on("toast", (event) => {
+        const payload = toVpetToastPayload(event.data)
+        if (payload !== undefined) context.ui.toast.show(payload)
+      }),
+    )
+
+    await createTui(() => getSidebarCardInputs(reader, DIGIMON_CATALOG), settings, { archiveReader })({
+      event: {
+        on: (...subscription) => {
+          switch (subscription[0]) {
+            case "session.status":
+              return context.data.on("session.status", subscription[1])
+            case "session.text.delta":
+              return context.data.on("session.text.delta", subscription[1])
+            case "session.tool.called":
+              return context.data.on("session.tool.called", subscription[1])
+            case "session.execution.succeeded":
+              return context.data.on("session.execution.succeeded", subscription[1])
+          }
+        },
+      },
+      renderer: context.renderer,
+      lifecycle: { onDispose: pushCleanup },
+      slots: {
+        register: (registered) => {
+          pushCleanup(
+            context.ui.slot({
+              append: "sidebar.content",
+              render: () => registered.slots.sidebar_content(),
+            }),
+          )
+          return "opencode-vpet"
+        },
+      },
+      keymap: {
+        registerLayer: (layer) => {
+          context.keymap.layer(() => layer)
+          return () => undefined
+        },
+      },
+      ui: {
+        dialog: {
+          replace: (render, onClose) => context.ui.dialog.show(render, onClose),
+          clear: () => context.ui.dialog.clear(),
+          setSize: (size) => context.ui.dialog.set({ size }),
+        },
+      },
+      theme: toVpetTheme(context.theme),
+    })
+
+    return () => {
+      for (let index = cleanups.length - 1; index >= 0; index -= 1) cleanups[index]?.()
+    }
+  },
+})
 
 export default plugin

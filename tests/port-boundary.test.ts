@@ -191,30 +191,32 @@ describe("lightweight package boundary", () => {
   )
 
   test("Given the core entrypoint When OpenCode configures it Then it registers all VPet commands", async () => {
-    expect(entryPlugin).toEqual({ id: "opencode-vpet", server: plugin })
+    expect(entryPlugin).toBe(plugin)
+    expect(entryPlugin.id).toBe("opencode-vpet")
+    expect(entryPlugin.setup).toBeFunction()
     expect(createCommandConfig()).toEqual({
       "vpet-spawn": {
-        template: "Spawn a new virtual pet.",
+        description: "Spawn a new virtual pet.",
       },
       "vpet-freeze": {
-        template: "Freeze virtual pet progression.",
+        description: "Freeze virtual pet progression.",
       },
       "vpet-unfreeze": {
-        template: "Unfreeze virtual pet progression.",
+        description: "Unfreeze virtual pet progression.",
       },
       "vpet-set": {
-        template: "Set the virtual pet to a Digimon ID: $ARGUMENTS",
+        description: "Set the virtual pet to a Digimon ID.",
       },
     })
   })
 
-  test("Given the built core entrypoint When OpenCode loads it Then it exposes a callable server", async () => {
+  test("Given the built core entrypoint When OpenCode loads it Then it exposes a callable setup", async () => {
     const fixture = getFixture()
     const builtModule = await import(fixtureEntryUrl(fixture, "index.js"))
     const builtEntry = builtModule.default
 
     expect(builtEntry.id).toBe("opencode-vpet")
-    expect(builtEntry.server).toBeFunction()
+    expect(builtEntry.setup).toBeFunction()
     expect(builtModule.createCommandConfig()).toEqual(createCommandConfig())
   })
 
@@ -234,8 +236,13 @@ describe("lightweight package boundary", () => {
     }
 
     expect(digitama.frame).toContain("                                    ▄▄▀▀▀▀▄▄")
-    expect(digitama.subscriptions).toEqual(["message.updated", "message.part.updated", "session.status"])
-    expect(digitama.unsubscribeCalls).toBe(3)
+    expect(digitama.subscriptions).toEqual([
+      "session.text.delta",
+      "session.tool.called",
+      "session.execution.succeeded",
+      "session.status",
+    ])
+    expect(digitama.unsubscribeCalls).toBe(4)
     const rightFacingFrame = firstRightFacingAnimation(walking)
     if (rightFacingFrame === undefined) throw new Error("Expected built right-facing animation frame")
     const mirrored = mirrorMonsterFrame(new MonsterFrame(rightFacingFrame))
@@ -289,12 +296,12 @@ const render = async (loadInputs, ticks, refreshAfterMount) => {
   let renderer
   const subscriptions = []
   const outputs = []
-  const fakeArchiveReader = { async *readVpetArchiveEvents() { yield { type: "vpet_spawned", timestamp: Date.now() } } }; await createTui(loadInputs, settings, { scheduleVisualInterval: (callback) => { tick = callback; return () => undefined }, schedulePollTimeout: (callback) => { poll = callback; return () => undefined }, onAnimation: (output) => outputs.push(output), archiveReader: fakeArchiveReader })({ event: { on: (type) => { subscriptions.push(type); return () => undefined } }, renderer: { requestRender: () => renderer?.requestRender() }, lifecycle: { onDispose: (callback) => { dispose = callback; return () => undefined } }, slots: { register: (registered) => { slot = registered.slots.sidebar_content; return "opencode-vpet" } }, keymap: { registerLayer: (layer) => { registeredLayer = layer; return () => undefined } }, ui: { dialog: { replace: (el) => { dialogOpened = true; return undefined }, clear: () => undefined, setSize: () => undefined }, Dialog: (props) => props.children }, theme: { spacing: { 1: 1 }, colors: { fg: "white" } } })
-  try { const setup = await testRender(slot, { width: 81, height: 24 }); renderer = setup.renderer; await setup.flush(); setup.renderer.resize(80, 24); await setup.flush(); await Promise.resolve(); await Promise.resolve(); refreshAfterMount?.(); poll?.(); await Promise.resolve(); await Promise.resolve(); for (let index = 0; index < ticks; index += 1) tick(); await setup.renderOnce(); const frame = setup.captureCharFrame(); setup.renderer.destroy(); if (registeredLayer) { const dexCmd = registeredLayer.commands.find(c => c.name === "vpet.dex"); if (dexCmd) dexCmd.run(); } return { frame, subscriptions, outputs } } finally { dispose() }
+  const fakeArchiveReader = { async *readVpetArchiveEvents() { yield { type: "vpet_spawned", timestamp: Date.now() } } }; await createTui(loadInputs, settings, { scheduleVisualInterval: (callback) => { tick = callback; return () => undefined }, schedulePollTimeout: (callback) => { poll = callback; return () => undefined }, onAnimation: (output) => outputs.push(output), archiveReader: fakeArchiveReader })({ event: { on: (type) => { subscriptions.push(type); return () => undefined } }, renderer: { requestRender: () => renderer?.requestRender() }, lifecycle: { onDispose: (callback) => { dispose = callback; return () => undefined } }, slots: { register: (registered) => { slot = registered.slots.sidebar_content; return "opencode-vpet" } }, keymap: { registerLayer: (layer) => { registeredLayer = layer; return () => undefined } }, ui: { dialog: { replace: (el) => { dialogOpened = true; return undefined }, clear: () => undefined, setSize: () => undefined } }, theme: { current: { primary: "white", success: "green", textMuted: "gray" } } })
+  try { const setup = await testRender(slot, { width: 81, height: 24 }); renderer = setup.renderer; await setup.flush(); setup.renderer.resize(80, 24); await setup.flush(); await Promise.resolve(); await Promise.resolve(); refreshAfterMount?.(); poll?.(); await Promise.resolve(); await Promise.resolve(); for (let index = 0; index < ticks; index += 1) tick(); await setup.renderOnce(); const frame = setup.captureCharFrame(); setup.renderer.destroy(); if (registeredLayer) { const dexCmd = registeredLayer.commands.find(c => c.id === "vpet.dex"); if (dexCmd) dexCmd.run(); } return { frame, subscriptions, outputs } } finally { dispose() }
 }
-if (entryPlugin.id !== "opencode-vpet" || typeof entryPlugin.server !== "function") throw new Error("Core export failed")
-if (serverPlugin.id !== "opencode-vpet" || typeof serverPlugin.server !== "function") throw new Error("Server export failed")
-if (tuiPlugin.id !== "opencode-vpet" || typeof tuiPlugin.tui !== "function") throw new Error("TUI export failed")
+if (entryPlugin.id !== "opencode-vpet" || typeof entryPlugin.setup !== "function") throw new Error("Core export failed")
+if (serverPlugin.id !== "opencode-vpet" || typeof serverPlugin.setup !== "function") throw new Error("Server export failed")
+if (tuiPlugin.id !== "opencode-vpet.tui" || typeof tuiPlugin.setup !== "function") throw new Error("TUI export failed")
 const privateTuiRejected = !(await import("opencode-vpet/tui/monster-animation").then(() => true, () => false))
 const privateCommandRejected = !(await import("opencode-vpet/commands/vpet-freeze").then(() => true, () => false))
 const commandConfigs = Object.keys(createCommandConfig()).sort()
@@ -303,14 +310,14 @@ if (!privateTuiRejected) throw new Error("Private TUI module exported")
 if (commandConfigs.join(",") !== "vpet-freeze,vpet-set,vpet-spawn,vpet-unfreeze") throw new Error("Packed command configuration missing")
 const walking = await render(() => partner("agumon", 3), 58)
 if (!walking.outputs.some((output) => output.kind === "walking" && output.facing === "right" && output.offset === -32)) throw new Error("Right-facing animation transition failed")
-if (walking.subscriptions.join(",") !== "message.updated,message.part.updated,session.status") throw new Error("Activity subscriptions missing")
+if (walking.subscriptions.join(",") !== "session.text.delta,session.tool.called,session.execution.succeeded,session.status") throw new Error("Activity subscriptions missing")
 let retainedInputs = partner("egg", 0)
 const retained = await render(() => retainedInputs, 6, () => { retainedInputs = partner("agumon", 3) })
 const retainedMovement = retained.outputs.some((output) => output.kind === "walking" && output.offset === -1 && output.facing === "left")
 const retainedAction = retained.outputs.some((output) => output.kind === "action" && output.offset === -5 && output.facing === "left")
 if (!retainedMovement) throw new Error("Installed package retained-width movement failed")
 if (!retainedAction) throw new Error("Installed package retained-width action failed")
-console.log(JSON.stringify({ commandConfigs, privateCommandRejected, privateTuiRejected, rightFacing: walking.outputs.find((output) => output.kind === "walking" && output.facing === "right" && output.offset === -32), retainedMovement, retainedAction, layerCommands: registeredLayer ? registeredLayer.commands.map(c => c.name) : [], dialogOpened }))
+console.log(JSON.stringify({ commandConfigs, privateCommandRejected, privateTuiRejected, rightFacing: walking.outputs.find((output) => output.kind === "walking" && output.facing === "right" && output.offset === -32), retainedMovement, retainedAction, layerCommands: registeredLayer ? registeredLayer.commands.map(c => c.id) : [], dialogOpened }))
 } finally { Math.random = originalRandom }
 `,
     )
@@ -341,7 +348,7 @@ console.log(JSON.stringify({ commandConfigs, privateCommandRejected, privateTuiR
     const manifest = JSON.parse(
       await Bun.file(join(fixture.consumerDirectory, "node_modules", "opencode-vpet", "package.json")).text(),
     )
-    const expected = ["plugin", `@sbugallo/opencode-vpet@${manifest.version}`, "--global", "--force"]
+    const expected = ["plugin", "add", `@sbugallo/opencode-vpet@${manifest.version}`]
     await mkdir(fakeBinDirectory)
     await writeFile(
       executablePath,
@@ -407,7 +414,7 @@ process.exit(Number(process.env.OPENCODE_FAKE_EXIT ?? "0"))
   })
 
   test("Given the TUI entrypoint When OpenCode loads it Then it is the compact plugin module", () => {
-    expect(tuiPlugin).toMatchObject({ id: "opencode-vpet" })
-    expect(tuiPlugin.tui).toBeFunction()
+    expect(tuiPlugin).toMatchObject({ id: "opencode-vpet.tui" })
+    expect(tuiPlugin.setup).toBeFunction()
   })
 })
