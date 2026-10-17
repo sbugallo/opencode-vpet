@@ -267,7 +267,7 @@ const plugin = Plugin.define({
         register: (registered) => {
           pushCleanup(
             context.ui.slot({
-              append: "sidebar.content",
+              prepend: "sidebar.content",
               render: () => registered.slots.sidebar_content(),
             }),
           )
