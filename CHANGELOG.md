@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking:** migrated to the OpenCode v2 plugin API. OpenCode `>=2.0.18` is now required, and
+  OpenCode v1 is no longer supported.
+- Command results from `/vpet-spawn`, `/vpet-freeze`, `/vpet-unfreeze`, and `/vpet-set` now surface
+  exclusively as TUI toasts; the session transcript no longer receives command output.
+- Usage progression now reconciles completed usage from the v2 session context when a session goes
+  idle, instead of reacting to individual message events.
+- `init` and `update` now delegate to `opencode plugin add <package>`, replacing
+  `opencode plugin <package> --global --force`.
+- The build emits a private `dist/package.json` so the built `dist` directory can be registered as
+  a local plugin package.
+
+### Removed
+
+- OpenCode v1 plugin hooks and the `@opencode-ai/*` dependencies.
+
 ## [0.1.1] - 2026-08-30
 
 ### Fixed
