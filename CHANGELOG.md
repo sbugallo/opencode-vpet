@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-17
+
 ### Changed
 
 - **Breaking:** migrated to the OpenCode v2 plugin API. OpenCode `>=2.0.18` is now required, and
