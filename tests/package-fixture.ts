@@ -57,14 +57,7 @@ const packPackage = async (
 }
 
 const linkConsumerDependencies = async (consumerDirectory: string): Promise<void> => {
-  const dependencies = [
-    "@opencode-ai/plugin",
-    "@opencode-ai/sdk",
-    "@opentui/core",
-    "@opentui/keymap",
-    "@opentui/solid",
-    "solid-js",
-  ] as const
+  const dependencies = ["@opencode/plugin", "@opentui/core", "@opentui/solid", "solid-js"] as const
   for (const dependency of dependencies) {
     const destination = join(consumerDirectory, "node_modules", dependency)
     await mkdir(join(destination, ".."), { recursive: true })
@@ -138,6 +131,7 @@ const render = async (inputs) => {
     scheduleVisualInterval: (callback) => { tick = callback; return () => undefined },
     schedulePollTimeout: () => () => undefined,
   })({
+    event: { on: () => () => undefined },
     renderer: { requestRender: () => undefined },
     lifecycle: { onDispose: (callback) => { dispose = callback; return () => undefined } },
     slots: { register: (registered) => { slot = registered.slots.sidebar_content; return "opencode-vpet" } },
@@ -154,8 +148,8 @@ const render = async (inputs) => {
   }
 }
 
-if (entryPlugin.id !== "opencode-vpet" || typeof entryPlugin.server !== "function") throw new Error("Core export failed")
-if (tuiPlugin.id !== "opencode-vpet" || typeof tuiPlugin.tui !== "function") throw new Error("TUI export failed")
+if (entryPlugin.id !== "opencode-vpet" || typeof entryPlugin.setup !== "function") throw new Error("Core export failed")
+if (tuiPlugin.id !== "opencode-vpet.tui" || typeof tuiPlugin.setup !== "function") throw new Error("TUI export failed")
 const [known, unavailable, empty] = await Promise.all([render(partner("agumon")), render(partner("unknown-sprite")), render(partner(""))])
 if (!known.includes("▄▀▀▀▀▀▄")) throw new Error("Known artwork fallback failed")
 if (!unavailable.includes("Artwork unavailable: unknown-sprite")) throw new Error("Unknown artwork fallback failed")

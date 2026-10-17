@@ -35,7 +35,7 @@
   >
 </div>
 
-`@sbugallo/opencode-vpet` is an OpenCode v1 plugin that adds a Digimon virtual pet to your OpenCode TUI 
+`@sbugallo/opencode-vpet` is an OpenCode v2 plugin that adds a Digimon virtual pet to your OpenCode TUI 
 sidebar. Your Digimon evolves as you use OpenCode, and you can browse your discoveries and 
 partner history.
 
@@ -62,7 +62,7 @@ options in that Digimon's line.
 ## Quick start
 
 Requirements:
-- OpenCode `>=1.18.10`
+- OpenCode `>=2.0.18`
 - Node `>=20` to run `npx`
 - Bun `>=1.3.5` only for local development
 
@@ -73,10 +73,9 @@ Requirements:
    npx @sbugallo/opencode-vpet init
    ```
 
-   The CLI delegates to `opencode plugin @sbugallo/opencode-vpet@<installed-package-version> --global --force`.
+   The CLI delegates to `opencode plugin add @sbugallo/opencode-vpet@<installed-package-version>`.
    It uses the package's installed exact version so OpenCode uses a version-specific cache key rather
-   than reusing a stale bare or `@latest` cache entry. `--force` replaces matching plugin
-   configuration registrations.
+   than reusing a stale bare or `@latest` cache entry.
 
 2. Restart OpenCode when the command finishes.
 

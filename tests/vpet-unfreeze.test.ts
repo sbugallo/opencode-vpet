@@ -1,11 +1,10 @@
 import { describe, expect, test } from "bun:test"
-import type { Part } from "@opencode-ai/sdk"
 
-import { createServerHooks } from "../src/adapters/opencode/create-server-hooks.ts"
+import { createVpetCommandDefinitions } from "../src/adapters/opencode/server-plugin.ts"
 import { runVpetUnfreezeCommand } from "../src/commands/vpet-unfreeze.ts"
 
 describe("vpet unfreeze command", () => {
-  test("Given a VPet control When unfreeze runs repeatedly Then it returns the exact success text for both transitions", async () => {
+  test("Given a VPet control When unfreeze runs repeatedly Then it returns the exact result for both transitions", async () => {
     let unfreezeCalls = 0
     const control = {
       unfreeze: () => {
@@ -14,64 +13,62 @@ describe("vpet unfreeze command", () => {
       },
     }
 
-    const first = await runVpetUnfreezeCommand(control, { sessionID: "session-1", messageID: "unfreeze-1" })
-    const second = await runVpetUnfreezeCommand(control, { sessionID: "session-1", messageID: "unfreeze-2" })
+    const first = await runVpetUnfreezeCommand(control)
+    const second = await runVpetUnfreezeCommand(control)
 
-    expect(first).toEqual({
-      parts: [
-        { id: "unfreeze-1", sessionID: "session-1", messageID: "unfreeze-1", type: "text", text: "VPet unfrozen." },
-      ],
-      event: { kind: "unfrozen" },
-    })
-    expect(second).toEqual({
-      parts: [
-        { id: "unfreeze-2", sessionID: "session-1", messageID: "unfreeze-2", type: "text", text: "VPet unfrozen." },
-      ],
-    })
+    expect(first).toEqual({ message: "VPet unfrozen.", variant: "info", event: { kind: "unfrozen" } })
+    expect(second).toEqual({ message: "VPet is not frozen.", variant: "info" })
     expect(unfreezeCalls).toBe(2)
   })
 
-  test("Given a complete repository When the hook dispatches vpet-unfreeze Then it routes once", async () => {
+  test("Given a complete repository When the command definitions dispatch vpet-unfreeze Then it routes once", async () => {
     let unfreezeCalls = 0
-    const repository = {
-      freeze: () => ({ kind: "frozen" as const }),
-      unfreeze: () => {
-        unfreezeCalls += 1
-        return { kind: "unfrozen" as const }
+    const emitted: unknown[] = []
+    const definitions = createVpetCommandDefinitions({
+      repository: {
+        freeze: () => ({ kind: "frozen" as const }),
+        unfreeze: () => {
+          unfreezeCalls += 1
+          return { kind: "unfrozen" as const }
+        },
+        setCheatNode: (cheatNodeId: string) => ({ kind: "set" as const, cheatNodeId }),
+        spawnPartner: () => ({
+          partnerId: "partner-1",
+          generation: 1,
+          currentNodeId: "0-001",
+          gauge: 0,
+          isTerminal: false,
+          createdAt: "2026-08-22T00:00:00.000Z",
+          retiredAt: null,
+        }),
+        applyUsageReceipt: () => ({ kind: "no_active_partner" as const }),
+        close: async () => {},
       },
-      setCheatNode: (cheatNodeId: string) => ({ kind: "set" as const, cheatNodeId }),
-      spawnPartner: () => ({
-        partnerId: "partner-1",
-        generation: 1,
-        currentNodeId: "0-001",
-        gauge: 0,
-        isTerminal: false,
-        createdAt: "2026-08-22T00:00:00.000Z",
-        retiredAt: null,
-      }),
-      applyUsageReceipt: () => ({ kind: "no_active_partner" as const }),
-    }
-    const hooks = createServerHooks({ repository, resource: { close: async () => {} } })
-    const output = { parts: [] as Part[] }
+      emit: async (result) => {
+        emitted.push(result)
+      },
+      loadCatalog: async () => {
+        throw new Error("catalog should not load")
+      },
+    })
 
-    await hooks["command.execute.before"]?.({ command: "vpet-unfreeze", sessionID: "session-1", arguments: "" }, output)
+    const unfreeze = definitions.find((definition) => definition.name === "vpet-unfreeze")
+    if (unfreeze === undefined) throw new Error("Expected vpet-unfreeze definition")
+    await unfreeze.execute({ prompt: { text: "" } })
 
-    expect(output.parts).toEqual([expect.objectContaining({ type: "text", text: "VPet unfrozen." })])
     expect(unfreezeCalls).toBe(1)
+    expect(emitted).toEqual([{ message: "VPet unfrozen.", variant: "info", event: { kind: "unfrozen" } }])
   })
 
   test("Given a control failure When unfreeze runs Then the failure propagates without a command result", async () => {
     const failure = new Error("unfreeze failed")
 
     await expect(
-      runVpetUnfreezeCommand(
-        {
-          unfreeze: () => {
-            throw failure
-          },
+      runVpetUnfreezeCommand({
+        unfreeze: () => {
+          throw failure
         },
-        { sessionID: "session-1", messageID: "unfreeze-failure" },
-      ),
+      }),
     ).rejects.toBe(failure)
   })
 })

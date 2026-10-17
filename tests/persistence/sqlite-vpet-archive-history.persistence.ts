@@ -127,11 +127,7 @@ describe.if(isBunSqliteAvailable)("sqlite vpet archive history persistence", () 
       ).toEqual({ kind: "applied" })
 
       const secondPartner = spawn(repository, "2026-07-30T12:10:00.000Z")
-      const setResult = await runVpetSetCommand(
-        repository,
-        { sessionID: "session-history", messageID: "set-history", arguments: "7-001" },
-        async () => catalog,
-      )
+      const setResult = await runVpetSetCommand(repository, { arguments: "7-001" }, async () => catalog)
       expect(setResult.event).toEqual({ kind: "set", nodeId: "7-001" })
       expect(
         repository.applyUsageReceipt(usageReceipt("receipt-set-only", "event-set-only", 100), () => {

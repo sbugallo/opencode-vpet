@@ -62,7 +62,7 @@ const run = async (): Promise<number> => {
       const manifest = await readPackageManifest()
       const packageSpec = `${manifest.name}@${manifest.version}`
       if (parsed.dryRun) {
-        process.stdout.write(`opencode plugin ${packageSpec} --global --force\n`)
+        process.stdout.write(`opencode plugin add ${packageSpec}\n`)
         return 0
       }
       await installGlobalPlugin(packageSpec)

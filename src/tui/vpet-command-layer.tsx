@@ -1,5 +1,5 @@
 /** @jsxImportSource @opentui/solid */
-import type { TuiDialogStack, TuiKeymap, TuiTheme } from "@opencode-ai/plugin/tui"
+import type { JSX } from "@opentui/solid"
 
 import type { VpetArchiveResult } from "../application/models/vpet-archive.ts"
 import type { VpetArchiveReader } from "../application/ports/vpet-archive.ts"
@@ -7,15 +7,40 @@ import type { ResolvedVpetSettings } from "../config/types.ts"
 import type { DigimonCatalog } from "../data/catalog.ts"
 import { buildDexViewModel } from "./dex-view-model.ts"
 import { buildHistoryViewModel } from "./history-view-model.ts"
+import type { VpetTheme } from "./theme.ts"
 import { VpetDexDialog } from "./vpet-dex-dialog.tsx"
 import { VpetHistoryDialog } from "./vpet-history-dialog.tsx"
 
+export type VpetKeymapCommand = {
+  readonly id: string
+  readonly title: string
+  readonly description: string
+  readonly group: string
+  readonly palette: true
+  readonly slash: { readonly name: string }
+  readonly run: () => void
+}
+
+export type VpetKeymapLayer = {
+  /** Limits the layer to one input mode; "global" opts out of host input-mode scoping. */
+  readonly mode?: string
+  /** Resolves conflicts with other active layers. */
+  readonly priority?: number
+  readonly commands: readonly VpetKeymapCommand[]
+}
+
+export type VpetDialogSize = "medium" | "large" | "xlarge"
+
+export type VpetDialogStack = {
+  readonly replace: (render: () => JSX.Element, onClose?: () => void) => void
+  readonly setSize: (size: VpetDialogSize) => void
+  readonly clear: () => void
+}
+
 export type VpetCommandLayerApi = {
-  readonly keymap: Pick<TuiKeymap, "registerLayer">
-  readonly ui: {
-    readonly dialog: Pick<TuiDialogStack, "replace" | "clear" | "setSize">
-  }
-  readonly theme: TuiTheme
+  readonly keymap: { readonly registerLayer: (layer: VpetKeymapLayer) => () => void }
+  readonly ui: { readonly dialog: VpetDialogStack }
+  readonly theme: VpetTheme
 }
 
 export type VpetCommandLayerDependencies = {
@@ -45,7 +70,7 @@ export const registerVpetCommandLayer = ({
   catalog,
   settings,
   isDisposed,
-}: VpetCommandLayerDependencies): ReturnType<TuiKeymap["registerLayer"]> => {
+}: VpetCommandLayerDependencies): (() => void) => {
   let isDialogOpen = false
   const closeDialog = (): void => {
     if (isDisposed() || !isDialogOpen) return
@@ -72,25 +97,25 @@ export const registerVpetCommandLayer = ({
   }
 
   const disposeLayer = api.keymap.registerLayer({
-    name: "opencode-vpet.layer",
-    namespace: "opencode-vpet",
+    mode: "global",
+    priority: 10,
     commands: [
       {
-        name: "vpet.dex",
+        id: "vpet.dex",
         title: "VPet Dex",
         description: "Browse the VPet discovery archive.",
-        category: "VPet",
-        namespace: "palette",
-        slashName: "vpet-dex",
+        group: "VPet",
+        palette: true,
+        slash: { name: "vpet-dex" },
         run: openDex,
       },
       {
-        name: "vpet.history",
+        id: "vpet.history",
         title: "VPet History",
         description: "Browse VPet generation history.",
-        category: "VPet",
-        namespace: "palette",
-        slashName: "vpet-history",
+        group: "VPet",
+        palette: true,
+        slash: { name: "vpet-history" },
         run: openHistory,
       },
     ],

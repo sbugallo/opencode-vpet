@@ -8,10 +8,11 @@ import { DEFAULT_VPET_SETTINGS } from "../src/config/defaults.ts"
 import { MONSTER_FRAME_CATALOG } from "../src/data/monster-frame-catalog.ts"
 import { createTui } from "../src/tui.tsx"
 import {
-  messagePartUpdated,
-  messageUpdated,
   partnerInputs,
+  sessionExecutionSucceeded,
   sessionStatus,
+  sessionTextDelta,
+  sessionToolCalled,
   settle,
   TuiCompositionHarness,
 } from "./tui-composition-fixture.ts"
@@ -87,15 +88,17 @@ describe("TUI composition", () => {
 
     expect(
       commands.map((command) => ({
-        name: command.name,
-        slashName: command.slashName,
-        namespace: command.namespace,
-        category: command.category,
+        id: command.id,
+        slashName: command.slash.name,
+        group: command.group,
+        palette: command.palette,
       })),
     ).toEqual([
-      { name: "vpet.dex", slashName: "vpet-dex", namespace: "palette", category: "VPet" },
-      { name: "vpet.history", slashName: "vpet-history", namespace: "palette", category: "VPet" },
+      { id: "vpet.dex", slashName: "vpet-dex", group: "VPet", palette: true },
+      { id: "vpet.history", slashName: "vpet-history", group: "VPet", palette: true },
     ])
+    expect(layer?.mode).toBe("global")
+    expect(layer?.priority).toBe(10)
 
     harness.invokeCommand("vpet-dex")
     harness.invokeCommand("vpet.history")
@@ -134,23 +137,24 @@ describe("TUI composition", () => {
     await harness.dispose?.()
   })
 
-  test("Given a composed TUI When examining the keymap layer Then it registers a composable namespace and generic metadata fixture works", async () => {
+  test("Given a composed TUI When examining the keymap layer Then it registers an empty layer and generic metadata fixture works", async () => {
     const harness = new TuiCompositionHarness()
     await harness.start(async () => partnerInputs("agumon"))
 
     expect(harness.layers).toHaveLength(1)
     const layer = harness.layers[0]
-    expect(layer?.name).toBe("opencode-vpet.layer")
-    expect(layer?.namespace).toBe("opencode-vpet")
     expect(layer?.commands).toEqual([])
 
     let testCommandRun = 0
     const disposeTestLayer = harness.keymap.registerLayer({
-      name: "test.layer",
       commands: [
         {
-          name: "test.command",
+          id: "test.command",
           title: "Test",
+          description: "A test command.",
+          group: "test",
+          palette: true,
+          slash: { name: "test.command" },
           run: () => {
             testCommandRun += 1
             harness.dialogStack.replace(() => undefined as unknown as import("@opentui/solid").JSX.Element)
@@ -230,7 +234,7 @@ describe("TUI composition", () => {
     expect(source.calls()).toBe(0)
 
     inputs = partnerInputs("agumon", { stage: 3 })
-    harness.eventBus.emit(messageUpdated("hatch"))
+    harness.eventBus.emit(sessionTextDelta("hatch"))
     await settle()
     await setup.renderOnce()
 
@@ -260,7 +264,7 @@ describe("TUI composition", () => {
     await setup.flush()
 
     inputs = partnerInputs("gatomon", { stage: 4, isSetOverride: true })
-    harness.eventBus.emit(messageUpdated("set"))
+    harness.eventBus.emit(sessionTextDelta("set"))
     await settle()
     await setup.renderOnce()
 
@@ -285,10 +289,11 @@ describe("TUI composition", () => {
     const harness = new TuiCompositionHarness()
     await harness.start(() => partnerInputs("agumon"))
     const accepted = [
-      messageUpdated("parent"),
-      messagePartUpdated("child"),
+      sessionTextDelta("parent"),
+      sessionToolCalled("child"),
+      sessionExecutionSucceeded("child"),
       sessionStatus("child", { type: "busy" }),
-      sessionStatus("parent", { type: "retry", attempt: 1, message: "retry", next: 2 }),
+      sessionStatus("parent", { type: "retry", attempt: 1, message: "retry" }),
     ] as const
 
     for (const [index, event] of accepted.entries()) {
@@ -299,14 +304,19 @@ describe("TUI composition", () => {
       harness.scheduler.tickVisual()
       expect(lastKind(harness)).toBe("walking")
     }
-    sleepAtThreshold(harness, 1_500_000)
+    sleepAtThreshold(harness, 1_800_000)
     const rendersBeforeIdle = harness.renderRequests
 
     harness.eventBus.emit(sessionStatus("parent", { type: "idle" }))
 
     expect(lastKind(harness)).toBe("sleeping")
     expect(harness.renderRequests).toBe(rendersBeforeIdle)
-    expect(harness.eventBus.subscriptions).toEqual(["message.updated", "message.part.updated", "session.status"])
+    expect(harness.eventBus.subscriptions).toEqual([
+      "session.text.delta",
+      "session.tool.called",
+      "session.execution.succeeded",
+      "session.status",
+    ])
     await harness.dispose?.()
   })
 
@@ -321,14 +331,14 @@ describe("TUI composition", () => {
     expect(setup.captureCharFrame()).not.toContain("(frozen)")
 
     if (inputs.kind === "partner") inputs = { ...inputs, frozen: true }
-    harness.eventBus.emit(messageUpdated("freeze"))
+    harness.eventBus.emit(sessionTextDelta("freeze"))
     await settle()
     await setup.renderOnce()
 
     expect(setup.captureCharFrame()).toContain("Child (frozen)")
 
     if (inputs.kind === "partner") inputs = { ...inputs, frozen: false }
-    harness.eventBus.emit(messagePartUpdated("unfreeze"))
+    harness.eventBus.emit(sessionToolCalled("unfreeze"))
     await settle()
     await setup.renderOnce()
 
@@ -348,7 +358,7 @@ describe("TUI composition", () => {
     expect(setup.captureCharFrame()).not.toContain("(set)")
 
     if (inputs.kind === "partner") inputs = { ...inputs, isSetOverride: true, gauge: 0, isTerminal: true }
-    harness.eventBus.emit(messageUpdated("set"))
+    harness.eventBus.emit(sessionTextDelta("set"))
     await settle()
     await setup.renderOnce()
 
@@ -357,7 +367,7 @@ describe("TUI composition", () => {
     expect(setFrame).not.toContain("(frozen)")
 
     if (inputs.kind === "partner") inputs = { ...inputs, isSetOverride: false, gauge: 42, isTerminal: false }
-    harness.eventBus.emit(messagePartUpdated("spawn"))
+    harness.eventBus.emit(sessionToolCalled("spawn"))
     await settle()
     await setup.renderOnce()
 
@@ -384,8 +394,8 @@ describe("TUI composition", () => {
     await setup.flush()
 
     if (inputs.kind === "partner") inputs = { ...inputs, frozen: true }
-    harness.eventBus.emit(messageUpdated("freeze"))
-    harness.eventBus.emit(messagePartUpdated("freeze"))
+    harness.eventBus.emit(sessionTextDelta("freeze"))
+    harness.eventBus.emit(sessionToolCalled("freeze"))
 
     expect(loadCalls).toBe(2)
     resolveRefresh?.()
@@ -478,8 +488,9 @@ describe("TUI composition", () => {
     expect(harness.scheduler.visualStops).toBe(1)
     expect(harness.scheduler.pollStops).toBe(1)
     expect(harness.eventBus.unsubscribeCounts).toEqual({
-      "message.updated": 1,
-      "message.part.updated": 1,
+      "session.text.delta": 1,
+      "session.tool.called": 1,
+      "session.execution.succeeded": 1,
       "session.status": 1,
     })
     setup.renderer.destroy()

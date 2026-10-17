@@ -1,10 +1,3 @@
-import type {
-  EventMessagePartUpdated,
-  EventMessageUpdated,
-  EventSessionStatus,
-  SessionStatus,
-} from "@opencode-ai/sdk/v2"
-import type { TuiDialogProps, TuiTheme } from "@opencode-ai/plugin/tui"
 import type { JSX } from "@opentui/solid"
 
 import type { SidebarCardInputs } from "../src/application/models/sidebar-card-inputs.ts"
@@ -12,23 +5,52 @@ import { DEFAULT_VPET_SETTINGS } from "../src/config/defaults.ts"
 import type { DigimonStage } from "../src/domain/stage.ts"
 import type { MonsterAnimationOutput } from "../src/tui/monster-animation.ts"
 import { createTui, type TuiCompositionApi } from "../src/tui.tsx"
+import type { VpetTheme } from "../src/tui/theme.ts"
 
 type TuiCompositionKeymap = NonNullable<TuiCompositionApi["keymap"]>
 type TuiCompositionLayer = Parameters<TuiCompositionKeymap["registerLayer"]>[0]
-type TuiCompositionCommand = NonNullable<TuiCompositionLayer["commands"]>[number]
+
+type SessionStatusValue =
+  | { readonly type: "idle" }
+  | { readonly type: "busy" }
+  | { readonly type: "retry"; readonly attempt?: number; readonly message?: string }
 
 type ActivityEventMap = {
-  readonly "message.updated": EventMessageUpdated
-  readonly "message.part.updated": EventMessagePartUpdated
-  readonly "session.status": EventSessionStatus
+  readonly "session.text.delta": {
+    readonly type: "session.text.delta"
+    readonly data: { readonly sessionID: string }
+  }
+  readonly "session.tool.called": {
+    readonly type: "session.tool.called"
+    readonly data: { readonly sessionID: string }
+  }
+  readonly "session.execution.succeeded": {
+    readonly type: "session.execution.succeeded"
+    readonly data: { readonly sessionID: string }
+  }
+  readonly "session.status": {
+    readonly type: "session.status"
+    readonly data: { readonly sessionID: string; readonly status: SessionStatusValue }
+  }
 }
 
-type ActivityEvent = ActivityEventMap[keyof ActivityEventMap]
+export type ActivityEvent = ActivityEventMap[keyof ActivityEventMap]
 type ActivityHandlers = { [Type in keyof ActivityEventMap]: Set<(event: ActivityEventMap[Type]) => void> }
 type ActivitySubscription =
-  | readonly [type: "message.updated", handler: (event: EventMessageUpdated) => void]
-  | readonly [type: "message.part.updated", handler: (event: EventMessagePartUpdated) => void]
-  | readonly [type: "session.status", handler: (event: EventSessionStatus) => void]
+  | readonly [type: "session.text.delta", handler: (event: ActivityEventMap["session.text.delta"]) => void]
+  | readonly [type: "session.tool.called", handler: (event: ActivityEventMap["session.tool.called"]) => void]
+  | readonly [
+      type: "session.execution.succeeded",
+      handler: (event: ActivityEventMap["session.execution.succeeded"]) => void,
+    ]
+  | readonly [type: "session.status", handler: (event: ActivityEventMap["session.status"]) => void]
+
+const emptyHandlers = (): ActivityHandlers => ({
+  "session.text.delta": new Set(),
+  "session.tool.called": new Set(),
+  "session.execution.succeeded": new Set(),
+  "session.status": new Set(),
+})
 
 const assertNever = (event: never): never => {
   throw new Error(`Unexpected activity event: ${JSON.stringify(event)}`)
@@ -108,26 +130,21 @@ export class FakeTuiScheduler {
 export class FakeTuiEventBus {
   readonly subscriptions: (keyof ActivityEventMap)[] = []
   readonly unsubscribeCounts: Record<keyof ActivityEventMap, number> = {
-    "message.updated": 0,
-    "message.part.updated": 0,
+    "session.text.delta": 0,
+    "session.tool.called": 0,
+    "session.execution.succeeded": 0,
     "session.status": 0,
   }
-  readonly #active: ActivityHandlers = {
-    "message.updated": new Set(),
-    "message.part.updated": new Set(),
-    "session.status": new Set(),
-  }
-  readonly #captured: ActivityHandlers = {
-    "message.updated": new Set(),
-    "message.part.updated": new Set(),
-    "session.status": new Set(),
-  }
+  readonly #active: ActivityHandlers = emptyHandlers()
+  readonly #captured: ActivityHandlers = emptyHandlers()
 
   readonly on = (...subscription: ActivitySubscription): (() => void) => {
     switch (subscription[0]) {
-      case "message.updated":
+      case "session.text.delta":
         return this.#subscribe(subscription[0], subscription[1])
-      case "message.part.updated":
+      case "session.tool.called":
+        return this.#subscribe(subscription[0], subscription[1])
+      case "session.execution.succeeded":
         return this.#subscribe(subscription[0], subscription[1])
       case "session.status":
         return this.#subscribe(subscription[0], subscription[1])
@@ -157,14 +174,17 @@ export class FakeTuiEventBus {
 
   #dispatch(handlers: ActivityHandlers, event: ActivityEvent): void {
     switch (event.type) {
-      case "message.updated":
-        for (const handler of handlers[event.type]) handler(event)
+      case "session.text.delta":
+        for (const handler of handlers["session.text.delta"]) handler(event)
         return
-      case "message.part.updated":
-        for (const handler of handlers[event.type]) handler(event)
+      case "session.tool.called":
+        for (const handler of handlers["session.tool.called"]) handler(event)
+        return
+      case "session.execution.succeeded":
+        for (const handler of handlers["session.execution.succeeded"]) handler(event)
         return
       case "session.status":
-        for (const handler of handlers[event.type]) handler(event)
+        for (const handler of handlers["session.status"]) handler(event)
         return
       default:
         assertNever(event)
@@ -178,7 +198,6 @@ export class TuiCompositionHarness {
   readonly observed: MonsterAnimationOutput[] = []
   readonly trace: string[] = []
   renderRequests = 0
-  dialogComponentCalls = 0
   slot: (() => JSX.Element) | undefined
   dispose: (() => void | Promise<void>) | undefined
 
@@ -227,24 +246,20 @@ export class TuiCompositionHarness {
     },
   }
 
-  invokeCommand(name: string, ctx?: Parameters<NonNullable<TuiCompositionCommand["run"]>>[0]): void {
+  invokeCommand(name: string): void {
     if (this.#disposed) return
     for (const layer of this.layers) {
-      if (!this.#activeLayers.has(layer) || layer.commands === undefined) continue
-      for (const cmd of layer.commands) {
-        if (cmd.name === name || cmd.slashName === name) {
-          if (cmd.run) {
-            type RunFn = (context?: typeof ctx) => void
-            const run = cmd.run as RunFn
-            run(ctx)
-          }
+      if (!this.#activeLayers.has(layer)) continue
+      for (const command of layer.commands) {
+        if (command.id === name || command.slash.name === name) {
+          command.run()
           return
         }
       }
     }
   }
 
-  readonly theme = { current: {} } as unknown as TuiTheme
+  readonly theme = { current: {} } as unknown as VpetTheme
 
   capturedApi!: Parameters<ReturnType<typeof createTui>>[0]
 
@@ -293,10 +308,6 @@ export class TuiCompositionHarness {
       keymap: this.keymap,
       ui: {
         dialog: this.dialogStack,
-        Dialog: (props: TuiDialogProps) => {
-          this.dialogComponentCalls += 1
-          return props.children ?? null
-        },
       },
       theme: this.theme,
     }
@@ -306,34 +317,22 @@ export class TuiCompositionHarness {
   }
 }
 
-export const messageUpdated = (sessionID: string): EventMessageUpdated => ({
-  id: `event-message-${sessionID}`,
-  type: "message.updated",
-  properties: {
-    sessionID,
-    info: {
-      id: `message-${sessionID}`,
-      sessionID,
-      role: "user",
-      time: { created: 1 },
-      agent: "build",
-      model: { providerID: "provider", modelID: "model" },
-    },
-  },
+export const sessionTextDelta = (sessionID: string): ActivityEventMap["session.text.delta"] => ({
+  type: "session.text.delta",
+  data: { sessionID },
 })
 
-export const messagePartUpdated = (sessionID: string): EventMessagePartUpdated => ({
-  id: `event-part-${sessionID}`,
-  type: "message.part.updated",
-  properties: {
-    sessionID,
-    time: 1,
-    part: { id: "part", sessionID, messageID: "message", type: "text", text: "delta" },
-  },
+export const sessionToolCalled = (sessionID: string): ActivityEventMap["session.tool.called"] => ({
+  type: "session.tool.called",
+  data: { sessionID },
 })
 
-export const sessionStatus = (sessionID: string, status: SessionStatus): EventSessionStatus => ({
-  id: `event-status-${sessionID}-${status.type}`,
+export const sessionExecutionSucceeded = (sessionID: string): ActivityEventMap["session.execution.succeeded"] => ({
+  type: "session.execution.succeeded",
+  data: { sessionID },
+})
+
+export const sessionStatus = (sessionID: string, status: SessionStatusValue): ActivityEventMap["session.status"] => ({
   type: "session.status",
-  properties: { sessionID, status },
+  data: { sessionID, status },
 })

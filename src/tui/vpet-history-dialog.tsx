@@ -2,11 +2,11 @@
 import { createTextAttributes, type KeyEvent, type ScrollBoxRenderable } from "@opentui/core"
 import { For } from "solid-js"
 import { useKeyboard, useTerminalDimensions } from "@opentui/solid"
-import type { TuiTheme } from "@opencode-ai/plugin/tui"
 import type { HistoryViewModel } from "./history-view-model.ts"
+import type { VpetTheme } from "./theme.ts"
 
 export type VpetHistoryDialogTheme = {
-  readonly current: Pick<TuiTheme["current"], "primary">
+  readonly current: Pick<VpetTheme["current"], "primary">
 }
 
 export type VpetHistoryDialogProps = {

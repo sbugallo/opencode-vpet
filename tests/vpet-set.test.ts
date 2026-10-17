@@ -1,8 +1,7 @@
 import { describe, expect, test } from "bun:test"
-import type { Part } from "@opencode-ai/sdk"
 import type { DigimonCatalog } from "../src/data/catalog.ts"
 
-import { createServerHooks } from "../src/adapters/opencode/create-server-hooks.ts"
+import { createVpetCommandDefinitions } from "../src/adapters/opencode/server-plugin.ts"
 import { runVpetSetCommand } from "../src/commands/vpet-set.ts"
 
 const nodes = [
@@ -32,7 +31,7 @@ const catalog: DigimonCatalog = {
 }
 
 describe("vpet set command", () => {
-  test("Given whitespace-padded egg and terminal IDs When set runs Then it trims and returns exact catalog-backed messages", async () => {
+  test("Given whitespace-padded egg and terminal IDs When set runs Then it trims and returns exact catalog-backed results", async () => {
     const calls: string[] = []
     const control = {
       setCheatNode: (cheatNodeId: string) => {
@@ -42,46 +41,24 @@ describe("vpet set command", () => {
     }
     const loadCatalog = async () => catalog
 
-    const egg = await runVpetSetCommand(
-      control,
-      { sessionID: "session-1", messageID: "set-egg", arguments: "  0-001  " },
-      loadCatalog,
-    )
-    const terminal = await runVpetSetCommand(
-      control,
-      { sessionID: "session-1", messageID: "set-terminal", arguments: "\t7-001\t" },
-      loadCatalog,
-    )
+    const egg = await runVpetSetCommand(control, { arguments: "  0-001  " }, loadCatalog)
+    const terminal = await runVpetSetCommand(control, { arguments: "\t7-001\t" }, loadCatalog)
 
     expect(egg).toEqual({
-      parts: [
-        {
-          id: "set-egg",
-          sessionID: "session-1",
-          messageID: "set-egg",
-          type: "text",
-          text: "VPet set to Digitama (0-001).",
-        },
-      ],
+      message: "VPet set to Digitama (0-001).",
+      variant: "info",
       event: { kind: "set", nodeId: "0-001" },
     })
     expect(terminal).toEqual({
-      parts: [
-        {
-          id: "set-terminal",
-          sessionID: "session-1",
-          messageID: "set-terminal",
-          type: "text",
-          text: "VPet set to Susanoomon (7-001).",
-        },
-      ],
+      message: "VPet set to Susanoomon (7-001).",
+      variant: "info",
       event: { kind: "set", nodeId: "7-001" },
     })
     expect(calls).toEqual(["0-001", "7-001"])
   })
 
   test.each(["", "   ", "0-001 7-001", "0-001\n7-001", "0-001\n", "\n0-001"])(
-    "Given malformed arguments %p When set runs Then it appends usage and makes zero writes",
+    "Given malformed arguments %p When set runs Then it returns usage and makes zero writes",
     async (arguments_) => {
       let writes = 0
       const control = {
@@ -91,22 +68,14 @@ describe("vpet set command", () => {
         },
       }
 
-      const result = await runVpetSetCommand(
-        control,
-        { sessionID: "session-1", messageID: "invalid", arguments: arguments_ },
-        async () => catalog,
-      )
+      const result = await runVpetSetCommand(control, { arguments: arguments_ }, async () => catalog)
 
-      expect(result).toEqual({
-        parts: [
-          { id: "invalid", sessionID: "session-1", messageID: "invalid", type: "text", text: "Usage: /vpet-set <id>." },
-        ],
-      })
+      expect(result).toEqual({ message: "Usage: /vpet-set <id>.", variant: "warning" })
       expect(writes).toBe(0)
     },
   )
 
-  test("Given an unknown ID When set runs Then it appends the exact error and makes zero writes", async () => {
+  test("Given an unknown ID When set runs Then it returns the exact error and makes zero writes", async () => {
     let writes = 0
     const result = await runVpetSetCommand(
       {
@@ -115,21 +84,11 @@ describe("vpet set command", () => {
           return { kind: "set" as const, cheatNodeId: "missing" }
         },
       },
-      { sessionID: "session-1", messageID: "unknown", arguments: "missing" },
+      { arguments: "missing" },
       async () => catalog,
     )
 
-    expect(result).toEqual({
-      parts: [
-        {
-          id: "unknown",
-          sessionID: "session-1",
-          messageID: "unknown",
-          type: "text",
-          text: "Unknown Digimon ID: missing.",
-        },
-      ],
-    })
+    expect(result).toEqual({ message: "Unknown Digimon ID: missing.", variant: "warning" })
     expect(writes).toBe(0)
   })
 
@@ -142,31 +101,24 @@ describe("vpet set command", () => {
       },
     }
 
-    const same = await runVpetSetCommand(
-      control,
-      { sessionID: "session-1", messageID: "same", arguments: "0-001" },
-      async () => catalog,
-    )
-    const replacement = await runVpetSetCommand(
-      control,
-      { sessionID: "session-1", messageID: "replacement", arguments: "7-001" },
-      async () => catalog,
-    )
+    const same = await runVpetSetCommand(control, { arguments: "0-001" }, async () => catalog)
+    const replacement = await runVpetSetCommand(control, { arguments: "7-001" }, async () => catalog)
 
-    expect(same).toEqual({ parts: [expect.objectContaining({ text: "VPet set to Digitama (0-001)." })] })
+    expect(same).toEqual({ message: "VPet set to Digitama (0-001).", variant: "info" })
     expect(replacement).toEqual({
-      parts: [expect.objectContaining({ text: "VPet set to Susanoomon (7-001)." })],
+      message: "VPet set to Susanoomon (7-001).",
+      variant: "info",
       event: { kind: "set", nodeId: "7-001" },
     })
     expect(calls).toEqual(["0-001", "7-001"])
   })
 
-  test("Given catalog or control failures When set runs Then the failure propagates without a part", async () => {
+  test("Given catalog or control failures When set runs Then the failure propagates without a command result", async () => {
     const catalogFailure = new Error("catalog failed")
     await expect(
       runVpetSetCommand(
         { setCheatNode: () => ({ kind: "set" as const, cheatNodeId: "0-001" }) },
-        { sessionID: "session-1", messageID: "catalog-failure", arguments: "0-001" },
+        { arguments: "0-001" },
         async () => {
           throw catalogFailure
         },
@@ -181,41 +133,48 @@ describe("vpet set command", () => {
             throw controlFailure
           },
         },
-        { sessionID: "session-1", messageID: "control-failure", arguments: "0-001" },
+        { arguments: "0-001" },
         async () => catalog,
       ),
     ).rejects.toBe(controlFailure)
   })
 
-  test("Given a complete repository When the hook dispatches vpet-set Then it routes valid raw input once", async () => {
+  test("Given a complete repository When the command definitions dispatch vpet-set Then it routes valid raw prompt text once", async () => {
     const calls: string[] = []
-    const repository = {
-      freeze: () => ({ kind: "frozen" as const }),
-      unfreeze: () => ({ kind: "unfrozen" as const }),
-      setCheatNode: (cheatNodeId: string) => {
-        calls.push(cheatNodeId)
-        return { kind: "set" as const, cheatNodeId }
+    const emitted: unknown[] = []
+    const definitions = createVpetCommandDefinitions({
+      repository: {
+        freeze: () => ({ kind: "frozen" as const }),
+        unfreeze: () => ({ kind: "unfrozen" as const }),
+        setCheatNode: (cheatNodeId: string) => {
+          calls.push(cheatNodeId)
+          return { kind: "set" as const, cheatNodeId }
+        },
+        spawnPartner: () => ({
+          partnerId: "partner-1",
+          generation: 1,
+          currentNodeId: "0-001",
+          gauge: 0,
+          isTerminal: false,
+          createdAt: "2026-08-22T00:00:00.000Z",
+          retiredAt: null,
+        }),
+        applyUsageReceipt: () => ({ kind: "no_active_partner" as const }),
+        close: async () => {},
       },
-      spawnPartner: () => ({
-        partnerId: "partner-1",
-        generation: 1,
-        currentNodeId: "0-001",
-        gauge: 0,
-        isTerminal: false,
-        createdAt: "2026-08-22T00:00:00.000Z",
-        retiredAt: null,
-      }),
-      applyUsageReceipt: () => ({ kind: "no_active_partner" as const }),
-    }
-    const hooks = createServerHooks({ repository, resource: { close: async () => {} } })
-    const output = { parts: [] as Part[] }
+      emit: async (result) => {
+        emitted.push(result)
+      },
+      loadCatalog: async () => catalog,
+    })
 
-    await hooks["command.execute.before"]?.(
-      { command: "vpet-set", sessionID: "session-1", arguments: " 0-001 " },
-      output,
-    )
+    const set = definitions.find((definition) => definition.name === "vpet-set")
+    if (set === undefined) throw new Error("Expected vpet-set definition")
+    await set.execute({ prompt: { text: " 0-001 " } })
 
-    expect(output.parts).toEqual([expect.objectContaining({ text: "VPet set to Digiegg (0-001)." })])
     expect(calls).toEqual(["0-001"])
+    expect(emitted).toEqual([
+      { message: "VPet set to Digitama (0-001).", variant: "info", event: { kind: "set", nodeId: "0-001" } },
+    ])
   })
 })

@@ -30,32 +30,29 @@
   "engines": {
     "bun": ">=1.3.5",
     "node": ">=20",
-    "opencode": ">=1.18.10"
+    "opencode": ">=2.0.18"
   },
   "main": "./dist/index.js",
   "bin": {
     "opencode-vpet": "./dist/cli.js"
   },
   "dependencies": {
-    "solid-js": "^1.9.14"
+    "@opencode/plugin": "2.0.18"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.10",
-    "@opencode-ai/plugin": "^1.18.10",
-    "@opencode-ai/sdk": "^1.18.10",
-    "@opentui/core": "^0.4.5",
-    "@opentui/keymap": "^0.4.5",
-    "@opentui/solid": "^0.4.5",
+    "@opentui/core": "^0.5.12",
+    "@opentui/solid": "^0.5.12",
     "@types/bun": "latest",
     "@types/semver": "^7.7.1",
     "semver": "^7.7.4",
+    "solid-js": "^1.9.14",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@opencode-ai/plugin": ">=1.18.10",
-    "@opentui/core": ">=0.4.5",
-    "@opentui/keymap": ">=0.4.5",
-    "@opentui/solid": ">=0.4.5"
+    "@opentui/core": ">=0.5.12",
+    "@opentui/solid": ">=0.5.12",
+    "solid-js": ">=1.9.0"
   },
   "exports": {
     ".": {

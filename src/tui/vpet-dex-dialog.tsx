@@ -2,11 +2,11 @@
 import { createTextAttributes, type KeyEvent, type ScrollBoxRenderable } from "@opentui/core"
 import { For, createMemo } from "solid-js"
 import { useKeyboard, useTerminalDimensions } from "@opentui/solid"
-import type { TuiTheme } from "@opencode-ai/plugin/tui"
 import type { DexRow, DexViewModel } from "./dex-view-model.ts"
+import type { VpetTheme } from "./theme.ts"
 
 export type VpetDexDialogTheme = {
-  readonly current: Pick<TuiTheme["current"], "primary" | "success" | "textMuted">
+  readonly current: Pick<VpetTheme["current"], "primary" | "success" | "textMuted">
 }
 
 export type VpetDexDialogProps = {

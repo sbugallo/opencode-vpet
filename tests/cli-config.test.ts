@@ -62,7 +62,7 @@ describe("OpenCode CLI installer", () => {
     try {
       const fake = await createFakeOpenCode(root)
       const manifest = JSON.parse(await Bun.file(new URL("../package.json", import.meta.url)).text())
-      const expected = ["plugin", `@sbugallo/opencode-vpet@${manifest.version}`, "--global", "--force"]
+      const expected = ["plugin", "add", `@sbugallo/opencode-vpet@${manifest.version}`]
 
       const init = runCli(["init"], root, fake)
       const update = runCli(["update"], root, fake)
@@ -86,7 +86,7 @@ describe("OpenCode CLI installer", () => {
       const initDryRun = runCli(["init", "--dry-run"], root, fake)
       const updateDryRun = runCli(["update", "--dry-run"], root, fake)
       const manifest = JSON.parse(await Bun.file(new URL("../package.json", import.meta.url)).text())
-      const plannedCommand = `opencode plugin @sbugallo/opencode-vpet@${manifest.version} --global --force\n`
+      const plannedCommand = `opencode plugin add @sbugallo/opencode-vpet@${manifest.version}\n`
 
       expect(help.exitCode, new TextDecoder().decode(help.stderr)).toBe(0)
       expect(invalid.exitCode).toBe(2)
