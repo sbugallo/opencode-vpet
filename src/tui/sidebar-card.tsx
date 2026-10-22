@@ -1,17 +1,21 @@
 /** @jsxImportSource @opentui/solid */
-import { createTextAttributes, type BoxRenderable, type TextRenderable } from "@opentui/core"
+import { createTextAttributes, type BoxRenderable, type RGBA, type TextRenderable } from "@opentui/core"
 import { createEffect, type Accessor } from "solid-js"
 import { openInBrowser } from "./open-in-browser.ts"
 import { mirrorMonsterFrame } from "./monster-artwork-mirror.ts"
 import type { MonsterAnimationOutput, MonsterAnimationResult } from "./monster-animation.ts"
 import type { SidebarCardModel } from "./sidebar-view-model.ts"
+import type { VpetTheme } from "./theme.ts"
+
+export type VpetSidebarCardTheme = {
+  readonly current: Pick<VpetTheme["current"], "text" | "accent">
+}
 
 const ARTWORK_ROWS = 8
 const ARTWORK_COLUMNS = 16
 const NEXT_CHECK_PREFIX = "Next check: "
 const URL_LABEL = "Encyclopedia entry"
 const LINK_ATTRIBUTES = createTextAttributes({ underline: true })
-const LINK_COLOR = "#5f87ff"
 
 const formatCount = (value: number): string => value.toLocaleString("en-US")
 
@@ -63,6 +67,8 @@ const buildNextCheckLine = (model: SidebarCardModel, width: number): string => {
 export const VpetSidebarCard = (props: {
   readonly model: Accessor<SidebarCardModel>
   readonly animation: Accessor<MonsterAnimationOutput | MonsterAnimationResult>
+  /** Reads the current theme at render time so live host theme switches propagate. */
+  readonly theme?: (() => VpetSidebarCardTheme) | undefined
   readonly onArtworkWidthChange?: (width: number) => void
   readonly onUrlClick?: (url: string) => void
 }) => {
@@ -76,9 +82,10 @@ export const VpetSidebarCard = (props: {
   let nextCheckWidth: BoxRenderable | undefined
   let reportedArtworkWidth: number | undefined
 
-  const updateText = (renderable: TextRenderable | undefined, content: string): void => {
+  const updateText = (renderable: TextRenderable | undefined, content: string, color?: RGBA): void => {
     if (renderable === undefined) return
     renderable.content = content
+    if (color !== undefined) renderable.fg = color
     renderable.requestRender()
   }
 
@@ -90,24 +97,30 @@ export const VpetSidebarCard = (props: {
 
   const renderCard = (): void => {
     const model = props.model()
+    const theme = props.theme?.()
+    const textColor = theme?.current.text
     for (const [index, content] of artworkRows(props.animation(), Math.floor(artworkWidth?.width ?? 0)).entries()) {
-      updateText(artwork[index], content)
+      updateText(artwork[index], content, textColor)
     }
 
     switch (model.kind) {
       case "no_partner":
-        updateText(name, model.messageLine)
+        updateText(name, model.messageLine, textColor)
         updateText(stage, "")
         updateText(nextCheck, "")
         updateText(gauge, "")
         updateText(url, "")
         return
       case "partner":
-        updateText(name, model.isSetOverride ? `${model.name} (set)` : model.name)
-        updateText(stage, model.frozen ? `${model.stage} (frozen)` : model.stage)
-        updateText(nextCheck, buildNextCheckLine(model, nextCheckWidth?.width ?? 0))
-        updateText(gauge, model.isTerminal ? "-/-" : `${formatCount(model.gauge)}/${formatCount(model.threshold)}`)
-        updateText(url, URL_LABEL)
+        updateText(name, model.isSetOverride ? `${model.name} (set)` : model.name, textColor)
+        updateText(stage, model.frozen ? `${model.stage} (frozen)` : model.stage, textColor)
+        updateText(nextCheck, buildNextCheckLine(model, nextCheckWidth?.width ?? 0), textColor)
+        updateText(
+          gauge,
+          model.isTerminal ? "-/-" : `${formatCount(model.gauge)}/${formatCount(model.threshold)}`,
+          textColor,
+        )
+        updateText(url, URL_LABEL, theme?.current.accent)
         return
     }
   }
@@ -183,7 +196,6 @@ export const VpetSidebarCard = (props: {
       <text
         wrapMode="none"
         truncate
-        fg={LINK_COLOR}
         attributes={LINK_ATTRIBUTES}
         onMouseDown={handleUrlClick}
         ref={(renderable) => {

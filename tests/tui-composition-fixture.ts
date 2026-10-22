@@ -259,7 +259,7 @@ export class TuiCompositionHarness {
     }
   }
 
-  readonly theme = { current: {} } as unknown as VpetTheme
+  readonly theme = (): VpetTheme => ({ current: {} }) as unknown as VpetTheme
 
   capturedApi!: Parameters<ReturnType<typeof createTui>>[0]
 

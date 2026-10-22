@@ -65,7 +65,8 @@ export type TuiCompositionApi = {
   readonly ui?: {
     readonly dialog: VpetDialogStack
   }
-  readonly theme?: VpetTheme
+  /** Reads the current theme. Called at render time so live host theme switches propagate. */
+  readonly theme?: () => VpetTheme
 }
 
 type TuiSchedulingOptions = {
@@ -212,6 +213,7 @@ export const createTui =
             <VpetSidebarCard
               model={() => buildSidebarCardModel(inputs(), settings)}
               animation={animation}
+              theme={api.theme}
               onArtworkWidthChange={(width) => {
                 if (disposed) return
                 if (publish(controller.dispatch({ kind: "viewport_resized", width }))) api.renderer.requestRender()
@@ -287,7 +289,7 @@ const plugin = Plugin.define({
           setSize: (size) => context.ui.dialog.set({ size }),
         },
       },
-      theme: toVpetTheme(context.theme),
+      theme: () => toVpetTheme(context.theme),
     })
 
     return () => {
