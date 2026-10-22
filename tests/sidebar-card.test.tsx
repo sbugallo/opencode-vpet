@@ -1,7 +1,9 @@
 /** @jsxImportSource @opentui/solid */
 import { describe, expect, test } from "bun:test"
+import { parseColor } from "@opentui/core"
 import { createMockMouse } from "@opentui/core/testing"
 import { testRender } from "@opentui/solid"
+import { createSignal } from "solid-js"
 
 import { MONSTER_FRAME_CATALOG, type MonsterFrame } from "../src/data/monster-frame-catalog.ts"
 import { mirrorMonsterFrame } from "../src/tui/monster-artwork-mirror.ts"
@@ -536,6 +538,61 @@ describe("VPet sidebar frame", () => {
       setup.renderer.destroy()
     },
   )
+
+  test("Given a partner card with a theme When rendering Then it paints the artwork and status rows with the theme text color and the encyclopedia row with the accent color", async () => {
+    const textColor = parseColor("#00ff00")
+    const accentColor = parseColor("#5f87ff")
+    const setup = await testRender(
+      () => (
+        <VpetSidebarCard
+          model={partnerModel}
+          animation={animation(frameOutput(0))}
+          theme={() => ({ current: { text: textColor, accent: accentColor } })}
+        />
+      ),
+      { width: 80, height: 24 },
+    )
+
+    await setup.flush()
+    const frame = setup.captureSpans()
+    const spansOf = (index: number) => frame.lines[index]?.spans.filter((span) => span.text.trim() !== "") ?? []
+    const artSpan = frame.lines
+      .slice(1, 9)
+      .flatMap((line) => line.spans)
+      .find((span) => span.text.trim() !== "")
+    const nameSpan = spansOf(9).find((span) => span.text.trim() === "Agumon")
+    const urlSpan = spansOf(13).find((span) => span.text.includes("Encyclopedia entry"))
+
+    expect(artSpan?.fg.equals(textColor)).toBe(true)
+    expect(nameSpan?.fg.equals(textColor)).toBe(true)
+    expect(urlSpan?.fg.equals(accentColor)).toBe(true)
+
+    setup.renderer.destroy()
+  })
+
+  test("Given a mounted partner card When the theme signal changes Then the status rows re-render with the new colors", async () => {
+    const [theme, setTheme] = createSignal({
+      current: { text: parseColor("#00ff00"), accent: parseColor("#00ff00") },
+    })
+    const setup = await testRender(
+      () => <VpetSidebarCard model={partnerModel} animation={animation(frameOutput(0))} theme={theme} />,
+      { width: 80, height: 24 },
+    )
+
+    await setup.flush()
+    setTheme({ current: { text: parseColor("#ff0000"), accent: parseColor("#ff0000") } })
+    await setup.flush()
+
+    const frame = setup.captureSpans()
+    const spansOf = (index: number) => frame.lines[index]?.spans.filter((span) => span.text.trim() !== "") ?? []
+    const nameSpan = spansOf(9).find((span) => span.text.trim() === "Agumon")
+    const urlSpan = spansOf(13).find((span) => span.text.includes("Encyclopedia entry"))
+
+    expect(nameSpan?.fg.equals(parseColor("#ff0000"))).toBe(true)
+    expect(urlSpan?.fg.equals(parseColor("#ff0000"))).toBe(true)
+
+    setup.renderer.destroy()
+  })
 
   test("Given a partner card When its url row is clicked Then it opens through the injected handler exactly once", async () => {
     const openedUrls: string[] = []

@@ -40,7 +40,8 @@ export type VpetDialogStack = {
 export type VpetCommandLayerApi = {
   readonly keymap: { readonly registerLayer: (layer: VpetKeymapLayer) => () => void }
   readonly ui: { readonly dialog: VpetDialogStack }
-  readonly theme: VpetTheme
+  /** Reads the current theme so dialogs open with the latest host colors. */
+  readonly theme: () => VpetTheme
 }
 
 export type VpetCommandLayerDependencies = {
@@ -82,7 +83,7 @@ export const registerVpetCommandLayer = ({
     if (isDisposed()) return
     const model = buildDexViewModel(readArchive(reader), catalog, settings)
     isDialogOpen = true
-    api.ui.dialog.replace(() => <VpetDexDialog theme={api.theme} model={model} onClose={closeDialog} />, closeDialog)
+    api.ui.dialog.replace(() => <VpetDexDialog theme={api.theme()} model={model} onClose={closeDialog} />, closeDialog)
     api.ui.dialog.setSize("medium")
   }
   const openHistory = (): void => {
@@ -90,7 +91,7 @@ export const registerVpetCommandLayer = ({
     const model = buildHistoryViewModel(readArchive(reader), catalog, settings)
     isDialogOpen = true
     api.ui.dialog.replace(
-      () => <VpetHistoryDialog theme={api.theme} model={model} onClose={closeDialog} />,
+      () => <VpetHistoryDialog theme={api.theme()} model={model} onClose={closeDialog} />,
       closeDialog,
     )
     api.ui.dialog.setSize("medium")

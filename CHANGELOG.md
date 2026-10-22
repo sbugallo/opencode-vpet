@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The sidebar card now paints the Digimon artwork, name, stage, progress bar, and gauge with the host
+  theme's base text color instead of the terminal default, and the "Encyclopedia entry" link with the
+  theme's accent color (`hue.accent[200]`). Colors are read from the theme on every render, so
+  switching the OpenCode theme (e.g. to `matrix`) recolors the card live, without a restart. Dex and
+  history dialogs also resolve the theme at open time instead of plugin load.
+
 ## [0.2.0] - 2026-10-17
 
 ### Changed
