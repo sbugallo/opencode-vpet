@@ -151,7 +151,7 @@ const render = async (inputs) => {
 if (entryPlugin.id !== "opencode-vpet" || typeof entryPlugin.setup !== "function") throw new Error("Core export failed")
 if (tuiPlugin.id !== "opencode-vpet.tui" || typeof tuiPlugin.setup !== "function") throw new Error("TUI export failed")
 const [known, unavailable, empty] = await Promise.all([render(partner("agumon")), render(partner("unknown-sprite")), render(partner(""))])
-if (!known.includes("▄▀▀▀▀▀▄")) throw new Error("Known artwork fallback failed")
+if (!known.includes("▀▀▀▀▀▀ ▀▀▀▀▀▀▀")) throw new Error("Known artwork fallback failed")
 if (!unavailable.includes("Artwork unavailable: unknown-sprite")) throw new Error("Unknown artwork fallback failed")
 if (!empty.includes("Artwork unavailable: (empty)")) throw new Error("Empty artwork fallback failed")
 `,

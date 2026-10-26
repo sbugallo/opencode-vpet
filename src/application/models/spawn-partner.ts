@@ -7,4 +7,5 @@ export type SpawnPartnerInput = {
 
 export type SpawnPartnerResult = {
   readonly generation: number
+  readonly currentNodeId: string
 }

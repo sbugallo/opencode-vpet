@@ -1,13 +1,17 @@
 import type { PartnerLifecycle } from "../ports/partner-lifecycle.ts"
 import type { SpawnPartnerResult } from "../models/spawn-partner.ts"
 
-export const spawnPartner = (lifecycle: PartnerLifecycle, createdAt: string): SpawnPartnerResult => {
+export const spawnPartner = (
+  lifecycle: PartnerLifecycle,
+  currentNodeId: string,
+  createdAt: string,
+): SpawnPartnerResult => {
   const partner = lifecycle.spawnPartner({
-    currentNodeId: "0-001",
+    currentNodeId,
     gauge: 0,
     isTerminal: false,
     createdAt,
   })
 
-  return { generation: partner.generation }
+  return { generation: partner.generation, currentNodeId: partner.currentNodeId }
 }

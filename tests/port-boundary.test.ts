@@ -4,11 +4,11 @@ import type { JSX } from "@opentui/solid"
 import { chmod, mkdir, readFile, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 
-import { MonsterFrame, MONSTER_FRAME_CATALOG } from "../src/data/monster-frame-catalog.ts"
+import { MONSTER_FRAME_CATALOG, type MonsterFrame } from "../src/data/monster-frame-catalog.ts"
 import entryPlugin, { createCommandConfig, plugin } from "../src/index.ts"
 import tuiPlugin from "../src/tui.tsx"
 import type { MonsterAnimationOutput } from "../src/tui/monster-animation.ts"
-import { mirrorMonsterFrame } from "../src/tui/monster-artwork-mirror.ts"
+import { renderMonsterSprite } from "../src/tui/monster-sprite-renderer.ts"
 import {
   createPackageFixture,
   fixtureEntryUrl,
@@ -20,7 +20,7 @@ import {
 const partnerInputs = (sprite: string, stage = 3) => ({
   kind: "partner" as const,
   node: {
-    id: "3-001",
+    id: "C-003",
     nameEn: "Agumon",
     nameJp: "Agumon",
     nextEvolutions: [],
@@ -40,19 +40,25 @@ type BuiltSidebarCapture = {
   readonly unsubscribeCalls: number
 }
 
-const rightFacingAgumonFrame = (): string[] => {
-  const walkFrame = MONSTER_FRAME_CATALOG.get("agumon", "walk_2")
-  if (walkFrame === undefined) throw new Error("Expected agumon/walk_2 artwork")
-  const mirrored = mirrorMonsterFrame(walkFrame)
-  if (mirrored.kind === "invalid") throw mirrored.error
-  return mirrored.frame.content.split("\n")
-}
-
-const firstRightFacingAnimation = (capture: BuiltSidebarCapture): string | undefined => {
-  const frame = capture.outputs.find(
+const firstRightFacingAnimation = (capture: BuiltSidebarCapture): MonsterFrame | undefined => {
+  const result = capture.outputs.find(
     (output) => output.kind === "walking" && output.facing === "right" && output.offset === -32,
   )?.result
-  return frame?.kind === "frame" ? frame.frame.content : undefined
+  return result?.kind === "frame" ? result.frame : undefined
+}
+
+/** Asserts that each of the eight artwork lines contains one of the sprite's walk rows. */
+const expectSpriteArtwork = (frame: string, sprite: string): void => {
+  const lines = frame.split("\n")
+  const walkRows = (["walk_1", "walk_2"] as const).map((frameName) => {
+    const catalogFrame = MONSTER_FRAME_CATALOG.get(sprite, frameName)
+    if (catalogFrame === undefined) throw new Error(`Expected ${sprite}/${frameName} artwork`)
+    return renderMonsterSprite(catalogFrame).map((row) => row.text)
+  })
+  for (let index = 0; index < 8; index += 1) {
+    const line = lines[index + 1] ?? ""
+    expect(walkRows.some((rows) => line.includes(rows[index] ?? ""))).toBeTrue()
+  }
 }
 
 const renderBuiltSidebar = async (
@@ -198,6 +204,30 @@ describe("lightweight package boundary", () => {
       "vpet-spawn": {
         description: "Spawn a new virtual pet.",
       },
+      "vpet-spawn-deep-savers": {
+        description: "Spawn a Digiegg of the Deep Savers field.",
+      },
+      "vpet-spawn-dragons-roar": {
+        description: "Spawn a Digiegg of the Dragons Roar field.",
+      },
+      "vpet-spawn-jungle-troopers": {
+        description: "Spawn a Digiegg of the Jungle Troopers field.",
+      },
+      "vpet-spawn-metal-empire": {
+        description: "Spawn a Digiegg of the Metal Empire field.",
+      },
+      "vpet-spawn-nature-spirits": {
+        description: "Spawn a Digiegg of the Nature Spirits field.",
+      },
+      "vpet-spawn-nightmare-soldiers": {
+        description: "Spawn a Digiegg of the Nightmare Soldiers field.",
+      },
+      "vpet-spawn-virus-busters": {
+        description: "Spawn a Digiegg of the Virus Busters field.",
+      },
+      "vpet-spawn-wind-guardians": {
+        description: "Spawn a Digiegg of the Wind Guardians field.",
+      },
       "vpet-freeze": {
         description: "Freeze virtual pet progression.",
       },
@@ -222,7 +252,7 @@ describe("lightweight package boundary", () => {
 
   test("Given an isolated built TUI When a consumer ticks Digitama, walking, and unavailable partners Then it observes activity subscriptions and renders the private bundled behavior", async () => {
     const fixture = getFixture()
-    const digitama = await renderBuiltSidebar(fixture, () => partnerInputs("egg", 0))
+    const digitama = await renderBuiltSidebar(fixture, () => partnerInputs("digitama-deep-savers", 0))
     const unavailable = await renderBuiltSidebar(fixture, () => partnerInputs("unknown-sprite"))
     const empty = await renderBuiltSidebar(fixture, () => partnerInputs(""))
     const noPartner = await renderBuiltSidebar(fixture, () => ({ kind: "no_partner" }))
@@ -235,7 +265,7 @@ describe("lightweight package boundary", () => {
       Math.random = originalRandom
     }
 
-    expect(digitama.frame).toContain("                                    ▄▄▀▀▀▀▄▄")
+    expectSpriteArtwork(digitama.frame, "digitama-deep-savers")
     expect(digitama.subscriptions).toEqual([
       "session.text.delta",
       "session.tool.called",
@@ -245,9 +275,7 @@ describe("lightweight package boundary", () => {
     expect(digitama.unsubscribeCalls).toBe(4)
     const rightFacingFrame = firstRightFacingAnimation(walking)
     if (rightFacingFrame === undefined) throw new Error("Expected built right-facing animation frame")
-    const mirrored = mirrorMonsterFrame(new MonsterFrame(rightFacingFrame))
-    expect(mirrored.kind).toBe("mirrored")
-    if (mirrored.kind === "mirrored") expect(mirrored.frame.content.split("\n")).toEqual(rightFacingAgumonFrame())
+    expect(rightFacingFrame).toEqual(MONSTER_FRAME_CATALOG.get("agumon", "walk_2"))
     expect(unavailable.frame).toContain("Artwork unavailable: unknown-sprite")
     expect(empty.frame).toContain("Artwork unavailable: (empty)")
     expect(noPartner.frame).toContain("No active partner")
@@ -288,7 +316,7 @@ const originalRandom = Math.random
 try {
 Math.random = () => 0
 const { default: tuiPlugin, createTui } = await import("opencode-vpet/tui")
-let registeredLayer; let dialogOpened = false; const partner = (sprite, stage) => ({ kind: "partner", node: { id: "3-001", nameEn: "Agumon", nameJp: "Agumon", nextEvolutions: [], sprite, stage, url: "https://example.test/partner" }, gauge: 42, isTerminal: false, trainerTotalTokens: 100 })
+let registeredLayer; let dialogOpened = false; const partner = (sprite, stage) => ({ kind: "partner", node: { id: "C-003", nameEn: "Agumon", nameJp: "Agumon", nextEvolutions: [], sprite, stage, url: "https://example.test/partner" }, gauge: 42, isTerminal: false, trainerTotalTokens: 100 })
 const render = async (loadInputs, ticks, refreshAfterMount) => {
   let tick; let poll
   let slot
@@ -307,11 +335,11 @@ const privateCommandRejected = !(await import("opencode-vpet/commands/vpet-freez
 const commandConfigs = Object.keys(createCommandConfig()).sort()
 if (!privateTuiRejected) throw new Error("Private TUI module exported")
  if (!privateCommandRejected) throw new Error("Private command module exported")
-if (commandConfigs.join(",") !== "vpet-freeze,vpet-set,vpet-spawn,vpet-unfreeze") throw new Error("Packed command configuration missing")
+if (commandConfigs.join(",") !== "vpet-freeze,vpet-set,vpet-spawn,vpet-spawn-deep-savers,vpet-spawn-dragons-roar,vpet-spawn-jungle-troopers,vpet-spawn-metal-empire,vpet-spawn-nature-spirits,vpet-spawn-nightmare-soldiers,vpet-spawn-virus-busters,vpet-spawn-wind-guardians,vpet-unfreeze") throw new Error("Packed command configuration missing")
 const walking = await render(() => partner("agumon", 3), 58)
 if (!walking.outputs.some((output) => output.kind === "walking" && output.facing === "right" && output.offset === -32)) throw new Error("Right-facing animation transition failed")
 if (walking.subscriptions.join(",") !== "session.text.delta,session.tool.called,session.execution.succeeded,session.status") throw new Error("Activity subscriptions missing")
-let retainedInputs = partner("egg", 0)
+let retainedInputs = partner("digitama-deep-savers", 0)
 const retained = await render(() => retainedInputs, 6, () => { retainedInputs = partner("agumon", 3) })
 const retainedMovement = retained.outputs.some((output) => output.kind === "walking" && output.offset === -1 && output.facing === "left")
 const retainedAction = retained.outputs.some((output) => output.kind === "action" && output.offset === -5 && output.facing === "left")
@@ -329,7 +357,7 @@ console.log(JSON.stringify({ commandConfigs, privateCommandRejected, privateTuiR
     expect(new TextDecoder().decode(result.stderr)).toBe("")
     expect(new TextDecoder().decode(result.stdout)).toContain('"facing":"right"')
     expect(new TextDecoder().decode(result.stdout)).toContain(
-      '"commandConfigs":["vpet-freeze","vpet-set","vpet-spawn","vpet-unfreeze"]',
+      '"commandConfigs":["vpet-freeze","vpet-set","vpet-spawn","vpet-spawn-deep-savers","vpet-spawn-dragons-roar","vpet-spawn-jungle-troopers","vpet-spawn-metal-empire","vpet-spawn-nature-spirits","vpet-spawn-nightmare-soldiers","vpet-spawn-virus-busters","vpet-spawn-wind-guardians","vpet-unfreeze"]',
     )
     expect(new TextDecoder().decode(result.stdout)).toContain('"privateCommandRejected":true')
     expect(new TextDecoder().decode(result.stdout)).toContain('"privateTuiRejected":true')
