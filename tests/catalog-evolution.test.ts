@@ -69,28 +69,46 @@ describe("catalog and evolution", () => {
   test("Given the latest DIGIMON_DATA When the catalog loads Then canonical graph edges and URL metadata remain addressable", async () => {
     const catalog = await loadDigimonCatalog()
 
-    expect(catalog.nodes).toHaveLength(650)
-    expect(catalog.byId.get("5-003")?.nextEvolutions).toEqual([
-      "6-068",
-      "6-091",
-      "6-080",
-      "5-033",
-      "6-143",
-      "6-028",
-      "6-125",
+    expect(catalog.nodes).toHaveLength(1168)
+    expect(catalog.byId.get("P-007")?.nextEvolutions).toEqual([
+      "U-124",
+      "U-168",
+      "U-180",
+      "U-088",
+      "U-281",
+      "U-047",
+      "U-040",
+      "U-157",
+      "U-167",
+      "U-217",
+      "U-238",
+      "U-049",
+      "U-067",
+      "U-111",
+      "U-125",
+      "U-133",
+      "U-143",
+      "U-200",
+      "U-204",
+      "U-220",
+      "U-228",
+      "U-233",
+      "U-249",
+      "U-265",
+      "U-274",
     ])
-    expect(catalog.byId.get("7-011")).toMatchObject({
-      id: "7-011",
+    expect(catalog.byId.get("SU-011")).toMatchObject({
+      id: "SU-011",
       nameEn: "DarknessBagramon",
       nextEvolutions: [],
       url: "https://digimon.net/reference_en/detail.php?directory_name=darknessbagramon",
     })
-    expect(catalog.byId.get("7-045")).toMatchObject({
-      id: "7-045",
+    expect(catalog.byId.get("SU-008")).toMatchObject({
+      id: "SU-008",
       nameEn: "Chaosdramon",
       url: "https://digimon.net/reference_en/detail.php?directory_name=chaosdramon",
     })
-    expect(catalog.byId.get("2-033")?.sprite).toBe("")
+    expect(catalog.byId.get("D-001")?.sprite).toBe("digitama-deep-savers")
     expect(catalog.byId.has("7-046")).toBeFalse()
     expect(catalog.nodes.some((node) => node.nextEvolutions.includes("7-046"))).toBeFalse()
   })
@@ -120,19 +138,19 @@ describe("catalog and evolution", () => {
 
   test("Given a threshold crossing on a same-stage edge When token progress applies Then it resets after exactly one selected evolution", async () => {
     const catalog = await loadDigimonCatalog()
-    const andromon = catalog.byId.get("5-003")
+    const redVeedramon = catalog.byId.get("A-002")
 
-    if (andromon === undefined) throw new Error("Expected Andromon in catalog")
+    if (redVeedramon === undefined) throw new Error("Expected RedVeedramon in catalog")
 
     const evolved = applyTokenProgress(
-      { current: andromon, gauge: 12_499_999, isTerminal: false },
+      { current: redVeedramon, gauge: 7_499_999, isTerminal: false },
       1,
-      () => 0.5,
+      () => 0.3,
       catalog.byId,
       STAGE_GAUGE_THRESHOLDS,
     )
 
-    expect(evolved.current.id).toBe("5-033")
+    expect(evolved.current.id).toBe("H-001")
     expect(evolved.gauge).toBe(0)
   })
 

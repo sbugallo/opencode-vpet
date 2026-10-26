@@ -83,13 +83,13 @@ describe("Dex view model", () => {
     ).toEqual({ kind: "unavailable", message: "Archive unavailable" })
   })
 
-  test("Given the production catalog When building the Dex Then it deterministically projects all 650 catalog IDs once", () => {
+  test("Given the production catalog When building the Dex Then it deterministically projects all 1168 catalog IDs once", () => {
     const model = buildDexViewModel({ kind: "available", partners: [] }, DIGIMON_CATALOG, DEFAULT_VPET_SETTINGS)
 
     if (model.kind !== "available") throw new Error("Expected available Dex model")
 
-    expect(model.rows).toHaveLength(650)
-    expect(new Set(model.rows.map((row) => row.id)).size).toBe(650)
+    expect(model.rows).toHaveLength(1168)
+    expect(new Set(model.rows.map((row) => row.id)).size).toBe(1168)
     expect(model.rows.every((row) => row.discovered === false && row.name === "------")).toBeTrue()
   })
 })

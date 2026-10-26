@@ -33,7 +33,7 @@ describe("TUI settings composition", () => {
             generation: 1,
             createdAt: "2026-08-24T00:00:00.000Z",
             retiredAt: null,
-            events: [{ eventId: "event-1", currentNodeId: "4-001", createdAt: "2026-08-24T00:00:00.000Z" }],
+            events: [{ eventId: "event-1", currentNodeId: "H-001", createdAt: "2026-08-24T00:00:00.000Z" }],
           },
         ],
       }),
@@ -57,8 +57,8 @@ describe("TUI settings composition", () => {
       await setup.flush()
       const frame = setup.captureCharFrame()
 
-      expect(frame).toContain("4-001 Agunimon")
-      expect(frame).not.toContain("4-001 アグニモン")
+      expect(frame).toContain("H-001 Agunimon")
+      expect(frame).not.toContain("H-001 Agnimon")
       setup.renderer.destroy()
     } finally {
       await harness.dispose?.()
