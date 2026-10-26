@@ -536,7 +536,7 @@ const RAW_DIGIMON_DATA = [
     stage: 2,
     sprite: "arcadiamon-baby",
     id: "BII-002",
-    url: "",
+    url: "https://wikimon.net/Arkadimon_Baby",
   },
   {
     name_en: "Bebydomon",
@@ -1379,7 +1379,7 @@ const RAW_DIGIMON_DATA = [
     stage: 3,
     sprite: "blackguilmon",
     id: "C-001",
-    url: "",
+    url: "https://wikimon.net/Black_Guilmon",
   },
   {
     name_en: "PetitMamon",
@@ -1388,7 +1388,7 @@ const RAW_DIGIMON_DATA = [
     stage: 3,
     sprite: "petitmamon",
     id: "C-002",
-    url: "",
+    url: "https://wikimon.net/Petit_Mamon",
   },
   {
     name_en: "Agumon",
@@ -6060,7 +6060,7 @@ const RAW_DIGIMON_DATA = [
     stage: 4,
     sprite: "arcadiamon-adult",
     id: "A-001",
-    url: "",
+    url: "https://wikimon.net/Arkadimon_Adult",
   },
   {
     name_en: "RedVeedramon",
@@ -6069,7 +6069,7 @@ const RAW_DIGIMON_DATA = [
     stage: 4,
     sprite: "redveedramon",
     id: "A-002",
-    url: "",
+    url: "https://wikimon.net/Red_V-dramon",
   },
   {
     name_en: "Aegiomon",
@@ -13925,7 +13925,7 @@ const RAW_DIGIMON_DATA = [
     stage: 5,
     sprite: "arcadiamon-perfect",
     id: "P-001",
-    url: "",
+    url: "https://wikimon.net/Arkadimon_Perfect",
   },
   {
     name_en: "Aegiochusmon",
