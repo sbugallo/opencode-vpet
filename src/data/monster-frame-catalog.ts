@@ -1,6 +1,6 @@
 import { inflateSync } from "node:zlib"
 
-import { MONSTER_COLOR_FRAME_DATA } from "./generated/monster-color-frames.generated.ts"
+import { MONSTER_COLOR_FRAME_DATA } from "./monster-color-frames.ts"
 
 export const MONSTER_FRAME_WIDTH = 16
 export const MONSTER_FRAME_HEIGHT = 16

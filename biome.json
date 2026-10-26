@@ -11,9 +11,9 @@
       "!.omo/",
       "!dist/",
       "!node_modules/",
-      "!coverage/",
-      "!**/generated"
-    ]
+      "!coverage/"
+    ],
+    "maxSize": 2097152
   },
   "formatter": {
     "enabled": true,
