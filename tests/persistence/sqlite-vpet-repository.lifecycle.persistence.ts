@@ -54,7 +54,7 @@ describe.if(isBunSqliteAvailable)("sqlite vpet repository lifecycle", () => {
       expect(repository.databasePath).toBe(join(tempRoot.appDataRoot, "opencode-vpet", "pet.db"))
       expect(resolveHostDatabasePath({ appDataRoot: tempRoot.appDataRoot })).toBe(repository.databasePath)
       expect(await Bun.file(repository.databasePath).exists()).toBe(true)
-      expect(repository.getAppliedMigrations()).toEqual([1, 2, 3])
+      expect(repository.getAppliedMigrations()).toEqual([1, 2, 3, 4])
     } finally {
       await repository.close()
     }
@@ -92,7 +92,7 @@ describe.if(isBunSqliteAvailable)("sqlite vpet repository lifecycle", () => {
     await firstRepository.close()
     const reopenedRepository = await createSqliteVpetRepository({ databasePath })
     try {
-      expect(reopenedRepository.getAppliedMigrations()).toEqual([1, 2, 3])
+      expect(reopenedRepository.getAppliedMigrations()).toEqual([1, 2, 3, 4])
       expect(reopenedRepository.getActivePartner()).toEqual(expectedPartner)
       expect(reopenedRepository.listPartnerEvents(partner.partnerId)).toEqual(expectedEvents)
       expect(reopenedRepository.listUsageReceipts()).toEqual(expectedReceipts)
