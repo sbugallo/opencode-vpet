@@ -41,7 +41,7 @@ partner history.
 
 The plugin support multiple concurrent sessions, so every token counts to evolve your partner.
 
-There are more than 600 Digimon to discover, and the plugin is designed to be extensible so that new Digimon can be added in future releases.
+There are more than 1,100 Digimon to discover, and the plugin is designed to be extensible so that new Digimon can be added in future releases.
 
 ## Evolution
 
@@ -89,7 +89,8 @@ After that, use `/vpet-dex` to browse discoveries and `/vpet-history` to browse 
 
 | Command | Description |
 | --- | --- |
-| `/vpet-spawn` | Spawns a new egg. |
+| `/vpet-spawn` | Spawns a random Digiegg. |
+| `/vpet-spawn-<field>` | Spawns a Digiegg of one Digitama field (`deep-savers`, `dragons-roar`, `jungle-troopers`, `metal-empire`, `nature-spirits`, `nightmare-soldiers`, `virus-busters`, `wind-guardians`). |
 | `/vpet-freeze` | Pauses partner progression. |
 | `/vpet-unfreeze` | Resumes partner progression. |
 | `/vpet-set <id>` | Overrides the partner with the specified catalog ID. |
@@ -164,659 +165,1177 @@ To persist your partner, history, and control state, VPet uses a SQLite database
 
 | ID | Japanese name | English name |
 | --- | --- | --- |
-| 0-001 | Digitama | Digiegg |
-| 1-001 | Algomon | Argomon |
-| 1-002 | Botamon | Botamon |
-| 1-003 | Chicomon | Chibomon |
-| 1-004 | Choromon | Choromon |
-| 1-005 | Cocomon | Conomon |
-| 1-006 | Cotsucomon | Cotsucomon |
-| 1-007 | Dodomon | Dodomon |
-| 1-008 | Fufumon | Fufumon |
-| 1-009 | Kiimon | Keemon |
-| 1-010 | Ketomon | Ketomon |
-| 1-011 | Kuramon | Kuramon |
-| 1-012 | Mokumon | Mokumon |
-| 1-013 | Nyokimon | Nyokimon |
-| 1-014 | Bubbmon | Pabumon |
-| 1-015 | Petitmon | Petitmon |
-| 1-016 | Pitchmon | Pichimon |
-| 1-017 | Poyomon | Poyomon |
-| 1-018 | Punimon | Punimon |
-| 1-019 | Pururumon | Pururumon |
-| 1-020 | Puttimon | Puttimon |
-| 1-021 | Sakumon | Sakumon |
-| 1-022 | Tsubumon | Tsubumon |
-| 1-023 | Yukimibotamon | YukimiBotamon |
-| 1-024 | Yuramon | Yuramon |
-| 1-025 | Zerimon | Zerimon |
-| 1-026 | Zurumon | Zurumon |
-| 1-027 | Chibickmon | Chibickmon |
-| 1-028 | Dokimon | Dokimon |
-| 1-029 | Jyarimon | Jyarimon |
-| 1-030 | Relemon | Relemon |
-| 1-031 | Sunamon | Sandmon |
-| 2-001 | Algomon | Argomon |
-| 2-002 | Babydmon | Bebydomon |
-| 2-003 | Budmon | Budmon |
-| 2-004 | Pukamon | Bukamon |
-| 2-005 | PetiMeramon | DemiMeramon |
-| 2-006 | Chibimon | DemiVeemon |
-| 2-007 | Dorimon | Dorimon |
-| 2-008 | Gummymon | Gummymon |
-| 2-009 | Hopmon | Hopmon |
-| 2-010 | Kakkinmon | Kakkinmon |
-| 2-011 | Capromon | Kapurimon |
-| 2-012 | Chocomon | Kokomon |
-| 2-013 | Koromon | Koromon |
-| 2-014 | Kyokyomon | Kyokyomon |
-| 2-015 | Mochimon | Motimon |
-| 2-016 | Nyaromon | Nyaromon |
-| 2-017 | Pagumon | Pagumon |
-| 2-018 | Poromon | Poromon |
-| 2-019 | Sakuttomon | Sakuttomon |
-| 2-020 | Tanemon | Tanemon |
-| 2-021 | Tokomon | Tokomon |
-| 2-022 | Tokomon X | Tokomon X |
-| 2-023 | Tsumemon | Tsumemon |
-| 2-024 | Tunomon | Tsunomon |
-| 2-025 | Upamon | Upamon |
-| 2-026 | Wanyamon | Wanyamon |
-| 2-027 | Yarmon | Yaamon |
-| 2-028 | Pyocomon | Yokomon |
-| 2-029 | Bibimon | Bibimon |
-| 2-030 | Gigimon | Gigimon |
-| 2-031 | Goromon | Tumblemon |
-| 2-032 | Hiyarimon | Hiyarimon |
-| 2-033 | Minomon | Minomon |
-| 2-034 | Moonmon | Moonmon |
-| 2-035 | Pickmon | Pickmon |
-| 2-036 | Pokomon | Viximon |
-| 2-037 | Sunmon | Sunmon |
-| 3-001 | Agumon | Agumon |
-| 3-002 | Agumon (Black) X | Agumon (Black) X |
-| 3-003 | Agumon Hakase | Agumon Expert |
-| 3-004 | Agumon X | Agumon X |
-| 3-005 | Algomon | Argomon |
-| 3-006 | Armadimon | Armadillomon |
-| 3-007 | Betamon | Betamon |
-| 3-008 | Piyomon | Biyomon |
-| 3-009 | Blucomon | Bulucomon |
-| 3-010 | BushiAgumon | BushiAgumon |
-| 3-011 | Candmon | Candlemon |
-| 3-012 | Coronamon | Coronamon |
-| 3-013 | Ganimon | Crabmon |
-| 3-014 | PicoDevimon | DemiDevimon |
-| 3-015 | DORUmon | Dorumon |
-| 3-016 | Dracomon | Dracomon |
-| 3-017 | Dracomon X | Dracomon X |
-| 3-018 | Duskmon | Duskmon |
-| 3-019 | Elecmon | Elecmon |
-| 3-020 | Falcomon | Falcomon |
-| 3-021 | Floramon | Floramon |
-| 3-022 | Gabumon | Gabumon |
-| 3-023 | Gabumon X | Gabumon X |
-| 3-024 | Gaomon | Gaomon |
-| 3-025 | Tailmon | Gatomon |
-| 3-026 | Gazimon | Gazimon |
-| 3-027 | Ghostmon | Ghostmon |
-| 3-028 | Gizamon | Gizamon |
-| 3-029 | Gomamon | Gomamon |
-| 3-030 | Gomamon X | Gomamon X |
-| 3-031 | Gottsumon | Gotsumon |
-| 3-032 | Guilmon | Guilmon |
-| 3-033 | Hagurumon | Hagurumon |
-| 3-034 | Hawkmon | Hawkmon |
-| 3-035 | Herissmon | Herissmon |
-| 3-036 | Hackmon | Huckmon |
-| 3-037 | Impmon | Impmon |
-| 3-038 | Impmon X | Impmon X |
-| 3-039 | Jazamon | Jazamon |
-| 3-040 | Junkmon | Junkmon |
-| 3-041 | Keramon X | Keramon X |
-| 3-042 | Kokuwamon | Kokuwamon |
-| 3-043 | Kokuwamon X | Kokuwamon X |
-| 3-044 | Kunemon | Kunemon |
-| 3-045 | Labramon | Labramon |
-| 3-046 | Lalamon | Lalamon |
-| 3-047 | Lopmon | Lopmon |
-| 3-048 | Lopmon X | Lopmon X |
-| 3-049 | Ludomon | Ludomon |
-| 3-050 | Lunamon | Lunamon |
-| 3-051 | Monodramon | Monodramon |
-| 3-052 | Morphomon | Morphomon |
-| 3-053 | Mushmon | Mushroomon |
-| 3-054 | Otamamon | Otamamon |
-| 3-055 | Otamamon X | Otamamon X |
-| 3-056 | Palmon | Palmon |
-| 3-057 | Palmon X | Palmon X |
-| 3-058 | Patamon | Patamon |
-| 3-059 | Phascomon | Phascomon |
-| 3-060 | Pomumon | Pomumon |
-| 3-061 | Renamon X | Renamon X |
-| 3-062 | Ryudamon | Ryudamon |
-| 3-063 | Plotmon | Salamon |
-| 3-064 | Plotmon X | Salamon X |
-| 3-065 | Sangomon | Sangomon |
-| 3-066 | Shoutmon | Shoutmon |
-| 3-067 | Sistermon Blanc | Sistermon Blanc |
-| 3-068 | Sunarizamon | Sunarizamon |
-| 3-069 | Swimmon | Swimmon |
-| 3-070 | Shakomon | Syakomon |
-| 3-071 | Shakomon X | Syakomon X |
-| 3-072 | Bakumon | Tapirmon |
-| 3-073 | Tentomon | Tentomon |
-| 3-074 | Terriermon | Terriermon |
-| 3-075 | Terriermon X | Terriermon X |
-| 3-076 | Tinkermon | Tinkermon |
-| 3-077 | ToyAgumon | ToyAgumon |
-| 3-078 | V-mon | Veemon |
-| 3-079 | Vorvomon | Vorvomon |
-| 3-080 | Wormmon | Wormmon |
-| 3-081 | Zubamon | Zubamon |
-| 3-082 | Agumon (Black) | Agumon (Black) |
-| 3-083 | Dracumon | Dracmon |
-| 3-084 | Pulsemon | Pulsemon |
-| 3-085 | Renamon | Renamon |
-| 4-001 | Agnimon | Agunimon |
-| 4-002 | Airdramon | Airdramon |
-| 4-003 | Allomon X | Allomon X |
-| 4-004 | Angemon | Angemon |
-| 4-005 | Ankylomon | Ankylomon |
-| 4-006 | Hanumon | Apemon |
-| 4-007 | Aquilamon | Aquilamon |
-| 4-008 | Algomon | Argomon |
-| 4-009 | Arresterdramon | Arresterdramon |
-| 4-010 | Baboongamon | Baboongamon |
-| 4-011 | Bakemon | Bakemon |
-| 4-012 | Baluchimon | Baluchimon |
-| 4-013 | BaoHuckmon | BaoHuckmon |
-| 4-014 | Birdramon | Birdramon |
-| 4-015 | Centalmon | Centarumon |
-| 4-016 | Clockmon | Clockmon |
-| 4-017 | Coelamon | Coelamon |
-| 4-018 | Coredramon (Blue) | Coredramon (Blue) |
-| 4-019 | Coredramon (Green) | Coredramon (Green) |
-| 4-020 | Cyclomon | Cyclonemon |
-| 4-021 | Damemon | Damemon |
-| 4-022 | Darcmon | Darcmon |
-| 4-023 | DarkTyranomon | DarkTyrannomon |
-| 4-024 | DarkTyranomon X | DarkTyrannomon X |
-| 4-025 | Deltamon | Deltamon |
-| 4-026 | Revolmon | Deputymon |
-| 4-027 | Devidramon | Devidramon |
-| 4-028 | Devimon | Devimon |
-| 4-029 | Diatrymon | Diatrymon |
-| 4-030 | Dobermon | Dobermon |
-| 4-031 | Dokugumon | Dokugumon |
-| 4-032 | Rukamon | Dolphmon |
-| 4-033 | DORUgamon | Dorugamon |
-| 4-034 | Drimogemon | Drimogemon |
-| 4-035 | Duskmon | Duskmon |
-| 4-036 | Ebidramon | Ebidramon |
-| 4-037 | Eosmon | Eosmon |
-| 4-038 | XV-mon | ExVeemon |
-| 4-039 | Filmon | Filmon |
-| 4-040 | Firamon | Firamon |
-| 4-041 | FlareLizamon | Flarerizamon |
-| 4-042 | Flymon | Flymon |
-| 4-043 | Yukidarumon | Frigimon |
-| 4-044 | Gaogamon | Gaogamon |
-| 4-045 | Galgomon | Gargomon |
-| 4-046 | Garurumon | Garurumon |
-| 4-047 | Tailmon | Gatomon |
-| 4-048 | Tailmon X | Gatomon X |
-| 4-049 | Gekomon | Gekomon |
-| 4-050 | GeoGreymon | GeoGreymon |
-| 4-051 | Gesomon | Gesomon |
-| 4-052 | Ginryumon | Ginryumon |
-| 4-053 | Golemon | Golemon |
-| 4-054 | Greymon | Greymon |
-| 4-055 | Growmon | Growlmon |
-| 4-056 | Growmon X | Growlmon X |
-| 4-057 | Guardromon | Guardromon |
-| 4-058 | Hookmon | Hookmon |
-| 4-059 | Hudiemon | Hudiemon |
-| 4-060 | Ikkakumon | Ikkakumon |
-| 4-061 | Jazardmon | Jazardmon |
-| 4-062 | Kabuterimon | Kabuterimon |
-| 4-063 | Kiwimon | Kiwimon |
-| 4-064 | Cockatrimon | Kokatorimon |
-| 4-065 | Komondomon | Komondomon |
-| 4-066 | Kuwagamon | Kuwagamon |
-| 4-067 | Kuwagamon X | Kuwagamon X |
-| 4-068 | Lavorvomon | Lavorvomon |
-| 4-069 | Lekismon | Lekismon |
-| 4-070 | Leomon | Leomon |
-| 4-071 | Leomon X | Leomon X |
-| 4-072 | Wolfmon | Lobomon |
-| 4-073 | Machmon | Machmon |
-| 4-074 | MadLeomon | MadLeomon |
-| 4-075 | Manbomon | Manbomon |
-| 4-076 | Mantaraymon X | Mantaraymon X |
-| 4-077 | Meicoomon | Meicoomon |
-| 4-078 | Mechanorimon | Mekanorimon |
-| 4-079 | Meramon | Meramon |
-| 4-080 | Meramon X | Meramon X |
-| 4-081 | Mimicmon | Mimicmon |
-| 4-082 | Minotaurmon | Minotarumon |
-| 4-083 | Mojyamon | Mojyamon |
-| 4-084 | Monochromon | Monochromon |
-| 4-085 | Nanimon | Nanimon |
-| 4-086 | Nefertimon X | Nefertimon X |
-| 4-087 | Igamon | Ninjamon |
-| 4-088 | Numemon | Numemon |
-| 4-089 | Numemon X | Numemon X |
-| 4-090 | Octmon | Octomon |
-| 4-091 | Orgemon | Ogremon |
-| 4-092 | Orgemon X | Ogremon X |
-| 4-093 | Omekamon | Omekamon |
-| 4-094 | Paledramon | Paledramon |
-| 4-095 | Parasaurmon | Parasaurmon |
-| 4-096 | Peckmon | Peckmon |
-| 4-097 | Pegasmon X | Pegasusmon X |
-| 4-098 | Petermon | Petermon |
-| 4-099 | Porcupamon | Porcupamon |
-| 4-100 | Pteranomon X | Pteramon X |
-| 4-101 | Raremon | Raremon |
-| 4-102 | RedVegimon | RedVegiemon |
-| 4-103 | Reppamon | Reppamon |
-| 4-104 | Rhinomon X | Rhinomon X |
-| 4-105 | Gokimon | Roachmon |
-| 4-106 | Sangloupmon | Sangloupmon |
-| 4-107 | Seadramon | Seadramon |
-| 4-108 | Seadramon X | Seadramon X |
-| 4-109 | Siesamon X | Seasarmon X |
-| 4-110 | Shadramon | Shadramon |
-| 4-111 | Shellmon | Shellmon |
-| 4-112 | KaratukiNumemon | ShellNumemon |
-| 4-113 | Shoutmon X3 | Shoutmon X3 |
-| 4-114 | Sistermon Ciel | Sistermon Ciel |
-| 4-115 | Starmon | Starmon |
-| 4-116 | Stingmon | Stingmon |
-| 4-117 | Strikedramon | Strikedramon |
-| 4-118 | Submarimon | Submarimon |
-| 4-119 | Scumon | Sukamon |
-| 4-120 | Sunflowmon | Sunflowmon |
-| 4-121 | Tankmon | Tankmon |
-| 4-122 | Targetmon | Targetmon |
-| 4-123 | Thunderballmon | Thundermon |
-| 4-124 | TiaLudomon | TiaLudomon |
-| 4-125 | Tobiumon | Tobiumon |
-| 4-126 | Tobucatmon | TobuCatmon |
-| 4-127 | Togemon | Togemon |
-| 4-128 | Togemon X | Togemon X |
-| 4-129 | Tortamon | Tortomon |
-| 4-130 | Troopmon | Troopmon |
-| 4-131 | Turuiemon | Turuiemon |
-| 4-132 | Tuskmon | Tuskmon |
-| 4-133 | Tylomon | Tylomon |
-| 4-134 | Tylomon X | Tylomon X |
-| 4-135 | Tyranomon | Tyrannomon |
-| 4-136 | Tyranomon X | Tyrannomon X |
-| 4-137 | Unimon | Unimon |
-| 4-138 | V-dramon | Veedramon |
-| 4-139 | Vegimon | Vegiemon |
-| 4-140 | Velgrmon | Velgrmon |
-| 4-141 | Whamon | Whamon |
-| 4-142 | Witchmon | Witchmon |
-| 4-143 | Wizarmon | Wizardmon |
-| 4-144 | Wizarmon X | Wizardmon X |
-| 4-145 | Woodmon | Woodmon |
-| 4-146 | Zubaeagermon | ZubaEagermon |
-| 4-147 | Bulkmon | Bulkmon |
-| 4-148 | Fugamon | Fugamon |
-| 4-149 | Hyougamon | Hyogamon |
-| 4-150 | Pidmon | Piddomon |
-| 4-151 | Rhinomon | Rhinomon |
-| 4-152 | Saberdramon | Saberdramon |
-| 5-001 | AeroV-dramon | AeroVeedramon |
-| 5-002 | Aldamon | Aldamon |
-| 5-003 | Andromon | Andromon |
-| 5-004 | Angewomon | Angewomon |
-| 5-005 | Angewomon X | Angewomon X |
-| 5-006 | Andiramon | Antylamon |
-| 5-007 | Algomon | Argomon |
-| 5-008 | Archnemon | Arukenimon |
-| 5-009 | Astamon | Astamon |
-| 5-010 | Asuramon | Asuramon |
-| 5-011 | Baalmon | Baalmon |
-| 5-012 | Beowolfmon | Beowolfmon |
-| 5-013 | BigMamemon | BigMamemon |
-| 5-014 | Blossomon | Blossomon |
-| 5-015 | Valvemon | Bulbmon |
-| 5-016 | Vritramon | BurningGreymon |
-| 5-017 | CannonBeemon | CannonBeemon |
-| 5-018 | Cerberumon | Cerberusmon |
-| 5-019 | Cerberumon X | Cerberusmon X |
-| 5-020 | Jyureimon | Cherrymon |
-| 5-021 | Cho-Hakkaimon | Cho-Hakkaimon |
-| 5-022 | Crescemon | Crescemon |
-| 5-023 | Yatagaramon | Crowmon |
-| 5-024 | CrysPaledramon | CrysPaledramon |
-| 5-025 | Cyberdramon | Cyberdramon |
-| 5-026 | Cyberdramon X | Cyberdramon X |
-| 5-027 | DarkKnightmon | DarkKnightmon |
-| 5-028 | Nanomon | Datamon |
-| 5-029 | Delumon | Deramon |
-| 5-030 | Digitamamon | Digitamamon |
-| 5-031 | Dinobeemon | Dinobeemon |
-| 5-032 | Hangyomon | Divermon |
-| 5-033 | NeoDevimon | DoneDevimon |
-| 5-034 | DORUguremon | DoruGreymon |
-| 5-035 | Dagomon | Dragomon |
-| 5-036 | Duramon | Duramon |
-| 5-037 | Entmon | Entmon |
-| 5-038 | Eosmon | Eosmon |
-| 5-039 | Etemon | Etemon |
-| 5-040 | Ex-Tyranomon | ExTyrannomon |
-| 5-041 | Flaremon | Flaremon |
-| 5-042 | Gerbemon | Garbagemon |
-| 5-043 | Garudamon | Garudamon |
-| 5-044 | Garudamon X | Garudamon X |
-| 5-045 | Giromon | Giromon |
-| 5-046 | Gogmamon | Gogmamon |
-| 5-047 | Grademon | Grademon |
-| 5-048 | Groundramon | Groundramon |
-| 5-049 | Gusokumon | Gusokumon |
-| 5-050 | Hippogriffomon | HippoGryphonmon |
-| 5-051 | Hisyaryumon | Hisyaryumon |
-| 5-052 | Jyagamon | Jagamon |
-| 5-053 | KaiserLeomon | JagerLoweemon |
-| 5-054 | Jazarichmon | Jazarichmon |
-| 5-055 | Jewelbeemon | JewelBeemon |
-| 5-056 | Garummon | KendoGarurumon |
-| 5-057 | Chimairamon | Kimeramon |
-| 5-058 | Knightmon | Knightmon |
-| 5-059 | LadyDevimon | LadyDevimon |
-| 5-060 | LadyDevimon X | LadyDevimon X |
-| 5-061 | Lavogaritamon | Lavogaritamon |
-| 5-062 | Lilamon | Lilamon |
-| 5-063 | Lilimon | Lillymon |
-| 5-064 | Lilimon X | Lillymon X |
-| 5-065 | LoaderLeomon | LoaderLeomon |
-| 5-066 | Locomon | Locomon |
-| 5-067 | Lucemon: Falldown Mode | Lucemon: Chaos Mode |
-| 5-068 | MachGaogamon | MachGaogamon |
-| 5-069 | HolyAngemon | MagnaAngemon |
-| 5-070 | Mamemon | Mamemon |
-| 5-071 | Mamemon X | Mamemon X |
-| 5-072 | Mametyramon | Mametyramon |
-| 5-073 | Mammon | Mammothmon |
-| 5-074 | Mammon X | Mammothmon X |
-| 5-075 | Manticoremon | Manticoremon |
-| 5-076 | MarinChimairamon | MarineChimairamon |
-| 5-077 | MarinDevimon | MarineDevimon |
-| 5-078 | Meicrackmon | Maycrackmon |
-| 5-079 | Meicrackmon: Vicious Mode | Maycrackmon: Vicious Mode |
-| 5-080 | Megadramon | Megadramon |
-| 5-081 | AtlurKabuterimon | MegaKabuterimon (Red) |
-| 5-082 | MegaSeadramon | MegaSeadramon |
-| 5-083 | MegaSeadramon X | MegaSeadramon X |
-| 5-084 | Mephismon X | Mephistomon X |
-| 5-085 | Mermaimon | Mermaimon |
-| 5-086 | MetalGreymon | MetalGreymon |
-| 5-087 | MetalGreymon (Vaccine) | MetalGreymon (Vaccine) |
-| 5-088 | MetalGreymon (Virus) | MetalGreymon (Virus) |
-| 5-089 | MetalGreymon (Virus) X | MetalGreymon (Virus) X |
-| 5-090 | MetalGreymon X | MetalGreymon X |
-| 5-091 | MetalMamemon | MetalMamemon |
-| 5-092 | MetalFantomon | MetalPhantomon |
-| 5-093 | MetalTyranomon | MetalTyrannomon |
-| 5-094 | MetalTyranomon X | MetalTyrannomon X |
-| 5-095 | Monzaemon | Monzaemon |
-| 5-096 | Monzaemon X | Monzaemon X |
-| 5-097 | Mummymon | Mummymon |
-| 5-098 | Vamdemon | Myotismon |
-| 5-099 | Vamdemon X | Myotismon X |
-| 5-100 | NeoDevimon | NeoDevimon |
-| 5-101 | Okuwamon | Okuwamon |
-| 5-102 | Okuwamon X | Okuwamon X |
-| 5-103 | OmegaShoutmon X | OmniShoutmon X |
-| 5-104 | Orochimon | Orochimon |
-| 5-105 | Paildramon | Paildramon |
-| 5-106 | Parrotmon | Parrotmon |
-| 5-107 | Fantomon | Phantomon |
-| 5-108 | Piranimon | Piranimon |
-| 5-109 | Piccolomon | Piximon |
-| 5-110 | Pumpmon | Pumpkinmon |
-| 5-111 | RaijiLudomon | RaijiLudomon |
-| 5-112 | Rapidmon | Rapidmon |
-| 5-113 | Rebellimon | Rebellimon |
-| 5-114 | Raihimon | Rhihimon |
-| 5-115 | RizeGreymon | RizeGreymon |
-| 5-116 | RizeGreymon X | RizeGreymon X |
-| 5-117 | SaviorHackmon | SaviorHuckmon |
-| 5-118 | Anomalocarimon | Scorpiomon |
-| 5-119 | Anomalocarimon X | Scorpiomon X |
-| 5-120 | Shakkoumon | Shakkoumon |
-| 5-121 | TonosamaGekomon | ShogunGekomon |
-| 5-122 | Shoutmon X5 | Shoutmon X5 |
-| 5-123 | Silphymon | Silphymon |
-| 5-124 | Sirenmon | Sirenmon |
-| 5-125 | SkullBaluchimon | SkullBaluchimon |
-| 5-126 | SkullGreymon | SkullGreymon |
-| 5-127 | DeathMeramon | SkullMeramon |
-| 5-128 | Stiffilmon | Stefilmon |
-| 5-129 | Tekkamon | Tekkamon |
-| 5-130 | Toropiamon | Toropiamon |
-| 5-131 | Triceramon | Triceramon |
-| 5-132 | Triceramon X | Triceramon X |
-| 5-133 | Vademon | Vademon |
-| 5-134 | Velgrmon | Velgrmon |
-| 5-135 | MegaloGrowmon | WarGrowlmon |
-| 5-136 | MegaloGrowmon X | WarGrowlmon X |
-| 5-137 | WaruMonzaemon | WaruMonzaemon |
-| 5-138 | WaruSeadramon | WaruSeadramon |
-| 5-139 | WereGarurumon | WereGarurumon |
-| 5-140 | WereGarurumon X | WereGarurumon X |
-| 5-141 | Whamon | Whamon |
-| 5-142 | Wingdramon | Wingdramon |
-| 5-143 | Zudomon | Zudomon |
-| 5-144 | Boutmon | Boutmon |
-| 5-145 | DarkSuperStarmon | DarkSuperStarmon |
-| 5-146 | DORUguremon | Doruguremon |
-| 5-147 | Pandamon | Pandamon |
-| 5-148 | Scorpiomon | SkullScorpiomon |
-| 5-149 | SuperStarmon | SuperStarmon |
-| 6-001 | Aegisdramon | Aegisdramon |
-| 6-002 | Alphamon | Alphamon |
-| 6-003 | AncientBeatmon | AncientBeetlemon |
-| 6-004 | AncientGarurumon | AncientGarurumon |
-| 6-005 | AncientGreymon | AncientGreymon |
-| 6-006 | AncientIrismon | AncientKazemon |
-| 6-007 | AncientMegatheriumon | AncientMegatheriummon |
-| 6-008 | AncientMermaimon | AncientMermaimon |
-| 6-009 | AncientSphinxmon | AncientSphinxmon |
-| 6-010 | AncientTroiamon | AncientTroymon |
-| 6-011 | AncientVolcamon | AncientVolcanomon |
-| 6-012 | AncientWisemon | AncientWisemon |
-| 6-013 | Anubimon | Anubismon |
-| 6-014 | Apoclymon | Apocalymon |
-| 6-015 | Apollomon | Apollomon |
-| 6-016 | Algomon | Argomon |
-| 6-017 | Armagemon | Armageddemon |
-| 6-018 | Qinglongmon | Azulongmon |
-| 6-019 | Bagramon | Bagramon |
-| 6-020 | Baihumon | Baihumon |
-| 6-021 | BanchoLeomon | BanchoLeomon |
-| 6-022 | BanchoMamemon | BanchoMamemon |
-| 6-023 | Barbamon | Barbamon |
-| 6-024 | BeelStarmon X | BeelStarmon X |
-| 6-025 | Beelzebumon | Beelzemon |
-| 6-026 | Belphemon: Rage Mode | Belphemon: Rage Mode |
-| 6-027 | BlackWarGreymon X | BlackWarGreymon X |
-| 6-028 | BlitzGreymon | BlitzGreymon |
-| 6-029 | Boltmon | Boltmon |
-| 6-030 | Breakdramon | Breakdramon |
-| 6-031 | BryweLudramon | BryweLudramon |
-| 6-032 | Chaosdramon X | Chaosdramon X |
-| 6-033 | Cherubimon (Virtue) | Cherubimon (Virtue) |
-| 6-034 | Cherubimon (Virtue) X | Cherubimon (Virtue) X |
-| 6-035 | Cherubimon (Vice) X | Cherubimon (Vice) X |
-| 6-036 | Craniummon | Craniamon |
-| 6-037 | Demon | Creepymon |
-| 6-038 | CresGarurumon | CresGarurumon |
-| 6-039 | Darkdramon | Darkdramon |
-| 6-040 | DarkKnightmon X | DarkKnightmon X |
-| 6-041 | Dianamon | Dianamon |
-| 6-042 | Dinorexmon | Dinorexmon |
-| 6-043 | Dinotigermon | Dinotigermon |
-| 6-044 | Durandamon | Durandamon |
-| 6-045 | Dynasmon | Dynasmon |
-| 6-046 | Ebemon X | Ebemon X |
-| 6-047 | Xuanwumon | Ebonwumon |
-| 6-048 | KaiserGreymon | EmperorGreymon |
-| 6-049 | Eosmon | Eosmon |
-| 6-050 | Huanglongmon | Fanglongmon |
-| 6-051 | Gaioumon | Gaiomon |
-| 6-052 | Dukemon | Gallantmon |
-| 6-053 | Dukemon X | Gallantmon X |
-| 6-054 | Gankoomon | Gankoomon |
-| 6-055 | Deathmon | Ghoulmon |
-| 6-056 | GigaSeadramon | GigaSeadramon |
-| 6-057 | Goddramon | Goldramon |
-| 6-058 | Goddramon X | Goldramon X |
-| 6-059 | GrandisKuwagamon | GrandisKuwagamon |
-| 6-060 | GrandDracumon | GranDracmon |
-| 6-061 | GranKuwagamon | GranKuwagamon |
-| 6-062 | GrandLocomon | GroundLocomon |
-| 6-063 | Griffomon | Gryphonmon |
-| 6-064 | Gundramon | Gundramon |
-| 6-065 | HeavyLeomon | HeavyLeomon |
-| 6-066 | HerakleKabuterimon | HerculesKabuterimon |
-| 6-067 | Hexeblaumon | Hexeblaumon |
-| 6-068 | HiAndromon | HiAndromon |
-| 6-069 | Jesmon | Jesmon |
-| 6-070 | Justimon X | Justimon X |
-| 6-071 | Justimon: Blitz Arm | Justimon: Blitz Arm |
-| 6-072 | Sleipmon | Kentaurosmon |
-| 6-073 | KingEtemon | KingEtemon |
-| 6-074 | Duftmon | Leopardmon |
-| 6-075 | Leviamon | Leviamon |
-| 6-076 | Lilithmon | Lilithmon |
-| 6-077 | LordKnightmon | LordKnightmon |
-| 6-078 | Lotusmon | Lotosmon |
-| 6-079 | Lucemon: Satan Mode | Lucemon: Satan Mode |
-| 6-080 | Mugendramon | Machinedramon |
-| 6-081 | Holydramon | Magnadramon |
-| 6-082 | Holydramon X | Magnadramon X |
-| 6-083 | MagnaGarurumon | MagnaGarurumon |
-| 6-084 | Magnamon | Magnamon |
-| 6-085 | BelialVamdemon | MaloMyotismon |
-| 6-086 | MarinAngemon | MarineAngemon |
-| 6-087 | SaintGalgomon | MegaGargomon |
-| 6-088 | Megidramon | Megidramon |
-| 6-089 | Megidramon X | Megidramon X |
-| 6-090 | MetalEtemon | MetalEtemon |
-| 6-091 | MetalGarurumon | MetalGarurumon |
-| 6-092 | MetalGarurumon X | MetalGarurumon X |
-| 6-093 | Metallicdramon | Metallicdramon |
-| 6-094 | MetalPiranimon | MetalPiranimon |
-| 6-095 | MetalSeadramon | MetalSeadramon |
-| 6-096 | MirageGaogamon | MirageGaogamon |
-| 6-097 | Murmukusmon | Murmukusmon |
-| 6-098 | Nidhoggmon | Nidhoggmon |
-| 6-099 | NoblePumpmon | NoblePumpkinmon |
-| 6-100 | Ofanimon | Ophanimon |
-| 6-101 | Ofanimon X | Ophanimon X |
-| 6-102 | Ofanimon: Falldown Mode X | Ophanimon: Falldown Mode X |
-| 6-103 | Ornismon | Ornismon |
-| 6-104 | Ouryumon | Ouryumon |
-| 6-105 | Hououmon | Phoenixmon |
-| 6-106 | Hououmon X | Phoenixmon X |
-| 6-107 | Piemon | Piedmon |
-| 6-108 | PlatinumNumemon | PlatinumNumemon |
-| 6-109 | Plesiomon | Plesiomon |
-| 6-110 | Plesiomon X | Plesiomon X |
-| 6-111 | PrinceMamemon X | PrinceMamemon X |
-| 6-112 | Pukumon | Pukumon |
-| 6-113 | Pinochimon | Puppetmon |
-| 6-114 | Rafflesimon | Rafflesimon |
-| 6-115 | Raguelmon | Raguelmon |
-| 6-116 | Rapidmon X | Rapidmon X |
-| 6-117 | Rasenmon | Rasenmon |
-| 6-118 | Rasenmon: Fury Mode | Rasenmon: Fury Mode |
-| 6-119 | Rasielmon | Rasielmon |
-| 6-120 | Ravmon | Ravemon |
-| 6-121 | Regalecusmon | Regalecusmon |
-| 6-122 | Raihimon | Rhihimon |
-| 6-123 | Rosemon | Rosemon |
-| 6-124 | Rosemon X | Rosemon X |
-| 6-125 | RustTyranomon | RustTyrannomon |
-| 6-126 | SaberLeomon | SaberLeomon |
-| 6-127 | Sakuyamon X | Sakuyamon X |
-| 6-128 | Seraphimon | Seraphimon |
-| 6-129 | ShineGreymon | ShineGreymon |
-| 6-130 | SkullMammon | SkullMammothmon |
-| 6-131 | SkullMammon X | SkullMammothmon X |
-| 6-132 | SlashAngemon | SlashAngemon |
-| 6-133 | Slayerdramon | Slayerdramon |
-| 6-134 | Susanoomon | Susanomon |
-| 6-135 | TigerVespamon | TigerVespamon |
-| 6-136 | Titamon | Titamon |
-| 6-137 | UlforceV-dramon | UlforceVeedramon |
-| 6-138 | UltimateBrachiomon | UltimateBrachiomon |
-| 6-139 | Valkyrimon | Valkyrimon |
-| 6-140 | Valdurmon | Varodurumon |
-| 6-141 | VenomVamdemon | VenomMyotismon |
-| 6-142 | Volcanicdramon | Volcanicdramon |
-| 6-143 | WarGreymon | WarGreymon |
-| 6-144 | WarGreymon X | WarGreymon X |
-| 6-145 | Zhuqiaomon | Zhuqiaomon |
-| 6-146 | Vikemon | Vikemon |
-| 6-147 | ShinMonzaemon | ShinMonzaemon |
-| 6-148 | Kazuchimon | Kazuchimon |
-| 6-149 | BanchoLilimon | BanchoLillymon |
-| 6-150 | DORUgoramon | Dorugoramon |
-| 7-001 | Alphamon: Ouryuken | Alphamon: Ouryuken |
-| 7-002 | Armagemon | Armageddemon |
-| 7-003 | Barbamon X | Barbamon X |
-| 7-004 | Beelzebumon X | Beelzemon X |
-| 7-005 | Beelzebumon: Blast Mode | Beelzemon: Blast Mode |
-| 7-006 | Belphemon X | Belphemon X |
-| 7-007 | Voltobautamon | Boltboutamon |
-| 7-008 | Chaosmon | Chaosmon |
-| 7-009 | Craniummon X | Craniamon X |
-| 7-010 | Demon X | Creepymon X |
-| 7-011 | DarknessBagramon | DarknessBagramon |
-| 7-012 | Diablomon X | Diaboromon X |
-| 7-013 | Dynasmon X | Dynasmon X |
-| 7-014 | Examon | Examon |
-| 7-015 | Examon X | Examon X |
-| 7-016 | Dukemon X | Gallantmon X |
-| 7-017 | Gankoomon X | Gankoomon X |
-| 7-018 | GraceNovamon | GraceNovamon |
-| 7-019 | Imperialdramon: Fighter Mode | Imperialdramon: Fighter Mode |
-| 7-020 | Imperialdramon: Paladin Mode | Imperialdramon: Paladin Mode |
-| 7-021 | Jesmon X | Jesmon X |
-| 7-022 | Sleipmon X | Kentaurosmon X |
-| 7-023 | Duftmon X | Leopardmon X |
-| 7-024 | Leviamon X | Leviamon X |
-| 7-025 | Lilithmon X | Lilithmon X |
-| 7-026 | LordKnightmon X | LordKnightmon X |
-| 7-027 | Lucemon X | Lucemon X |
-| 7-028 | Magnamon X | Magnamon X |
-| 7-029 | Mastemon | Mastemon |
-| 7-030 | Minervamon X | Minervamon X |
-| 7-031 | Ogudomon | Ogudomon |
-| 7-032 | Omegamon | Omnimon |
-| 7-033 | Omegamon Alter-S | Omnimon Alter-S |
-| 7-034 | Omegamon X | Omnimon X |
-| 7-035 | Ordinemon | Ordinemon |
-| 7-036 | Rafflesimon | Rafflesimon |
-| 7-037 | RagnaLordmon | RagnaLoardmon |
-| 7-038 | Rasenmon | Rasenmon |
-| 7-039 | RustTyranomon | RustTyrannomon |
-| 7-040 | UlforceV-dramon X | UlforceVeedramon X |
-| 7-041 | Agumon (Bond of Bravery) | Agumon (Bond of Bravery) |
-| 7-042 | Gabumon (Bond of Friendship) | Gabumon (Bond of Friendship) |
-| 7-043 | Jesmon GX | Jesmon GX |
-| 7-044 | Ogudomon X | Ogudomon X |
-| 7-045 | Chaosdramon | Chaosdramon |
+| D-001 | Digitama (Deep Savers) | Digiegg (Deep Savers) |
+| D-002 | Digitama (Dragon's Roar) | Digiegg (Dragon's Roar) |
+| D-003 | Digitama (Jungle Troopers) | Digiegg (Jungle Troopers) |
+| D-004 | Digitama (Metal Empire) | Digiegg (Metal Empire) |
+| D-005 | Digitama (Nature Spirits) | Digiegg (Nature Spirits) |
+| D-006 | Digitama (Nightmare Soldiers) | Digiegg (Nightmare Soldiers) |
+| D-007 | Digitama (Virus Busters) | Digiegg (Virus Busters) |
+| D-008 | Digitama (Wind Guardians) | Digiegg (Wind Guardians) |
+| BI-001 | Algomon | Argomon |
+| BI-002 | BOMMON | Bommon |
+| BI-003 | Bombmon | Bommon (2010 Anime Version) |
+| BI-004 | Botamon | Botamon |
+| BI-005 | Bubbmon | Pabumon |
+| BI-006 | Chibickmon | Chibickmon |
+| BI-007 | Chicomon | Chibomon |
+| BI-008 | Choromon | Choromon |
+| BI-009 | Cocomon | Conomon |
+| BI-010 | Cotsucomon | Cotsucomon |
+| BI-011 | CURIMON | Curimon |
+| BI-012 | Dodomon | Dodomon |
+| BI-013 | Dokimon | Dokimon |
+| BI-014 | Fufumon | Fufumon |
+| BI-015 | FUKAMON | Fukamon |
+| BI-016 | FUSAMON | Fusamon |
+| BI-017 | Jyarimon | Jyarimon |
+| BI-018 | Kiimon | Keemon |
+| BI-019 | Ketomon | Ketomon |
+| BI-020 | Kuramon | Kuramon |
+| BI-021 | LEAFMON | Leafmon |
+| BI-022 | Mokumon | Mokumon |
+| BI-023 | Nyokimon | Nyokimon |
+| BI-024 | PAFUMON | Pafumon |
+| BI-025 | PAOMON | Paomon |
+| BI-026 | Petitmon | Petitmon |
+| BI-027 | PIPIMON | Pipimon |
+| BI-028 | Pitchmon | Pichimon |
+| BI-029 | POPOMON | Popomon |
+| BI-030 | Poyomon | Poyomon |
+| BI-031 | Punimon | Punimon |
+| BI-032 | PUPUMON | Pupumon |
+| BI-033 | Pururumon | Pururumon |
+| BI-034 | PUSUMON | Pusumon |
+| BI-035 | Puttimon | Puttimon |
+| BI-036 | PUWAMON | Puwamon |
+| BI-037 | PUYOMON | Puyomon |
+| BI-038 | PYONMON | Pyonmon |
+| BI-039 | Relemon | Relemon |
+| BI-040 | Sakumon | Sakumon |
+| BI-041 | Sunamon | Sandmon |
+| BI-042 | TOMORIMON | Tomorimon |
+| BI-043 | Tsubumon | Tsubumon |
+| BI-044 | YOLKMON | Yolkmon |
+| BI-045 | Yukimibotamon | YukimiBotamon |
+| BI-046 | Yuramon | Yuramon |
+| BI-047 | Zerimon | Zerimon |
+| BI-048 | Zurumon | Zurumon |
+| BII-001 | Algomon | Argomon |
+| BII-002 | Arkadimon Baby | Arcadiamon In-Training |
+| BII-003 | Babydmon | Bebydomon |
+| BII-004 | Bibimon | Bibimon |
+| BII-005 | BOWMON | Bowmon |
+| BII-006 | Budmon | Budmon |
+| BII-007 | Capromon | Kapurimon |
+| BII-008 | CHAPMON | Chapmon |
+| BII-009 | Chibimon | DemiVeemon |
+| BII-010 | CHICCHIMON | Chicchimon |
+| BII-011 | Chocomon | Kokomon |
+| BII-012 | CUPIMON | Cupimon |
+| BII-013 | Dorimon | Dorimon |
+| BII-014 | FLUFFYMON | Fluffymon |
+| BII-015 | Gigimon | Gigimon |
+| BII-016 | Goromon | Tumblemon |
+| BII-017 | Gummymon | Gummymon |
+| BII-018 | GURIMON | Gurimon |
+| BII-019 | Hiyarimon | Hiyarimon |
+| BII-020 | Hopmon | Hopmon |
+| BII-021 | Kakkinmon | Kakkinmon |
+| BII-022 | Koromon | Koromon |
+| BII-023 | KOZENIMON | Kozenimon |
+| BII-024 | KYAROMON | Kyaromon |
+| BII-025 | Kyokyomon | Kyokyomon |
+| BII-026 | Minomon | Minomon |
+| BII-027 | Mochimon | Motimon |
+| BII-028 | MOCOCOMON | Mococomon |
+| BII-029 | MONIMON | Monimon |
+| BII-030 | Moonmon | Moonmon |
+| BII-031 | NEGAMON | Negamon |
+| BII-032 | Nyaromon | Nyaromon |
+| BII-033 | ONIBIMON | Onibimon |
+| BII-034 | Pagumon | Pagumon |
+| BII-035 | PetiMeramon | DemiMeramon |
+| BII-036 | Pickmon | Pickmon |
+| BII-037 | PINAMON | Pinamon |
+| BII-038 | Pokomon | Viximon |
+| BII-039 | Poromon | Poromon |
+| BII-040 | Pukamon | Bukamon |
+| BII-041 | PUROROMON | Puroromon |
+| BII-042 | PUSURIMON | Pusurimon |
+| BII-043 | PUYOYOMON | Puyoyomon |
+| BII-044 | Pyocomon | Yokomon |
+| BII-045 | Sakuttomon | Sakuttomon |
+| BII-046 | Sunmon | Sunmon |
+| BII-047 | Tanemon | Tanemon |
+| BII-048 | Tokomon | Tokomon |
+| BII-049 | Tokomon X | Tokomon X |
+| BII-050 | Tsumemon | Tsumemon |
+| BII-051 | Tunomon | Tsunomon |
+| BII-052 | Upamon | Upamon |
+| BII-053 | Wanyamon | Wanyamon |
+| BII-054 | XIAOMON | Xiaomon |
+| BII-055 | Yarmon | Yaamon |
+| C-001 | Burakkugirumon | BlackGuilmon |
+| C-002 | Puchimamon | PetitMamon |
+| C-003 | Agumon | Agumon |
+| C-004 | AGUMON-2006 | Agumon (2006 Anime Version) |
+| C-005 | Agumon (Black) | Agumon (Black) |
+| C-006 | Agumon (Black) X | Agumon (Black) X |
+| C-007 | Agumon X | Agumon X |
+| C-008 | Agumon Hakase | Agumon Expert |
+| C-009 | Algomon | Argomon |
+| C-010 | ALRAUMON | Aruraumon |
+| C-011 | ANGORAMON | Angoramon |
+| C-012 | ARKADIMON | Arcadiamon |
+| C-013 | Armadimon | Armadillomon |
+| C-014 | Bakumon | Tapirmon |
+| C-015 | BEARMON | Bearmon |
+| C-016 | VEMMON | Vemmon |
+| C-017 | Betamon | Betamon |
+| C-018 | BETAMON_X | Betamon (X Antibody) |
+| C-019 | Blucomon | Bulucomon |
+| C-020 | BushiAgumon | BushiAgumon |
+| C-021 | Candmon | Candlemon |
+| C-022 | CHIKURIMON | Chikurimon |
+| C-023 | CLEARAGUMON | ClearAgumon |
+| C-024 | COMMANDRAMON | Commandramon |
+| C-025 | Coronamon | Coronamon |
+| C-026 | DOKUNEMON | DoKunemon |
+| C-027 | DORUmon | Dorumon |
+| C-028 | Dracomon | Dracomon |
+| C-029 | Dracomon X | Dracomon X |
+| C-030 | Dracumon | Dracmon |
+| C-031 | EKAKIMON | Ekakimon |
+| C-032 | Elecmon | Elecmon |
+| C-033 | ELECMON-VIOLET | Elecmon (Violet) |
+| C-034 | ELIZAMON | Elizamon |
+| C-035 | Falcomon | Falcomon |
+| C-036 | Floramon | Floramon |
+| C-037 | FUJAMON | Fujamon |
+| C-038 | FUNBEEMON | FunBeemon |
+| C-039 | Gabumon | Gabumon |
+| C-040 | GABUMON_BLACK | Gabumon (Black) |
+| C-041 | Gabumon X | Gabumon X |
+| C-042 | GAMMAMON | Gammamon |
+| C-043 | Ganimon | Crabmon |
+| C-044 | Gaomon | Gaomon |
+| C-045 | GAOSSMON | Gaossmon |
+| C-046 | GASAMON | Gasamon |
+| C-047 | Gazimon | Gazimon |
+| C-048 | GAZIMON_X | Gazimon (X Antibody) |
+| C-049 | Ghostmon | Ghostmon |
+| C-050 | Gizamon | Gizamon |
+| C-051 | GOBURIMON | Goblimon |
+| C-052 | Gomamon | Gomamon |
+| C-053 | Gomamon X | Gomamon X |
+| C-054 | Gottsumon | Gotsumon |
+| C-055 | GOTTSUMON_X | Gotsumon (X Antibody) |
+| C-056 | Guilmon | Guilmon |
+| C-057 | GUILMON_X | Guilmon (X Antibody) |
+| C-058 | GUMDRAMON | Gumdramon |
+| C-059 | Hagurumon | Hagurumon |
+| C-060 | HAGURUMON_X | Hagurumon (X Antibody) |
+| C-061 | HANIMON | Hanimon |
+| C-062 | Hawkmon | Hawkmon |
+| C-063 | Herissmon | Herissmon |
+| C-064 | Hackmon | Huckmon |
+| C-065 | HYOKOMON | Hyokomon |
+| C-066 | Impmon | Impmon |
+| C-067 | Impmon X | Impmon X |
+| C-068 | Jazamon | Jazamon |
+| C-069 | JELLYMON | Jellymon |
+| C-070 | Junkmon | Junkmon |
+| C-071 | KAKAMON | Kakamon |
+| C-072 | KAMEMON | Kamemon |
+| C-073 | KERAMON | Keramon |
+| C-074 | Keramon X | Keramon X |
+| C-075 | KODOKUGUMON | KoDokugumon |
+| C-076 | KOEMON | Monmon |
+| C-077 | KOKABUTERIMON | KoKabuterimon |
+| C-078 | Kokuwamon | Kokuwamon |
+| C-079 | Kokuwamon X | Kokuwamon X |
+| C-080 | KOTEMON | Kotemon |
+| C-081 | KUDAMON | Kudamon |
+| C-082 | Kunemon | Kunemon |
+| C-083 | Labramon | Labramon |
+| C-084 | Lalamon | Lalamon |
+| C-085 | LIOLLMON | Liollmon |
+| C-086 | LOOGAMON | Loogamon |
+| C-087 | Lopmon | Lopmon |
+| C-088 | Lopmon X | Lopmon X |
+| C-089 | LUCEMON | Lucemon |
+| C-090 | Ludomon | Ludomon |
+| C-091 | Lunamon | Lunamon |
+| C-092 | LUXMON | Luxmon |
+| C-093 | MODOKIBETAMON | ModokiBetamon |
+| C-094 | Monodramon | Monodramon |
+| C-095 | Morphomon | Morphomon |
+| C-096 | MUCHOMON | Muchomon |
+| C-097 | Mushmon | Mushroomon |
+| C-098 | NEAMON | Neemon |
+| C-099 | Otamamon | Otamamon |
+| C-100 | OTAMAMON-RED | Otamamon (Red) |
+| C-101 | Otamamon X | Otamamon X |
+| C-102 | Palmon | Palmon |
+| C-103 | Palmon X | Palmon X |
+| C-104 | Patamon | Patamon |
+| C-105 | PAUNCHESSMON | PawnChessmon (Black) |
+| C-106 | PAUNCHESSMON-WHITE | PawnChessmon (White) |
+| C-107 | PENMON | Penmon |
+| C-108 | Phascomon | Phascomon |
+| C-109 | PicoDevimon | DemiDevimon |
+| C-110 | PILLOMON | Pillomon |
+| C-111 | Piyomon | Biyomon |
+| C-112 | Plotmon | Salamon |
+| C-113 | Plotmon X | Salamon X |
+| C-114 | Pomumon | Pomumon |
+| C-115 | PSYCHEMON | Psychemon |
+| C-116 | PTEROMON | Pteromon |
+| C-117 | Pulsemon | Pulsemon |
+| C-118 | Renamon | Renamon |
+| C-119 | Renamon X | Renamon X |
+| C-120 | Ryudamon | Ryudamon |
+| C-121 | Sangomon | Sangomon |
+| C-122 | Shakomon | Syakomon |
+| C-123 | Shakomon X | Syakomon X |
+| C-124 | SHOEMON | Shoemon |
+| C-125 | Shoutmon | Shoutmon |
+| C-126 | Sistermon Blanc | Sistermon Blanc |
+| C-127 | SNOWGOBURIMON | SnowGoblimon |
+| C-128 | SOLARMON | Solarmon |
+| C-129 | SPADAMON | Spadamon |
+| C-130 | Starmons | Starmons |
+| C-131 | Sunarizamon | Sunarizamon |
+| C-132 | Swimmon | Swimmon |
+| C-133 | TAKINMON | Takinmon |
+| C-134 | Tentomon | Tentomon |
+| C-135 | Terriermon | Terriermon |
+| C-136 | TERRIERMON_ASSISTANT | Terriermon Assistant |
+| C-137 | Terriermon X | Terriermon X |
+| C-138 | Tinkermon | Tinkermon |
+| C-139 | ToyAgumon | ToyAgumon |
+| C-140 | TOYAGUMON_BLACK | ToyAgumon (Black) |
+| C-141 | TUKAIMON | Tsukaimon |
+| C-142 | TYUMON | Chuumon |
+| C-143 | UKKOMON | Ukkomon |
+| C-144 | V-mon | Veemon |
+| C-145 | Vorvomon | Vorvomon |
+| C-146 | WANKOMON | Wankomon |
+| C-147 | Wormmon | Wormmon |
+| C-148 | YUKIAGUMON | SnowAgumon |
+| C-149 | ZENIMON | Zenimon |
+| C-150 | Zubamon | Zubamon |
+| UN-001 | CULUMON | Calumon |
+| A-001 | Arukadimon Seijukuki | Arkadimon Adult |
+| A-002 | Reddo Buidoramon | RedVeedramon |
+| A-003 | AEGIOMON | Aegiomon |
+| A-004 | Airdramon | Airdramon |
+| A-005 | Akatorimon | Akatorimon |
+| A-006 | Algomon | Argomon |
+| A-007 | Allomon X | Allomon X |
+| A-008 | Angemon | Angemon |
+| A-009 | Ankylomon | Ankylomon |
+| A-010 | Aquilamon | Aquilamon |
+| A-011 | Arresterdramon | Arresterdramon |
+| A-012 | Baboongamon | Baboongamon |
+| A-013 | Bakemon | Bakemon |
+| A-014 | Baluchimon | Baluchimon |
+| A-015 | BaoHuckmon | BaoHuckmon |
+| A-016 | BETELGAMMAMON | BetelGammamon |
+| A-017 | Birdramon | Birdramon |
+| A-018 | BLACKGALGOMON | BlackGargomon |
+| A-019 | BLACKGAOGAMON | BlackGaogamon |
+| A-020 | BLACKGROWMON | BlackGrowlmon |
+| A-021 | BLACKTAILMON | BlackGatomon |
+| A-022 | BLADEKUWAGAMON | BladeKuwagamon |
+| A-023 | BOOGIEMON | Boogiemon |
+| A-024 | Bulkmon | Bulkmon |
+| A-025 | BURAIMON | Buraimon |
+| A-026 | Centalmon | Centarumon |
+| A-027 | CHAMBLEMON | Chamblemon |
+| A-028 | CHRYSALIMON | Kurisarimon |
+| A-029 | Clockmon | Clockmon |
+| A-030 | Cockatrimon | Kokatorimon |
+| A-031 | Coelamon | Coelamon |
+| A-032 | Coredramon (Blue) | Coredramon (Blue) |
+| A-033 | Coredramon (Green) | Coredramon (Green) |
+| A-034 | Cyclomon | Cyclonemon |
+| A-035 | Damemon | Damemon |
+| A-036 | Darcmon | Darcmon |
+| A-037 | DARKLIZAMON | DarkLizardmon |
+| A-038 | DARKMAILDRAMON | DarkMaildramon |
+| A-039 | DarkTyranomon | DarkTyrannomon |
+| A-040 | DarkTyranomon X | DarkTyrannomon X |
+| A-041 | DEATH-X-DORUGAMON | DexDorugamon |
+| A-042 | DECKERDRAMON | Deckerdramon |
+| A-043 | Deltamon | Deltamon |
+| A-044 | Devidramon | Devidramon |
+| A-045 | Devimon | Devimon |
+| A-046 | Diatrymon | Diatrymon |
+| A-047 | DIMETROMON | Dimetromon |
+| A-048 | DINOHUMON | Dinohyumon |
+| A-049 | Dobermon | Dobermon |
+| A-050 | DOGMON | Doggymon |
+| A-051 | Dokugumon | Dokugumon |
+| A-052 | DORUgamon | Dorugamon |
+| A-053 | Dorulumon | Dorulumon |
+| A-054 | Drimogemon | Drimogemon |
+| A-055 | Ebidramon | Ebidramon |
+| A-056 | Eosmon | Eosmon |
+| A-057 | EXERMON | Exermon |
+| A-058 | EYESMON | Eyesmon |
+| A-059 | FANGMON | Fangmon |
+| A-060 | Filmon | Filmon |
+| A-061 | Firamon | Firamon |
+| A-062 | FlareLizamon | Flarerizamon |
+| A-063 | Flymon | Flymon |
+| A-064 | Fugamon | Fugamon |
+| A-065 | GALEMON | Galemon |
+| A-066 | Galgomon | Gargomon |
+| A-067 | GANEMON | Ganemon |
+| A-068 | Gaogamon | Gaogamon |
+| A-069 | GARDROMON_GOLD | Guardromon (Gold) |
+| A-070 | Garurumon | Garurumon |
+| A-071 | GARURUMON_BLACK | Garurumon (Black) |
+| A-072 | GARURUMON_X | Garurumon (X Antibody) |
+| A-073 | GAWAPPAMON | Gawappamon |
+| A-074 | Gekomon | Gekomon |
+| A-075 | GeoGreymon | GeoGreymon |
+| A-076 | GEREMON | Geremon |
+| A-077 | Gesomon | Gesomon |
+| A-078 | GINKAKUMON | Ginkakumon |
+| A-079 | Ginryumon | Ginryumon |
+| A-080 | GLADIMON | Gladimon |
+| A-081 | Gokimon | Roachmon |
+| A-082 | GOLDNUMEMON | GoldNumemon |
+| A-083 | Golemon | Golemon |
+| A-084 | GORIMON | Gorillamon |
+| A-085 | GREYMON_2010 ANIME VERSION | Greymon (2010 Anime Version) |
+| A-086 | Greymon | Greymon |
+| A-087 | GREYMON_BLUE | Greymon (Blue) |
+| A-088 | GREYMON_X | Greymon (X Antibody) |
+| A-089 | Growmon | Growlmon |
+| A-090 | GROWMON_ORANGE | Growlmon (Orange) |
+| A-091 | Growmon X | Growlmon X |
+| A-092 | GRYZMON | Grizzlymon |
+| A-093 | Guardromon | Guardromon |
+| A-094 | GULUSGAMMAMON | GulusGammamon |
+| A-095 | GURURUMON | Gururumon |
+| A-096 | HAKUBAMON | Hakubamon |
+| A-097 | Hanumon | Apemon |
+| A-098 | HI-COMMANDRAMON | Hi-Commandramon |
+| A-099 | Hookmon | Hookmon |
+| A-100 | Hudiemon | Hudiemon |
+| A-101 | Hyougamon | Hyogamon |
+| A-102 | ICEDEVIMON | IceDevimon |
+| A-103 | ICEMON | Icemon |
+| A-104 | Igamon | Ninjamon |
+| A-105 | Ikkakumon | Ikkakumon |
+| A-106 | Jazardmon | Jazardmon |
+| A-107 | Jungle Mojyamon | JungleMojyamon |
+| A-108 | Kabuterimon | Kabuterimon |
+| A-109 | KaratukiNumemon | ShellNumemon |
+| A-110 | KAUSGAMMAMON | KausGammamon |
+| A-111 | KINKAKUMON | Kinkakumon |
+| A-112 | Kiwimon | Kiwimon |
+| A-113 | KNIGHTCHESSMON | KnightChessmon (White) |
+| A-114 | KNIGHTCHESSMON_BLACK | KnightChessmon (Black) |
+| A-115 | KOKESHIMON | Kokeshimon |
+| A-116 | Komondomon | Komondomon |
+| A-117 | KOUGAMON | Kogamon |
+| A-118 | Kuwagamon | Kuwagamon |
+| A-119 | Kuwagamon X | Kuwagamon X |
+| A-120 | KYUBIMON | Kyubimon |
+| A-121 | Lavorvomon | Lavorvomon |
+| A-122 | Lekismon | Lekismon |
+| A-123 | Leomon | Leomon |
+| A-124 | Leomon X | Leomon X |
+| A-125 | LIAMON | Liamon |
+| A-126 | LIANPUMON | Lianpumon |
+| A-127 | LOOGARMON | Loogarmon |
+| A-128 | Machmon | Machmon |
+| A-129 | MadLeomon | MadLeomon |
+| A-130 | MAILBIRDRAMON | MailBirdramon |
+| A-131 | MANEKIMON | Manekimon |
+| A-132 | Mantaraymon X | Mantaraymon X |
+| A-133 | Mechanorimon | Mekanorimon |
+| A-134 | Meicoomon | Meicoomon |
+| A-135 | Meramon | Meramon |
+| A-136 | Meramon X | Meramon X |
+| A-137 | MIKEMON | Mikemon |
+| A-138 | Mimicmon | Mimicmon |
+| A-139 | Minotaurmon | Minotarumon |
+| A-140 | Mojyamon | Mojyamon |
+| A-141 | Monochromon | Monochromon |
+| A-142 | MONOCHROMON_X | Monochromon (X Antibody) |
+| A-143 | MORISHELLMON | MoriShellmon |
+| A-144 | MUSYAMON | Musyamon |
+| A-145 | Nanimon | Nanimon |
+| A-146 | Nefertimon X | Nefertimon X |
+| A-147 | NISEDRIMOGEMON | NiseDrimogemon |
+| A-148 | Numemon | Numemon |
+| A-149 | Numemon X | Numemon X |
+| A-150 | Octmon | Octomon |
+| A-151 | Omekamon | Omekamon |
+| A-152 | Orgemon | Ogremon |
+| A-153 | Orgemon X | Ogremon X |
+| A-154 | Paledramon | Paledramon |
+| A-155 | Parasaurmon | Parasaurmon |
+| A-156 | Peckmon | Peckmon |
+| A-157 | Pegasmon X | Pegasusmon X |
+| A-158 | Petermon | Petermon |
+| A-159 | Pidmon | Piddomon |
+| A-160 | PLATINASUKAMON | PlatinumSukamon |
+| A-161 | Porcupamon | Porcupamon |
+| A-162 | Pteranomon X | Pteramon X |
+| A-163 | PUBLIMON | Publimon |
+| A-164 | PUNKMON | Punkmon |
+| A-165 | RAPTORDRAMON | Raptordramon |
+| A-166 | Raremon | Raremon |
+| A-167 | RedVegimon | RedVegiemon |
+| A-168 | Reppamon | Reppamon |
+| A-169 | Revolmon | Deputymon |
+| A-170 | Rhinomon X | Rhinomon X |
+| A-171 | Rukamon | Dolphmon |
+| A-172 | Saberdramon | Saberdramon |
+| A-173 | SANDYAMMAMON | SandYanmamon |
+| A-174 | Sangloupmon | Sangloupmon |
+| A-175 | Scumon | Sukamon |
+| A-176 | Seadramon | Seadramon |
+| A-177 | Seadramon X | Seadramon X |
+| A-178 | SEALSDRAMON | Sealsdramon |
+| A-179 | Shellmon | Shellmon |
+| A-180 | SHIMAUNIMON | ShimaUnimon |
+| A-181 | SHOESHOEMON | ShoeShoemon |
+| A-182 | SHOUTMON_KING | Shoutmon (King Version) |
+| A-183 | SHOUTMONX2 | Shoutmon X2 |
+| A-184 | Shoutmon X3 | Shoutmon X3 |
+| A-185 | SHOUTMONX4 | Shoutmon X4 |
+| A-186 | SIESAMON | Seasarmon |
+| A-187 | Siesamon X | Seasarmon X |
+| A-188 | Sistermon Ciel | Sistermon Ciel |
+| A-189 | SISTERMON_CIEL_AWAKENED | Sistermon Ciel (Awakened) |
+| A-190 | SISTERMONNOIR | Sistermon Noir |
+| A-191 | SNATCHMON | Snatchmon |
+| A-192 | SNIMON | Snimon |
+| A-193 | SORCERIMON | Sorcermon |
+| A-194 | SOULMON | Soulmon |
+| A-195 | Starmon | Starmon |
+| A-196 | Stingmon | Stingmon |
+| A-197 | Strikedramon | Strikedramon |
+| A-198 | Sunflowmon | Sunflowmon |
+| A-199 | SYMBAREANGORAMON | SymbareAngoramon |
+| A-200 | Tailmon | Gatomon |
+| A-201 | Tailmon X | Gatomon X |
+| A-202 | Tankmon | Tankmon |
+| A-203 | Targetmon | Targetmon |
+| A-204 | TESLAJELLYMON | TeslaJellymon |
+| A-205 | Thunderballmon | Thundermon |
+| A-206 | THUNDERBALLMON_X | Thundermon (X Antibody) |
+| A-207 | TiaLudomon | TiaLudomon |
+| A-208 | Tobiumon | Tobiumon |
+| A-209 | Tobucatmon | TobuCatmon |
+| A-210 | Togemon | Togemon |
+| A-211 | Togemon X | Togemon X |
+| A-212 | Tortamon | Tortomon |
+| A-213 | TRAILMON | Trailmon |
+| A-214 | Troopmon | Troopmon |
+| A-215 | TUCHIDARUMON | MudFrigimon |
+| A-216 | Turuiemon | Turuiemon |
+| A-217 | Tuskmon | Tuskmon |
+| A-218 | Tylomon X | Tylomon X |
+| A-219 | Tyranomon | Tyrannomon |
+| A-220 | Tyranomon X | Tyrannomon X |
+| A-221 | V-dramon | Veedramon |
+| A-222 | Vegimon | Vegiemon |
+| A-223 | WASPMON | Waspmon |
+| A-224 | WENDIMON | Wendigomon |
+| A-225 | WEZENGAMMAMON | WezenGammamon |
+| A-226 | Whamon | Whamon |
+| A-227 | Witchmon | Witchmon |
+| A-228 | Wizarmon | Wizardmon |
+| A-229 | Wizarmon X | Wizardmon X |
+| A-230 | WOLVERMON | Wolvermon |
+| A-231 | Woodmon | Woodmon |
+| A-232 | XIQUEMON | Xiquemon |
+| A-233 | XV-mon | ExVeemon |
+| A-234 | YAMMAMON | Yanmamon |
+| A-235 | YOUKOMON | Youkomon |
+| A-236 | Yukidarumon | Frigimon |
+| A-237 | Unimon | Unimon |
+| A-238 | ZASSOUMON | Weedmon |
+| A-239 | Zubaeagermon | ZubaEagermon |
+| AR-001 | ALLOMON | Allomon |
+| AR-002 | ARCHELOMON | Archelomon |
+| AR-003 | BAROMON | Baronmon |
+| AR-004 | BITMON | Rabbitmon |
+| AR-005 | Boamon | Boarmon |
+| AR-006 | BULLMON | Bullmon |
+| AR-007 | BUTTERFLAMON | Butterflymon |
+| AR-008 | CHAMELEMON | Chameleonmon |
+| AR-009 | DEPTHMON | Depthmon |
+| AR-010 | DIGMON | Digmon |
+| AR-011 | ELEPHAMON | Elephantmon |
+| AR-012 | FLADRAMON | Flamedramon |
+| AR-013 | FLYBEEMON | Flybeemon |
+| AR-014 | FROGMON | Frogmon |
+| AR-015 | GARGOMON | Gargoylemon |
+| AR-016 | GOATMON | Goatmon |
+| AR-017 | GOLDV-DRAMON | GoldVeedramon |
+| AR-018 | HARPYMON | Harpymon |
+| AR-019 | HOLSMON | Halsemon |
+| AR-020 | HONEYBEEMON | Honeybeemon |
+| AR-021 | KABUKIMON | Kabukimon |
+| AR-022 | KANGARUMON | Kangarumon |
+| AR-023 | KENKIMON | Kenkimon |
+| AR-024 | KONGOUMON | Kongoumon |
+| AR-025 | LIGHDRAMON | Lighdramon |
+| AR-026 | LYNXMON | Lynxmon |
+| AR-027 | Magnamon | Magnamon |
+| AR-028 | MAILDRAMON | Maildramon |
+| AR-029 | Manbomon | Manbomon |
+| AR-030 | MANTARAYMON | Mantaraymon |
+| AR-031 | MOOSEMON | Moosemon |
+| AR-032 | MOTHMON | Mothmon |
+| AR-033 | NEFERTIMON | Nefertimon |
+| AR-034 | NOHEMON | Nohemon |
+| AR-035 | OPOSSUMMON | Opossummon |
+| AR-036 | ORCAMON | Orcamon |
+| AR-037 | OWLMON | Aurumon |
+| AR-038 | PEACOCKMON | Peacockmon |
+| AR-039 | PEGASMON | Pegasusmon |
+| AR-040 | PIPISMON | Pipismon |
+| AR-041 | PONCHOMON | Ponchomon |
+| AR-042 | PRAIRIEMON | Prairiemon |
+| AR-043 | PTERANOMON | Pteramon |
+| AR-044 | PUCCHIEMON | Bucchiemon |
+| AR-045 | PUCCHIEMON-GREEN | Bucchiemon (Green) |
+| AR-046 | QUETZALMON | Quetzalmon |
+| AR-047 | RAPIDMON_GOLD | Rapidmon Armor |
+| AR-048 | Rhinomon | Rhinomon |
+| AR-049 | RINKMON | Rinkmon |
+| AR-050 | Submarimon | Submarimon |
+| AR-051 | SAGITTARIMON | Sagittarimon |
+| AR-052 | SALAMANDAMON | Salamandermon |
+| AR-053 | SEAHOMON | Seahomon |
+| AR-054 | SEARCHMON | Searchmon |
+| AR-055 | SEPIKMON | Sepikmon |
+| AR-056 | SETHMON | Sethmon |
+| AR-057 | Shadramon | Shadramon |
+| AR-058 | SHEEPMON | Sheepmon |
+| AR-059 | SHURIMON | Shurimon |
+| AR-060 | STEGOMON | Stegomon |
+| AR-061 | SWANMON | Swanmon |
+| AR-062 | THUNDERBIRMON | Thunderbirdmon |
+| AR-063 | TOCANMON | Toucanmon |
+| AR-064 | TOGEMOGUMON | Togemogumon |
+| AR-065 | Tylomon | Tylomon |
+| AR-066 | YAKSAMON | Yasyamon |
+| H-001 | Agnimon | Agunimon |
+| H-002 | Aldamon | Aldamon |
+| H-003 | ARBORMON | Arbormon |
+| H-004 | Beowolfmon | Beowolfmon |
+| H-005 | BLITZMON | Beetlemon |
+| H-006 | BLIZZARMON | Korikakumon |
+| H-007 | BOLGMON | MetalKabuterimon |
+| H-008 | CALAMARAMON | Calmaramon |
+| H-009 | CHACKMON | Kumamon |
+| H-010 | DAIPENMON | DaiPenmon |
+| H-011 | Duskmon | Duskmon |
+| H-012 | FAIRIMON | Kazemon |
+| H-013 | Garummon | KendoGarurumon |
+| H-014 | GIGASMON | Gigasmon |
+| H-015 | GROTTEMON | Grumblemon |
+| H-016 | JETSILPHYMON | JetSilphymon |
+| H-017 | KaiserGreymon | EmperorGreymon |
+| H-018 | KaiserLeomon | JagerLoweemon |
+| H-019 | MagnaGarurumon | MagnaGarurumon |
+| H-020 | MERCUREMON | Mercuremon |
+| H-021 | PETALDRAMON | Petaldramon |
+| H-022 | Raihimon | Rhihimon |
+| H-023 | RANAMON | Lanamon |
+| H-024 | RHINOKABUTERIMON | RhinoKabuterimon |
+| H-025 | SEPHIROTHMON | Sephirothmon |
+| H-026 | SHUTUMON | Zephyrmon |
+| H-027 | Velgrmon | Velgrmon |
+| H-028 | Vritramon | BurningGreymon |
+| H-029 | Wolfmon | Lobomon |
+| P-001 | Arukadimon Kanzentai | Arukadhimon |
+| P-002 | AEGIOCHUSMON | Aegiochusmon |
+| P-003 | AJATARMON | Ajatarmon |
+| P-004 | Algomon | Argomon |
+| P-005 | Andiramon | Antylamon |
+| P-006 | ANDIRAMON_2 | Antylamon |
+| P-007 | Andromon | Andromon |
+| P-008 | Angewomon | Angewomon |
+| P-009 | Angewomon X | Angewomon X |
+| P-010 | Anomalocarimon | Scorpiomon |
+| P-011 | Anomalocarimon X | Scorpiomon X |
+| P-012 | Archnemon | Arukenimon |
+| P-013 | ARRESTERDRAMON_SUPERIOR | Arresterdramon: Superior Mode |
+| P-014 | Astamon | Astamon |
+| P-015 | Asuramon | Asuramon |
+| P-016 | AtlurKabuterimon | MegaKabuterimon (Red) |
+| P-017 | ATLURKABUTERIMON-BLUE | MegaKabuterimon (Blue) |
+| P-018 | AZHDARMON | Azhdarmon |
+| P-019 | Baalmon | Baalmon |
+| P-020 | BASTEMON | Bastemon |
+| P-021 | BETSUMON | Betsumon |
+| P-022 | BigMamemon | BigMamemon |
+| P-023 | BISHOPCHESSMON | BishopChessmon |
+| P-024 | BLACKKINGNUMEMON | BlackKingNumemon |
+| P-025 | BLACKMACHGAOGAMON | BlackMachGaogamon |
+| P-026 | BLACKMEGALOGROWMON | BlackWarGrowlmon |
+| P-027 | BLACKRAPIDMON | BlackRapidmon |
+| P-028 | Blossomon | Blossomon |
+| P-029 | BLUEMERAMON | BlueMeramon |
+| P-030 | Boutmon | Boutmon |
+| P-031 | BRAKIMON | Brachiomon |
+| P-032 | BUTENMON | Butenmon |
+| P-033 | CannonBeemon | CannonBeemon |
+| P-034 | CANOWEISSMON | Canoweissmon |
+| P-035 | CAPTAINHOOKMON | CaptainHookmon |
+| P-036 | CARGODRAMON | Cargodramon |
+| P-037 | CATCHMAMEMON | CatchMamemon |
+| P-038 | CATURAMON | Caturamon |
+| P-039 | Cerberumon | Cerberusmon |
+| P-040 | CERBERUMON:WEREWOLFMODE | Cerberusmon: Werewolf Mode |
+| P-041 | Cerberumon X | Cerberusmon X |
+| P-042 | CHAPEROMON | Chaperomon |
+| P-043 | Chimairamon | Kimeramon |
+| P-044 | Cho-Hakkaimon | Cho-Hakkaimon |
+| P-045 | CLIMBMON | Climbmon |
+| P-046 | Crescemon | Crescemon |
+| P-047 | CrysPaledramon | CrysPaledramon |
+| P-048 | Cyberdramon | Cyberdramon |
+| P-049 | Cyberdramon X | Cyberdramon X |
+| P-050 | Dagomon | Dragomon |
+| P-051 | DarkKnightmon | DarkKnightmon |
+| P-052 | DarkSuperStarmon | DarkSuperStarmon |
+| P-053 | DARUMAMON | Darumamon |
+| P-054 | DEATH-X-DORUGUREMON | DexDoruGreymon |
+| P-055 | DeathMeramon | SkullMeramon |
+| P-056 | Delumon | Deramon |
+| P-057 | DESTROMON | Destromon |
+| P-058 | Digitamamon | Digitamamon |
+| P-059 | Dinobeemon | Dinobeemon |
+| P-060 | DIVEMON | Divemon |
+| P-061 | DORUguremon | DoruGreymon |
+| P-062 | DOUMON | Doumon |
+| P-063 | Duramon | Duramon |
+| P-064 | AeroV-dramon | AeroVeedramon |
+| P-065 | Entmon | Entmon |
+| P-066 | Eosmon | Eosmon |
+| P-067 | Etemon | Etemon |
+| P-068 | Ex-Tyranomon | ExTyrannomon |
+| P-069 | Fantomon | Phantomon |
+| P-070 | Flaremon | Flaremon |
+| P-071 | FROZOMON | Frozomon |
+| P-072 | Garudamon | Garudamon |
+| P-073 | Garudamon X | Garudamon X |
+| P-074 | Gerbemon | Garbagemon |
+| P-075 | GHILLIEDHUMON | Ghilliedhumon |
+| P-076 | GIGADRAMON | Gigadramon |
+| P-077 | Giromon | Giromon |
+| P-078 | Gogmamon | Gogmamon |
+| P-079 | GOKUWMON | Gokuumon |
+| P-080 | Grademon | Grademon |
+| P-081 | GRANDGALEMON | GrandGalemon |
+| P-082 | GRAPPULEOMON | GrapLeomon |
+| P-083 | GRAVIMON | Gravimon |
+| P-084 | GREATKINGSCUMON | KingSukamon |
+| P-085 | Groundramon | Groundramon |
+| P-086 | Gusokumon | Gusokumon |
+| P-087 | GYUKIMON | Gyuukimon |
+| P-088 | Hangyomon | Divermon |
+| P-089 | HELLOOGARMON | Helloogarmon |
+| P-090 | Hippogriffomon | HippoGryphonmon |
+| P-091 | Hisyaryumon | Hisyaryumon |
+| P-092 | HolyAngemon | MagnaAngemon |
+| P-093 | HUANKUNMON | Huankunmon |
+| P-094 | INFERMON | Infermon |
+| P-095 | INSEKIMON | Meteormon |
+| P-096 | Jazarichmon | Jazarichmon |
+| P-097 | Jewelbeemon | JewelBeemon |
+| P-098 | JOKERMON | Jokermon |
+| P-099 | Jyagamon | Jagamon |
+| P-100 | Jyureimon | Cherrymon |
+| P-101 | KARAKURUMON | Karakurumon |
+| P-102 | KARATENMON | Karatenmon |
+| P-103 | Knightmon | Knightmon |
+| P-104 | KUMBHIRAMON | Kumbhiramon |
+| P-105 | KYUKIMON | Kyukimon |
+| P-106 | LadyDevimon | LadyDevimon |
+| P-107 | LadyDevimon X | LadyDevimon X |
+| P-108 | LAMIAMON | Lamiamon |
+| P-109 | LAMORTMON | Lamortmon |
+| P-110 | Lavogaritamon | Lavogaritamon |
+| P-111 | Lilamon | Lilamon |
+| P-112 | Lilimon | Lillymon |
+| P-113 | Lilimon X | Lillymon X |
+| P-114 | LoaderLeomon | LoaderLeomon |
+| P-115 | Locomon | Locomon |
+| P-116 | LOUDMON | Loudmon |
+| P-117 | LUMINAMON | Luminamon |
+| P-118 | MachGaogamon | MachGaogamon |
+| P-119 | MAJIRAMON | Majiramon |
+| P-120 | MAKURAMON | Makuramon |
+| P-121 | Mamemon | Mamemon |
+| P-122 | Mamemon X | Mamemon X |
+| P-123 | Mametyramon | Mametyramon |
+| P-124 | Mammon | Mammothmon |
+| P-125 | Mammon X | Mammothmon X |
+| P-126 | Manticoremon | Manticoremon |
+| P-127 | MARINBULLMON | MarineBullmon |
+| P-128 | MarinChimairamon | MarineChimairamon |
+| P-129 | MarinDevimon | MarineDevimon |
+| P-130 | MASTERTYRANOMON | MasterTyrannomon |
+| P-131 | MATADRMON | Matadormon |
+| P-132 | Megadramon | Megadramon |
+| P-133 | MEGALOGRAWMON_ORANGE | WarGrowlmon (Orange) |
+| P-134 | MegaloGrowmon | WarGrowlmon |
+| P-135 | MegaloGrowmon X | WarGrowlmon X |
+| P-136 | MegaSeadramon | MegaSeadramon |
+| P-137 | MegaSeadramon X | MegaSeadramon X |
+| P-138 | Meicrackmon | Maycrackmon |
+| P-139 | Meicrackmon: Vicious Mode | Maycrackmon: Vicious Mode |
+| P-140 | MEPHISMON | Mephistomon |
+| P-141 | Mephismon X | Mephistomon X |
+| P-142 | Mermaimon | Mermaimon |
+| P-143 | MetalFantomon | MetalPhantomon |
+| P-144 | MetalGreymon (Vaccine) | MetalGreymon (Vaccine) |
+| P-145 | MetalGreymon (Virus) | MetalGreymon (Virus) |
+| P-146 | METALGREYMON:Alterous Mode | MetalGreymon: Alterous Mode |
+| P-147 | MetalGreymon X | MetalGreymon X |
+| P-148 | MetalGreymon (Virus) X | MetalGreymon (Virus) X |
+| P-149 | METALLIFEKUWAGAMON | MetallifeKuwagamon |
+| P-150 | MetalMamemon | MetalMamemon |
+| P-151 | METALMAMEMON_X | MetalMamemon (X Antibody) |
+| P-152 | MetalTyranomon | MetalTyrannomon |
+| P-153 | MetalTyranomon X | MetalTyrannomon X |
+| P-154 | MIHIRAMON | Mihiramon |
+| P-155 | MISTYMON | Mistymon |
+| P-156 | Monzaemon | Monzaemon |
+| P-157 | Monzaemon X | Monzaemon X |
+| P-158 | Mummymon | Mummymon |
+| P-159 | Nanomon | Datamon |
+| P-160 | NeoDevimon | NeoDevimon |
+| P-161 | OBOROMON | Oboromon |
+| P-162 | Okuwamon | Okuwamon |
+| P-163 | Okuwamon X | Okuwamon X |
+| P-164 | OLEAMON | Oleamon |
+| P-165 | OMEGASHOUTMON | OmniShoutmon |
+| P-166 | OmegaShoutmon X | OmniShoutmon X |
+| P-167 | Orochimon | Orochimon |
+| P-168 | Paildramon | Paildramon |
+| P-169 | PAJIRAMON | Pajiramon |
+| P-170 | Pandamon | Pandamon |
+| P-171 | PANJYAMON | IceLeomon |
+| P-172 | PANJYAMON_X | IceLeomon (X Antibody) |
+| P-173 | Parrotmon | Parrotmon |
+| P-174 | Piccolomon | Piximon |
+| P-175 | Piranimon | Piranimon |
+| P-176 | PISTMON | Pistmon |
+| P-177 | Pumpmon | Pumpkinmon |
+| P-178 | RaijiLudomon | RaijiLudomon |
+| P-179 | Rapidmon | Rapidmon |
+| P-180 | Rebellimon | Rebellimon |
+| P-181 | REGULUSMON | Regulusmon |
+| P-182 | RizeGreymon | RizeGreymon |
+| P-183 | RizeGreymon X | RizeGreymon X |
+| P-184 | ROOKCHESSMON | RookChessmon |
+| P-185 | Lucemon: Falldown Mode | Lucemon: Chaos Mode |
+| P-186 | SAGOMON | Sagomon |
+| P-187 | SANDIRAMON | Sandiramon |
+| P-188 | SANZOMON | Sanzomon |
+| P-189 | SaviorHackmon | SaviorHuckmon |
+| P-190 | Scorpiomon | SkullScorpiomon |
+| P-191 | Shakkoumon | Shakkoumon |
+| P-192 | SHAWUJINMON | Shaujinmon |
+| P-193 | SHISHIMAMON | Shishimamon |
+| P-194 | SHOOTMON | Shootmon |
+| P-195 | Shoutmon X5 | Shoutmon X5 |
+| P-196 | Silphymon | Silphymon |
+| P-197 | SINDURAMON | Sinduramon |
+| P-198 | Sirenmon | Sirenmon |
+| P-199 | SkullBaluchimon | SkullBaluchimon |
+| P-200 | SkullGreymon | SkullGreymon |
+| P-201 | SKULLSATAMON | SkullSatamon |
+| P-202 | SOLOOGARMON | Soloogarmon |
+| P-203 | SPLASHMON | Splashmon |
+| P-204 | Stiffilmon | Stefilmon |
+| P-205 | SuperStarmon | SuperStarmon |
+| P-206 | TANKDRAMON | Tankdramon |
+| P-207 | TAOMON | Taomon |
+| P-208 | Tekkamon | Tekkamon |
+| P-209 | TEMPOMON | Tempomon |
+| P-210 | THETISMON | Thetismon |
+| P-211 | TonosamaGekomon | ShogunGekomon |
+| P-212 | Toropiamon | Toropiamon |
+| P-213 | Triceramon | Triceramon |
+| P-214 | Triceramon X | Triceramon X |
+| P-215 | TYILINMON | Chirinmon |
+| P-216 | Vademon | Vademon |
+| P-217 | VAJRAMON | Vajramon |
+| P-218 | Valvemon | Bulbmon |
+| P-219 | Vamdemon | Myotismon |
+| P-220 | Vamdemon X | Myotismon X |
+| P-221 | VERMILLIMON | Vermilimon |
+| P-222 | VESPAMON | Vespamon |
+| P-223 | VIKARALAMON | Vikaralamon |
+| P-224 | VOLCAMON | Volcanomon |
+| P-225 | VOLCDORAMON | Volcdramon |
+| P-226 | VULTUREMON | Vulturemon |
+| P-227 | WaruMonzaemon | WaruMonzaemon |
+| P-228 | WaruSeadramon | WaruSeadramon |
+| P-229 | WereGarurumon | WereGarurumon |
+| P-230 | WEREGARURUMON_BLACK | WereGarurumon (Black) |
+| P-231 | WereGarurumon X | WereGarurumon X |
+| P-232 | Whamon | Whamon |
+| P-233 | Wingdramon | Wingdramon |
+| P-234 | WISEMON | Wisemon |
+| P-235 | XINGTIANMON | Xingtianmon |
+| P-236 | Yatagaramon | Crowmon |
+| P-237 | YATAGARAMON_AXCEL | Crowmon |
+| P-238 | ZAMIELMON | Zamielmon |
+| P-239 | Zudomon | Zudomon |
+| U-001 | ABBADOMON | Abbadomon |
+| U-002 | ABBADOMONCORE | Abbadomon Core |
+| U-003 | ACHILLESMON | Achillesmon |
+| U-004 | Aegisdramon | Aegisdramon |
+| U-005 | Algomon | Argomon |
+| U-006 | Alphamon | Alphamon |
+| U-007 | AMATERASUMON | Amaterasumon |
+| U-008 | AMPHIMON | Amphimon |
+| U-009 | AncientBeatmon | AncientBeetlemon |
+| U-010 | AncientGarurumon | AncientGarurumon |
+| U-011 | AncientGreymon | AncientGreymon |
+| U-012 | AncientIrismon | AncientKazemon |
+| U-013 | AncientMegatheriumon | AncientMegatheriummon |
+| U-014 | AncientMermaimon | AncientMermaimon |
+| U-015 | AncientSphinxmon | AncientSphinxmon |
+| U-016 | AncientTroiamon | AncientTroymon |
+| U-017 | AncientVolcamon | AncientVolcanomon |
+| U-018 | AncientWisemon | AncientWisemon |
+| U-019 | Anubimon | Anubismon |
+| U-020 | Apoclymon | Apocalymon |
+| U-021 | Apollomon | Apollomon |
+| U-022 | ARCTURUSMON | Arcturusmon |
+| U-023 | ARIEMON | Ariemon |
+| U-024 | ARMAMON | Armamon |
+| U-025 | BABAMON | Babamon |
+| U-026 | BACCHUSMON | Bacchusmon |
+| U-027 | Bagramon | Bagramon |
+| U-028 | Baihumon | Baihumon |
+| U-029 | BANCHOGOLEMON | BanchoGolemon |
+| U-030 | BanchoLeomon | BanchoLeomon |
+| U-031 | BanchoLilimon | BanchoLillymon |
+| U-032 | BanchoMamemon | BanchoMamemon |
+| U-033 | BANCHOSTINGMON | BanchoStingmon |
+| U-034 | Barbamon | Barbamon |
+| U-035 | BEELSTARMON | BeelStarmon |
+| U-036 | BeelStarmon X | BeelStarmon X |
+| U-037 | Beelzebumon | Beelzemon |
+| U-038 | BEELZEBUMON-XWARS | Beelzemon (2010 Anime Version) |
+| U-039 | BelialVamdemon | MaloMyotismon |
+| U-040 | Belphemon: Rage Mode | Belphemon: Rage Mode |
+| U-041 | BIGUKKOMON | BigUkkomon |
+| U-042 | BLACKSAINTGALGOMON | BlackSaintGargomon |
+| U-043 | BLACKSERAPHIMON | BlackSeraphimon |
+| U-044 | BLACKWARGREYMON | BlackWarGreymon |
+| U-045 | BlackWarGreymon X | BlackWarGreymon X |
+| U-046 | BLASTMON | Blastmon |
+| U-047 | BlitzGreymon | BlitzGreymon |
+| U-048 | BLOOMLORDMON | Bloomlordmon |
+| U-049 | Boltmon | Boltmon |
+| U-050 | Breakdramon | Breakdramon |
+| U-051 | BRIGADRAMON | Brigadramon |
+| U-052 | BryweLudramon | BryweLudramon |
+| U-053 | CALLISMON | Callismon |
+| U-054 | CANNONDRAMON | Cannondramon |
+| U-055 | CENDRILLMON | Cendrillmon |
+| U-056 | CERESMON | Ceresmon |
+| U-057 | CERNUMON | Cernumon |
+| U-058 | Chaosdramon X | Chaosdramon X |
+| U-059 | CHAOSDUKEMON | ChaosGallantmon |
+| U-060 | Cherubimon (Virtue) | Cherubimon (Virtue) |
+| U-061 | CHERUBIMON-VICE | Cherubimon (Black) |
+| U-062 | Cherubimon (Virtue) X | Cherubimon (Virtue) X |
+| U-063 | Cherubimon (Vice) X | Cherubimon (Vice) X |
+| U-064 | CHRONOMON：DESTROYMODE | Chronomon: Destroy Mode |
+| U-065 | CHRONOMON：HOLYMODE | Chronomon: Holy Mode |
+| U-066 | CLAVISANGEMON | ClavisAngemon |
+| U-067 | Craniummon | Craniamon |
+| U-068 | CresGarurumon | CresGarurumon |
+| U-069 | CROSSMON | Eaglemon |
+| U-070 | CTHYLLAMON | Cthyllamon |
+| U-071 | DALPHOMON | Dalphomon |
+| U-072 | Darkdramon | Darkdramon |
+| U-073 | DarkKnightmon X | DarkKnightmon X |
+| U-074 | DEATH-X-DORUGORAMON | DexDorugoramon |
+| U-075 | DEATH-X-MON | DeathXmon |
+| U-076 | Deathmon | Ghoulmon |
+| U-077 | DEATHMON-BLACK | Ghoulmon (Black) |
+| U-078 | Demon | Creepymon |
+| U-079 | DEVITAMAMON | Devitamamon |
+| U-080 | DIABLOMON | Diaboromon |
+| U-081 | Dianamon | Dianamon |
+| U-082 | DIARBBITMON | Diarbbitmon |
+| U-083 | DIJIANGMON | Dijiangmon |
+| U-084 | DINOMON | Dinomon |
+| U-085 | Dinorexmon | Dinorexmon |
+| U-086 | Dinotigermon | Dinotigermon |
+| U-087 | DOMINIMON | Dominimon |
+| U-088 | DoneDevimon | DoneDevimon |
+| U-089 | DORUgoramon | Dorugoramon |
+| U-090 | Duftmon | Leopardmon |
+| U-091 | Dukemon | Gallantmon |
+| U-092 | DUKEMON:CRIMSONMODE | Gallantmon: Crimson Mode |
+| U-093 | Durandamon | Durandamon |
+| U-094 | Dynasmon | Dynasmon |
+| U-095 | EBEMON | Ebemon |
+| U-096 | Ebemon X | Ebemon X |
+| U-097 | ELDORADIMON | Eldradimon |
+| U-098 | ENMAMON | Enmamon |
+| U-099 | Eosmon | Eosmon |
+| U-100 | ERLANGMON | Erlangmon |
+| U-101 | FENRILOOGAMON | Fenriloogamon |
+| U-102 | FENRILOOGAMON：TAKEMIKAZUCHI | Fenriloogamon: Takemikazuchi |
+| U-103 | FROSVELGRMON | FrosVelgrmon |
+| U-104 | FUJINMON | Fujinmon |
+| U-105 | Gaioumon | Gaiomon |
+| U-106 | GAIOUMON_ITTO | Gaiomon: Itto Mode |
+| U-107 | Gankoomon | Gankoomon |
+| U-108 | GigaSeadramon | GigaSeadramon |
+| U-109 | Goddramon | Goldramon |
+| U-110 | Goddramon X | Goldramon X |
+| U-111 | GOKUMON | Reapermon |
+| U-112 | GrandDracumon | GranDracmon |
+| U-113 | GrandisKuwagamon | GrandisKuwagamon |
+| U-114 | GrandLocomon | GroundLocomon |
+| U-115 | GranKuwagamon | GranKuwagamon |
+| U-116 | Griffomon | Gryphonmon |
+| U-117 | GULFMON | Gulfmon |
+| U-118 | Gundramon | Gundramon |
+| U-119 | HeavyLeomon | HeavyLeomon |
+| U-120 | HEAVYMETALDRAMON | HeavyMetaldramon |
+| U-121 | HerakleKabuterimon | HerculesKabuterimon |
+| U-122 | HERAKLEKABUTERIMON_X | HerculesKabuterimon (X Antibody) |
+| U-123 | Hexeblaumon | Hexeblaumon |
+| U-124 | HiAndromon | HiAndromon |
+| U-125 | Holydramon | Magnadramon |
+| U-126 | Holydramon X | Magnadramon X |
+| U-127 | Hououmon | Phoenixmon |
+| U-128 | Hououmon X | Phoenixmon X |
+| U-129 | Huanglongmon | Fanglongmon |
+| U-130 | HUANGLONGMON: RUIN MODE | Fanglongmon: Ruin Mode |
+| U-131 | HYDRAMON | Hydramon |
+| U-132 | IMPERIALDRAMON:DRAGON MODE_BLACK | Imperialdramon: Dragon Mode (Black) |
+| U-133 | IMPERIALDRAMON:DRAGONMODE | Imperialdramon: Dragon Mode |
+| U-134 | IMPERIALDRAMON： FIGHTERMODE（BLACK） | Imperialdramon: Fighter Mode (Black) |
+| U-135 | INVISIMON | Invisimon |
+| U-136 | Jesmon | Jesmon |
+| U-137 | JETMERVAMON | JetMervamon |
+| U-138 | JIJIMON | Jijimon |
+| U-139 | JOUGAMON | Jougamon |
+| U-140 | JUMBOGAMEMON | JumboGamemon |
+| U-141 | JUNOMON | Junomon |
+| U-142 | JUPITERMON | Jupitermon |
+| U-143 | Justimon: Blitz Arm | Justimon: Blitz Arm |
+| U-144 | Justimon X | Justimon X |
+| U-145 | KAGUYAMON | Kaguyamon |
+| U-146 | Kazuchimon | Kazuchimon |
+| U-147 | KINGCHESSMON | KingChessmon |
+| U-148 | KingEtemon | KingEtemon |
+| U-149 | KUZUHAMON | Kuzuhamon |
+| U-150 | LAMPMON | Lampmon |
+| U-151 | Leviamon | Leviamon |
+| U-152 | Lilithmon | Lilithmon |
+| U-153 | LordKnightmon | LordKnightmon |
+| U-154 | Lotusmon | Lotosmon |
+| U-155 | LOVELYANGEMON | LovelyAngemon |
+| U-156 | LUCEMON:LARVA | Lucemon: Larva |
+| U-157 | Lucemon: Satan Mode | Lucemon: Satan Mode |
+| U-158 | MAGNAKIDMON | MagnaKidmon |
+| U-159 | MarinAngemon | MarineAngemon |
+| U-160 | MARSMON | Marsmon |
+| U-161 | MEDIEVALDUKEMON | MedievalGallantmon |
+| U-162 | MEDUSAMON | Medusamon |
+| U-163 | Megidramon | Megidramon |
+| U-164 | Megidramon X | Megidramon X |
+| U-165 | MERCURYMON | Mercurymon |
+| U-166 | MERVAMON | Mervamon |
+| U-167 | MetalEtemon | MetalEtemon |
+| U-168 | MetalGarurumon | MetalGarurumon |
+| U-169 | METALGARURUMON_BLACK | MetalGarurumon (Black) |
+| U-170 | MetalGarurumon X | MetalGarurumon X |
+| U-171 | Metallicdramon | Metallicdramon |
+| U-172 | MetalPiranimon | MetalPiranimon |
+| U-173 | MetalSeadramon | MetalSeadramon |
+| U-174 | MILLENNIUMON | Millenniummon |
+| U-175 | MINERVAMON | Minervamon |
+| U-176 | MirageGaogamon | MirageGaogamon |
+| U-177 | MIRAGEGAOGAMON:BURSTMODE | MirageGaogamon: Burst Mode |
+| U-178 | MITAMAMON | Mitamamon |
+| U-179 | MOONMILLENNIUMON | MoonMillenniummon |
+| U-180 | Mugendramon | Machinedramon |
+| U-181 | Murmukusmon | Murmukusmon |
+| U-182 | NEOVAMDEMON | NeoMyotismon |
+| U-183 | NEPTUNEMON | Neptunemon |
+| U-184 | NEZHAMON | Nezhamon |
+| U-185 | Nidhoggmon | Nidhoggmon |
+| U-186 | NoblePumpmon | NoblePumpkinmon |
+| U-187 | Ofanimon | Ophanimon |
+| U-188 | Ofanimon X | Ophanimon X |
+| U-189 | OFANIMON:FALLDOWNMODE | Ophanimon: Falldown Mode |
+| U-190 | Ofanimon: Falldown Mode X | Ophanimon: Falldown Mode X |
+| U-191 | OLEGMON | Olegmon |
+| U-192 | OMEGAMON_ALTER-B | Omnimon Alter-B |
+| U-193 | OMEGAMON:MERCIFUL MODE | Omnimon: Merciful Mode |
+| U-194 | OMEGAMON_ZWART | Omnimon Zwart |
+| U-195 | OMEGAMONZWART_D | Omnimon Zwart Defeat |
+| U-196 | Ornismon | Ornismon |
+| U-197 | Ouryumon | Ouryumon |
+| U-198 | PARASIMON | Parasimon |
+| U-199 | PHARAOHMON | Pharaohmon |
+| U-200 | Piemon | Piedmon |
+| U-201 | PILEVOLCAMON | PileVolcanomon |
+| U-202 | Pinochimon | Puppetmon |
+| U-203 | PlatinumNumemon | PlatinumNumemon |
+| U-204 | Plesiomon | Plesiomon |
+| U-205 | Plesiomon X | Plesiomon X |
+| U-206 | PLUTOMON | Plutomon |
+| U-207 | PRINCEMAMEMON | PrinceMamemon |
+| U-208 | PrinceMamemon X | PrinceMamemon X |
+| U-209 | PROXIMAMON | Proximamon |
+| U-210 | Pukumon | Pukumon |
+| U-211 | Qinglongmon | Azulongmon |
+| U-212 | QUANTUMON | Quantumon |
+| U-213 | QUARTZMON | Quartzmon |
+| U-214 | QUEENBEEMON | QueenBeemon |
+| U-215 | QUEENCHESSMON | QueenChessmon |
+| U-216 | Rafflesimon | Rafflesimon |
+| U-217 | RAGNAMON | Galacticmon |
+| U-218 | Raguelmon | Raguelmon |
+| U-219 | RAIDENMON | Raidenmon |
+| U-220 | RAIJINMON | Raijinmon |
+| U-221 | Rapidmon X | Rapidmon X |
+| U-222 | Rasenmon | Rasenmon |
+| U-223 | Rasenmon: Fury Mode | Rasenmon: Fury Mode |
+| U-224 | Rasielmon | Rasielmon |
+| U-225 | Ravmon | Ravemon |
+| U-226 | RAVMON:BURSTMODE | Ravemon: Burst Mode |
+| U-227 | Regalecusmon | Regalecusmon |
+| U-228 | Rosemon | Rosemon |
+| U-229 | Rosemon X | Rosemon X |
+| U-230 | ROSEMON:BURSTMODE | Rosemon: Burst Mode |
+| U-231 | RYUGUMON | Ryugumon |
+| U-232 | SaberLeomon | SaberLeomon |
+| U-233 | SaintGalgomon | MegaGargomon |
+| U-234 | SAKUYAMON | Sakuyamon |
+| U-235 | SAKUYAMON:MIKOMODE | Sakuyamon: Maid Mode |
+| U-236 | Sakuyamon X | Sakuyamon X |
+| U-237 | SEITENGOKUWMON | SeitenGokuumon |
+| U-238 | Seraphimon | Seraphimon |
+| U-239 | SHAGARAMON | Shagaramon |
+| U-240 | SHAKAMON | Shakamon |
+| U-241 | ShineGreymon | ShineGreymon |
+| U-242 | SHINEGREYMON： RUINMODE | ShineGreymon: Ruin Mode |
+| U-243 | SHINEGREYMON:BURSTMODE | ShineGreymon: Burst Mode |
+| U-244 | ShinMonzaemon | ShinMonzaemon |
+| U-245 | SHIVAMON | Shivamon |
+| U-246 | SHOUTMON EX6 | Shoutmon EX6 |
+| U-247 | SHOUTMONDX | Shoutmon DX |
+| U-248 | SHOUTMONX7 | Shoutmon X7 |
+| U-249 | SHOUTMONX7_SUPERIOR | Shoutmon X7: Superior Mode |
+| U-250 | SHROUDMON | Shroudmon |
+| U-251 | SIRIUSMON | Siriusmon |
+| U-252 | SKADIMON | Skadimon |
+| U-253 | SkullMammon | SkullMammothmon |
+| U-254 | SkullMammon X | SkullMammothmon X |
+| U-255 | SlashAngemon | SlashAngemon |
+| U-256 | Slayerdramon | Slayerdramon |
+| U-257 | Sleipmon | Kentaurosmon |
+| U-258 | SPINOMON | Spinomon |
+| U-259 | SUIJINMON | Suijinmon |
+| U-260 | SURFIMON | Surfimon |
+| U-261 | Susanoomon | Susanomon |
+| U-262 | TACTIMON | Tactimon |
+| U-263 | TAKUTOUMON | Takutoumon |
+| U-264 | TENGUMON | Tengumon |
+| U-265 | TigerVespamon | TigerVespamon |
+| U-266 | Titamon | Titamon |
+| U-267 | TLALOCMON | Tlalocmon |
+| U-268 | TONOSAMAMAMEMON | TonosamaMamemon |
+| U-269 | TYRANTKABUTERIMON | TyrantKabuterimon |
+| U-270 | UlforceV-dramon | UlforceVeedramon |
+| U-271 | UltimateBrachiomon | UltimateBrachiomon |
+| U-272 | ULTIMATECHAOSMON | UltimateChaosmon |
+| U-273 | Valdurmon | Varodurumon |
+| U-274 | Valkyrimon | Valkyrimon |
+| U-275 | VenomVamdemon | VenomMyotismon |
+| U-276 | VENUSMON | Venusmon |
+| U-277 | VICTORYGREYMON | VictoryGreymon |
+| U-278 | Vikemon | Vikemon |
+| U-279 | Volcanicdramon | Volcanicdramon |
+| U-280 | VULCANUSMON | Vulcanusmon |
+| U-281 | WarGreymon | WarGreymon |
+| U-282 | WarGreymon X | WarGreymon X |
+| U-283 | XIANGPENGMON | Xiangpengmon |
+| U-284 | Xuanwumon | Ebonwumon |
+| U-285 | ZANBAMON | Zanbamon |
+| U-286 | ZDGARURUMON | ZeedGarurumon |
+| U-287 | ZEEDMILLENNIUMON | ZeedMillenniummon |
+| U-288 | ZEKEGREYMON | ZeigGreymon |
+| U-289 | ZEPHAGAMON | Zephagamon |
+| U-290 | Zhuqiaomon | Zhuqiaomon |
+| SU-001 | Agumon (Bond of Bravery) | Agumon (Bond of Bravery) |
+| SU-002 | Alphamon: Ouryuken | Alphamon: Ouryuken |
+| SU-003 | Armagemon | Armageddemon |
+| SU-004 | Barbamon X | Barbamon X |
+| SU-005 | Beelzebumon X | Beelzemon X |
+| SU-006 | Beelzebumon: Blast Mode | Beelzemon: Blast Mode |
+| SU-007 | Belphemon X | Belphemon X |
+| SU-008 | Chaosdramon | Chaosdramon |
+| SU-009 | Chaosmon | Chaosmon |
+| SU-010 | Craniummon X | Craniamon X |
+| SU-011 | DarknessBagramon | DarknessBagramon |
+| SU-012 | Demon X | Creepymon X |
+| SU-013 | Diablomon X | Diaboromon X |
+| SU-014 | Duftmon X | Leopardmon X |
+| SU-015 | Dukemon X | Gallantmon X |
+| SU-016 | Dynasmon X | Dynasmon X |
+| SU-017 | Examon | Examon |
+| SU-018 | Examon X | Examon X |
+| SU-019 | Gabumon (Bond of Friendship) | Gabumon (Bond of Friendship) |
+| SU-020 | Gankoomon X | Gankoomon X |
+| SU-021 | GraceNovamon | GraceNovamon |
+| SU-022 | Imperialdramon: Fighter Mode | Imperialdramon: Fighter Mode |
+| SU-023 | Imperialdramon: Paladin Mode | Imperialdramon: Paladin Mode |
+| SU-024 | Jesmon X | Jesmon X |
+| SU-025 | Jesmon GX | Jesmon GX |
+| SU-026 | Leviamon X | Leviamon X |
+| SU-027 | Lilithmon X | Lilithmon X |
+| SU-028 | LordKnightmon X | LordKnightmon X |
+| SU-029 | Lucemon X | Lucemon X |
+| SU-030 | Magnamon X | Magnamon X |
+| SU-031 | Mastemon | Mastemon |
+| SU-032 | Minervamon X | Minervamon X |
+| SU-033 | Ogudomon | Ogudomon |
+| SU-034 | Ogudomon X | Ogudomon X |
+| SU-035 | Omegamon | Omnimon |
+| SU-036 | Omegamon Alter-S | Omnimon Alter-S |
+| SU-037 | Omegamon X | Omnimon X |
+| SU-038 | Ordinemon | Ordinemon |
+| SU-039 | RagnaLordmon | RagnaLoardmon |
+| SU-040 | RustTyranomon | RustTyrannomon |
+| SU-041 | Sleipmon X | Kentaurosmon X |
+| SU-042 | UlforceV-dramon X | UlforceVeedramon X |
+| SU-043 | Voltobautamon | Boltboutamon |
 
-Check out the [Digimon Data List](src/data/digimon-data.ts) for more information about evolution
-lines.
+Check out the [Digimon Data List](src/data/generated/digimon-records.generated.ts) for more information
+about evolution lines.
 
 ## License
 
