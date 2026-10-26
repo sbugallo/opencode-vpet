@@ -1,8 +1,7 @@
 import { describe, expect, test } from "bun:test"
 
-import { MonsterFrame } from "../src/data/monster-frame-catalog.ts"
 import { MonsterAnimationController } from "../src/tui/monster-animation.ts"
-import { catalogFor, frameContent, partnerChanged } from "./monster-animation-test-utils.ts"
+import { catalogFor, frameLabel, labeledFrame, partnerChanged } from "./monster-animation-test-utils.ts"
 
 describe("MonsterAnimationController identity", () => {
   test("Given no active partner When it is selected Then animation is blank at the centered origin", () => {
@@ -56,7 +55,7 @@ describe("MonsterAnimationController identity", () => {
 
     expect(output).toEqual({
       kind: "walking",
-      result: { kind: "frame", frame: new MonsterFrame("agumon:walk_1") },
+      result: { kind: "frame", frame: labeledFrame("agumon", "walk_1") },
       offset: 0,
       facing: "left",
     })
@@ -67,7 +66,7 @@ describe("MonsterAnimationController identity", () => {
 
     const output = controller.dispatch(partnerChanged({ sprite: "sparse", isDigitama: false }))
 
-    expect(frameContent(output)).toBe("sparse:walk_2")
+    expect(frameLabel(output)).toBe("sparse:walk_2")
     expect(output.kind).toBe("walking")
   })
 
@@ -80,7 +79,7 @@ describe("MonsterAnimationController identity", () => {
     const second = controller.dispatch({ kind: "tick" })
     const wrapped = controller.dispatch({ kind: "tick" })
 
-    expect([first, second, wrapped].map(frameContent)).toEqual([
+    expect([first, second, wrapped].map(frameLabel)).toEqual([
       "unexpected:walk_1",
       "unexpected:walk_2",
       "unexpected:walk_1",
@@ -100,7 +99,7 @@ describe("MonsterAnimationController identity", () => {
     controller.dispatch({ kind: "tick" })
     const preserved = controller.dispatch(partnerChanged(identity))
 
-    expect(frameContent(preserved)).toBe("egg:walk_2")
+    expect(frameLabel(preserved)).toBe("egg:walk_2")
   })
 
   test.each([
@@ -122,7 +121,7 @@ describe("MonsterAnimationController identity", () => {
       controller.dispatch({ kind: "tick" })
       const reset = controller.dispatch(partnerChanged(nextIdentity))
 
-      expect(frameContent(reset)).toBe(`${nextIdentity.sprite}:walk_1`)
+      expect(frameLabel(reset)).toBe(`${nextIdentity.sprite}:walk_1`)
       expect(reset.offset).toBe(0)
       expect(reset.facing).toBe("left")
     },
@@ -136,7 +135,7 @@ describe("MonsterAnimationController identity", () => {
     controller.advance()
     const second = controller.get()
 
-    expect(first).toEqual({ kind: "frame", frame: new MonsterFrame("agumon:walk_1") })
-    expect(second).toEqual({ kind: "frame", frame: new MonsterFrame("agumon:walk_2") })
+    expect(first).toEqual({ kind: "frame", frame: labeledFrame("agumon", "walk_1") })
+    expect(second).toEqual({ kind: "frame", frame: labeledFrame("agumon", "walk_2") })
   })
 })

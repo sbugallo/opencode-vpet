@@ -4,7 +4,7 @@ import { MonsterAnimationController } from "../src/tui/monster-animation.ts"
 import { resizeWalkingPolicy, type WalkingPolicyState } from "../src/tui/monster-walking-policy.ts"
 import {
   catalogFor,
-  frameContent,
+  frameLabel,
   partnerChanged,
   sequenceRandom,
   walkingController,
@@ -19,7 +19,7 @@ describe("MonsterAnimationController walking", () => {
     const outputs = Array.from({ length: 5 }, () => controller.dispatch({ kind: "tick" }))
 
     expect(outputs.map(({ offset }) => offset)).toEqual([-1, -2, -3, -4, -5])
-    expect(outputs.map(frameContent)).toEqual([
+    expect(outputs.map(frameLabel)).toEqual([
       "agumon:walk_2",
       "agumon:walk_1",
       "agumon:walk_2",
@@ -41,7 +41,7 @@ describe("MonsterAnimationController walking", () => {
     const moved = controller.dispatch({ kind: "tick" })
 
     expect(reset).toMatchObject({ kind: "walking", offset: 0, facing: "left" })
-    expect(frameContent(reset)).toBe("agumon:walk_1")
+    expect(frameLabel(reset)).toBe("agumon:walk_1")
     expect(moved).toMatchObject({ kind: "walking", offset: -1, facing: "left" })
     expect(source.calls()).toBe(1)
   })
@@ -181,9 +181,9 @@ describe("MonsterAnimationController walking", () => {
     const held = controller.dispatch({ kind: "tick" })
     const action = controller.dispatch({ kind: "tick" })
 
-    expect(frameContent(moved[moved.length - 1] ?? held)).toBe("agumon:walk_1")
+    expect(frameLabel(moved[moved.length - 1] ?? held)).toBe("agumon:walk_1")
     expect(held).toMatchObject({ kind: "walking", offset: -6 })
-    expect(frameContent(held)).toBe("agumon:walk_2")
+    expect(frameLabel(held)).toBe("agumon:walk_2")
     expect(action).toMatchObject({ kind: "action", offset: -6, facing: "left" })
   })
 

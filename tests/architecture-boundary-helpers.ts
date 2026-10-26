@@ -61,7 +61,7 @@ export const FORBIDDEN_SERVER_HOOK_IMPORTS = ["/adapters/sqlite/", "/application
 export const TUI_PRIVATE_ANIMATION_MODULES = [
   "monster-action-policy.ts",
   "monster-animation.ts",
-  "monster-artwork-mirror.ts",
+  "monster-sprite-renderer.ts",
   "monster-walking-policy.ts",
 ] as const
 

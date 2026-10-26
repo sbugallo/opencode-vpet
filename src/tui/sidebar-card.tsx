@@ -1,9 +1,16 @@
 /** @jsxImportSource @opentui/solid */
-import { createTextAttributes, type BoxRenderable, type RGBA, type TextRenderable } from "@opentui/core"
+import {
+  createTextAttributes,
+  type BoxRenderable,
+  RGBA,
+  StyledText,
+  type TextChunk,
+  type TextRenderable,
+} from "@opentui/core"
 import { createEffect, type Accessor } from "solid-js"
 import { openInBrowser } from "./open-in-browser.ts"
-import { mirrorMonsterFrame } from "./monster-artwork-mirror.ts"
 import type { MonsterAnimationOutput, MonsterAnimationResult } from "./monster-animation.ts"
+import { renderMonsterSprite, type MonsterSpriteRow } from "./monster-sprite-renderer.ts"
 import type { SidebarCardModel } from "./sidebar-view-model.ts"
 import type { VpetTheme } from "./theme.ts"
 
@@ -31,18 +38,45 @@ const positionedOutput = (animation: MonsterAnimationOutput | MonsterAnimationRe
   }
 }
 
-const artworkRows = (animation: MonsterAnimationOutput | MonsterAnimationResult, width: number): readonly string[] => {
+const EMPTY_ARTWORK_ROWS: readonly string[] = Object.freeze(Array.from({ length: ARTWORK_ROWS }, () => ""))
+
+const rgbaCache = new Map<string, RGBA>()
+
+const hexToRgba = (hex: string): RGBA => {
+  const cached = rgbaCache.get(hex)
+  if (cached !== undefined) return cached
+  const parsed = RGBA.fromHex(hex)
+  rgbaCache.set(hex, parsed)
+  return parsed
+}
+
+const styledArtworkRow = (row: MonsterSpriteRow, indent: number): StyledText => {
+  const chunks: TextChunk[] = []
+  if (indent > 0) chunks.push({ __isChunk: true, text: " ".repeat(indent) })
+  for (const run of row.runs) {
+    chunks.push({
+      __isChunk: true,
+      text: row.text.slice(run.start, run.start + run.length),
+      ...(run.fg === null ? {} : { fg: hexToRgba(run.fg) }),
+      ...(run.bg === null ? {} : { bg: hexToRgba(run.bg) }),
+    })
+  }
+  return new StyledText(chunks)
+}
+
+const artworkRows = (
+  animation: MonsterAnimationOutput | MonsterAnimationResult,
+  width: number,
+): readonly (string | StyledText)[] => {
   const output = positionedOutput(animation)
   switch (output.result.kind) {
     case "blank":
-      return Array.from({ length: ARTWORK_ROWS }, () => "")
+      return EMPTY_ARTWORK_ROWS
     case "frame": {
-      const mirrored = output.facing === "right" ? mirrorMonsterFrame(output.result.frame) : undefined
-      if (mirrored?.kind === "invalid") return Array.from({ length: ARTWORK_ROWS }, () => "")
-      const content = mirrored?.frame.content ?? output.result.frame.content
+      const sprite = renderMonsterSprite(output.result.frame, output.facing)
       const free = Math.max(width - ARTWORK_COLUMNS, 0)
       const left = Math.max(0, Math.min(free, Math.floor(free / 2) + output.offset))
-      return content.split("\n").map((row) => `${" ".repeat(left)}${row}`)
+      return sprite.map((row) => styledArtworkRow(row, left))
     }
     case "unavailable": {
       const key = output.result.sprite === "" ? "(empty)" : output.result.sprite
@@ -82,7 +116,7 @@ export const VpetSidebarCard = (props: {
   let nextCheckWidth: BoxRenderable | undefined
   let reportedArtworkWidth: number | undefined
 
-  const updateText = (renderable: TextRenderable | undefined, content: string, color?: RGBA): void => {
+  const updateText = (renderable: TextRenderable | undefined, content: string | StyledText, color?: RGBA): void => {
     if (renderable === undefined) return
     renderable.content = content
     if (color !== undefined) renderable.fg = color

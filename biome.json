@@ -7,7 +7,6 @@
       "scripts/**",
       "package.json",
       "tsconfig*.json",
-      "!src/data/monster-frame-data.ts",
       "!tests/**/*.jsonc",
       "!.omo/",
       "!dist/",
