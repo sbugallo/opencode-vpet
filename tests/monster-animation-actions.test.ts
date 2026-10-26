@@ -6,7 +6,7 @@ import {
   catalogFor,
   controlledClock,
   enterAction,
-  frameContent,
+  frameLabel,
   partnerChanged,
   sequenceRandom,
 } from "./monster-animation-test-utils.ts"
@@ -14,9 +14,9 @@ import {
 describe("MonsterAnimationController actions and inactivity", () => {
   test.each([
     [0, "angry"],
-    [0.25, "attack"],
-    [0.5, "happy"],
-    [0.75, "injured_1"],
+    [0.25, "happy"],
+    [0.5, "sick"],
+    [0.75, "attack_1"],
   ] as const)(
     "Given four available cosmetic clips When action RNG is %p Then %s is selected uniformly",
     (sample, expectedFrame) => {
@@ -25,7 +25,7 @@ describe("MonsterAnimationController actions and inactivity", () => {
           new Map([
             [
               "agumon",
-              ["angry", "attack", "eat_1", "happy", "injured_1", "injured_2", "refuse", "sleep_1", "walk_1", "walk_2"],
+              ["angry", "attack_1", "attack_2", "eat_1", "happy", "refuse", "sick", "sleep_1", "walk_1", "walk_2"],
             ],
           ]),
         ),
@@ -37,23 +37,23 @@ describe("MonsterAnimationController actions and inactivity", () => {
       const action = enterAction(controller)
 
       expect(action.kind).toBe("action")
-      expect(frameContent(action)).toBe(`agumon:${expectedFrame}`)
+      expect(frameLabel(action)).toBe(`agumon:${expectedFrame}`)
     },
   )
 
   test.each([
     ["angry", ["angry", "angry"]],
-    ["injured", ["injured_1", "injured_2"]],
-    ["partial injured", ["injured_2", "injured_2"]],
+    ["attack", ["attack_1", "attack_2"]],
+    ["partial attack", ["attack_2", "attack_2"]],
   ] as const)(
     "Given a %s action clip When it plays Then it occupies exactly two ticks before walking resumes",
     (_case, expectedFrames) => {
       const frames: readonly MonsterFrameName[] =
         _case === "angry"
           ? ["angry", "walk_1", "walk_2"]
-          : _case === "injured"
-            ? ["injured_1", "injured_2", "walk_1", "walk_2"]
-            : ["injured_2", "walk_1", "walk_2"]
+          : _case === "attack"
+            ? ["attack_1", "attack_2", "walk_1", "walk_2"]
+            : ["attack_2", "walk_1", "walk_2"]
       const controller = new MonsterAnimationController(
         catalogFor(new Map([["sparse", frames]])),
         sequenceRandom(0).random,
@@ -65,7 +65,7 @@ describe("MonsterAnimationController actions and inactivity", () => {
       const second = controller.dispatch({ kind: "tick" })
       const resumed = controller.dispatch({ kind: "tick" })
 
-      expect([first, second].map(frameContent)).toEqual(expectedFrames.map((name: string) => `sparse:${name}`))
+      expect([first, second].map(frameLabel)).toEqual(expectedFrames.map((name: string) => `sparse:${name}`))
       expect(
         [first, second].every(({ kind, offset, facing }) => kind === "action" && offset === 0 && facing === "left"),
       ).toBeTrue()
@@ -85,7 +85,7 @@ describe("MonsterAnimationController actions and inactivity", () => {
     const resumed = enterAction(controller)
 
     expect(resumed).toMatchObject({ kind: "walking", offset: 0, facing: "right" })
-    expect(frameContent(resumed)).toBe("plain:walk_1")
+    expect(frameLabel(resumed)).toBe("plain:walk_1")
     expect(source.calls()).toBe(0)
   })
 
@@ -107,7 +107,7 @@ describe("MonsterAnimationController actions and inactivity", () => {
 
     expect(awake).toMatchObject({ kind: "walking", offset: -1 })
     expect(asleep).toMatchObject({ kind: "sleeping", offset: -1, facing: "left" })
-    expect([frameContent(asleep), frameContent(sleepingNext)]).toEqual(["agumon:sleep_1", "agumon:sleep_2"])
+    expect([frameLabel(asleep), frameLabel(sleepingNext)]).toEqual(["agumon:sleep_1", "agumon:sleep_2"])
   })
 
   test("Given activity at the sleep boundary When the next tick occurs Then activity wins and resets inactivity", () => {
@@ -147,9 +147,7 @@ describe("MonsterAnimationController actions and inactivity", () => {
       const second = controller.dispatch({ kind: "tick" })
 
       expect([first.kind, second.kind]).toEqual(["sleeping", "sleeping"])
-      expect([frameContent(first), frameContent(second)]).toEqual(
-        expectedFrames.map((name: string) => `sparse:${name}`),
-      )
+      expect([frameLabel(first), frameLabel(second)]).toEqual(expectedFrames.map((name: string) => `sparse:${name}`))
     },
   )
 
@@ -170,7 +168,7 @@ describe("MonsterAnimationController actions and inactivity", () => {
     const moved = controller.dispatch({ kind: "tick" })
 
     expect(woke).toMatchObject({ kind: "walking", offset: -1, facing: "left" })
-    expect(frameContent(woke)).toBe("agumon:walk_1")
+    expect(frameLabel(woke)).toBe("agumon:walk_1")
     expect(moved).toMatchObject({ kind: "walking", offset: -2, facing: "left" })
   })
 

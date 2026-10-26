@@ -8,7 +8,7 @@ import { reconcileUsage } from "../../application/use-cases/reconcile-usage.ts"
 import type { VpetCommandEvent, VpetCommandResult } from "../../commands/vpet-command-result.ts"
 import { runVpetFreezeCommand } from "../../commands/vpet-freeze.ts"
 import { runVpetSetCommand } from "../../commands/vpet-set.ts"
-import { runVpetSpawnCommand } from "../../commands/vpet-spawn.ts"
+import { DIGITAMA_FIELDS, runVpetSpawnCommand } from "../../commands/vpet-spawn.ts"
 import { runVpetUnfreezeCommand } from "../../commands/vpet-unfreeze.ts"
 import { loadGlobalVpetSettings } from "../../config/global-vpet-settings.ts"
 import type { ResolvedVpetSettings, VpetLanguage } from "../../config/types.ts"
@@ -124,8 +124,17 @@ const requiresCatalog = (event: VpetToastEvent): boolean => {
   }
 }
 
+const spawnFieldDescription = (field: string): string =>
+  `Spawn a Digiegg of the ${field
+    .split("-")
+    .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+    .join(" ")} field.`
+
 export const createCommandConfig = () => ({
   "vpet-spawn": { description: "Spawn a new virtual pet." },
+  ...Object.fromEntries(
+    DIGITAMA_FIELDS.map((field) => [`vpet-spawn-${field}`, { description: spawnFieldDescription(field) }]),
+  ),
   "vpet-freeze": { description: "Freeze virtual pet progression." },
   "vpet-unfreeze": { description: "Unfreeze virtual pet progression." },
   "vpet-set": { description: "Set the virtual pet to a Digimon ID." },
@@ -192,10 +201,25 @@ export const createVpetCommandDefinitions = ({
     {
       name: "vpet-spawn",
       description: config["vpet-spawn"].description,
-      execute: async () => {
-        await emit(await runVpetSpawnCommand(repository, { createdAt: new Date().toISOString() }))
+      execute: async ({ prompt }) => {
+        await emit(
+          await runVpetSpawnCommand(
+            repository,
+            { arguments: prompt.text, createdAt: new Date().toISOString() },
+            loadCatalog,
+          ),
+        )
       },
     },
+    ...DIGITAMA_FIELDS.map((field) => ({
+      name: `vpet-spawn-${field}`,
+      description: spawnFieldDescription(field),
+      execute: async () => {
+        await emit(
+          await runVpetSpawnCommand(repository, { arguments: field, createdAt: new Date().toISOString() }, loadCatalog),
+        )
+      },
+    })),
     {
       name: "vpet-freeze",
       description: config["vpet-freeze"].description,

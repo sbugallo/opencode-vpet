@@ -164,7 +164,7 @@ describe("server threshold policy", () => {
     const partner: Partner = {
       partnerId: "partner-1",
       generation: 1,
-      currentNodeId: "3-001",
+      currentNodeId: "C-003",
       gauge: 0,
       isTerminal: false,
       createdAt: "2026-08-21T00:00:00.000Z",
@@ -186,7 +186,7 @@ describe("server threshold policy", () => {
     const partner: Partner = {
       partnerId: "partner-1",
       generation: 1,
-      currentNodeId: "3-001",
+      currentNodeId: "C-003",
       gauge: 0,
       isTerminal: false,
       createdAt: "2026-08-21T00:00:00.000Z",

@@ -235,7 +235,7 @@ describe("server plugin lifecycle", () => {
     ])
   })
 
-  test("Given notifications disabled When a name-bearing command commits Then it performs no notifier or catalog work", async () => {
+  test("Given notifications disabled When a spawn commits Then egg selection loads the catalog once without notifier work", async () => {
     let catalogLoads = 0
     let notifications = 0
     const fixture = createServerContextFixture()
@@ -255,7 +255,7 @@ describe("server plugin lifecycle", () => {
     await fixture.runCommand("vpet-spawn")
     await cleanup()
 
-    expect(catalogLoads).toBe(0)
+    expect(catalogLoads).toBe(1)
     expect(notifications).toBe(0)
   })
 
@@ -318,6 +318,7 @@ describe("server plugin lifecycle", () => {
 
   test("Given a toast-only catalog failure after a committed spawn When delivery is attempted Then the spawn remains committed and setup resolves", async () => {
     let spawnCalls = 0
+    let catalogLoads = 0
     const delivered: VpetToastPayload[] = []
     const repository = createToastRepository()
     const fixture = createServerContextFixture()
@@ -331,7 +332,10 @@ describe("server plugin lifecycle", () => {
       }),
       loadSettings: async () => DEFAULT_VPET_SETTINGS,
       loadCatalog: async () => {
-        throw new Error("catalog unavailable")
+        catalogLoads += 1
+        // Egg selection succeeds; only the toast name lookup fails.
+        if (catalogLoads > 1) throw new Error("catalog unavailable")
+        return toastCatalog
       },
       notify: async (payload) => {
         delivered.push(payload)

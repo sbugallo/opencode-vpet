@@ -7,14 +7,13 @@
       "scripts/**",
       "package.json",
       "tsconfig*.json",
-      "!src/data/monster-frame-data.ts",
       "!tests/**/*.jsonc",
       "!.omo/",
       "!dist/",
       "!node_modules/",
-      "!coverage/",
-      "!**/generated/"
-    ]
+      "!coverage/"
+    ],
+    "maxSize": 2097152
   },
   "formatter": {
     "enabled": true,

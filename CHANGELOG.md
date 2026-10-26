@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- The Digimon roster now covers the full vpet-2.0 dataset (1,168 monsters) with canonical dataset
+  ids (`D-`, `BI-`, `BII-`, `C-`, `A-`, `AR-`, `H-`, `P-`, `U-`, `SU-`, `UN-`), replacing the legacy
+  stage-number ids. Existing SQLite databases are migrated automatically.
+- `/vpet-spawn` now accepts an optional Digitama field argument, and one `/vpet-spawn-<field>`
+  command is registered per field: `deep-savers`, `dragons-roar`, `jungle-troopers`, `metal-empire`,
+  `nature-spirits`, `nightmare-soldiers`, `virus-busters`, and `wind-guardians`. Without an
+  argument, a random Digiegg is spawned.
+
+### Changed
+
+- The sidebar card now renders full-color 16x16 pixel sprites (half-block glyphs with per-pixel
+  foreground/background colors) instead of monochrome Unicode artwork, using the color pose frames
+  shipped with the dataset. Cosmetic actions play `angry`, `happy`, and `sick` single frames plus a
+  two-frame `attack` clip.
+
+### Removed
+
+- The monochrome frame dataset and string-based sprite rendering, including the legacy artwork
+  mirror module. There is no fallback to the old rendering path.
+
 ## [0.3.0] - 2026-10-22
 
 ### Changed

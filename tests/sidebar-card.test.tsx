@@ -1,20 +1,23 @@
 /** @jsxImportSource @opentui/solid */
 import { describe, expect, test } from "bun:test"
-import { parseColor } from "@opentui/core"
+import { parseColor, RGBA } from "@opentui/core"
 import { createMockMouse } from "@opentui/core/testing"
 import { testRender } from "@opentui/solid"
 import { createSignal } from "solid-js"
 
 import { MONSTER_FRAME_CATALOG, type MonsterFrame } from "../src/data/monster-frame-catalog.ts"
-import { mirrorMonsterFrame } from "../src/tui/monster-artwork-mirror.ts"
 import type { MonsterAnimationOutput } from "../src/tui/monster-animation.ts"
 import { VpetSidebarCard } from "../src/tui/sidebar-card.tsx"
+import { renderMonsterSprite } from "../src/tui/monster-sprite-renderer.ts"
 
 const agumonFrame = (): MonsterFrame => {
   const frame = MONSTER_FRAME_CATALOG.get("agumon", "angry")
   if (frame === undefined) throw new Error("Expected Agumon angry frame fixture")
   return frame
 }
+
+const spriteRows = (facing: "left" | "right" = "left"): readonly string[] =>
+  renderMonsterSprite(agumonFrame(), facing).map((row) => row.text)
 
 const animation =
   (output: MonsterAnimationOutput): (() => MonsterAnimationOutput) =>
@@ -64,7 +67,7 @@ describe("VPet sidebar frame", () => {
     expect(lines.every((line) => line.length === 80)).toBe(true)
     expect(lines[0]).toBe("─".repeat(80))
     expect(lines[14]).toBe("─".repeat(80))
-    for (const [index, row] of agumonFrame().content.split("\n").entries()) {
+    for (const [index, row] of spriteRows().entries()) {
       expect(lines[index + 1]?.slice(32, 48)).toBe(row)
     }
     expect(lines[9]?.trimEnd()).toBe("Agumon")
@@ -92,7 +95,7 @@ describe("VPet sidebar frame", () => {
 
       await setup.flush()
       const lines = setup.captureCharFrame().trimEnd().split("\n")
-      for (const [index, row] of agumonFrame().content.split("\n").entries()) {
+      for (const [index, row] of spriteRows().entries()) {
         expect(lines[index + 1]?.slice(start, start + 16)).toBe(row)
       }
       setup.renderer.destroy()
@@ -100,8 +103,6 @@ describe("VPet sidebar frame", () => {
   })
 
   test("Given right-facing walking output at 80 and 60 columns When rendering Then it projects the exact mirrored frame at each signed edge", async () => {
-    const mirrored = mirrorMonsterFrame(agumonFrame())
-    if (mirrored.kind !== "mirrored") throw new Error("Expected valid Agumon mirror fixture")
     for (const [width, offset, start] of [
       [80, 32, 64],
       [60, 22, 44],
@@ -113,7 +114,7 @@ describe("VPet sidebar frame", () => {
 
       await setup.flush()
       const lines = setup.captureCharFrame().trimEnd().split("\n")
-      for (const [index, row] of mirrored.frame.content.split("\n").entries()) {
+      for (const [index, row] of spriteRows("right").entries()) {
         expect(lines[index + 1]?.slice(start, start + 16)).toBe(row)
       }
       setup.renderer.destroy()
@@ -141,7 +142,7 @@ describe("VPet sidebar frame", () => {
     const lines = setup.captureCharFrame().trimEnd().split("\n")
 
     expect(lines).toHaveLength(15)
-    for (const [index, row] of agumonFrame().content.split("\n").entries()) {
+    for (const [index, row] of spriteRows().entries()) {
       expect(lines[index + 1]?.slice(32, 48)).toBe(row)
     }
     expect(lines[11]?.trimEnd()).toBe(`Next check: [${"█".repeat(16)}${"░".repeat(50)}]`)
@@ -539,9 +540,13 @@ describe("VPet sidebar frame", () => {
     },
   )
 
-  test("Given a partner card with a theme When rendering Then it paints the artwork and status rows with the theme text color and the encyclopedia row with the accent color", async () => {
+  test("Given a partner card with a theme When rendering Then artwork uses sprite colors while status rows use the theme text color and the encyclopedia row uses the accent color", async () => {
     const textColor = parseColor("#00ff00")
     const accentColor = parseColor("#5f87ff")
+    const firstArtColor = renderMonsterSprite(agumonFrame())
+      .flatMap((row) => row.runs)
+      .find((run) => run.fg !== null)?.fg
+    if (firstArtColor === null || firstArtColor === undefined) throw new Error("Expected sprite foreground color")
     const setup = await testRender(
       () => (
         <VpetSidebarCard
@@ -563,7 +568,8 @@ describe("VPet sidebar frame", () => {
     const nameSpan = spansOf(9).find((span) => span.text.trim() === "Agumon")
     const urlSpan = spansOf(13).find((span) => span.text.includes("Encyclopedia entry"))
 
-    expect(artSpan?.fg.equals(textColor)).toBe(true)
+    expect(artSpan?.fg.equals(RGBA.fromHex(firstArtColor))).toBe(true)
+    expect(artSpan?.fg.equals(textColor)).toBe(false)
     expect(nameSpan?.fg.equals(textColor)).toBe(true)
     expect(urlSpan?.fg.equals(accentColor)).toBe(true)
 

@@ -1,3 +1,5 @@
+import { DIGIMON_ID_MIGRATION } from "../../data/digimon-data.ts"
+
 type QueryValue = string | number | null
 
 type SqliteMigrationExecutor = {
@@ -6,10 +8,54 @@ type SqliteMigrationExecutor = {
   transaction: <TReturn>(operation: () => TReturn) => TReturn
 }
 
+type MigrationStatement = {
+  readonly sql: string
+  readonly params?: readonly QueryValue[]
+}
+
 type Migration = {
   readonly version: number
-  readonly sql: readonly string[]
+  readonly sql: readonly (string | MigrationStatement)[]
 }
+
+/**
+ * Version 4 remaps stored digimon ids from the legacy plugin id space to the
+ * canonical dataset ids. Unmapped values (already-canonical or unknown ids)
+ * are left untouched.
+ */
+const idRemapStatements: readonly MigrationStatement[] = [
+  {
+    sql: "CREATE TEMP TABLE digimon_id_migration (old_id TEXT PRIMARY KEY, new_id TEXT NOT NULL)",
+  },
+  ...Object.entries(DIGIMON_ID_MIGRATION).map(
+    ([oldId, newId]): MigrationStatement => ({
+      sql: "INSERT INTO digimon_id_migration (old_id, new_id) VALUES (?, ?)",
+      params: [oldId, newId],
+    }),
+  ),
+  {
+    sql: `
+      UPDATE partners
+      SET current_node_id = (SELECT new_id FROM digimon_id_migration WHERE old_id = partners.current_node_id)
+      WHERE current_node_id IN (SELECT old_id FROM digimon_id_migration)
+    `,
+  },
+  {
+    sql: `
+      UPDATE partner_events
+      SET current_node_id = (SELECT new_id FROM digimon_id_migration WHERE old_id = partner_events.current_node_id)
+      WHERE current_node_id IN (SELECT old_id FROM digimon_id_migration)
+    `,
+  },
+  {
+    sql: `
+      UPDATE vpet_control_state
+      SET cheat_node_id = (SELECT new_id FROM digimon_id_migration WHERE old_id = vpet_control_state.cheat_node_id)
+      WHERE cheat_node_id IN (SELECT old_id FROM digimon_id_migration)
+    `,
+  },
+  { sql: "DROP TABLE digimon_id_migration" },
+]
 
 const MIGRATIONS = [
   {
@@ -110,6 +156,10 @@ const MIGRATIONS = [
       `,
     ],
   },
+  {
+    version: 4,
+    sql: idRemapStatements,
+  },
 ] as const satisfies readonly Migration[]
 
 type MigrationRow = {
@@ -137,7 +187,8 @@ export const runMigrations = (database: SqliteMigrationExecutor): readonly numbe
       }
 
       for (const statement of migration.sql) {
-        database.run(statement)
+        if (typeof statement === "string") database.run(statement)
+        else database.run(statement.sql, statement.params)
       }
       database.run("INSERT INTO schema_migrations (version, applied_at) VALUES (?, ?)", [
         migration.version,

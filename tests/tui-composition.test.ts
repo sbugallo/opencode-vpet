@@ -7,6 +7,7 @@ import type { VpetArchiveReader } from "../src/application/ports/vpet-archive.ts
 import { DEFAULT_VPET_SETTINGS } from "../src/config/defaults.ts"
 import { MONSTER_FRAME_CATALOG } from "../src/data/monster-frame-catalog.ts"
 import { createTui } from "../src/tui.tsx"
+import { renderMonsterSprite } from "../src/tui/monster-sprite-renderer.ts"
 import {
   partnerInputs,
   sessionExecutionSucceeded,
@@ -39,8 +40,9 @@ const sequenceRandom = (...values: readonly number[]) => {
 
 const expectMountedFrame = (frame: string, sprite: string, frameName: "walk_1" | "walk_2", offset: number): void => {
   const left = Math.floor((80 - 16) / 2) + offset
-  for (const [index, row] of catalogFrame(sprite, frameName).content.split("\n").entries()) {
-    expect(frame.split("\n")[index + 1]?.slice(left, left + 16)).toBe(row)
+  const lines = frame.split("\n")
+  for (const [index, row] of renderMonsterSprite(catalogFrame(sprite, frameName)).entries()) {
+    expect(lines[index + 1]?.slice(left, left + 16)).toBe(row.text)
   }
 }
 
@@ -223,7 +225,7 @@ describe("TUI composition", () => {
   test("Given a mounted canonical egg When activity polling hatches it to a canonical partner Then the retained width resets, moves, and enters a deterministic cosmetic action without another resize", async () => {
     const source = sequenceRandom(0, 0)
     const harness = new TuiCompositionHarness()
-    let inputs: SidebarCardInputs = partnerInputs("egg", { stage: 0 })
+    let inputs: SidebarCardInputs = partnerInputs("digitama-deep-savers", { stage: 0 })
     await harness.start(() => inputs, { random: source.random })
     if (harness.slot === undefined) throw new Error("Expected sidebar slot")
     const setup = await testRender(harness.slot, { width: 80, height: 24 })

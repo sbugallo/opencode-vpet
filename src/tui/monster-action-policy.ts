@@ -3,18 +3,18 @@ import type { MonsterFrameCatalog, MonsterFrameName } from "../data/monster-fram
 export type CosmeticActionClip = readonly [MonsterFrameName, MonsterFrameName]
 export type SleepClip = readonly [MonsterFrameName, MonsterFrameName]
 
-const SINGLE_FRAME_ACTIONS = ["angry", "attack", "happy"] as const
+const SINGLE_FRAME_ACTIONS = ["angry", "happy", "sick"] as const
 
 export const resolveCosmeticActions = (sprite: string, catalog: MonsterFrameCatalog): readonly CosmeticActionClip[] => {
   const actions: CosmeticActionClip[] = []
   for (const frameName of SINGLE_FRAME_ACTIONS) {
     if (catalog.get(sprite, frameName) !== undefined) actions.push([frameName, frameName])
   }
-  const injuredFirst = catalog.get(sprite, "injured_1") === undefined ? undefined : "injured_1"
-  const injuredSecond = catalog.get(sprite, "injured_2") === undefined ? undefined : "injured_2"
-  if (injuredFirst !== undefined && injuredSecond !== undefined) actions.push([injuredFirst, injuredSecond])
-  else if (injuredFirst !== undefined) actions.push([injuredFirst, injuredFirst])
-  else if (injuredSecond !== undefined) actions.push([injuredSecond, injuredSecond])
+  const attackFirst = catalog.get(sprite, "attack_1") === undefined ? undefined : "attack_1"
+  const attackSecond = catalog.get(sprite, "attack_2") === undefined ? undefined : "attack_2"
+  if (attackFirst !== undefined && attackSecond !== undefined) actions.push([attackFirst, attackSecond])
+  else if (attackFirst !== undefined) actions.push([attackFirst, attackFirst])
+  else if (attackSecond !== undefined) actions.push([attackSecond, attackSecond])
   return actions
 }
 

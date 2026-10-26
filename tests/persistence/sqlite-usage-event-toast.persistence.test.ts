@@ -8,7 +8,12 @@ import { STAGE_GAUGE_THRESHOLDS } from "../../src/domain/evolution.ts"
 import { createSqliteVpetRepository } from "../../src/adapters/sqlite/sqlite-vpet-write-store.ts"
 import { isBunSqliteAvailable } from "../sqlite-capability.ts"
 import { createServerContextFixture } from "../server-context-fixture.ts"
-import { createTempTestRoot, removeTempTestRoot, spawn, type TempTestRoot } from "./sqlite-vpet-repository.fixtures.ts"
+import {
+  createTempTestRoot,
+  removeTempTestRoot,
+  spawnInput,
+  type TempTestRoot,
+} from "./sqlite-vpet-repository.fixtures.ts"
 
 const completedMessage = (id: string) => ({
   id,
@@ -59,13 +64,13 @@ describe.if(isBunSqliteAvailable)("sqlite usage event toast persistence", () => 
     const delivered: VpetToastPayload[] = []
 
     try {
-      spawn(repository)
+      repository.spawnPartner({ ...spawnInput(), currentNodeId: "D-001" })
       await dispatchIdle(repository, delivered, [completedMessage("idle-only")])
 
       expect(delivered).toEqual([
         expect.objectContaining({ title: "Digi-evolution", variant: "success", duration: 5_000 }),
       ])
-      expect(repository.getActivePartner()).toEqual(expect.objectContaining({ currentNodeId: "1-001", gauge: 0 }))
+      expect(repository.getActivePartner()).toEqual(expect.objectContaining({ currentNodeId: "BI-010", gauge: 0 }))
       expect(repository.listUsageReceipts().map((receipt) => receipt.receiptKey)).toEqual(["message:idle-only"])
       expect(repository.getTrainerState()).toEqual({ totalTokens: 1 })
     } finally {
@@ -78,7 +83,7 @@ describe.if(isBunSqliteAvailable)("sqlite usage event toast persistence", () => 
     const delivered: VpetToastPayload[] = []
 
     try {
-      spawn(repository)
+      repository.spawnPartner({ ...spawnInput(), currentNodeId: "D-001" })
       await dispatchIdle(repository, delivered, [completedMessage("idle-replay")])
       const partner = repository.getActivePartner()
       const receipts = repository.listUsageReceipts()
@@ -98,7 +103,7 @@ describe.if(isBunSqliteAvailable)("sqlite usage event toast persistence", () => 
     const firstRepository = await createSqliteVpetRepository({ appDataRoot: tempRoot.appDataRoot })
     const delivered: VpetToastPayload[] = []
 
-    spawn(firstRepository)
+    firstRepository.spawnPartner({ ...spawnInput(), currentNodeId: "D-001" })
     await dispatchIdle(firstRepository, delivered, [completedMessage("reopen-replay")])
     const databasePath = firstRepository.databasePath
     const expectedPartner = firstRepository.getActivePartner()
@@ -124,7 +129,7 @@ describe.if(isBunSqliteAvailable)("sqlite usage event toast persistence", () => 
     const delivered: VpetToastPayload[] = []
     let attempts = 0
 
-    spawn(firstRepository)
+    firstRepository.spawnPartner({ ...spawnInput(), currentNodeId: "D-001" })
     await dispatchIdle(firstRepository, delivered, [completedMessage("notifier-failure")], async () => {
       attempts += 1
       throw new Error("toast transport failed")
@@ -154,7 +159,7 @@ describe.if(isBunSqliteAvailable)("sqlite usage event toast persistence", () => 
     const delivered: VpetToastPayload[] = []
 
     try {
-      spawn(repository)
+      repository.spawnPartner({ ...spawnInput(), currentNodeId: "D-001" })
       await dispatchIdle(repository, delivered, [
         completedMessage("ordered-first"),
         completedMessage("ordered-second"),
@@ -162,8 +167,8 @@ describe.if(isBunSqliteAvailable)("sqlite usage event toast persistence", () => 
       ])
 
       expect(delivered.map((payload) => payload.message)).toEqual([
-        "Digiegg evolved into Argomon!",
-        "Argomon evolved into Argomon!",
+        "Digiegg (Deep Savers) evolved into Cotsucomon!",
+        "Cotsucomon evolved into Kakkinmon!",
       ])
       expect(repository.listUsageReceipts().map((receipt) => receipt.receiptKey)).toEqual([
         "message:ordered-first",
