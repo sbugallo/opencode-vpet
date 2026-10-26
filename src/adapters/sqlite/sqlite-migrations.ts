@@ -1,4 +1,4 @@
-import { DIGIMON_ID_MIGRATION } from "../../data/generated/digimon-records.generated.ts"
+import { DIGIMON_ID_MIGRATION } from "../../data/digimon-data.ts"
 
 type QueryValue = string | number | null
 

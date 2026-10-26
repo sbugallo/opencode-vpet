@@ -1334,7 +1334,7 @@ To persist your partner, history, and control state, VPet uses a SQLite database
 | SU-042 | UlforceV-dramon (X Antibody) | UlforceVeedramon (X Antibody) |
 | SU-043 | Voltobautamon | Boltboutamon |
 
-Check out the [Digimon Data List](src/data/generated/digimon-records.generated.ts) for more information
+Check out the [Digimon Data List](src/data/digimon-data.ts) for more information
 about evolution lines.
 
 ## License
