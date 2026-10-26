@@ -111,7 +111,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bommon",
-    name_jp: "BOMMON",
+    name_jp: "Bommon",
     next_evolutions: ["C-024","BII-029"],
     stage: 1,
     sprite: "bommon",
@@ -119,8 +119,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=bommon",
   },
   {
-    name_en: "Bommon (2010 Anime Version)",
-    name_jp: "Bombmon",
+    name_en: "Bommon (2010)",
+    name_jp: "Bombmon (2010)",
     next_evolutions: ["A-141"],
     stage: 1,
     sprite: "bommon-2010",
@@ -192,7 +192,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Curimon",
-    name_jp: "CURIMON",
+    name_jp: "Curimon",
     next_evolutions: ["BII-018"],
     stage: 1,
     sprite: "curimon",
@@ -228,7 +228,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fukamon",
-    name_jp: "FUKAMON",
+    name_jp: "Fukamon",
     next_evolutions: ["BII-028"],
     stage: 1,
     sprite: "fukamon",
@@ -237,7 +237,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fusamon",
-    name_jp: "FUSAMON",
+    name_jp: "Fusamon",
     next_evolutions: ["BII-005"],
     stage: 1,
     sprite: "fusamon",
@@ -282,7 +282,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Leafmon",
-    name_jp: "LEAFMON",
+    name_jp: "Leafmon",
     next_evolutions: ["BII-026"],
     stage: 1,
     sprite: "leafmon",
@@ -309,7 +309,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pafumon",
-    name_jp: "PAFUMON",
+    name_jp: "Pafumon",
     next_evolutions: ["BII-024"],
     stage: 1,
     sprite: "pafumon",
@@ -318,7 +318,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Paomon",
-    name_jp: "PAOMON",
+    name_jp: "Paomon",
     next_evolutions: ["BII-054"],
     stage: 1,
     sprite: "paomon",
@@ -336,7 +336,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pipimon",
-    name_jp: "PIPIMON",
+    name_jp: "Pipimon",
     next_evolutions: ["BII-008","BII-044","BII-047"],
     stage: 1,
     sprite: "pipimon",
@@ -354,7 +354,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Popomon",
-    name_jp: "POPOMON",
+    name_jp: "Popomon",
     next_evolutions: ["BII-053","C-031"],
     stage: 1,
     sprite: "popomon",
@@ -381,7 +381,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pupumon",
-    name_jp: "PUPUMON",
+    name_jp: "Pupumon",
     next_evolutions: ["BII-041"],
     stage: 1,
     sprite: "pupumon",
@@ -399,7 +399,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pusumon",
-    name_jp: "PUSUMON",
+    name_jp: "Pusumon",
     next_evolutions: ["BII-042"],
     stage: 1,
     sprite: "pusumon",
@@ -417,7 +417,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Puwamon",
-    name_jp: "PUWAMON",
+    name_jp: "Puwamon",
     next_evolutions: ["BII-008","BII-024","BII-037","C-111"],
     stage: 1,
     sprite: "puwamon",
@@ -426,7 +426,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Puyomon",
-    name_jp: "PUYOMON",
+    name_jp: "Puyomon",
     next_evolutions: ["BII-043"],
     stage: 1,
     sprite: "puyomon",
@@ -435,7 +435,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pyonmon",
-    name_jp: "PYONMON",
+    name_jp: "Pyonmon",
     next_evolutions: [],
     stage: 1,
     sprite: "pyonmon",
@@ -471,7 +471,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tomorimon",
-    name_jp: "TOMORIMON",
+    name_jp: "Tomorimon",
     next_evolutions: ["BII-033"],
     stage: 1,
     sprite: "tomorimon",
@@ -489,7 +489,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Yolkmon",
-    name_jp: "YOLKMON",
+    name_jp: "Yolkmon",
     next_evolutions: ["BII-014"],
     stage: 1,
     sprite: "yolkmon",
@@ -498,7 +498,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "YukimiBotamon",
-    name_jp: "Yukimibotamon",
+    name_jp: "YukimiBotamon",
     next_evolutions: ["BII-032","BII-019","BII-030","BII-051"],
     stage: 1,
     sprite: "yukimibotamon",
@@ -543,7 +543,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Arcadiamon In-Training",
-    name_jp: "Arkadimon Baby",
+    name_jp: "Arkadimon",
     next_evolutions: ["C-012"],
     stage: 2,
     sprite: "arcadiamon-baby",
@@ -570,7 +570,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bowmon",
-    name_jp: "BOWMON",
+    name_jp: "Bowmon",
     next_evolutions: ["C-016","C-063","C-086"],
     stage: 2,
     sprite: "bowmon",
@@ -597,7 +597,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chapmon",
-    name_jp: "CHAPMON",
+    name_jp: "Chapmon",
     next_evolutions: ["C-032","C-035","C-051","C-072","C-081","C-017"],
     stage: 2,
     sprite: "chapmon",
@@ -615,7 +615,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chicchimon",
-    name_jp: "CHICCHIMON",
+    name_jp: "Chicchimon",
     next_evolutions: ["C-065","C-096","C-107"],
     stage: 2,
     sprite: "chicchimon",
@@ -633,7 +633,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cupimon",
-    name_jp: "CUPIMON",
+    name_jp: "Cupimon",
     next_evolutions: ["C-066","C-089","C-104","C-135","C-112","C-110"],
     stage: 2,
     sprite: "cupimon",
@@ -651,7 +651,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fluffymon",
-    name_jp: "FLUFFYMON",
+    name_jp: "Fluffymon",
     next_evolutions: ["C-116"],
     stage: 2,
     sprite: "fluffymon",
@@ -687,7 +687,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gurimon",
-    name_jp: "GURIMON",
+    name_jp: "Gurimon",
     next_evolutions: ["C-042","C-076"],
     stage: 2,
     sprite: "gurimon",
@@ -732,7 +732,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kozenimon",
-    name_jp: "KOZENIMON",
+    name_jp: "Kozenimon",
     next_evolutions: ["C-149"],
     stage: 2,
     sprite: "kozenimon",
@@ -741,7 +741,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kyaromon",
-    name_jp: "KYAROMON",
+    name_jp: "Kyaromon",
     next_evolutions: ["C-021","C-027","C-032","C-035","C-051","C-066","C-072","C-081","C-102"],
     stage: 2,
     sprite: "kyaromon",
@@ -777,7 +777,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mococomon",
-    name_jp: "MOCOCOMON",
+    name_jp: "Mococomon",
     next_evolutions: ["C-037","C-071","C-072","C-133"],
     stage: 2,
     sprite: "mococomon",
@@ -786,7 +786,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Monimon",
-    name_jp: "MONIMON",
+    name_jp: "Monimon",
     next_evolutions: ["C-059"],
     stage: 2,
     sprite: "monimon",
@@ -804,7 +804,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Negamon",
-    name_jp: "NEGAMON",
+    name_jp: "Negamon",
     next_evolutions: ["U-001"],
     stage: 2,
     sprite: "negamon",
@@ -822,7 +822,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Onibimon",
-    name_jp: "ONIBIMON",
+    name_jp: "Onibimon",
     next_evolutions: ["C-046","C-061","C-118","C-146"],
     stage: 2,
     sprite: "onibimon",
@@ -858,7 +858,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pinamon",
-    name_jp: "PINAMON",
+    name_jp: "Pinamon",
     next_evolutions: ["C-003","C-021","C-032","C-035","C-044","C-051","C-054","C-072","C-081","C-097","C-132","C-135","C-004","C-084"],
     stage: 2,
     sprite: "pinamon",
@@ -894,7 +894,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Puroromon",
-    name_jp: "PUROROMON",
+    name_jp: "Puroromon",
     next_evolutions: ["C-027","C-038","C-120"],
     stage: 2,
     sprite: "puroromon",
@@ -903,7 +903,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pusurimon",
-    name_jp: "PUSURIMON",
+    name_jp: "Pusurimon",
     next_evolutions: ["C-063"],
     stage: 2,
     sprite: "pusurimon",
@@ -912,7 +912,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Puyoyomon",
-    name_jp: "PUYOYOMON",
+    name_jp: "Puyoyomon",
     next_evolutions: ["C-069","C-075"],
     stage: 2,
     sprite: "puyoyomon",
@@ -965,8 +965,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=tokomon",
   },
   {
-    name_en: "Tokomon X",
-    name_jp: "Tokomon X",
+    name_en: "Tokomon (X Antibody)",
+    name_jp: "Tokomon (X Antibody)",
     next_evolutions: ["C-119","C-007","C-063","C-029","C-041","C-126"],
     stage: 2,
     sprite: "tokomon-x",
@@ -1011,7 +1011,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Xiaomon",
-    name_jp: "XIAOMON",
+    name_jp: "Xiaomon",
     next_evolutions: ["C-083"],
     stage: 2,
     sprite: "xiaomon",
@@ -1055,8 +1055,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=agumon",
   },
   {
-    name_en: "Agumon (2006 Anime Version)",
-    name_jp: "AGUMON-2006",
+    name_en: "Agumon (2006)",
+    name_jp: "Agumon (2006)",
     next_evolutions: ["A-015","A-033","A-036","A-075","A-089","H-001","C-008","A-004","A-008","A-009","A-010","A-017","A-020","AR-005","AR-046","A-034","A-039","A-044","A-045","A-052","A-055","A-061","AR-012","A-062","A-068","A-073","A-082","A-083","A-084","A-086","A-087","A-088","A-090","A-093","A-099","A-102","A-104","A-109","A-123","A-124","AR-027","AR-028","A-135","A-141","AR-033","A-148","A-151","A-152","A-156","A-165","A-168","A-169","AR-052","A-175","A-177","AR-055","A-195","A-196","A-198","A-200","A-210","A-212","A-219","A-221","A-222","A-233","A-070"],
     stage: 3,
     sprite: "agumon-2006",
@@ -1073,8 +1073,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=agumon-black",
   },
   {
-    name_en: "Agumon (Black) X",
-    name_jp: "Agumon (Black) X",
+    name_en: "Agumon (Black) (X Antibody)",
+    name_jp: "Agumon (Black) (X Antibody)",
     next_evolutions: ["A-040","A-119","A-149","A-007"],
     stage: 3,
     sprite: "agumon-black-x",
@@ -1082,8 +1082,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=agumon_b_x",
   },
   {
-    name_en: "Agumon X",
-    name_jp: "Agumon X",
+    name_en: "Agumon (X Antibody)",
+    name_jp: "Agumon (X Antibody)",
     next_evolutions: ["A-220","A-209","A-035","A-022","A-041","A-052","A-088","A-119","A-169","A-177","AR-039","A-004","A-008","A-009","A-017","AR-005","AR-046","A-039","A-045","A-055","AR-012","A-062","A-070","A-075","A-083","A-084","A-086","A-087","A-089","A-093","A-099","A-102","A-104","A-123","A-124","AR-027","AR-028","A-135","A-141","AR-033","A-148","A-151","A-152","A-165","AR-052","AR-055","A-196","A-200","A-210","A-212","A-219","A-221","A-233","A-034","A-044"],
     stage: 3,
     sprite: "agumon-x",
@@ -1110,7 +1110,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Aruraumon",
-    name_jp: "ALRAUMON",
+    name_jp: "Alraumon",
     next_evolutions: ["A-010","H-003","A-076","A-103","A-102","A-104","A-112","A-148","P-164","A-167","A-175","A-196","A-210","A-211","A-215","A-222","A-228","A-231","A-234","A-235","A-238"],
     stage: 3,
     sprite: "aruraumon",
@@ -1119,7 +1119,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Angoramon",
-    name_jp: "ANGORAMON",
+    name_jp: "Angoramon",
     next_evolutions: ["A-050","A-108","A-116","A-123","A-141","A-161","A-163","A-186","A-199","A-200"],
     stage: 3,
     sprite: "angoramon",
@@ -1128,7 +1128,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Arcadiamon",
-    name_jp: "ARKADIMON",
+    name_jp: "Arkadimon",
     next_evolutions: ["A-001","A-023","A-028","H-011","A-123"],
     stage: 3,
     sprite: "arcadiamon-child",
@@ -1155,7 +1155,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bearmon",
-    name_jp: "BEARMON",
+    name_jp: "Bearmon",
     next_evolutions: ["A-010","A-049","A-070","A-092","A-112","A-124","H-009","A-037","A-059","A-066","A-068","A-071","A-080","A-083","A-087","A-101","A-123","A-134","A-137","A-140","A-148","AR-041","AR-051","A-175","A-195","A-233","A-013","A-044","A-045","A-086","A-102","A-152","A-228","A-230","C-085"],
     stage: 3,
     sprite: "bearmon",
@@ -1164,7 +1164,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vemmon",
-    name_jp: "VEMMON",
+    name_jp: "Vemmon",
     next_evolutions: ["A-035","A-191","A-219"],
     stage: 3,
     sprite: "vemmon",
@@ -1182,7 +1182,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Betamon (X Antibody)",
-    name_jp: "BETAMON_X",
+    name_jp: "Betamon (X Antibody)",
     next_evolutions: ["A-004","AR-004","A-045","A-055","A-072","A-074","A-088","A-092","A-093","AR-023","A-124","AR-029","A-133","A-143","A-166","AR-052","A-173","A-176","A-177","AR-061","A-212","A-215"],
     stage: 3,
     sprite: "betamon-x",
@@ -1218,7 +1218,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chikurimon",
-    name_jp: "CHIKURIMON",
+    name_jp: "Chikurimon",
     next_evolutions: ["U-201"],
     stage: 3,
     sprite: "chikurimon",
@@ -1227,7 +1227,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ClearAgumon",
-    name_jp: "CLEARAGUMON",
+    name_jp: "ClearAgumon",
     next_evolutions: ["A-008","A-159","A-018","A-029","A-039","A-050","AR-011","A-062","A-076","A-090","A-093","A-069","A-101","A-102","A-104","AR-028","A-148","AR-038","A-169","AR-049","A-175","A-180","A-202","A-212","A-221","A-233"],
     stage: 3,
     sprite: "clearagumon",
@@ -1236,7 +1236,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Commandramon",
-    name_jp: "COMMANDRAMON",
+    name_jp: "Commandramon",
     next_evolutions: ["A-029","A-049","A-086","A-093","A-098","A-148","A-178","A-192","AR-062","A-097","A-125","A-141"],
     stage: 3,
     sprite: "commandramon",
@@ -1254,7 +1254,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DoKunemon",
-    name_jp: "DOKUNEMON",
+    name_jp: "DoKunemon",
     next_evolutions: ["A-063","H-003","AR-007","A-030","A-037","A-051","A-081","A-118","A-143","AR-032","A-147","A-160","A-173","A-192","A-196","A-210","A-231","A-234","A-238"],
     stage: 3,
     sprite: "dokunemon",
@@ -1280,8 +1280,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=dracomon",
   },
   {
-    name_en: "Dracomon X",
-    name_jp: "Dracomon X",
+    name_en: "Dracomon (X Antibody)",
+    name_jp: "Dracomon (X Antibody)",
     next_evolutions: ["A-091","A-188","A-035"],
     stage: 3,
     sprite: "dracomon-x",
@@ -1299,7 +1299,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ekakimon",
-    name_jp: "EKAKIMON",
+    name_jp: "Ekakimon",
     next_evolutions: [],
     stage: 3,
     sprite: "ekakimon",
@@ -1317,7 +1317,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Elecmon (Violet)",
-    name_jp: "ELECMON-VIOLET",
+    name_jp: "Elecmon (Violet)",
     next_evolutions: ["AR-005","A-026","A-030","A-076","A-099","A-101","A-105","A-123","AR-025","AR-031","A-148","A-167","AR-058","A-180","A-200","A-205","A-217","A-222","A-226","A-231","A-238"],
     stage: 3,
     sprite: "elecmon-violet",
@@ -1326,7 +1326,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Elizamon",
-    name_jp: "ELIZAMON",
+    name_jp: "Elizamon",
     next_evolutions: ["A-047"],
     stage: 3,
     sprite: "elizamon",
@@ -1353,7 +1353,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fujamon",
-    name_jp: "FUJAMON",
+    name_jp: "Fujamon",
     next_evolutions: ["A-073","A-078","A-111","A-232"],
     stage: 3,
     sprite: "fujamon",
@@ -1362,7 +1362,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "FunBeemon",
-    name_jp: "FUNBEEMON",
+    name_jp: "FunBeemon",
     next_evolutions: ["A-079","A-108","A-118","A-151","A-165","A-223","A-051","A-052","A-063","A-082","A-069","A-196","A-206","A-210","P-222"],
     stage: 3,
     sprite: "funbeemon",
@@ -1380,7 +1380,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gabumon (Black)",
-    name_jp: "GABUMON_BLACK",
+    name_jp: "Gabumon (Black)",
     next_evolutions: ["A-053","A-054","A-070","A-071","A-008","A-019","A-021","AR-005","AR-006","A-026","A-037","A-049","A-051","A-052","A-059","A-064","A-068","A-072","A-075","A-084","A-086","A-088","A-095","A-097","A-104","A-108","AR-023","A-120","A-123","A-124","AR-025","A-137","A-139","AR-033","A-146","AR-035","AR-039","A-168","A-172","A-192","A-196","A-197","A-200","A-201","A-216","AR-065","A-221","A-222","A-228","A-233","A-236","C-041","A-166"],
     stage: 3,
     sprite: "gabumon-black",
@@ -1388,8 +1388,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=gabumon_black",
   },
   {
-    name_en: "Gabumon X",
-    name_jp: "Gabumon X",
+    name_en: "Gabumon (X Antibody)",
+    name_jp: "Gabumon (X Antibody)",
     next_evolutions: ["A-170","A-209","A-035","A-008","A-021","AR-005","AR-006","A-026","A-037","A-051","A-052","A-059","A-064","A-068","A-070","A-071","A-072","A-075","A-084","A-086","A-088","A-095","A-097","A-104","A-108","AR-023","A-120","A-123","A-124","AR-025","A-137","AR-033","A-146","AR-035","AR-039","A-168","A-192","A-196","A-197","A-200","A-201","A-216","AR-065","A-221","A-222","A-228","A-233","A-236"],
     stage: 3,
     sprite: "gabumon-x",
@@ -1398,7 +1398,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gammamon",
-    name_jp: "GAMMAMON",
+    name_jp: "Gammamon",
     next_evolutions: ["A-016","A-094","A-110","A-178","A-225"],
     stage: 3,
     sprite: "gammamon",
@@ -1425,7 +1425,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gaossmon",
-    name_jp: "GAOSSMON",
+    name_jp: "Gaossmon",
     next_evolutions: ["A-086","A-085"],
     stage: 3,
     sprite: "gaossmon",
@@ -1434,7 +1434,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gasamon",
-    name_jp: "GASAMON",
+    name_jp: "Gasamon",
     next_evolutions: ["A-131","A-144","A-156","A-179"],
     stage: 3,
     sprite: "gasamon",
@@ -1452,7 +1452,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gazimon (X Antibody)",
-    name_jp: "GAZIMON_X",
+    name_jp: "Gazimon (X Antibody)",
     next_evolutions: ["AR-004","AR-005","A-034","A-039","A-043","A-044","A-045","A-049","A-052","A-059","A-066","A-068","AR-015","A-070","A-072","AR-016","A-092","AR-022","A-123","A-124","AR-026","AR-029","A-132","AR-031","AR-039","A-166","AR-052","A-174","AR-058","A-200","A-201","A-212","A-217","A-224","A-235"],
     stage: 3,
     sprite: "gazimon-x",
@@ -1479,7 +1479,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Goblimon",
-    name_jp: "GOBURIMON",
+    name_jp: "Goburimon",
     next_evolutions: ["A-013","A-046","A-073","A-152","A-156","A-168","A-195","A-219","AR-053","H-001","A-004","A-007","AR-003","A-020","A-026","A-031","A-033","A-043","A-045","A-055","AR-012","A-064","A-068","AR-015","A-076","A-081","A-083","A-084","A-087","H-015","A-092","A-089","A-097","A-104","A-118","A-123","AR-030","A-134","A-139","A-144","A-145","A-148","A-161","A-175","AR-059","A-193","A-196","A-212","A-217","A-224","A-228","A-231","AR-066","A-235","A-062"],
     stage: 3,
     sprite: "goblimon",
@@ -1496,8 +1496,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=gomamon",
   },
   {
-    name_en: "Gomamon X",
-    name_jp: "Gomamon X",
+    name_en: "Gomamon (X Antibody)",
+    name_jp: "Gomamon (X Antibody)",
     next_evolutions: ["A-132","A-119","A-007","A-009","A-031","A-055","A-073","A-077","A-091","A-105","AR-029","A-150","AR-036","A-171","AR-050","A-198","AR-065","A-218","A-226"],
     stage: 3,
     sprite: "gomamon-x",
@@ -1515,7 +1515,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gotsumon (X Antibody)",
-    name_jp: "GOTTSUMON_X",
+    name_jp: "Gottsumon (X Antibody)",
     next_evolutions: ["H-001","A-004","A-009","A-029","A-034","A-037","A-043","A-044","A-070","A-072","A-074","AR-017","A-086","A-088","H-015","A-089","A-103","A-104","A-107","A-114","A-113","A-137","A-141","AR-034","A-148","A-152","A-170","A-195","AR-060","A-200","A-202","AR-062","A-212","A-217","A-219","A-228"],
     stage: 3,
     sprite: "gotsumon-x",
@@ -1533,7 +1533,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Guilmon (X Antibody)",
-    name_jp: "GUILMON_X",
+    name_jp: "Guilmon (X Antibody)",
     next_evolutions: ["A-007","A-079","A-091","A-142","A-209","H-001","AR-001","A-020","A-026","A-032","A-033","A-034","A-039","A-041","A-055","A-075","A-077","A-087","A-089","A-090","AR-012","A-063","A-120","A-123","AR-025","A-133","A-135","A-141","A-144","AR-047","A-165","AR-049","A-176","AR-056","AR-060","A-197","A-202","AR-065","A-219","A-221","A-233"],
     stage: 3,
     sprite: "guilmon-x",
@@ -1542,7 +1542,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gumdramon",
-    name_jp: "GUMDRAMON",
+    name_jp: "Gumdramon",
     next_evolutions: ["A-011","A-015","A-076","A-148","A-175","A-200","A-216","A-221"],
     stage: 3,
     sprite: "gumdramon",
@@ -1560,7 +1560,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Hagurumon (X Antibody)",
-    name_jp: "HAGURUMON_X",
+    name_jp: "Hagurumon (X Antibody)",
     next_evolutions: ["A-029","A-031","A-044","AR-012","A-066","A-083","A-089","A-093","AR-024","AR-025","A-133","H-020","A-151","A-152","AR-037","A-169","AR-048","AR-049","A-195","AR-060","A-202","A-205","A-206","A-219","A-223","AR-066"],
     stage: 3,
     sprite: "hagurumon-x",
@@ -1569,7 +1569,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Hanimon",
-    name_jp: "HANIMON",
+    name_jp: "Hanimon",
     next_evolutions: ["A-064","A-115","A-131","A-179"],
     stage: 3,
     sprite: "hanimon",
@@ -1605,7 +1605,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Hyokomon",
-    name_jp: "HYOKOMON",
+    name_jp: "Hyokomon",
     next_evolutions: ["A-017","A-025","A-048","A-108","A-144","A-156"],
     stage: 3,
     sprite: "hyokomon",
@@ -1622,8 +1622,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=impmon",
   },
   {
-    name_en: "Impmon X",
-    name_jp: "Impmon X",
+    name_en: "Impmon (X Antibody)",
+    name_jp: "Impmon (X Antibody)",
     next_evolutions: ["A-153","A-177","A-149","A-007"],
     stage: 3,
     sprite: "impmon-x",
@@ -1641,7 +1641,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Jellymon",
-    name_jp: "JELLYMON",
+    name_jp: "Jellymon",
     next_evolutions: ["A-055","A-077","A-105","A-111","A-171","A-176","A-204","A-208","AR-029"],
     stage: 3,
     sprite: "jellymon",
@@ -1659,7 +1659,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kakamon",
-    name_jp: "KAKAMON",
+    name_jp: "Kakamon",
     next_evolutions: ["A-078","A-097","A-126","A-216"],
     stage: 3,
     sprite: "kakamon",
@@ -1668,7 +1668,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kamemon",
-    name_jp: "KAMEMON",
+    name_jp: "Kamemon",
     next_evolutions: ["A-013","A-068","A-073","A-075","A-096","A-097","A-109","A-156","A-168","A-195","A-232","A-048","A-093","A-103","A-105","A-108","A-113","A-148","A-150","A-171","A-176","A-179","A-193","A-200","A-212","AR-065","A-226","A-236"],
     stage: 3,
     sprite: "kamemon",
@@ -1677,7 +1677,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Keramon",
-    name_jp: "KERAMON",
+    name_jp: "Keramon",
     next_evolutions: ["A-001","A-013","A-028","A-051","H-011","A-070","A-076","A-093","A-108","C-074","A-133","A-134","A-145","A-148","A-150","A-160","A-175","A-194","A-224","A-228"],
     stage: 3,
     sprite: "keramon",
@@ -1685,8 +1685,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=keramon",
   },
   {
-    name_en: "Keramon X",
-    name_jp: "Keramon X",
+    name_en: "Keramon (X Antibody)",
+    name_jp: "Keramon (X Antibody)",
     next_evolutions: ["SU-013"],
     stage: 3,
     sprite: "keramon-x",
@@ -1695,7 +1695,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KoDokugumon",
-    name_jp: "KODOKUGUMON",
+    name_jp: "KoDokugumon",
     next_evolutions: ["A-027","A-109"],
     stage: 3,
     sprite: "kodokugumon",
@@ -1704,7 +1704,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Monmon",
-    name_jp: "KOEMON",
+    name_jp: "Koemon",
     next_evolutions: ["A-099","A-110","A-225","AR-009","A-084","A-086","A-097","A-104","AR-022","A-112","A-117","A-169","AR-058","A-179","A-202","A-215","A-045","A-048","H-015"],
     stage: 3,
     sprite: "monmon",
@@ -1713,7 +1713,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KoKabuterimon",
-    name_jp: "KOKABUTERIMON",
+    name_jp: "KoKabuterimon",
     next_evolutions: ["A-010","A-022","A-088","A-169","A-205","H-005","A-097","A-108","A-118"],
     stage: 3,
     sprite: "kokabuterimon",
@@ -1730,8 +1730,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=kokuwamon",
   },
   {
-    name_en: "Kokuwamon X",
-    name_jp: "Kokuwamon X",
+    name_en: "Kokuwamon (X Antibody)",
+    name_jp: "Kokuwamon (X Antibody)",
     next_evolutions: ["A-119","A-060","A-149","H-027","A-007","A-009","AR-004","A-018","A-022","AR-008","A-029","AR-046","A-043","A-045","A-055","AR-015","A-084","A-088","A-093","A-102","AR-023","A-118","AR-025","A-133","AR-032","AR-043","AR-048","AR-049","A-194","A-202","A-205","A-233"],
     stage: 3,
     sprite: "kokuwamon-x",
@@ -1740,7 +1740,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kotemon",
-    name_jp: "KOTEMON",
+    name_jp: "Kotemon",
     next_evolutions: ["A-020","A-032","A-037","A-048","A-080","A-091","A-097","A-104","A-108","A-117","A-118","A-144","A-169","AR-059","A-195","A-216","A-228","AR-066","A-062","A-086","A-151","A-160"],
     stage: 3,
     sprite: "kotemon",
@@ -1749,7 +1749,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kudamon",
-    name_jp: "KUDAMON",
+    name_jp: "Kudamon",
     next_evolutions: ["A-013","A-022","A-062","A-068","A-073","A-075","A-109","A-156","A-168","A-195","A-205","AR-050","AR-034","A-148","AR-053","A-201"],
     stage: 3,
     sprite: "kudamon",
@@ -1785,7 +1785,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Liollmon",
-    name_jp: "LIOLLMON",
+    name_jp: "Liollmon",
     next_evolutions: ["A-031","A-125","A-169","AR-039","AR-005","A-026","A-052","A-120","A-123","A-178","A-228"],
     stage: 3,
     sprite: "liollmon",
@@ -1794,7 +1794,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Loogamon",
-    name_jp: "LOOGAMON",
+    name_jp: "Loogamon",
     next_evolutions: ["A-013","A-051","A-060","A-097","A-127","A-191","A-219"],
     stage: 3,
     sprite: "loogamon",
@@ -1811,8 +1811,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lopmon",
   },
   {
-    name_en: "Lopmon X",
-    name_jp: "Lopmon X",
+    name_en: "Lopmon (X Antibody)",
+    name_jp: "Lopmon (X Antibody)",
     next_evolutions: ["A-157","A-201","A-229","A-079"],
     stage: 3,
     sprite: "lopmon-x",
@@ -1821,7 +1821,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lucemon",
-    name_jp: "LUCEMON",
+    name_jp: "Lucemon",
     next_evolutions: ["A-008","A-028","A-036","A-045","A-076","A-097","A-102","A-148","A-159","A-175","A-212","A-237","A-221","A-228","AR-018"],
     stage: 3,
     sprite: "lucemon",
@@ -1848,7 +1848,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Luxmon",
-    name_jp: "LUXMON",
+    name_jp: "Luxmon",
     next_evolutions: ["A-017","A-159","A-232"],
     stage: 3,
     sprite: "luxmon",
@@ -1857,7 +1857,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ModokiBetamon",
-    name_jp: "MODOKIBETAMON",
+    name_jp: "ModokiBetamon",
     next_evolutions: ["A-009","A-043","A-044","A-074","A-077","A-147","A-152","A-176","A-179","A-195","A-196","A-221","A-222","A-234","A-238"],
     stage: 3,
     sprite: "modokibetamon",
@@ -1884,7 +1884,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Muchomon",
-    name_jp: "MUCHOMON",
+    name_jp: "Muchomon",
     next_evolutions: ["A-004","A-005","AR-001","A-010","A-017","A-030","A-046","A-062","A-064","A-083","A-093","A-101","A-105","AR-033","A-152","A-156","AR-043","A-172","A-176","AR-061","A-221","A-235","AR-002","A-150"],
     stage: 3,
     sprite: "muchomon",
@@ -1902,7 +1902,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Neemon",
-    name_jp: "NEAMON",
+    name_jp: "Neamon",
     next_evolutions: ["A-008","A-029","AR-009","A-050","A-070","A-077","A-080","A-102","A-120","AR-028","AR-029","AR-035","A-152","A-196","A-210","A-227","AR-018"],
     stage: 3,
     sprite: "neemon",
@@ -1920,7 +1920,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Otamamon (Red)",
-    name_jp: "OTAMAMON-RED",
+    name_jp: "Otamamon (Red)",
     next_evolutions: ["A-007","AR-009","AR-014","A-074","A-080","A-086","A-099","AR-029","AR-030","A-132","A-140","A-150","H-023","A-176","A-177","A-179","A-192","A-195","A-200","A-212","A-226","A-234"],
     stage: 3,
     sprite: "otamamon-red",
@@ -1928,8 +1928,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=otamamon-red",
   },
   {
-    name_en: "Otamamon X",
-    name_jp: "Otamamon X",
+    name_en: "Otamamon (X Antibody)",
+    name_jp: "Otamamon (X Antibody)",
     next_evolutions: ["A-177","A-060","A-149","H-027","A-007","AR-009","AR-014","A-074","A-080","A-099","AR-029","AR-030","A-132","A-140","H-023","A-176","A-179","A-192","A-195","A-200","A-212","A-226","A-234"],
     stage: 3,
     sprite: "otamamon-x",
@@ -1946,8 +1946,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=palmon",
   },
   {
-    name_en: "Palmon X",
-    name_jp: "Palmon X",
+    name_en: "Palmon (X Antibody)",
+    name_jp: "Palmon (X Antibody)",
     next_evolutions: ["A-211","A-162","A-151","A-008","A-010","A-051","H-012","A-059","A-064","A-089","A-104","A-107","A-112","A-117","A-118","A-123","A-140","A-145","A-148","AR-058","A-198","A-201","A-210","A-215","A-217","A-227","A-228","A-231","A-236"],
     stage: 3,
     sprite: "palmon-x",
@@ -1965,7 +1965,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "PawnChessmon (Black)",
-    name_jp: "PAUNCHESSMON",
+    name_jp: "Paunchessmon (Black)",
     next_evolutions: ["A-093","A-099","A-114","A-160","A-169","A-195","A-228"],
     stage: 3,
     sprite: "pawnchessmon-black",
@@ -1974,7 +1974,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "PawnChessmon (White)",
-    name_jp: "PAUNCHESSMON-WHITE",
+    name_jp: "Paunchessmon (White)",
     next_evolutions: ["A-008","A-009","AR-017","A-093","A-099","A-113","A-160","A-169","A-195"],
     stage: 3,
     sprite: "pawnchessmon-white",
@@ -1983,7 +1983,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Penmon",
-    name_jp: "PENMON",
+    name_jp: "Penmon",
     next_evolutions: ["A-049","A-070","A-105","A-135","A-140","A-145","A-148","A-171","A-174","A-175","A-179","A-236","AR-062","A-004","A-005","A-010","A-013","A-017","A-025","A-030","H-010","A-046","A-055","A-077","A-086","A-112","A-123","A-141","A-150","AR-036","A-156","A-172","A-176","A-177","AR-061","A-200","AR-063","A-237","A-221","A-226"],
     stage: 3,
     sprite: "penmon",
@@ -2010,7 +2010,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pillomon",
-    name_jp: "PILLOMON",
+    name_jp: "Pillomon",
     next_evolutions: [],
     stage: 3,
     sprite: "pillomon",
@@ -2036,8 +2036,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=plotmon",
   },
   {
-    name_en: "Salamon X",
-    name_jp: "Plotmon X",
+    name_en: "Salamon (X Antibody)",
+    name_jp: "Plotmon (X Antibody)",
     next_evolutions: ["A-146","A-177","A-007","A-004","A-008","A-021","A-036","H-012","A-059","A-068","A-070","A-072","AR-016","A-083","A-086","A-093","A-103","AR-021","AR-023","A-119","A-124","AR-026","AR-028","A-134","A-144","AR-033","AR-035","AR-039","A-159","A-166","A-168","A-169","AR-059","A-195","A-196","AR-061","A-200","A-201","A-211","A-212","A-215","A-237","A-221","A-227","A-233","A-062"],
     stage: 3,
     sprite: "salamon-x",
@@ -2055,7 +2055,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Psychemon",
-    name_jp: "PSYCHEMON",
+    name_jp: "Psychemon",
     next_evolutions: ["A-008","A-009","A-021","AR-006","AR-007","A-052","A-059","A-068","A-066","A-070","A-075","A-076","A-093","A-095","A-097","A-109","A-120","A-123","AR-025","A-140","AR-031","A-143","A-146","A-148","AR-035","A-169","A-175","AR-057","A-195","A-200","A-202","A-215","A-216","AR-065","A-235","A-071","A-237"],
     stage: 3,
     sprite: "psychemon",
@@ -2064,7 +2064,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pteromon",
-    name_jp: "PTEROMON",
+    name_jp: "Pteromon",
     next_evolutions: ["A-017","A-065","A-210","A-221"],
     stage: 3,
     sprite: "pteromon",
@@ -2090,8 +2090,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=renamon",
   },
   {
-    name_en: "Renamon X",
-    name_jp: "Renamon X",
+    name_en: "Renamon (X Antibody)",
+    name_jp: "Renamon (X Antibody)",
     next_evolutions: ["A-124","A-174","A-035"],
     stage: 3,
     sprite: "renamon-x",
@@ -2126,8 +2126,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=shakomon",
   },
   {
-    name_en: "Syakomon X",
-    name_jp: "Shakomon X",
+    name_en: "Syakomon (X Antibody)",
+    name_jp: "Shakomon (X Antibody)",
     next_evolutions: ["A-218","A-229","A-151","A-079","AR-002","A-031","A-055","AR-014","A-077","A-091","A-105","A-109","AR-030","A-142","A-150","H-023","A-176","A-177","A-179","A-209","AR-065","A-226"],
     stage: 3,
     sprite: "syakomon-x",
@@ -2136,7 +2136,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shoemon",
-    name_jp: "SHOEMON",
+    name_jp: "Shoemon",
     next_evolutions: ["A-181"],
     stage: 3,
     sprite: "shoemon",
@@ -2163,7 +2163,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "SnowGoblimon",
-    name_jp: "SNOWGOBURIMON",
+    name_jp: "SnowGoburimon",
     next_evolutions: ["A-101","A-103","A-140","A-055","A-076","A-077","A-102","A-105","A-141","A-148","A-175","A-176","A-200","A-217","A-231","AR-066","A-236"],
     stage: 3,
     sprite: "snowgoblimon",
@@ -2172,7 +2172,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Solarmon",
-    name_jp: "SOLARMON",
+    name_jp: "Solarmon",
     next_evolutions: ["A-017","A-029","A-046","A-062","A-076","A-082","A-083","A-093","A-069","A-095","AR-023","A-135","A-145","A-148","AR-044","A-167","A-175","A-195","A-216","A-226"],
     stage: 3,
     sprite: "solarmon",
@@ -2181,7 +2181,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Spadamon",
-    name_jp: "SPADAMON",
+    name_jp: "Spadamon",
     next_evolutions: ["U-249"],
     stage: 3,
     sprite: "spadamon",
@@ -2217,7 +2217,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Takinmon",
-    name_jp: "TAKINMON",
+    name_jp: "Takinmon",
     next_evolutions: ["A-096","A-111","A-126","A-216"],
     stage: 3,
     sprite: "takinmon",
@@ -2244,7 +2244,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Terriermon Assistant",
-    name_jp: "TERRIERMON_ASSISTANT",
+    name_jp: "Terriermon Assistant",
     next_evolutions: ["A-066","C-135"],
     stage: 3,
     sprite: "terriermon-assistant",
@@ -2252,8 +2252,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=terriermon_assistant",
   },
   {
-    name_en: "Terriermon X",
-    name_jp: "Terriermon X",
+    name_en: "Terriermon (X Antibody)",
+    name_jp: "Terriermon (X Antibody)",
     next_evolutions: ["A-187","A-052","A-136","A-211"],
     stage: 3,
     sprite: "terriermon-x",
@@ -2280,7 +2280,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ToyAgumon (Black)",
-    name_jp: "TOYAGUMON_BLACK",
+    name_jp: "ToyAgumon (Black)",
     next_evolutions: ["A-039","A-043","A-045","A-064","A-071","A-076","A-086","A-087","A-093","A-133","A-145","A-148","A-165","A-169","A-175","A-195","A-202","A-205","A-029","A-050","A-088"],
     stage: 3,
     sprite: "toyagumon-black",
@@ -2289,7 +2289,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tsukaimon",
-    name_jp: "TUKAIMON",
+    name_jp: "Tukaimon",
     next_evolutions: ["A-013","A-194","A-004","A-021","AR-006","A-034","A-041","A-044","A-045","A-054","A-071","A-076","AR-019","A-102","A-104","AR-031","A-148","A-152","AR-037","A-159","AR-040","A-160","AR-049","A-172","A-175","AR-056","A-202","AR-063","A-224","A-227","A-228","A-235","AR-018","A-196","A-237"],
     stage: 3,
     sprite: "tsukaimon",
@@ -2298,7 +2298,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chuumon",
-    name_jp: "TYUMON",
+    name_jp: "Tyumon",
     next_evolutions: ["A-010","A-013","A-021","A-050","A-068","A-074","A-075","A-076","A-081","A-095","A-109","A-117","A-145","A-148","A-152","A-160","A-166","AR-052","A-175","AR-053","AR-054","A-195","A-198","A-200","A-219","AR-044","A-070"],
     stage: 3,
     sprite: "chuumon",
@@ -2307,7 +2307,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ukkomon",
-    name_jp: "UKKOMON",
+    name_jp: "Ukkomon",
     next_evolutions: ["U-041"],
     stage: 3,
     sprite: "ukkomon",
@@ -2334,7 +2334,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Wankomon",
-    name_jp: "WANKOMON",
+    name_jp: "Wankomon",
     next_evolutions: ["A-115","A-144","A-186"],
     stage: 3,
     sprite: "wankomon",
@@ -2352,7 +2352,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "SnowAgumon",
-    name_jp: "YUKIAGUMON",
+    name_jp: "YukiAgumon",
     next_evolutions: ["A-095","A-140","A-236","A-004","AR-001","A-049","A-076","A-089","A-099","A-101","A-103","A-105","A-122","AR-025","A-148","A-175","A-176","A-180","A-193","A-200","A-212","A-221","A-233","AR-066"],
     stage: 3,
     sprite: "snowagumon",
@@ -2361,7 +2361,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Zenimon",
-    name_jp: "ZENIMON",
+    name_jp: "Zenimon",
     next_evolutions: ["A-067"],
     stage: 3,
     sprite: "zenimon",
@@ -2379,7 +2379,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Calumon",
-    name_jp: "CULUMON",
+    name_jp: "Culumon",
     next_evolutions: ["C-112"],
     stage: 3,
     sprite: "calumon",
@@ -2388,7 +2388,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Arkadimon Adult",
-    name_jp: "Arukadimon Seijukuki",
+    name_jp: "Arkadimon",
     next_evolutions: ["P-001","P-094","P-201"],
     stage: 4,
     sprite: "arcadiamon-adult",
@@ -2397,7 +2397,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "RedVeedramon",
-    name_jp: "Reddo Buidoramon",
+    name_jp: "RedV-dramon",
     next_evolutions: ["P-064","H-001","P-016","P-134","P-152"],
     stage: 4,
     sprite: "redveedramon",
@@ -2406,7 +2406,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Aegiomon",
-    name_jp: "AEGIOMON",
+    name_jp: "Aegiomon",
     next_evolutions: ["P-002"],
     stage: 4,
     sprite: "aegiomon",
@@ -2441,8 +2441,8 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=algomon_lv4",
   },
   {
-    name_en: "Allomon X",
-    name_jp: "Allomon X",
+    name_en: "Allomon (X Antibody)",
+    name_jp: "Allomon (X Antibody)",
     next_evolutions: ["P-214","P-125","P-123","P-143","P-091","P-135","P-199","P-134","P-167","P-172","P-223","P-227","P-239"],
     stage: 4,
     sprite: "allomon-x",
@@ -2523,7 +2523,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BetelGammamon",
-    name_jp: "BETELGAMMAMON",
+    name_jp: "BetelGammamon",
     next_evolutions: ["P-031","P-034","P-043","P-144","P-150","P-206","A-110"],
     stage: 4,
     sprite: "betelgammamon",
@@ -2541,7 +2541,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackGargomon",
-    name_jp: "BLACKGALGOMON",
+    name_jp: "BlackGalgomon",
     next_evolutions: ["P-027","P-048","P-135","P-145","P-159","P-168","P-224"],
     stage: 4,
     sprite: "blackgargomon",
@@ -2550,7 +2550,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackGaogamon",
-    name_jp: "BLACKGAOGAMON",
+    name_jp: "BlackGaogamon",
     next_evolutions: ["P-025"],
     stage: 4,
     sprite: "blackgaogamon",
@@ -2559,7 +2559,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackGrowlmon",
-    name_jp: "BLACKGROWMON",
+    name_jp: "BlackGrowmon",
     next_evolutions: ["P-026","P-055","P-054","P-080","P-085","P-134","P-133","P-135","P-140","P-153","P-156","P-170","P-182","P-200","P-219","P-225","P-230","P-233","P-201"],
     stage: 4,
     sprite: "blackgrowlmon",
@@ -2568,7 +2568,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackGatomon",
-    name_jp: "BLACKTAILMON",
+    name_jp: "BlackTailmon",
     next_evolutions: ["P-020","P-092","P-106","P-160","P-005","P-021","P-048","P-052","P-055","P-103","P-139","P-170","P-199","P-227","P-230","AR-033"],
     stage: 4,
     sprite: "blackgatomon",
@@ -2577,7 +2577,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BladeKuwagamon",
-    name_jp: "BLADEKUWAGAMON",
+    name_jp: "BladeKuwagamon",
     next_evolutions: ["H-007","H-024","H-025","P-043","P-050","P-077","P-105","P-149","P-234","P-028","P-158","P-196"],
     stage: 4,
     sprite: "bladekuwagamon",
@@ -2586,7 +2586,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Boogiemon",
-    name_jp: "BOOGIEMON",
+    name_jp: "Boogiemon",
     next_evolutions: ["P-055","P-140","P-160","P-227","P-217"],
     stage: 4,
     sprite: "boogiemon",
@@ -2604,7 +2604,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Buraimon",
-    name_jp: "BURAIMON",
+    name_jp: "Buraimon",
     next_evolutions: ["P-032","P-058","P-063","P-072","P-080"],
     stage: 4,
     sprite: "buraimon",
@@ -2622,7 +2622,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chamblemon",
-    name_jp: "CHAMBLEMON",
+    name_jp: "Chamblemon",
     next_evolutions: ["P-128","P-212"],
     stage: 4,
     sprite: "chamblemon",
@@ -2631,7 +2631,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kurisarimon",
-    name_jp: "CHRYSALIMON",
+    name_jp: "Chrysalimon",
     next_evolutions: ["P-004","P-012","P-001","P-017","P-048","P-050","P-094","AR-028","P-159","P-167","P-207","P-067","P-043","P-139"],
     stage: 4,
     sprite: "kurisarimon",
@@ -2712,7 +2712,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DarkLizardmon",
-    name_jp: "DARKLIZAMON",
+    name_jp: "DarkLizamon",
     next_evolutions: ["P-068","P-020","P-076","P-134","P-152","P-201"],
     stage: 4,
     sprite: "darklizardmon",
@@ -2721,7 +2721,7 @@ const RAW_PART_1: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DarkMaildramon",
-    name_jp: "DARKMAILDRAMON",
+    name_jp: "DarkMaildramon",
     next_evolutions: [],
     stage: 4,
     sprite: "darkmaildramon",
@@ -2741,8 +2741,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=darktyranomon",
   },
   {
-    name_en: "DarkTyrannomon X",
-    name_jp: "DarkTyranomon X",
+    name_en: "DarkTyrannomon (X Antibody)",
+    name_jp: "DarkTyranomon (X Antibody)",
     next_evolutions: ["P-148","P-125","P-214","P-123"],
     stage: 4,
     sprite: "darktyrannomon-x",
@@ -2751,7 +2751,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DexDorugamon",
-    name_jp: "DEATH-X-DORUGAMON",
+    name_jp: "Death-X-Dorugamon",
     next_evolutions: ["P-054","P-061","P-130","P-137","P-144","P-163","P-007","P-147","P-152"],
     stage: 4,
     sprite: "dexdorugamon",
@@ -2760,7 +2760,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Deckerdramon",
-    name_jp: "DECKERDRAMON",
+    name_jp: "Deckerdramon",
     next_evolutions: ["U-249"],
     stage: 4,
     sprite: "deckerdramon",
@@ -2805,7 +2805,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Dimetromon",
-    name_jp: "DIMETROMON",
+    name_jp: "Dimetromon",
     next_evolutions: ["P-108"],
     stage: 4,
     sprite: "dimetromon",
@@ -2814,7 +2814,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Dinohyumon",
-    name_jp: "DINOHUMON",
+    name_jp: "Dinohumon",
     next_evolutions: ["P-105","H-001","P-027","P-039","P-048","P-059","P-080","P-091","P-100","P-103","P-129","P-140","P-158","P-167","P-168","P-192","P-217","P-225"],
     stage: 4,
     sprite: "dinohyumon",
@@ -2832,7 +2832,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Doggymon",
-    name_jp: "DOGMON",
+    name_jp: "Dogmon",
     next_evolutions: ["P-039","P-058","P-164","P-145"],
     stage: 4,
     sprite: "doggymon",
@@ -2895,7 +2895,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Exermon",
-    name_jp: "EXERMON",
+    name_jp: "Exermon",
     next_evolutions: ["P-030","P-045","P-176","P-194","P-209"],
     stage: 4,
     sprite: "exermon",
@@ -2904,7 +2904,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Eyesmon",
-    name_jp: "EYESMON",
+    name_jp: "Eyesmon",
     next_evolutions: ["P-167"],
     stage: 4,
     sprite: "eyesmon",
@@ -2913,7 +2913,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fangmon",
-    name_jp: "FANGMON",
+    name_jp: "Fangmon",
     next_evolutions: ["P-012","P-038","P-039","P-068","P-097","P-129","P-219","P-229"],
     stage: 4,
     sprite: "fangmon",
@@ -2967,7 +2967,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Galemon",
-    name_jp: "GALEMON",
+    name_jp: "Galemon",
     next_evolutions: ["P-064","P-081","P-112"],
     stage: 4,
     sprite: "galemon",
@@ -2985,7 +2985,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ganemon",
-    name_jp: "GANEMON",
+    name_jp: "Ganemon",
     next_evolutions: [],
     stage: 4,
     sprite: "ganemon",
@@ -3003,7 +3003,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Guardromon (Gold)",
-    name_jp: "GARDROMON_GOLD",
+    name_jp: "Gardromon (Gold)",
     next_evolutions: ["P-007","P-033","P-063","P-080","AR-027","P-150","P-159","AR-047"],
     stage: 4,
     sprite: "guardromon-gold",
@@ -3021,7 +3021,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Garurumon (Black)",
-    name_jp: "GARURUMON_BLACK",
+    name_jp: "Garurumon (Black)",
     next_evolutions: ["P-170","P-229","P-230","P-027","P-029","P-038","P-041","P-043","P-061","P-062","P-067","P-092","P-118","P-124","P-144","P-168","P-171","P-172","P-177","P-201","P-207","P-215","P-217","P-227","P-231","P-150","P-154"],
     stage: 4,
     sprite: "garurumon-black",
@@ -3030,7 +3030,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Garurumon (X Antibody)",
-    name_jp: "GARURUMON_X",
+    name_jp: "Garurumon (X Antibody)",
     next_evolutions: ["P-038","P-041","P-043","P-061","P-092","P-124","P-144","P-150","P-168","P-171","P-172","P-177","P-215","P-229","P-231","P-154"],
     stage: 4,
     sprite: "garurumon-x",
@@ -3039,7 +3039,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gawappamon",
-    name_jp: "GAWAPPAMON",
+    name_jp: "Gawappamon",
     next_evolutions: ["P-028","P-093","P-118","P-124","P-134","P-136","P-170","P-182","P-186","P-192","P-215","P-235","P-236","P-058","P-088","P-102","P-211","P-228"],
     stage: 4,
     sprite: "gawappamon",
@@ -3066,7 +3066,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Geremon",
-    name_jp: "GEREMON",
+    name_jp: "Geremon",
     next_evolutions: ["P-031","P-037","P-067","P-069","P-150","P-156","P-205","P-216","P-227"],
     stage: 4,
     sprite: "geremon",
@@ -3084,7 +3084,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ginkakumon",
-    name_jp: "GINKAKUMON",
+    name_jp: "Ginkakumon",
     next_evolutions: ["P-005","P-170","P-235"],
     stage: 4,
     sprite: "ginkakumon",
@@ -3102,7 +3102,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gladimon",
-    name_jp: "GLADIMON",
+    name_jp: "Gladimon",
     next_evolutions: ["P-059","P-103","P-123","P-150","P-158","P-155","P-208","P-217","P-224"],
     stage: 4,
     sprite: "gladimon",
@@ -3120,7 +3120,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "GoldNumemon",
-    name_jp: "GOLDNUMEMON",
+    name_jp: "GoldNumemon",
     next_evolutions: ["P-024","P-216","P-228"],
     stage: 4,
     sprite: "goldnumemon",
@@ -3138,7 +3138,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gorillamon",
-    name_jp: "GORIMON",
+    name_jp: "Gorimon",
     next_evolutions: ["P-167","P-173","P-218","P-228","P-229","P-027","P-055","P-088","P-124","P-145","P-158"],
     stage: 4,
     sprite: "gorillamon",
@@ -3146,8 +3146,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=gorimon",
   },
   {
-    name_en: "Greymon (2010 Anime Version)",
-    name_jp: "GREYMON_2010 ANIME VERSION",
+    name_en: "Greymon (2010)",
+    name_jp: "Greymon (2010)",
     next_evolutions: ["P-144","P-213","P-022","P-043","P-048","P-059","P-061","P-103","P-119","P-121","P-122","P-132","P-134","P-135","P-145","P-147","P-151","P-167","P-168","P-182","P-200","P-229"],
     stage: 4,
     sprite: "greymon-2010",
@@ -3165,7 +3165,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Greymon (Blue)",
-    name_jp: "GREYMON_BLUE",
+    name_jp: "Greymon (Blue)",
     next_evolutions: ["P-068","P-123","P-144","P-145","P-146","P-200","P-221","P-022","P-043","P-048","P-059","P-061","P-076","P-103","P-119","P-121","P-122","P-132","P-134","P-135","P-147","P-151","P-167","P-168","P-182","P-199","P-213","P-229","P-233"],
     stage: 4,
     sprite: "greymon-virus",
@@ -3174,7 +3174,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Greymon (X Antibody)",
-    name_jp: "GREYMON_X",
+    name_jp: "Greymon (X Antibody)",
     next_evolutions: ["P-050","P-061","P-144","P-163","P-225","P-022","P-043","P-048","P-059","P-103","P-119","P-121","P-122","P-130","P-132","P-134","P-135","P-145","P-147","P-151","P-167","P-168","P-182","P-200","P-213","P-229"],
     stage: 4,
     sprite: "greymon-x",
@@ -3192,7 +3192,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Growlmon (Orange)",
-    name_jp: "GROWMON_ORANGE",
+    name_jp: "Growmon (Orange)",
     next_evolutions: ["P-119","P-133","P-134","P-154","P-187","P-217","P-026","P-076","P-085","P-135","P-144","P-145","P-167","P-182"],
     stage: 4,
     sprite: "growlmon-orange",
@@ -3200,8 +3200,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=growmon_orange",
   },
   {
-    name_en: "Growlmon X",
-    name_jp: "Growmon X",
+    name_en: "Growlmon (X Antibody)",
+    name_jp: "Growmon (X Antibody)",
     next_evolutions: ["P-135","P-044","P-153","P-236","P-091","P-199","P-214","P-026","P-076","P-085","P-123","P-134","P-133","P-136","P-145","P-167","P-182"],
     stage: 4,
     sprite: "growlmon-x",
@@ -3210,7 +3210,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Grizzlymon",
-    name_jp: "GRYZMON",
+    name_jp: "Gryzmon",
     next_evolutions: ["H-006","H-010","P-014","P-056","P-058","P-073","P-082","P-159","P-172","P-231","P-038","P-039","P-048","P-059","H-013","P-114","P-118","P-124","P-156","P-170","P-217","P-229","P-230","P-041","P-187"],
     stage: 4,
     sprite: "grizzlymon",
@@ -3228,7 +3228,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "GulusGammamon",
-    name_jp: "GULUSGAMMAMON",
+    name_jp: "GulusGammamon",
     next_evolutions: ["P-015","P-034","P-043","P-092","P-181","P-219"],
     stage: 4,
     sprite: "gulusgammamon",
@@ -3237,7 +3237,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gururumon",
-    name_jp: "GURURUMON",
+    name_jp: "Gururumon",
     next_evolutions: ["P-229","P-014","P-026","P-029","P-092","P-118","P-124","P-162","P-213","P-230"],
     stage: 4,
     sprite: "gururumon",
@@ -3246,7 +3246,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Hakubamon",
-    name_jp: "HAKUBAMON",
+    name_jp: "Hakubamon",
     next_evolutions: ["P-044","P-093","P-188"],
     stage: 4,
     sprite: "hakubamon",
@@ -3264,7 +3264,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Hi-Commandramon",
-    name_jp: "HI-COMMANDRAMON",
+    name_jp: "Hi-Commandramon",
     next_evolutions: ["P-036","P-132","P-167","P-206"],
     stage: 4,
     sprite: "hi-commandramon",
@@ -3300,7 +3300,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "IceDevimon",
-    name_jp: "ICEDEVIMON",
+    name_jp: "IceDevimon",
     next_evolutions: ["P-038","P-062","P-104","P-207","P-219","P-223","P-001","P-019","P-029","P-039","P-046","P-050","P-076","P-100","P-106","AR-028","P-129","P-160","P-171","P-192","P-196","P-199","P-201","P-239"],
     stage: 4,
     sprite: "icedevimon",
@@ -3309,7 +3309,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Icemon",
-    name_jp: "ICEMON",
+    name_jp: "Icemon",
     next_evolutions: ["H-006","H-010","P-014","P-095","P-159","P-172","P-022","P-029","P-046","P-048","P-067","P-088","P-121","P-124","P-171","P-216","P-224","P-229","P-239"],
     stage: 4,
     sprite: "icemon",
@@ -3345,7 +3345,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "JungleMojyamon",
-    name_jp: "Jungle Mojyamon",
+    name_jp: "JungleMojyamon",
     next_evolutions: ["P-067","P-095","P-171","P-219","P-224","P-227","P-230"],
     stage: 4,
     sprite: "junglemojyamon",
@@ -3372,7 +3372,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KausGammamon",
-    name_jp: "KAUSGAMMAMON",
+    name_jp: "KausGammamon",
     next_evolutions: ["P-031","P-034","P-181","P-229"],
     stage: 4,
     sprite: "kausgammamon",
@@ -3381,7 +3381,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kinkakumon",
-    name_jp: "KINKAKUMON",
+    name_jp: "Kinkakumon",
     next_evolutions: ["P-044","P-079","P-093","P-119","P-239"],
     stage: 4,
     sprite: "kinkakumon",
@@ -3399,7 +3399,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KnightChessmon (White)",
-    name_jp: "KNIGHTCHESSMON",
+    name_jp: "KnightChessmon (White)",
     next_evolutions: ["P-016","P-038","P-103","P-132","P-170","P-182","P-184","P-205","P-023"],
     stage: 4,
     sprite: "knightchessmon-white",
@@ -3408,7 +3408,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KnightChessmon (Black)",
-    name_jp: "KNIGHTCHESSMON_BLACK",
+    name_jp: "KnightChessmon (Black)",
     next_evolutions: ["P-014","P-038","P-052","P-134","P-170","P-184","P-023"],
     stage: 4,
     sprite: "knightchessmon-black",
@@ -3417,7 +3417,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kokeshimon",
-    name_jp: "KOKESHIMON",
+    name_jp: "Kokeshimon",
     next_evolutions: ["P-053","P-101","P-127","P-161"],
     stage: 4,
     sprite: "kokeshimon",
@@ -3435,7 +3435,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kogamon",
-    name_jp: "KOUGAMON",
+    name_jp: "Kougamon",
     next_evolutions: ["P-020","P-055","P-077","P-100","P-102","P-111","P-112"],
     stage: 4,
     sprite: "kogamon",
@@ -3452,8 +3452,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=kuwagamon",
   },
   {
-    name_en: "Kuwagamon X",
-    name_jp: "Kuwagamon X",
+    name_en: "Kuwagamon (X Antibody)",
+    name_jp: "Kuwagamon (X Antibody)",
     next_evolutions: ["P-163","P-123","P-125","P-061","P-137","P-012","P-028","P-059","P-149","P-162","P-168","P-190","P-211"],
     stage: 4,
     sprite: "kuwagamon-x",
@@ -3462,7 +3462,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kyubimon",
-    name_jp: "KYUBIMON",
+    name_jp: "Kyubimon",
     next_evolutions: ["P-008","P-038","P-062","P-104","P-207","P-223","H-001","P-029","P-039","P-043","P-105","P-106","P-140","P-156","P-171","P-219","P-227","P-229","P-100","P-187","P-217"],
     stage: 4,
     sprite: "kyubimon",
@@ -3497,8 +3497,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=leomon",
   },
   {
-    name_en: "Leomon X",
-    name_jp: "Leomon X",
+    name_en: "Leomon (X Antibody)",
+    name_jp: "Leomon (X Antibody)",
     next_evolutions: ["P-041","P-147","P-153","P-236","P-056","P-073","P-082","P-144","P-231","P-061","P-080","P-088","H-018","P-104","P-114","P-118","P-124","P-132","P-171","P-172","P-174","P-196","P-223","P-229","P-230"],
     stage: 4,
     sprite: "leomon-x",
@@ -3507,7 +3507,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Liamon",
-    name_jp: "LIAMON",
+    name_jp: "Liamon",
     next_evolutions: ["H-018","H-022","H-027","P-050","P-092","P-114","P-201","P-082","P-118","P-124","P-171","P-223","P-229","P-230","P-206"],
     stage: 4,
     sprite: "liamon",
@@ -3516,7 +3516,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lianpumon",
-    name_jp: "LIANPUMON",
+    name_jp: "Lianpumon",
     next_evolutions: ["P-005","P-186","P-188","P-235"],
     stage: 4,
     sprite: "lianpumon",
@@ -3525,7 +3525,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Loogarmon",
-    name_jp: "LOOGARMON",
+    name_jp: "Loogarmon",
     next_evolutions: ["P-089","P-202","P-204","P-219","P-229"],
     stage: 4,
     sprite: "loogarmon",
@@ -3552,7 +3552,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MailBirdramon",
-    name_jp: "MAILBIRDRAMON",
+    name_jp: "MailBirdramon",
     next_evolutions: ["P-114","P-115","P-144","P-150","P-180"],
     stage: 4,
     sprite: "mailbirdramon",
@@ -3561,7 +3561,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Manekimon",
-    name_jp: "MANEKIMON",
+    name_jp: "Manekimon",
     next_evolutions: ["P-053","P-236"],
     stage: 4,
     sprite: "manekimon",
@@ -3569,8 +3569,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=manekimon",
   },
   {
-    name_en: "Mantaraymon X",
-    name_jp: "Mantaraymon X",
+    name_en: "Mantaraymon (X Antibody)",
+    name_jp: "Mantaraymon (X Antibody)",
     next_evolutions: ["P-107","P-123","P-163","P-011","P-050","P-088","P-129","P-199","P-232"],
     stage: 4,
     sprite: "mantaraymon-x",
@@ -3605,8 +3605,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=meramon",
   },
   {
-    name_en: "Meramon X",
-    name_jp: "Meramon X",
+    name_en: "Meramon (X Antibody)",
+    name_jp: "Meramon (X Antibody)",
     next_evolutions: ["P-049","P-080","P-166","P-122","P-073"],
     stage: 4,
     sprite: "meramon-x",
@@ -3615,7 +3615,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mikemon",
-    name_jp: "MIKEMON",
+    name_jp: "Mikemon",
     next_evolutions: ["P-020","P-021","P-119","P-239"],
     stage: 4,
     sprite: "mikemon",
@@ -3660,7 +3660,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Monochromon (X Antibody)",
-    name_jp: "MONOCHROMON_X",
+    name_jp: "Monochromon (X Antibody)",
     next_evolutions: ["P-091","P-135","P-214","P-064","P-007","P-008","P-072","P-099","P-123","P-125","P-132","P-152","P-153","P-174","P-199","P-211","P-213","P-221"],
     stage: 4,
     sprite: "monochromon-x",
@@ -3669,7 +3669,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MoriShellmon",
-    name_jp: "MORISHELLMON",
+    name_jp: "MoriShellmon",
     next_evolutions: ["P-190","P-010","P-058","P-213","P-221"],
     stage: 4,
     sprite: "morishellmon",
@@ -3678,7 +3678,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Musyamon",
-    name_jp: "MUSYAMON",
+    name_jp: "Musyamon",
     next_evolutions: ["P-015","P-063","P-087","P-091","P-101","P-102","P-161","P-032","P-058","P-069","P-080","P-158","P-162","P-199","P-201","P-217","P-219"],
     stage: 4,
     sprite: "musyamon",
@@ -3695,8 +3695,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=nanimon",
   },
   {
-    name_en: "Nefertimon X",
-    name_jp: "Nefertimon X",
+    name_en: "Nefertimon (X Antibody)",
+    name_jp: "Nefertimon (X Antibody)",
     next_evolutions: ["P-141","P-123","P-137","P-008","P-020","P-067","P-090","P-095","P-103","P-111","P-142","P-190","P-191","P-196","P-207"],
     stage: 4,
     sprite: "nefertimon-x",
@@ -3705,7 +3705,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "NiseDrimogemon",
-    name_jp: "NISEDRIMOGEMON",
+    name_jp: "NiseDrimogemon",
     next_evolutions: ["P-095","P-017","P-058","P-061","P-201","P-221"],
     stage: 4,
     sprite: "nisedrimogemon",
@@ -3722,8 +3722,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=numemon",
   },
   {
-    name_en: "Numemon X",
-    name_jp: "Numemon X",
+    name_en: "Numemon (X Antibody)",
+    name_jp: "Numemon (X Antibody)",
     next_evolutions: ["P-148","P-163","P-107","P-214","P-204","H-018","P-220","P-137","P-141","P-143"],
     stage: 4,
     sprite: "numemon-x",
@@ -3758,8 +3758,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=orgemon",
   },
   {
-    name_en: "Ogremon X",
-    name_jp: "Orgemon X",
+    name_en: "Ogremon (X Antibody)",
+    name_jp: "Orgemon (X Antibody)",
     next_evolutions: ["P-220","P-125","P-143","P-123"],
     stage: 4,
     sprite: "ogremon-x",
@@ -3794,8 +3794,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=peckmon",
   },
   {
-    name_en: "Pegasusmon X",
-    name_jp: "Pegasmon X",
+    name_en: "Pegasusmon (X Antibody)",
+    name_jp: "Pegasmon (X Antibody)",
     next_evolutions: ["P-157","P-091","P-009","P-080"],
     stage: 4,
     sprite: "pegasusmon-x",
@@ -3822,7 +3822,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "PlatinumSukamon",
-    name_jp: "PLATINASUKAMON",
+    name_jp: "PlatinaSukamon",
     next_evolutions: ["P-216","P-031","P-037","P-067","P-074","P-095","P-121","P-150"],
     stage: 4,
     sprite: "platinumsukamon",
@@ -3839,8 +3839,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=porcupamon",
   },
   {
-    name_en: "Pteramon X",
-    name_jp: "Pteranomon X",
+    name_en: "Pteramon (X Antibody)",
+    name_jp: "Pteranomon (X Antibody)",
     next_evolutions: ["P-073","P-033","P-122","P-007","P-028","P-123","P-214"],
     stage: 4,
     sprite: "pteramon-x",
@@ -3849,7 +3849,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Publimon",
-    name_jp: "PUBLIMON",
+    name_jp: "Publimon",
     next_evolutions: ["P-058","P-164"],
     stage: 4,
     sprite: "publimon",
@@ -3858,7 +3858,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Punkmon",
-    name_jp: "PUNKMON",
+    name_jp: "Punkmon",
     next_evolutions: ["P-116"],
     stage: 4,
     sprite: "punkmon",
@@ -3867,7 +3867,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Raptordramon",
-    name_jp: "RAPTORDRAMON",
+    name_jp: "Raptordramon",
     next_evolutions: ["P-016","P-033","P-054","P-061","P-080","P-091","P-137","P-143","P-144","P-163","P-229","P-017","P-026","P-041","P-048","P-063","P-073","P-076","P-092","P-121","P-132","P-134","P-147","P-173","P-206"],
     stage: 4,
     sprite: "raptordramon",
@@ -3911,8 +3911,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=revolmon",
   },
   {
-    name_en: "Rhinomon X",
-    name_jp: "Rhinomon X",
+    name_en: "Rhinomon (X Antibody)",
+    name_jp: "Rhinomon (X Antibody)",
     next_evolutions: ["P-231","P-135","P-236","P-061","P-092","P-132","P-145","P-150","P-153"],
     stage: 4,
     sprite: "rhinomon-x",
@@ -3939,7 +3939,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "SandYanmamon",
-    name_jp: "SANDYAMMAMON",
+    name_jp: "SandYammamon",
     next_evolutions: ["P-010","P-076","P-162","P-211","P-031"],
     stage: 4,
     sprite: "sandyanmamon",
@@ -3974,8 +3974,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=seadramon",
   },
   {
-    name_en: "Seadramon X",
-    name_jp: "Seadramon X",
+    name_en: "Seadramon (X Antibody)",
+    name_jp: "Seadramon (X Antibody)",
     next_evolutions: ["P-137","P-123","P-125","P-163","P-010","P-011","P-027","P-050","P-080","P-091","P-121","P-132","P-136","P-228","P-232"],
     stage: 4,
     sprite: "seadramon-x",
@@ -3984,7 +3984,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sealsdramon",
-    name_jp: "SEALSDRAMON",
+    name_jp: "Sealsdramon",
     next_evolutions: ["P-036","P-091","P-190","P-206","P-219","P-239","P-007","U-054","P-114","P-196","P-225"],
     stage: 4,
     sprite: "sealsdramon",
@@ -4002,7 +4002,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ShimaUnimon",
-    name_jp: "SHIMAUNIMON",
+    name_jp: "ShimaUnimon",
     next_evolutions: ["P-124","P-007","P-015","P-048","P-088","P-174","P-200","P-205"],
     stage: 4,
     sprite: "shimaunimon",
@@ -4011,7 +4011,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ShoeShoemon",
-    name_jp: "SHOESHOEMON",
+    name_jp: "ShoeShoemon",
     next_evolutions: ["P-042"],
     stage: 4,
     sprite: "shoeshoemon",
@@ -4019,8 +4019,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=shoeshoemon",
   },
   {
-    name_en: "Shoutmon (King Version)",
-    name_jp: "SHOUTMON_KING",
+    name_en: "Shoutmon (King)",
+    name_jp: "Shoutmon (King)",
     next_evolutions: ["P-165","P-195"],
     stage: 4,
     sprite: "shoutmon-king",
@@ -4029,7 +4029,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shoutmon X2",
-    name_jp: "SHOUTMONX2",
+    name_jp: "Shoutmon X2",
     next_evolutions: ["P-195"],
     stage: 4,
     sprite: "shoutmon-x2",
@@ -4047,7 +4047,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shoutmon X4",
-    name_jp: "SHOUTMONX4",
+    name_jp: "Shoutmon X4",
     next_evolutions: ["P-030","P-165","P-195","P-215"],
     stage: 4,
     sprite: "shoutmon-x4",
@@ -4056,7 +4056,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Seasarmon",
-    name_jp: "SIESAMON",
+    name_jp: "Siesamon",
     next_evolutions: ["P-020","P-039","P-053","P-090","P-092","P-101","P-106","P-119","P-133","P-134","P-154","P-160","P-187","P-193","P-217","P-038","P-105","P-156","P-182","A-187","P-207","P-215","P-229","P-230"],
     stage: 4,
     sprite: "seasarmon",
@@ -4064,8 +4064,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=siesamon",
   },
   {
-    name_en: "Seasarmon X",
-    name_jp: "Siesamon X",
+    name_en: "Seasarmon (X Antibody)",
+    name_jp: "Siesamon (X Antibody)",
     next_evolutions: ["P-166","P-061","P-073","P-080"],
     stage: 4,
     sprite: "seasarmon-x",
@@ -4083,7 +4083,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sistermon Ciel (Awakened)",
-    name_jp: "SISTERMON_CIEL_AWAKENED",
+    name_jp: "Sistermon Ciel (Awakened)",
     next_evolutions: [],
     stage: 4,
     sprite: "sistermon-ciel-awakened",
@@ -4092,7 +4092,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sistermon Noir",
-    name_jp: "SISTERMONNOIR",
+    name_jp: "Sistermon Noir",
     next_evolutions: ["P-106","P-170"],
     stage: 4,
     sprite: "sistermon-noir",
@@ -4101,7 +4101,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Snatchmon",
-    name_jp: "SNATCHMON",
+    name_jp: "Snatchmon",
     next_evolutions: ["P-057","P-089","P-130"],
     stage: 4,
     sprite: "snatchmon",
@@ -4110,7 +4110,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Snimon",
-    name_jp: "SNIMON",
+    name_jp: "Snimon",
     next_evolutions: ["P-003","P-012","P-028","P-090","P-097","P-112","P-190","P-212","P-239","P-010","P-069","P-105","P-162","P-168","P-191","P-200","P-208","P-219"],
     stage: 4,
     sprite: "snimon",
@@ -4119,7 +4119,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sorcermon",
-    name_jp: "SORCERIMON",
+    name_jp: "Sorcerimon",
     next_evolutions: ["P-005","P-015","P-029","P-050","P-092","P-100","P-171","P-174","P-191","P-192","P-234","P-008","P-069"],
     stage: 4,
     sprite: "sorcermon",
@@ -4128,7 +4128,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Soulmon",
-    name_jp: "SOULMON",
+    name_jp: "Soulmon",
     next_evolutions: ["P-069","P-094","P-106","P-145","P-143","P-158","P-201","P-219","P-076"],
     stage: 4,
     sprite: "soulmon",
@@ -4173,7 +4173,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "SymbareAngoramon",
-    name_jp: "SYMBAREANGORAMON",
+    name_jp: "SymbareAngoramon",
     next_evolutions: ["P-039","P-082","P-090","P-109","P-162","P-199","P-227","P-017"],
     stage: 4,
     sprite: "symbareangoramon",
@@ -4190,8 +4190,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=tailmon",
   },
   {
-    name_en: "Gatomon X",
-    name_jp: "Tailmon X",
+    name_en: "Gatomon (X Antibody)",
+    name_jp: "Tailmon (X Antibody)",
     next_evolutions: ["P-009","P-080","P-122","P-157","P-008","P-016","P-020","P-021","AR-004","AR-007","P-059","AR-016","P-092","P-099","AR-021","P-111","P-113","AR-026","AR-028","AR-033","AR-035","P-196","AR-061","P-214","AR-065","P-229","P-231","P-106","P-112"],
     stage: 4,
     sprite: "gatomon-x",
@@ -4218,7 +4218,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "TeslaJellymon",
-    name_jp: "TESLAJELLYMON",
+    name_jp: "TeslaJellymon",
     next_evolutions: ["P-024","P-129","P-136","P-210","P-228","P-232","P-239"],
     stage: 4,
     sprite: "teslajellymon",
@@ -4236,7 +4236,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Thundermon (X Antibody)",
-    name_jp: "THUNDERBALLMON_X",
+    name_jp: "Thunderballmon (X Antibody)",
     next_evolutions: ["P-022","P-027","P-048","P-103","P-121","P-122","P-151","P-159","P-174","H-025","P-205","P-208"],
     stage: 4,
     sprite: "thundermon-x",
@@ -4280,8 +4280,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=togemon",
   },
   {
-    name_en: "Togemon X",
-    name_jp: "Togemon X",
+    name_en: "Togemon (X Antibody)",
+    name_jp: "Togemon (X Antibody)",
     next_evolutions: ["P-033","P-061","P-049","P-122","P-028","P-072","P-074","P-082","P-099","P-112","P-113","P-163","P-177","P-211","P-217"],
     stage: 4,
     sprite: "togemon-x",
@@ -4299,7 +4299,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Trailmon",
-    name_jp: "TRAILMON",
+    name_jp: "Trailmon",
     next_evolutions: [],
     stage: 4,
     sprite: "trailmon",
@@ -4317,7 +4317,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MudFrigimon",
-    name_jp: "TUCHIDARUMON",
+    name_jp: "Tuchidarumon",
     next_evolutions: ["P-095","P-005","P-056","P-074","P-099","P-170","P-177","P-208"],
     stage: 4,
     sprite: "mudfrigimon",
@@ -4343,8 +4343,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=tuskmon",
   },
   {
-    name_en: "Tylomon X",
-    name_jp: "Tylomon X",
+    name_en: "Tylomon (X Antibody)",
+    name_jp: "Tylomon (X Antibody)",
     next_evolutions: ["P-183","P-122","P-011","P-022","P-028","P-067","P-076","P-129","P-136","P-142","P-168","P-214","P-232"],
     stage: 4,
     sprite: "tylomon-x",
@@ -4361,8 +4361,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=tyranomon",
   },
   {
-    name_en: "Tyrannomon X",
-    name_jp: "Tyranomon X",
+    name_en: "Tyrannomon (X Antibody)",
+    name_jp: "Tyranomon (X Antibody)",
     next_evolutions: ["P-147","P-153","P-236","P-144"],
     stage: 4,
     sprite: "tyrannomon-x",
@@ -4389,7 +4389,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Waspmon",
-    name_jp: "WASPMON",
+    name_jp: "Waspmon",
     next_evolutions: ["P-016","P-033","P-080","P-091","P-143","P-162","P-061","P-073","P-122","P-206"],
     stage: 4,
     sprite: "waspmon",
@@ -4398,7 +4398,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Wendigomon",
-    name_jp: "WENDIMON",
+    name_jp: "Wendimon",
     next_evolutions: ["P-005","P-120","P-169","P-179","P-197","P-004","P-006","P-012","P-020","P-027","P-055","AR-028","P-129","P-130","P-140","P-192"],
     stage: 4,
     sprite: "wendigomon",
@@ -4407,7 +4407,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "WezenGammamon",
-    name_jp: "WEZENGAMMAMON",
+    name_jp: "WezenGammamon",
     next_evolutions: ["P-034","P-075","P-144","P-181","P-206"],
     stage: 4,
     sprite: "wezengammamon",
@@ -4442,8 +4442,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=wizarmon",
   },
   {
-    name_en: "Wizardmon X",
-    name_jp: "Wizarmon X",
+    name_en: "Wizardmon (X Antibody)",
+    name_jp: "Wizarmon (X Antibody)",
     next_evolutions: ["P-183","P-157","P-011","P-122"],
     stage: 4,
     sprite: "wizardmon-x",
@@ -4452,7 +4452,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Wolvermon",
-    name_jp: "WOLVERMON",
+    name_jp: "Wolvermon",
     next_evolutions: [],
     stage: 4,
     sprite: "wolvermon",
@@ -4470,7 +4470,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Xiquemon",
-    name_jp: "XIQUEMON",
+    name_jp: "Xiquemon",
     next_evolutions: ["P-093","P-186","P-188","P-236"],
     stage: 4,
     sprite: "xiquemon",
@@ -4488,7 +4488,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Yanmamon",
-    name_jp: "YAMMAMON",
+    name_jp: "Yammamon",
     next_evolutions: ["P-177","P-016","P-088","P-097","P-112","P-132","P-162","P-174","P-191","P-031"],
     stage: 4,
     sprite: "yanmamon",
@@ -4497,7 +4497,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Youkomon",
-    name_jp: "YOUKOMON",
+    name_jp: "Youkomon",
     next_evolutions: ["P-038","P-062","P-104","P-207","P-223","P-017","P-020","P-027","P-039","P-055","P-102","P-105","P-106","P-199","P-230"],
     stage: 4,
     sprite: "youkomon",
@@ -4524,7 +4524,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Weedmon",
-    name_jp: "ZASSOUMON",
+    name_jp: "Zassoumon",
     next_evolutions: ["AR-038","H-016","H-021","H-026","P-238","P-004","P-028","P-031","P-111","P-211"],
     stage: 4,
     sprite: "weemon",
@@ -4542,7 +4542,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Allomon",
-    name_jp: "ALLOMON",
+    name_jp: "Allomon",
     next_evolutions: ["P-064","A-007","U-044","P-091","U-133","P-123","P-125","P-134","P-135","P-167","P-172","U-249","P-199","P-223","P-227","P-239"],
     stage: 4,
     sprite: "allomon",
@@ -4551,7 +4551,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Archelomon",
-    name_jp: "ARCHELOMON",
+    name_jp: "Archelomon",
     next_evolutions: ["P-088","U-249","P-239"],
     stage: 4,
     sprite: "archelomon",
@@ -4560,7 +4560,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Baronmon",
-    name_jp: "BAROMON",
+    name_jp: "Baromon",
     next_evolutions: ["P-140","P-239"],
     stage: 4,
     sprite: "baronmon",
@@ -4569,7 +4569,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Rabbitmon",
-    name_jp: "BITMON",
+    name_jp: "Bitmon",
     next_evolutions: ["P-005","P-015","P-072","P-103","P-104","P-154","U-249"],
     stage: 4,
     sprite: "rabbitmon",
@@ -4587,7 +4587,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bullmon",
-    name_jp: "BULLMON",
+    name_jp: "Bullmon",
     next_evolutions: ["P-104","P-217"],
     stage: 4,
     sprite: "bullmon",
@@ -4596,7 +4596,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Butterflymon",
-    name_jp: "BUTTERFLAMON",
+    name_jp: "Butterflamon",
     next_evolutions: ["P-017","P-067","P-099","P-174","P-208"],
     stage: 4,
     sprite: "butterflymon",
@@ -4605,7 +4605,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chameleonmon",
-    name_jp: "CHAMELEMON",
+    name_jp: "Chamelemon",
     next_evolutions: ["P-010","P-031","P-088","P-168","P-177"],
     stage: 4,
     sprite: "chameleonmon",
@@ -4614,7 +4614,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Depthmon",
-    name_jp: "DEPTHMON",
+    name_jp: "Depthmon",
     next_evolutions: ["P-050","P-095","P-129","P-142","P-239"],
     stage: 4,
     sprite: "depthmon",
@@ -4623,7 +4623,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Digmon",
-    name_jp: "DIGMON",
+    name_jp: "Digmon",
     next_evolutions: ["P-078","P-092","P-099","P-158","P-168","P-190","P-213","P-226","A-009","P-016","P-077","SU-030","P-136","P-224"],
     stage: 4,
     sprite: "digmon",
@@ -4632,7 +4632,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Elephantmon",
-    name_jp: "ELEPHAMON",
+    name_jp: "Elephamon",
     next_evolutions: ["P-130","P-134"],
     stage: 4,
     sprite: "elephantmon",
@@ -4641,7 +4641,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Flamedramon",
-    name_jp: "FLADRAMON",
+    name_jp: "Fladramon",
     next_evolutions: ["AR-017","AR-051","P-058","P-064","P-092","P-168","U-021","P-029","U-054","P-048","P-055","U-089","U-133","SU-022","AR-025","AR-027","P-119","P-132","P-152","P-224","U-281","P-229","P-233","P-221"],
     stage: 4,
     sprite: "flamedramon",
@@ -4650,7 +4650,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Flybeemon",
-    name_jp: "FLYBEEMON",
+    name_jp: "Flybeemon",
     next_evolutions: ["P-012","P-028","P-059","P-103"],
     stage: 4,
     sprite: "flybeemon",
@@ -4659,7 +4659,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Frogmon",
-    name_jp: "FROGMON",
+    name_jp: "Frogmon",
     next_evolutions: [],
     stage: 4,
     sprite: "frogmon",
@@ -4668,7 +4668,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gargoylemon",
-    name_jp: "GARGOMON",
+    name_jp: "Gargomon",
     next_evolutions: ["P-048","P-073","P-140","U-187","P-190","P-199","P-200"],
     stage: 4,
     sprite: "gargoylemon",
@@ -4677,7 +4677,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Goatmon",
-    name_jp: "GOATMON",
+    name_jp: "Goatmon",
     next_evolutions: ["P-006","P-072","P-103","P-201","P-038"],
     stage: 4,
     sprite: "goatmon",
@@ -4686,7 +4686,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "GoldVeedramon",
-    name_jp: "GOLDV-DRAMON",
+    name_jp: "GoldV-dramon",
     next_evolutions: ["AR-027","SU-022","U-133","U-270","P-064","P-136","P-144","AR-047"],
     stage: 4,
     sprite: "goldveedramon",
@@ -4695,7 +4695,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Harpymon",
-    name_jp: "HARPYMON",
+    name_jp: "Harpymon",
     next_evolutions: ["P-005","P-120","P-169","P-179","P-197","P-006","P-092","P-102","P-106","P-173","U-249"],
     stage: 4,
     sprite: "harpymon",
@@ -4704,7 +4704,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Halsemon",
-    name_jp: "HOLSMON",
+    name_jp: "Holsmon",
     next_evolutions: ["P-008","P-059","SU-030","P-145","P-154","U-249","A-010","P-219"],
     stage: 4,
     sprite: "halsemon",
@@ -4713,7 +4713,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Honeybeemon",
-    name_jp: "HONEYBEEMON",
+    name_jp: "Honeybeemon",
     next_evolutions: ["P-012","P-059","U-249"],
     stage: 4,
     sprite: "honeybeemon",
@@ -4722,7 +4722,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kabukimon",
-    name_jp: "KABUKIMON",
+    name_jp: "Kabukimon",
     next_evolutions: ["P-062","P-100","P-103","U-154","AR-033","U-234","P-229","U-285"],
     stage: 4,
     sprite: "kabukimon",
@@ -4731,7 +4731,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kangarumon",
-    name_jp: "KANGARUMON",
+    name_jp: "Kangarumon",
     next_evolutions: ["P-031","P-217"],
     stage: 4,
     sprite: "kangarumon",
@@ -4740,7 +4740,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kenkimon",
-    name_jp: "KENKIMON",
+    name_jp: "Kenkimon",
     next_evolutions: ["U-017","P-007","U-069","U-108","U-180","P-218"],
     stage: 4,
     sprite: "kenkimon",
@@ -4749,7 +4749,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kongoumon",
-    name_jp: "KONGOUMON",
+    name_jp: "Kongoumon",
     next_evolutions: ["SU-023","U-033","U-115","U-133","P-022","P-059","U-121","U-199","U-249","U-261"],
     stage: 4,
     sprite: "kongoumon",
@@ -4758,7 +4758,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lighdramon",
-    name_jp: "LIGHDRAMON",
+    name_jp: "Lighdramon",
     next_evolutions: ["AR-051","P-058","P-059","P-064","P-092","P-168","U-127","P-020","P-038","P-048","U-133","P-118","SU-030","P-134","P-152","P-167","P-197","P-229","P-239"],
     stage: 4,
     sprite: "lighdramon",
@@ -4767,7 +4767,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lynxmon",
-    name_jp: "LYNXMON",
+    name_jp: "Lynxmon",
     next_evolutions: ["P-038","P-062","P-104","P-207","P-223","U-021","P-027","P-029","P-061","P-070","P-103","P-154","P-156","U-199","U-232","U-249","P-229"],
     stage: 4,
     sprite: "lynxmon",
@@ -4785,7 +4785,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Maildramon",
-    name_jp: "MAILDRAMON",
+    name_jp: "Maildramon",
     next_evolutions: ["A-038","P-090","P-134","P-145","P-152","P-168","U-249","P-196"],
     stage: 4,
     sprite: "maildramon",
@@ -4803,7 +4803,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mantaraymon",
-    name_jp: "MANTARAYMON",
+    name_jp: "Mantaraymon",
     next_evolutions: ["P-011","P-050","P-088","A-132","P-129","U-249","P-199","P-232"],
     stage: 4,
     sprite: "mantaraymon",
@@ -4812,7 +4812,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Moosemon",
-    name_jp: "MOOSEMON",
+    name_jp: "Moosemon",
     next_evolutions: ["H-010","P-046","P-047","P-124","P-171"],
     stage: 4,
     sprite: "moosemon",
@@ -4821,7 +4821,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mothmon",
-    name_jp: "MOTHMON",
+    name_jp: "Mothmon",
     next_evolutions: ["P-016","P-028"],
     stage: 4,
     sprite: "mothmon",
@@ -4830,7 +4830,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Nefertimon",
-    name_jp: "NEFERTIMON",
+    name_jp: "Nefertimon",
     next_evolutions: ["P-008","P-043","U-012","U-015","P-020","P-067","P-090","P-095","P-103","P-111","P-142","U-168","A-146","U-199","P-190","P-191","P-196","P-207"],
     stage: 4,
     sprite: "nefertimon",
@@ -4839,7 +4839,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Nohemon",
-    name_jp: "NOHEMON",
+    name_jp: "Nohemon",
     next_evolutions: ["P-099","P-214","P-231","SU-042","P-006","P-121","P-229","P-237"],
     stage: 4,
     sprite: "nohemon",
@@ -4848,7 +4848,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Opossummon",
-    name_jp: "OPOSSUMMON",
+    name_jp: "Opossummon",
     next_evolutions: ["P-038","P-044","P-103","P-104","P-120","P-124","P-169","P-197"],
     stage: 4,
     sprite: "opossummon",
@@ -4857,7 +4857,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Orcamon",
-    name_jp: "ORCAMON",
+    name_jp: "Orcamon",
     next_evolutions: ["P-020","P-129","P-142"],
     stage: 4,
     sprite: "orcamon",
@@ -4866,7 +4866,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Aurumon",
-    name_jp: "OWLMON",
+    name_jp: "Owlmon",
     next_evolutions: ["P-020","U-069","P-124","U-274","P-219","P-227","P-230"],
     stage: 4,
     sprite: "aurumon",
@@ -4875,7 +4875,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Peacockmon",
-    name_jp: "PEACOCKMON",
+    name_jp: "Peacockmon",
     next_evolutions: ["U-012","U-016","U-153","U-154","P-064","P-048","P-059","P-072","P-112","P-132","P-191"],
     stage: 4,
     sprite: "peacockmon",
@@ -4884,7 +4884,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pegasusmon",
-    name_jp: "PEGASMON",
+    name_jp: "Pegasmon",
     next_evolutions: ["P-012","P-050","P-073","P-092","SU-037","P-072","P-090","SU-030","A-157","P-174","P-182","U-249"],
     stage: 4,
     sprite: "pegasusmon",
@@ -4893,7 +4893,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pipismon",
-    name_jp: "PIPISMON",
+    name_jp: "Pipismon",
     next_evolutions: ["U-079","U-275"],
     stage: 4,
     sprite: "pipismon",
@@ -4902,7 +4902,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ponchomon",
-    name_jp: "PONCHOMON",
+    name_jp: "Ponchomon",
     next_evolutions: ["U-077","P-069","U-210","P-177","U-249","P-217"],
     stage: 4,
     sprite: "ponchomon",
@@ -4911,7 +4911,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Prairiemon",
-    name_jp: "PRAIRIEMON",
+    name_jp: "Prairiemon",
     next_evolutions: ["P-005","P-027","U-060","P-099","P-104","U-165","P-156","U-233","U-249","P-207"],
     stage: 4,
     sprite: "prairiemon",
@@ -4920,7 +4920,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pteramon",
-    name_jp: "PTERANOMON",
+    name_jp: "Pteranomon",
     next_evolutions: ["P-007","P-028","P-073","P-123","A-162","P-214","U-287"],
     stage: 4,
     sprite: "pteramon",
@@ -4929,7 +4929,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bucchiemon",
-    name_jp: "PUCCHIEMON",
+    name_jp: "Pucchiemon",
     next_evolutions: ["SU-023","U-033","U-115","U-133","P-112","P-139","U-249"],
     stage: 4,
     sprite: "bucchiemon",
@@ -4938,7 +4938,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bucchiemon (Green)",
-    name_jp: "PUCCHIEMON-GREEN",
+    name_jp: "Pucchiemon (Green)",
     next_evolutions: ["SU-023","U-033","U-115","U-133","P-112"],
     stage: 4,
     sprite: "bucchiemon-green",
@@ -4947,7 +4947,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Quetzalmon",
-    name_jp: "QUETZALMON",
+    name_jp: "Quetzalmon",
     next_evolutions: ["P-119","P-142","P-162","P-187"],
     stage: 4,
     sprite: "quetzalmon",
@@ -4955,8 +4955,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=quetzalmon",
   },
   {
-    name_en: "Rapidmon Armor",
-    name_jp: "RAPIDMON_GOLD",
+    name_en: "Rapidmon (Gold)",
+    name_jp: "Rapidmon (Gold)",
     next_evolutions: ["P-048","U-074","U-090","U-121","SU-030","P-134","P-165","U-220","U-221","U-233","U-278","AR-027"],
     stage: 4,
     sprite: "rapidmon-armor",
@@ -4974,7 +4974,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Rinkmon",
-    name_jp: "RINKMON",
+    name_jp: "Rinkmon",
     next_evolutions: ["P-007","P-020","P-043","P-048","P-150","P-207"],
     stage: 4,
     sprite: "rinkmon",
@@ -4992,7 +4992,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sagittarimon",
-    name_jp: "SAGITTARIMON",
+    name_jp: "Sagittarimon",
     next_evolutions: ["AR-027","SU-022","U-133","U-270","P-082","P-169","P-187","U-257","P-083"],
     stage: 4,
     sprite: "sagittarimon",
@@ -5001,7 +5001,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Salamandermon",
-    name_jp: "SALAMANDAMON",
+    name_jp: "Salamandamon",
     next_evolutions: ["U-249","P-213"],
     stage: 4,
     sprite: "salamandermon",
@@ -5010,7 +5010,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Seahomon",
-    name_jp: "SEAHOMON",
+    name_jp: "Seahomon",
     next_evolutions: ["P-231","P-232","P-236","SU-042","U-109","U-140","P-129","U-249","AR-050","P-237"],
     stage: 4,
     sprite: "seahomon",
@@ -5019,7 +5019,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Searchmon",
-    name_jp: "SEARCHMON",
+    name_jp: "Searchmon",
     next_evolutions: ["P-017","P-048","P-059","P-097","AR-057","U-249"],
     stage: 4,
     sprite: "searchmon",
@@ -5028,7 +5028,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sepikmon",
-    name_jp: "SEPIKMON",
+    name_jp: "Sepikmon",
     next_evolutions: ["U-249","P-216"],
     stage: 4,
     sprite: "sepikmon",
@@ -5037,7 +5037,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sethmon",
-    name_jp: "SETHMON",
+    name_jp: "Sethmon",
     next_evolutions: ["AR-025","P-134","P-168"],
     stage: 4,
     sprite: "sethmon",
@@ -5055,7 +5055,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sheepmon",
-    name_jp: "SHEEPMON",
+    name_jp: "Sheepmon",
     next_evolutions: ["H-018","P-152","P-169"],
     stage: 4,
     sprite: "sheepmon",
@@ -5064,7 +5064,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shurimon",
-    name_jp: "SHURIMON",
+    name_jp: "Shurimon",
     next_evolutions: ["P-059","P-158","P-064","U-018","P-062","P-072","P-102","P-103","P-105","P-112","U-154","SU-030","U-202","U-225","U-249","A-010"],
     stage: 4,
     sprite: "shurimon",
@@ -5073,7 +5073,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Stegomon",
-    name_jp: "STEGOMON",
+    name_jp: "Stegomon",
     next_evolutions: ["P-064","P-156","P-167","P-221"],
     stage: 4,
     sprite: "stegomon",
@@ -5082,7 +5082,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Swanmon",
-    name_jp: "SWANMON",
+    name_jp: "Swanmon",
     next_evolutions: ["P-067","P-092","P-120","P-197","P-205"],
     stage: 4,
     sprite: "swanmon",
@@ -5091,7 +5091,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Thunderbirdmon",
-    name_jp: "THUNDERBIRMON",
+    name_jp: "Thunderbirmon",
     next_evolutions: ["P-008","P-072","P-096","P-190","P-224","SU-015","P-064","P-076","P-090","P-131","P-173"],
     stage: 4,
     sprite: "thunderbirdmon",
@@ -5100,7 +5100,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Toucanmon",
-    name_jp: "TOCANMON",
+    name_jp: "Tocanmon",
     next_evolutions: ["U-079","U-116","AR-019","U-249","P-207"],
     stage: 4,
     sprite: "toucanmon",
@@ -5109,7 +5109,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Togemogumon",
-    name_jp: "TOGEMOGUMON",
+    name_jp: "Togemogumon",
     next_evolutions: ["P-043","P-124","P-145","P-171","P-201","P-221"],
     stage: 4,
     sprite: "togemogumon",
@@ -5127,7 +5127,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Yasyamon",
-    name_jp: "YAKSAMON",
+    name_jp: "Yaksamon",
     next_evolutions: ["P-015","P-048","P-055","P-059","P-103","P-105","P-106","P-124","P-152","P-168","P-196","P-217","U-285"],
     stage: 4,
     sprite: "yasyamon",
@@ -5154,7 +5154,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Arbormon",
-    name_jp: "ARBORMON",
+    name_jp: "Arbormon",
     next_evolutions: ["AR-038","H-016","H-021","H-026","P-238","P-100","H-019","P-159","P-223","H-028","U-288"],
     stage: 4,
     sprite: "arbormon",
@@ -5172,7 +5172,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Beetlemon",
-    name_jp: "BLITZMON",
+    name_jp: "Blitzmon",
     next_evolutions: ["H-007","H-024","H-025","P-149","P-234","U-009","P-017","H-019","P-159","H-028"],
     stage: 4,
     sprite: "beetlemon",
@@ -5181,7 +5181,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Korikakumon",
-    name_jp: "BLIZZARMON",
+    name_jp: "Blizzarmon",
     next_evolutions: ["U-013","U-094","U-103","U-191","H-010","H-019","H-028"],
     stage: 4,
     sprite: "korikakumon",
@@ -5190,7 +5190,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MetalKabuterimon",
-    name_jp: "BOLGMON",
+    name_jp: "Bolgmon",
     next_evolutions: ["U-009","U-018","U-113","U-181","P-017","H-005","H-019","H-024","U-233","H-028"],
     stage: 4,
     sprite: "metalkabuterimon",
@@ -5199,7 +5199,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Calmaramon",
-    name_jp: "CALAMARAMON",
+    name_jp: "Calamaramon",
     next_evolutions: ["H-019","U-010","U-014","H-023","U-239","H-028"],
     stage: 4,
     sprite: "calamaramon",
@@ -5208,7 +5208,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kumamon",
-    name_jp: "CHACKMON",
+    name_jp: "Chackmon",
     next_evolutions: ["H-006","H-010","P-014","P-082","P-159","P-172","U-039","U-160"],
     stage: 4,
     sprite: "kumamon",
@@ -5217,7 +5217,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DaiPenmon",
-    name_jp: "DAIPENMON",
+    name_jp: "DaiPenmon",
     next_evolutions: ["U-013","U-094","U-103","U-123","U-191","U-253","H-019","H-028","U-284"],
     stage: 4,
     sprite: "daipenmon",
@@ -5235,7 +5235,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kazemon",
-    name_jp: "FAIRIMON",
+    name_jp: "Fairimon",
     next_evolutions: ["AR-038","H-016","H-021","H-026","P-238","U-012","P-090","H-019","AR-059","P-207","H-028"],
     stage: 4,
     sprite: "kazemon",
@@ -5253,7 +5253,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gigasmon",
-    name_jp: "GIGASMON",
+    name_jp: "Gigasmon",
     next_evolutions: ["H-017","U-011","U-017","H-015","H-019","H-028"],
     stage: 4,
     sprite: "gigasmon",
@@ -5262,7 +5262,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Grumblemon",
-    name_jp: "GROTTEMON",
+    name_jp: "Grottemon",
     next_evolutions: ["H-002","H-014","H-028","P-052","P-205","P-037","H-019"],
     stage: 4,
     sprite: "grumblemon",
@@ -5271,7 +5271,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "JetSilphymon",
-    name_jp: "JETSILPHYMON",
+    name_jp: "JetSilphymon",
     next_evolutions: ["U-012","U-016","U-153","U-154","H-019","H-028"],
     stage: 4,
     sprite: "jetsilphymon",
@@ -5307,7 +5307,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mercuremon",
-    name_jp: "MERCUREMON",
+    name_jp: "Mercuremon",
     next_evolutions: ["H-007","H-024","H-025","P-149","P-234","U-018","U-043","H-019","U-249","P-197","H-028"],
     stage: 4,
     sprite: "mercuremon",
@@ -5316,7 +5316,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Petaldramon",
-    name_jp: "PETALDRAMON",
+    name_jp: "Petaldramon",
     next_evolutions: ["U-012","U-016","U-153","U-154","P-100","H-019","H-028"],
     stage: 4,
     sprite: "petaldramon",
@@ -5334,7 +5334,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lanamon",
-    name_jp: "RANAMON",
+    name_jp: "Ranamon",
     next_evolutions: ["H-004","H-013","P-198","P-203","U-014","H-008","H-019","P-169","U-234","H-028"],
     stage: 4,
     sprite: "lanamon",
@@ -5343,7 +5343,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "RhinoKabuterimon",
-    name_jp: "RHINOKABUTERIMON",
+    name_jp: "RhinoKabuterimon",
     next_evolutions: ["U-009","U-018","U-113","U-181","H-019","H-028"],
     stage: 4,
     sprite: "rhinokabuterimon",
@@ -5352,7 +5352,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sephirothmon",
-    name_jp: "SEPHIROTHMON",
+    name_jp: "Sephirothmon",
     next_evolutions: ["U-009","U-018","U-113","U-181","U-043","P-043","U-076","H-019","H-028"],
     stage: 4,
     sprite: "sephirothmon",
@@ -5361,7 +5361,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Zephyrmon",
-    name_jp: "SHUTUMON",
+    name_jp: "Shutumon",
     next_evolutions: ["U-012","U-016","U-153","U-154","U-116","H-016","U-141","U-152","H-019","H-028","P-196"],
     stage: 4,
     sprite: "zephyrmon",
@@ -5396,8 +5396,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=wolfmon",
   },
   {
-    name_en: "Arukadhimon",
-    name_jp: "Arukadimon Kanzentai",
+    name_en: "Arcadiamon",
+    name_jp: "Arkadimon",
     next_evolutions: ["U-078","U-080"],
     stage: 5,
     sprite: "arcadiamon-perfect",
@@ -5406,7 +5406,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Aegiochusmon",
-    name_jp: "AEGIOCHUSMON",
+    name_jp: "Aegiochusmon",
     next_evolutions: ["U-142"],
     stage: 5,
     sprite: "aegiochusmon",
@@ -5415,7 +5415,7 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ajatarmon",
-    name_jp: "AJATARMON",
+    name_jp: "Ajatarmon",
     next_evolutions: ["U-048","U-131","U-216","U-258"],
     stage: 5,
     sprite: "ajatarmon",
@@ -5435,8 +5435,8 @@ const RAW_PART_2: readonly RawDigimonRecord[] = [
 
 const RAW_PART_3: readonly RawDigimonRecord[] = [
   {
-    name_en: "Antylamon",
-    name_jp: "Andiramon",
+    name_en: "Antylamon (Deva)",
+    name_jp: "Andiramon (Deva)",
     next_evolutions: ["U-060","U-233","AR-047","U-037","U-061","U-083","U-100","U-139","U-152","U-187","U-238","U-239","U-028","U-059","U-080","U-081","U-090","U-127","U-175","U-211","U-215","U-284","U-274","U-290"],
     stage: 5,
     sprite: "antylamon-deva",
@@ -5445,7 +5445,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Antylamon",
-    name_jp: "ANDIRAMON_2",
+    name_jp: "Andiramon",
     next_evolutions: ["AR-047","U-061","U-165","U-228","U-233","U-028","U-060","U-080","U-090","U-127","U-175","U-211","U-225","U-274","U-284","U-290","U-071"],
     stage: 5,
     sprite: "antylamon",
@@ -5471,8 +5471,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=angewomon",
   },
   {
-    name_en: "Angewomon X",
-    name_jp: "Angewomon X",
+    name_en: "Angewomon (X Antibody)",
+    name_jp: "Angewomon (X Antibody)",
     next_evolutions: ["U-188","U-086","U-126","U-096"],
     stage: 5,
     sprite: "angewomon-x",
@@ -5489,8 +5489,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=anomalocarimon",
   },
   {
-    name_en: "Scorpiomon X",
-    name_jp: "Anomalocarimon X",
+    name_en: "Scorpiomon (X Antibody)",
+    name_jp: "Anomalocarimon (X Antibody)",
     next_evolutions: ["U-205","U-105","U-062","U-086","U-096","U-108","U-070","U-113","U-121","U-151","U-173","U-198","U-210"],
     stage: 5,
     sprite: "scorpiomon-x",
@@ -5507,8 +5507,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=archnemon",
   },
   {
-    name_en: "Arresterdramon: Superior Mode",
-    name_jp: "ARRESTERDRAMON_SUPERIOR",
+    name_en: "Arresterdramon (Superior Mode)",
+    name_jp: "Arresterdramon (Superior Mode)",
     next_evolutions: ["U-136","U-158"],
     stage: 5,
     sprite: "arresterdramon-superior-mode",
@@ -5535,7 +5535,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MegaKabuterimon (Red)",
-    name_jp: "AtlurKabuterimon",
+    name_jp: "AtlurKabuterimon (Red)",
     next_evolutions: ["U-121","U-228","U-084","U-125","U-168","U-009","U-033","U-059","U-067","U-091","U-115","U-113","U-122","AR-027","U-233","U-269","U-275","U-281"],
     stage: 5,
     sprite: "megakabuterimon-red",
@@ -5544,7 +5544,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MegaKabuterimon (Blue)",
-    name_jp: "ATLURKABUTERIMON-BLUE",
+    name_jp: "AtlurKabuterimon (Blue)",
     next_evolutions: ["U-009","U-046","U-067","U-084","U-089","U-097","U-121","U-122","U-125","U-168","U-233","U-249","U-253","U-257","U-269","U-115"],
     stage: 5,
     sprite: "megakabuterimon-blue",
@@ -5553,7 +5553,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Azhdarmon",
-    name_jp: "AZHDARMON",
+    name_jp: "Azhdarmon",
     next_evolutions: [],
     stage: 5,
     sprite: "azhdarmon",
@@ -5571,7 +5571,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bastemon",
-    name_jp: "BASTEMON",
+    name_jp: "Bastemon",
     next_evolutions: ["U-037","U-082","U-152","U-160","U-187","U-238","U-025","U-034","U-042","U-060","U-081","U-091","U-112","U-115","U-149","U-163","U-211","U-229","U-249"],
     stage: 5,
     sprite: "bastemon",
@@ -5580,7 +5580,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Betsumon",
-    name_jp: "BETSUMON",
+    name_jp: "Betsumon",
     next_evolutions: [],
     stage: 5,
     sprite: "betsumon",
@@ -5598,7 +5598,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BishopChessmon",
-    name_jp: "BISHOPCHESSMON",
+    name_jp: "BishopChessmon",
     next_evolutions: [],
     stage: 5,
     sprite: "bishopchessmon",
@@ -5607,7 +5607,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackKingNumemon",
-    name_jp: "BLACKKINGNUMEMON",
+    name_jp: "BlackKingNumemon",
     next_evolutions: ["U-070","U-108","U-203","U-167","U-207"],
     stage: 5,
     sprite: "blackkingnumemon",
@@ -5616,7 +5616,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackMachGaogamon",
-    name_jp: "BLACKMACHGAOGAMON",
+    name_jp: "BlackMachGaogamon",
     next_evolutions: ["U-286"],
     stage: 5,
     sprite: "blackmachgaogamon",
@@ -5625,7 +5625,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackWarGrowlmon",
-    name_jp: "BLACKMEGALOGROWMON",
+    name_jp: "BlackMegaloGrowmon",
     next_evolutions: ["U-037","U-040","U-044","U-059","U-072","U-091","U-105","U-163"],
     stage: 5,
     sprite: "blackwargrowlmon",
@@ -5634,7 +5634,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackRapidmon",
-    name_jp: "BLACKRAPIDMON",
+    name_jp: "BlackRapidmon",
     next_evolutions: ["U-042","U-168","U-170","U-201","U-233","U-238"],
     stage: 5,
     sprite: "blackrapidmon",
@@ -5652,7 +5652,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlueMeramon",
-    name_jp: "BLUEMERAMON",
+    name_jp: "BlueMeramon",
     next_evolutions: ["U-049","U-017","U-034","U-072","U-078","U-079","U-107","U-127","U-151","U-160","U-176","U-199","U-200","U-228","H-028"],
     stage: 5,
     sprite: "bluemeramon",
@@ -5670,7 +5670,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Brachiomon",
-    name_jp: "BRAKIMON",
+    name_jp: "Brakimon",
     next_evolutions: ["SU-008","U-271","U-013","U-054","U-163","U-168","U-173","U-197","U-204","SU-040","U-233"],
     stage: 5,
     sprite: "brachiomon",
@@ -5679,7 +5679,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Butenmon",
-    name_jp: "BUTENMON",
+    name_jp: "Butenmon",
     next_evolutions: ["U-064","U-065","U-105","U-116","U-127","U-257"],
     stage: 5,
     sprite: "butenmon",
@@ -5697,7 +5697,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Canoweissmon",
-    name_jp: "CANOWEISSMON",
+    name_jp: "Canoweissmon",
     next_evolutions: ["SU-008","U-004","U-022","U-054","U-251","U-258","U-271","U-281"],
     stage: 5,
     sprite: "canoweissmon",
@@ -5706,7 +5706,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "CaptainHookmon",
-    name_jp: "CAPTAINHOOKMON",
+    name_jp: "CaptainHookmon",
     next_evolutions: [],
     stage: 5,
     sprite: "captainhookmon",
@@ -5715,7 +5715,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cargodramon",
-    name_jp: "CARGODRAMON",
+    name_jp: "Cargodramon",
     next_evolutions: ["U-051","U-072","U-180","U-197","U-281"],
     stage: 5,
     sprite: "cargodramon",
@@ -5724,7 +5724,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "CatchMamemon",
-    name_jp: "CATCHMAMEMON",
+    name_jp: "CatchMamemon",
     next_evolutions: ["U-143","U-169","U-202","U-203","U-207"],
     stage: 5,
     sprite: "catchmamemon",
@@ -5733,7 +5733,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Caturamon",
-    name_jp: "CATURAMON",
+    name_jp: "Caturamon",
     next_evolutions: ["U-198","U-234","U-236","U-028","U-037","U-124","U-170","U-211","U-232","U-284","U-290"],
     stage: 5,
     sprite: "caturamon",
@@ -5750,8 +5750,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cerberumon",
   },
   {
-    name_en: "Cerberusmon: Werewolf Mode",
-    name_jp: "CERBERUMON:WEREWOLFMODE",
+    name_en: "Cerberusmon (Werewolf Mode)",
+    name_jp: "Cerberumon (Werewolf Mode)",
     next_evolutions: ["U-169","U-206","U-232"],
     stage: 5,
     sprite: "cerberusmon-werewolf-mode",
@@ -5759,8 +5759,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cerberumon_werewolfmode",
   },
   {
-    name_en: "Cerberusmon X",
-    name_jp: "Cerberumon X",
+    name_en: "Cerberusmon (X Antibody)",
+    name_jp: "Cerberumon (X Antibody)",
     next_evolutions: ["U-236","SU-041","U-039","SU-024","U-203","U-028","U-170","U-284","U-290","U-019","U-034","U-281"],
     stage: 5,
     sprite: "cerberumon-x",
@@ -5769,7 +5769,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chaperomon",
-    name_jp: "CHAPEROMON",
+    name_jp: "Chaperomon",
     next_evolutions: ["U-055"],
     stage: 5,
     sprite: "chaperomon",
@@ -5796,7 +5796,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Climbmon",
-    name_jp: "CLIMBMON",
+    name_jp: "Climbmon",
     next_evolutions: ["U-003","U-146","U-245","U-250"],
     stage: 5,
     sprite: "climbmon",
@@ -5831,8 +5831,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cyberdramon",
   },
   {
-    name_en: "Cyberdramon X",
-    name_jp: "Cyberdramon X",
+    name_en: "Cyberdramon (X Antibody)",
+    name_jp: "Cyberdramon (X Antibody)",
     next_evolutions: ["U-144","U-128","U-126","U-265","U-105","U-096"],
     stage: 5,
     sprite: "cyberdramon-x",
@@ -5868,7 +5868,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Darumamon",
-    name_jp: "DARUMAMON",
+    name_jp: "Darumamon",
     next_evolutions: ["U-007","U-023","U-285"],
     stage: 5,
     sprite: "darumamon",
@@ -5877,7 +5877,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DexDoruGreymon",
-    name_jp: "DEATH-X-DORUGUREMON",
+    name_jp: "Death-X-DORUguremon",
     next_evolutions: ["SU-008","U-074","U-089","U-105","U-108","U-113","U-058","U-163","U-220","U-059","U-078"],
     stage: 5,
     sprite: "dexdorugreymon",
@@ -5904,7 +5904,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Destromon",
-    name_jp: "DESTROMON",
+    name_jp: "Destromon",
     next_evolutions: ["U-124","U-217"],
     stage: 5,
     sprite: "destromon",
@@ -5931,7 +5931,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Divemon",
-    name_jp: "DIVEMON",
+    name_jp: "Divemon",
     next_evolutions: ["U-003","U-146","U-245","U-250"],
     stage: 5,
     sprite: "divemon",
@@ -5949,7 +5949,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Doumon",
-    name_jp: "DOUMON",
+    name_jp: "Doumon",
     next_evolutions: ["U-198","U-234","U-236","U-034","U-117","U-149","U-152","U-169","U-200"],
     stage: 5,
     sprite: "doumon",
@@ -6030,7 +6030,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Frozomon",
-    name_jp: "FROZOMON",
+    name_jp: "Frozomon",
     next_evolutions: ["U-013","U-103","U-123","U-253"],
     stage: 5,
     sprite: "frozomon",
@@ -6047,8 +6047,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=garudamon",
   },
   {
-    name_en: "Garudamon X",
-    name_jp: "Garudamon X",
+    name_en: "Garudamon (X Antibody)",
+    name_jp: "Garudamon (X Antibody)",
     next_evolutions: ["U-126","U-128","U-265","U-105","U-096","U-028","U-127","U-167","U-170","U-284","U-290","U-069","U-078","U-104","U-116","U-165","U-196","U-225","U-273","U-274"],
     stage: 5,
     sprite: "garudamon-x",
@@ -6066,7 +6066,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ghilliedhumon",
-    name_jp: "GHILLIEDHUMON",
+    name_jp: "Ghilliedhumon",
     next_evolutions: ["U-054","U-258"],
     stage: 5,
     sprite: "ghilliedhumon",
@@ -6075,7 +6075,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gigadramon",
-    name_jp: "GIGADRAMON",
+    name_jp: "Gigadramon",
     next_evolutions: ["U-118","U-173","U-042","U-072","U-080","U-089","U-094","U-105","U-108","U-109","U-114","U-121","U-124","U-133","U-143","U-163","U-169","U-180","U-200","U-281","U-286","U-285","U-287","U-132","U-135"],
     stage: 5,
     sprite: "gigadramon",
@@ -6102,7 +6102,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gokuumon",
-    name_jp: "GOKUWMON",
+    name_jp: "Gokuwmon",
     next_evolutions: ["U-083","U-184","U-237","U-148","U-240"],
     stage: 5,
     sprite: "gokuumon",
@@ -6120,7 +6120,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "GrandGalemon",
-    name_jp: "GRANDGALEMON",
+    name_jp: "GrandGalemon",
     next_evolutions: ["U-202","U-270","U-289"],
     stage: 5,
     sprite: "grandgalemon",
@@ -6129,7 +6129,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "GrapLeomon",
-    name_jp: "GRAPPULEOMON",
+    name_jp: "GrappuLeomon",
     next_evolutions: ["U-021","U-028","U-116","U-119","U-160","U-170","U-232","U-284","U-290","U-030","U-086","U-090","U-094","U-129","U-153","U-165","U-201","U-211","U-233","U-278"],
     stage: 5,
     sprite: "grapleomon",
@@ -6138,7 +6138,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gravimon",
-    name_jp: "GRAVIMON",
+    name_jp: "Gravimon",
     next_evolutions: ["U-046"],
     stage: 5,
     sprite: "gravimon",
@@ -6147,7 +6147,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KingSukamon",
-    name_jp: "GREATKINGSCUMON",
+    name_jp: "GreatKingScumon",
     next_evolutions: [],
     stage: 5,
     sprite: "kingsukamon",
@@ -6174,7 +6174,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gyuukimon",
-    name_jp: "GYUKIMON",
+    name_jp: "Gyukimon",
     next_evolutions: ["U-093","U-197","U-285"],
     stage: 5,
     sprite: "gyuukimon",
@@ -6192,7 +6192,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Helloogarmon",
-    name_jp: "HELLOOGARMON",
+    name_jp: "Helloogarmon",
     next_evolutions: ["U-101","U-223"],
     stage: 5,
     sprite: "helloogarmon",
@@ -6228,7 +6228,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Huankunmon",
-    name_jp: "HUANKUNMON",
+    name_jp: "Huankunmon",
     next_evolutions: ["U-083","U-225","U-239","U-283"],
     stage: 5,
     sprite: "huankunmon",
@@ -6237,7 +6237,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Infermon",
-    name_jp: "INFERMON",
+    name_jp: "Infermon",
     next_evolutions: ["U-037","U-039","U-061","U-078","U-080","U-111","U-198","U-200","U-275","SU-008"],
     stage: 5,
     sprite: "infermon",
@@ -6246,7 +6246,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Meteormon",
-    name_jp: "INSEKIMON",
+    name_jp: "Insekimon",
     next_evolutions: ["U-028","U-017","U-029","U-046","U-049","U-060","U-067","U-081","U-095","U-150","U-167","U-168","U-196"],
     stage: 5,
     sprite: "meteormon",
@@ -6273,7 +6273,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Jokermon",
-    name_jp: "JOKERMON",
+    name_jp: "Jokermon",
     next_evolutions: ["U-037","U-182","U-186","U-200","U-038"],
     stage: 5,
     sprite: "jokermon",
@@ -6300,7 +6300,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Karakurumon",
-    name_jp: "KARAKURUMON",
+    name_jp: "Karakurumon",
     next_evolutions: ["U-145","U-225","U-231"],
     stage: 5,
     sprite: "karakurumon",
@@ -6309,7 +6309,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Karatenmon",
-    name_jp: "KARATENMON",
+    name_jp: "Karatenmon",
     next_evolutions: ["U-225","U-264","U-285","U-019","U-034","U-038","U-108","U-109","U-149","U-265","U-273"],
     stage: 5,
     sprite: "karatenmon",
@@ -6327,7 +6327,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kumbhiramon",
-    name_jp: "KUMBHIRAMON",
+    name_jp: "Kumbhiramon",
     next_evolutions: ["U-198","U-234","U-236","U-019","U-028","U-037","U-113","U-211","U-282","U-284","U-290"],
     stage: 5,
     sprite: "kumbhiramon",
@@ -6336,7 +6336,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kyukimon",
-    name_jp: "KYUKIMON",
+    name_jp: "Kyukimon",
     next_evolutions: ["U-178","U-220","U-034","U-067","U-111","U-125","U-149","U-234","U-255"],
     stage: 5,
     sprite: "kyukimon",
@@ -6353,8 +6353,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ladydevimon",
   },
   {
-    name_en: "LadyDevimon X",
-    name_jp: "LadyDevimon X",
+    name_en: "LadyDevimon (X Antibody)",
+    name_jp: "LadyDevimon (X Antibody)",
     next_evolutions: ["U-190","U-113","U-229","U-036"],
     stage: 5,
     sprite: "ladydevimon-x",
@@ -6363,7 +6363,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lamiamon",
-    name_jp: "LAMIAMON",
+    name_jp: "Lamiamon",
     next_evolutions: ["U-162"],
     stage: 5,
     sprite: "lamiamon",
@@ -6372,7 +6372,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lamortmon",
-    name_jp: "LAMORTMON",
+    name_jp: "Lamortmon",
     next_evolutions: ["U-019","U-082","U-116","U-125","U-160","U-206","U-232"],
     stage: 5,
     sprite: "lamortmon",
@@ -6407,8 +6407,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lilimon",
   },
   {
-    name_en: "Lillymon X",
-    name_jp: "Lilimon X",
+    name_en: "Lillymon (X Antibody)",
+    name_jp: "Lilimon (X Antibody)",
     next_evolutions: ["U-216","U-036","U-273","U-203","U-031","U-125","U-152","U-159","U-228","U-229"],
     stage: 5,
     sprite: "lillymon-x",
@@ -6435,7 +6435,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Loudmon",
-    name_jp: "LOUDMON",
+    name_jp: "Loudmon",
     next_evolutions: ["U-120"],
     stage: 5,
     sprite: "loudmon",
@@ -6444,7 +6444,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Luminamon",
-    name_jp: "LUMINAMON",
+    name_jp: "Luminamon",
     next_evolutions: [],
     stage: 5,
     sprite: "luminamon",
@@ -6462,7 +6462,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Majiramon",
-    name_jp: "MAJIRAMON",
+    name_jp: "Majiramon",
     next_evolutions: ["U-070","U-091","U-092","U-163","U-278","U-028","U-037","U-127","U-211","U-284","U-290"],
     stage: 5,
     sprite: "majiramon",
@@ -6471,7 +6471,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Makuramon",
-    name_jp: "MAKURAMON",
+    name_jp: "Makuramon",
     next_evolutions: ["AR-047","U-061","U-233","U-028","U-037","U-060","U-124","U-160","U-200","U-211","U-284","U-290"],
     stage: 5,
     sprite: "makuramon",
@@ -6488,8 +6488,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=mamemon",
   },
   {
-    name_en: "Mamemon X",
-    name_jp: "Mamemon X",
+    name_en: "Mamemon (X Antibody)",
+    name_jp: "Mamemon (X Antibody)",
     next_evolutions: ["U-126","U-086","U-096","U-144","U-123","U-171","U-110","U-062","U-032","U-150","U-165","U-207","U-208","U-281"],
     stage: 5,
     sprite: "mamemon-x",
@@ -6515,8 +6515,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=mammon",
   },
   {
-    name_en: "Mammothmon X",
-    name_jp: "Mammon X",
+    name_en: "Mammothmon (X Antibody)",
+    name_jp: "Mammon (X Antibody)",
     next_evolutions: ["U-113","U-190","U-108","U-063","U-254","U-036","U-229","U-169","U-238","U-253"],
     stage: 5,
     sprite: "mammothmon-x",
@@ -6534,7 +6534,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MarineBullmon",
-    name_jp: "MARINBULLMON",
+    name_jp: "MarinBullmon",
     next_evolutions: ["U-007","U-145","U-231","U-023"],
     stage: 5,
     sprite: "marinebullmon",
@@ -6561,7 +6561,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MasterTyrannomon",
-    name_jp: "MASTERTYRANOMON",
+    name_jp: "MasterTyranomon",
     next_evolutions: ["U-017","U-054","U-084","U-118","U-160","U-168","U-180","U-217","U-279","U-281","U-011","U-058","SU-017","U-105","U-109","U-193","U-241","U-253","U-282","U-072","U-163"],
     stage: 5,
     sprite: "mastertyrannomon",
@@ -6570,7 +6570,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Matadormon",
-    name_jp: "MATADRMON",
+    name_jp: "Matadrmon",
     next_evolutions: ["U-112","U-206","U-238","U-034","U-037","U-044","U-074","U-111","U-149","U-200","U-228","U-249","U-255","U-275"],
     stage: 5,
     sprite: "matadormon",
@@ -6588,7 +6588,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "WarGrowlmon (Orange)",
-    name_jp: "MEGALOGRAWMON_ORANGE",
+    name_jp: "MegaloGrowmon (Orange)",
     next_evolutions: ["U-091","U-092","U-163","U-040","U-044","U-045","U-050","U-059","U-072","U-078","U-085","SU-014","U-124","U-133","U-161","U-164","U-170","U-172","U-180","U-241","U-257","U-277","U-281"],
     stage: 5,
     sprite: "wargrowlmon-orange",
@@ -6605,8 +6605,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=megalogrowmon",
   },
   {
-    name_en: "WarGrowlmon X",
-    name_jp: "MegaloGrowmon X",
+    name_en: "WarGrowlmon (X Antibody)",
+    name_jp: "MegaloGrowmon (X Antibody)",
     next_evolutions: ["U-164","U-039","U-203","U-085","U-086","U-161","U-197","U-271","U-040","U-044","U-045","U-050","U-059","SU-014","U-091","U-124","U-133","U-163","U-170","U-172","U-180","U-241","U-257","SU-042","U-281","U-277"],
     stage: 5,
     sprite: "wargrowlmon-x",
@@ -6623,8 +6623,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=megaseadramon",
   },
   {
-    name_en: "MegaSeadramon X",
-    name_jp: "MegaSeadramon X",
+    name_en: "MegaSeadramon (X Antibody)",
+    name_jp: "MegaSeadramon (X Antibody)",
     next_evolutions: ["U-108","U-058","U-254","U-113","U-282","U-044","U-089","U-125","U-151","U-159","U-172","U-173","U-204","U-205","U-238","U-259"],
     stage: 5,
     sprite: "megaseadramon-x",
@@ -6641,8 +6641,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=meicrackmon",
   },
   {
-    name_en: "Maycrackmon: Vicious Mode",
-    name_jp: "Meicrackmon: Vicious Mode",
+    name_en: "Maycrackmon (Vicious Mode)",
+    name_jp: "Meicrackmon (Vicious Mode)",
     next_evolutions: ["U-218","SU-031","U-187","U-228"],
     stage: 5,
     sprite: "maycrackmon-vicious-mode",
@@ -6651,7 +6651,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mephistomon",
-    name_jp: "MEPHISMON",
+    name_jp: "Mephismon",
     next_evolutions: ["U-112","U-160","U-200","U-034","U-040","U-078","U-115","U-117","U-173","U-234"],
     stage: 5,
     sprite: "mephistomon",
@@ -6659,8 +6659,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=mephismon",
   },
   {
-    name_en: "Mephistomon X",
-    name_jp: "Mephismon X",
+    name_en: "Mephistomon (X Antibody)",
+    name_jp: "Mephismon (X Antibody)",
     next_evolutions: ["U-063","U-085","U-229","U-036"],
     stage: 5,
     sprite: "mephistomon-x",
@@ -6695,8 +6695,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon-v",
   },
   {
-    name_en: "MetalGreymon (Virus)",
-    name_jp: "MetalGreymon (Virus)",
+    name_en: "MetalGreymon",
+    name_jp: "MetalGreymon",
     next_evolutions: ["U-047","U-105","U-281","U-180","U-114","U-119","U-044","U-194","U-277","H-002","U-006","U-011","U-022","U-045","U-049","U-061","U-069","U-072","U-078","U-080","U-091","U-133","U-132","U-167","U-168","U-170","U-179","U-200","U-202","U-210","U-275","U-282","U-285","U-288"],
     stage: 5,
     sprite: "metalgreymon-virus",
@@ -6704,8 +6704,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon-web",
   },
   {
-    name_en: "MetalGreymon: Alterous Mode",
-    name_jp: "METALGREYMON:Alterous Mode",
+    name_en: "MetalGreymon (Alterous Mode)",
+    name_jp: "MetalGreymon (Alterous Mode)",
     next_evolutions: ["U-044","U-105","U-194","U-277","U-047","U-180","U-281"],
     stage: 5,
     sprite: "metalgreymon-alterous-mode",
@@ -6713,8 +6713,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon_alter",
   },
   {
-    name_en: "MetalGreymon X",
-    name_jp: "MetalGreymon X",
+    name_en: "MetalGreymon (X Antibody)",
+    name_jp: "MetalGreymon (X Antibody)",
     next_evolutions: ["U-282","U-273","U-203","U-108","U-113","U-167","H-002","U-011","U-030","U-044","U-058","U-069","U-091","U-105","U-133","U-132","U-168","U-170","U-180","U-281","U-285","U-288"],
     stage: 5,
     sprite: "metalgreymon-x",
@@ -6722,8 +6722,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon_va_x",
   },
   {
-    name_en: "MetalGreymon (Virus) X",
-    name_jp: "MetalGreymon (Virus) X",
+    name_en: "MetalGreymon (X Antibody)",
+    name_jp: "MetalGreymon (X Antibody)",
     next_evolutions: ["U-045","U-271","U-254","U-208","U-172","U-058"],
     stage: 5,
     sprite: "metalgreymon-virus-x",
@@ -6732,7 +6732,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MetallifeKuwagamon",
-    name_jp: "METALLIFEKUWAGAMON",
+    name_jp: "MetallifeKuwagamon",
     next_evolutions: ["U-009","U-018","U-113","U-167","U-181","U-219","U-220","U-269","U-122"],
     stage: 5,
     sprite: "metallifekuwagamon",
@@ -6750,7 +6750,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MetalMamemon (X Antibody)",
-    name_jp: "METALMAMEMON_X",
+    name_jp: "MetalMamemon (X Antibody)",
     next_evolutions: ["U-150","U-168","U-207","U-208"],
     stage: 5,
     sprite: "metalmamemon-x",
@@ -6767,8 +6767,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=metaltyranomon",
   },
   {
-    name_en: "MetalTyrannomon X",
-    name_jp: "MetalTyranomon X",
+    name_en: "MetalTyrannomon (X Antibody)",
+    name_jp: "Metal Tyranomon (X Antibody)",
     next_evolutions: ["SU-005","U-282","SU-041","U-039","U-203","U-164","U-170","SU-010","U-042","U-044","U-054","U-110","U-163","U-169","U-180","U-281","U-285"],
     stage: 5,
     sprite: "metaltyrannomon-x",
@@ -6777,7 +6777,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mihiramon",
-    name_jp: "MIHIRAMON",
+    name_jp: "Mihiramon",
     next_evolutions: ["U-028","U-091","U-092","U-163","U-170","U-284","U-290","U-037","U-127","U-211"],
     stage: 5,
     sprite: "mihiramon",
@@ -6786,7 +6786,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mistymon",
-    name_jp: "MISTYMON",
+    name_jp: "Mistymon",
     next_evolutions: ["U-044","U-059","U-061","U-067","U-094","U-153","U-161","U-163","U-199","U-285"],
     stage: 5,
     sprite: "mistymon",
@@ -6803,8 +6803,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=monzaemon",
   },
   {
-    name_en: "Monzaemon X",
-    name_jp: "Monzaemon X",
+    name_en: "Monzaemon (X Antibody)",
+    name_jp: "Monzaemon (X Antibody)",
     next_evolutions: ["U-062","U-188","U-126","U-086","U-205","U-096"],
     stage: 5,
     sprite: "monzaemon-x",
@@ -6840,7 +6840,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Oboromon",
-    name_jp: "OBOROMON",
+    name_jp: "Oboromon",
     next_evolutions: ["U-007","U-093","U-197","U-264","U-285"],
     stage: 5,
     sprite: "oboromon",
@@ -6857,8 +6857,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=okuwamon",
   },
   {
-    name_en: "Okuwamon X",
-    name_jp: "Okuwamon X",
+    name_en: "Okuwamon (X Antibody)",
+    name_jp: "Okuwamon (X Antibody)",
     next_evolutions: ["U-113","U-229","U-036","U-254","U-089","U-108","U-009","U-115","U-121","U-122","U-125","U-167","U-269"],
     stage: 5,
     sprite: "okuwamon-x",
@@ -6867,7 +6867,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Oleamon",
-    name_jp: "OLEAMON",
+    name_jp: "Oleamon",
     next_evolutions: ["U-160","U-206"],
     stage: 5,
     sprite: "oleamon",
@@ -6876,7 +6876,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "OmniShoutmon",
-    name_jp: "OMEGASHOUTMON",
+    name_jp: "OmegaShoutmon",
     next_evolutions: ["U-024","U-146","U-247","U-248","U-093","U-158","U-192","U-194","U-201","U-246","U-249"],
     stage: 5,
     sprite: "omnishoutmon",
@@ -6884,8 +6884,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=omegashoutmon",
   },
   {
-    name_en: "OmniShoutmon X",
-    name_jp: "OmegaShoutmon X",
+    name_en: "OmniShoutmon (X Antibody)",
+    name_jp: "OmegaShoutmon (X Antibody)",
     next_evolutions: ["U-221","U-006","U-086","U-265","U-096"],
     stage: 5,
     sprite: "omnishoutmon-x",
@@ -6912,7 +6912,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pajiramon",
-    name_jp: "PAJIRAMON",
+    name_jp: "Pajiramon",
     next_evolutions: ["AR-047","U-061","U-233","U-028","U-037","U-054","U-060","U-080","U-117","U-149","U-211","U-228","U-284","U-290"],
     stage: 5,
     sprite: "pajiramon",
@@ -6930,7 +6930,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "IceLeomon",
-    name_jp: "PANJYAMON",
+    name_jp: "Panjyamon",
     next_evolutions: ["U-013","U-103","U-123","U-125","U-232","U-253","U-030","U-086","U-090","U-107","U-126","U-176","U-191","U-234","U-235"],
     stage: 5,
     sprite: "iceleomon",
@@ -6939,7 +6939,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "IceLeomon (X Antibody)",
-    name_jp: "PANJYAMON_X",
+    name_jp: "Panjyamon (X Antibody)",
     next_evolutions: ["U-013","U-094","U-103","U-191","U-086","SU-014","U-125","U-126","U-232"],
     stage: 5,
     sprite: "iceleomon-x",
@@ -6975,7 +6975,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pistmon",
-    name_jp: "PISTMON",
+    name_jp: "Pistmon",
     next_evolutions: ["U-003","U-146","U-245","U-250"],
     stage: 5,
     sprite: "pistmon",
@@ -7020,7 +7020,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Regulusmon",
-    name_jp: "REGULUSMON",
+    name_jp: "Regulusmon",
     next_evolutions: ["U-022","U-168","U-251"],
     stage: 5,
     sprite: "regulusmon",
@@ -7037,8 +7037,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=rizegreymon",
   },
   {
-    name_en: "RizeGreymon X",
-    name_jp: "RizeGreymon X",
+    name_en: "RizeGreymon (X Antibody)",
+    name_jp: "RizeGreymon (X Antibody)",
     next_evolutions: ["U-110","U-197","U-126","U-205","U-105","U-096"],
     stage: 5,
     sprite: "rizegreymon-x",
@@ -7047,7 +7047,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "RookChessmon",
-    name_jp: "ROOKCHESSMON",
+    name_jp: "RookChessmon",
     next_evolutions: ["U-016","U-042","U-124","U-140","U-215"],
     stage: 5,
     sprite: "rookchessmon",
@@ -7055,8 +7055,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=rookchessmon",
   },
   {
-    name_en: "Lucemon: Chaos Mode",
-    name_jp: "Lucemon: Falldown Mode",
+    name_en: "Lucemon (Chaos Mode)",
+    name_jp: "Lucemon (Falldown Mode)",
     next_evolutions: ["SU-005","U-282","U-039","U-216","U-203","U-034","U-157","U-078","U-112","U-129","U-156","U-238","U-275"],
     stage: 5,
     sprite: "lucemon-chaos-mode",
@@ -7065,7 +7065,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sagomon",
-    name_jp: "SAGOMON",
+    name_jp: "Sagomon",
     next_evolutions: ["U-237","U-239","U-263","U-283","U-284"],
     stage: 5,
     sprite: "sagomon",
@@ -7074,7 +7074,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sandiramon",
-    name_jp: "SANDIRAMON",
+    name_jp: "Sandiramon",
     next_evolutions: ["U-091","U-092","U-163","U-028","U-037","U-080","U-211","U-284","U-290"],
     stage: 5,
     sprite: "sandiramon",
@@ -7083,7 +7083,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sanzomon",
-    name_jp: "SANZOMON",
+    name_jp: "Sanzomon",
     next_evolutions: ["U-100","U-184","U-263","U-240"],
     stage: 5,
     sprite: "sanzomon",
@@ -7119,7 +7119,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shaujinmon",
-    name_jp: "SHAWUJINMON",
+    name_jp: "Shawujinmon",
     next_evolutions: ["U-140","U-176","U-225","U-241","U-257","U-034","U-067","U-097","U-143","U-168","U-173","U-183","U-202","U-240","U-260","U-278","U-151"],
     stage: 5,
     sprite: "shaujinmon",
@@ -7128,7 +7128,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shishimamon",
-    name_jp: "SHISHIMAMON",
+    name_jp: "Shishimamon",
     next_evolutions: ["U-007","U-023","U-285"],
     stage: 5,
     sprite: "shishimamon",
@@ -7137,7 +7137,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shootmon",
-    name_jp: "SHOOTMON",
+    name_jp: "Shootmon",
     next_evolutions: ["U-003","U-146","U-245","U-250"],
     stage: 5,
     sprite: "shootmon",
@@ -7164,7 +7164,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sinduramon",
-    name_jp: "SINDURAMON",
+    name_jp: "Sinduramon",
     next_evolutions: ["AR-047","U-061","U-233","U-028","U-037","U-049","U-060","U-065","U-069","U-124","U-127","U-157","U-211","U-225","U-273","U-284","U-290"],
     stage: 5,
     sprite: "sinduramon",
@@ -7200,7 +7200,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "SkullSatamon",
-    name_jp: "SKULLSATAMON",
+    name_jp: "SkullSatamon",
     next_evolutions: ["U-015","U-076","U-086","U-020","U-034","U-037","U-067","U-078","U-080","U-095","U-096","U-111","U-112","U-163","U-181","U-200","U-274","U-275","U-117"],
     stage: 5,
     sprite: "skullsatamon",
@@ -7209,7 +7209,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Soloogarmon",
-    name_jp: "SOLOOGARMON",
+    name_jp: "Soloogarmon",
     next_evolutions: ["U-049","U-053","U-101","U-222"],
     stage: 5,
     sprite: "soloogarmon",
@@ -7218,7 +7218,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Splashmon",
-    name_jp: "SPLASHMON",
+    name_jp: "Splashmon",
     next_evolutions: ["H-019","U-010","U-014"],
     stage: 5,
     sprite: "splashmon",
@@ -7245,7 +7245,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tankdramon",
-    name_jp: "TANKDRAMON",
+    name_jp: "Tankdramon",
     next_evolutions: ["U-004","U-051","U-072","U-180","U-197","U-238","U-091","U-118","U-170","U-030"],
     stage: 5,
     sprite: "tankdramon",
@@ -7254,7 +7254,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Taomon",
-    name_jp: "TAOMON",
+    name_jp: "Taomon",
     next_evolutions: ["U-149","U-198","U-234","U-235","U-236","U-019","U-030","U-034","U-049","U-065","U-081","U-086","U-127","U-187","U-199","U-225","U-232","U-274","U-276","U-117"],
     stage: 5,
     sprite: "taomon",
@@ -7272,7 +7272,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tempomon",
-    name_jp: "TEMPOMON",
+    name_jp: "Tempomon",
     next_evolutions: ["U-003","U-146","U-245","U-250"],
     stage: 5,
     sprite: "tempomon",
@@ -7281,7 +7281,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Thetismon",
-    name_jp: "THETISMON",
+    name_jp: "Thetismon",
     next_evolutions: ["U-008","U-014","U-070","U-159","U-173","U-203","U-210"],
     stage: 5,
     sprite: "thetismon",
@@ -7316,8 +7316,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=triceramon",
   },
   {
-    name_en: "Triceramon X",
-    name_jp: "Triceramon X",
+    name_en: "Triceramon (X Antibody)",
+    name_jp: "Triceramon (X Antibody)",
     next_evolutions: ["U-271","U-058","U-208","U-254","U-172","U-085","U-086","U-161","U-197","U-228","U-258","U-079","U-109","U-110","U-113","U-133","U-232","U-273","U-284"],
     stage: 5,
     sprite: "triceramon-x",
@@ -7326,7 +7326,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Chirinmon",
-    name_jp: "TYILINMON",
+    name_jp: "Tyilinmon",
     next_evolutions: ["H-007","U-140","U-163","U-176","U-178","U-219","U-225","U-241","U-257","U-010","U-034","U-069","U-129","U-159","U-168","U-187","U-211","U-238","C-129","U-269","U-273","U-274"],
     stage: 5,
     sprite: "chirinmon",
@@ -7344,7 +7344,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vajramon",
-    name_jp: "VAJRAMON",
+    name_jp: "Vajramon",
     next_evolutions: ["U-091","U-092","U-163","U-010","U-019","U-028","U-037","U-049","U-105","U-111","U-113","U-211","U-232","U-234","U-262","U-284","U-285","U-290"],
     stage: 5,
     sprite: "vajramon",
@@ -7370,8 +7370,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=vamdemon",
   },
   {
-    name_en: "Myotismon X",
-    name_jp: "Vamdemon X",
+    name_en: "Myotismon (X Antibody)",
+    name_jp: "Vamdemon (X Antibody)",
     next_evolutions: ["U-073","U-063","U-172","U-208","U-058"],
     stage: 5,
     sprite: "myotismon-x",
@@ -7380,7 +7380,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vermilimon",
-    name_jp: "VERMILLIMON",
+    name_jp: "Vermillimon",
     next_evolutions: ["U-044","U-105","U-194","U-277","U-281","U-017","U-054","U-092","SU-017","U-109","U-132","U-180","U-228","U-253"],
     stage: 5,
     sprite: "vermilimon",
@@ -7389,7 +7389,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vespamon",
-    name_jp: "VESPAMON",
+    name_jp: "Vespamon",
     next_evolutions: ["U-214","U-265"],
     stage: 5,
     sprite: "vespamon",
@@ -7398,7 +7398,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vikaralamon",
-    name_jp: "VIKARALAMON",
+    name_jp: "Vikaralamon",
     next_evolutions: ["U-198","U-234","U-236","U-019","U-028","U-037","U-211","U-284","U-290"],
     stage: 5,
     sprite: "vikaralamon",
@@ -7407,7 +7407,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Volcanomon",
-    name_jp: "VOLCAMON",
+    name_jp: "Volcamon",
     next_evolutions: ["U-017","U-054","U-160","U-180","U-238","U-279","U-021","U-030","U-049","U-072","U-107","U-117","U-163","U-167","U-201","U-233","U-281","U-132"],
     stage: 5,
     sprite: "volcanomon",
@@ -7416,7 +7416,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Volcdramon",
-    name_jp: "VOLCDORAMON",
+    name_jp: "Volcdoramon",
     next_evolutions: ["U-167","U-282","U-258","U-281"],
     stage: 5,
     sprite: "volcdramon",
@@ -7425,7 +7425,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vulturemon",
-    name_jp: "VULTUREMON",
+    name_jp: "Vulturemon",
     next_evolutions: ["U-046","U-085","U-199"],
     stage: 5,
     sprite: "vulturemon",
@@ -7461,7 +7461,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "WereGarurumon (Black)",
-    name_jp: "WEREGARURUMON_BLACK",
+    name_jp: "WereGarurumon (Black)",
     next_evolutions: ["U-165","U-168","U-169","U-194","U-286","U-010","U-030","H-004","U-049","U-053","U-078","U-086","U-090","U-117","U-125","U-133","U-170","U-173","U-175","U-176","U-201","U-229","U-233","U-234","U-238","U-282"],
     stage: 5,
     sprite: "weregarurumon-black",
@@ -7469,8 +7469,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=weregarurumon_black",
   },
   {
-    name_en: "WereGarurumon X",
-    name_jp: "WereGarurumon X",
+    name_en: "WereGarurumon (X Antibody)",
+    name_jp: "WereGarurumon (X Antibody)",
     next_evolutions: ["U-170","U-273","U-203","U-028","U-165","U-211","U-228","U-284","U-290","U-010","H-004","U-049","U-053","U-078","U-091","U-133","U-168","U-169","U-173","U-229","U-233","U-234","U-238","U-282","U-086"],
     stage: 5,
     sprite: "weregarurumon-x",
@@ -7497,7 +7497,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Wisemon",
-    name_jp: "WISEMON",
+    name_jp: "Wisemon",
     next_evolutions: ["U-009","U-018","U-113","U-181","U-038","U-059","U-078","U-090","U-138","U-161","U-200","U-249","U-262","U-275"],
     stage: 5,
     sprite: "wisemon",
@@ -7506,7 +7506,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Xingtianmon",
-    name_jp: "XINGTIANMON",
+    name_jp: "Xingtianmon",
     next_evolutions: ["U-083","U-237","U-263"],
     stage: 5,
     sprite: "xingtianmon",
@@ -7524,7 +7524,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Crowmon",
-    name_jp: "YATAGARAMON_AXCEL",
+    name_jp: "Yatagaramon (AXCEL)",
     next_evolutions: ["U-036","U-039","U-140","U-176","U-203","U-225","U-228","U-236","U-241","U-257","U-258","U-273","U-127","U-175","U-290"],
     stage: 5,
     sprite: "crowmon-axcel",
@@ -7533,7 +7533,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Zamielmon",
-    name_jp: "ZAMIELMON",
+    name_jp: "Zamielmon",
     next_evolutions: ["U-012","U-016","U-153","U-154"],
     stage: 5,
     sprite: "zamielmon",
@@ -7551,7 +7551,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Abbadomon",
-    name_jp: "ABBADOMON",
+    name_jp: "Abbadomon",
     next_evolutions: ["U-002"],
     stage: 6,
     sprite: "abbadomon",
@@ -7560,7 +7560,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Abbadomon Core",
-    name_jp: "ABBADOMONCORE",
+    name_jp: "Abbadomon Core",
     next_evolutions: [],
     stage: 6,
     sprite: "abbadomon-core",
@@ -7569,7 +7569,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Achillesmon",
-    name_jp: "ACHILLESMON",
+    name_jp: "Achillesmon",
     next_evolutions: [],
     stage: 6,
     sprite: "achillesmon",
@@ -7605,7 +7605,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Amaterasumon",
-    name_jp: "AMATERASUMON",
+    name_jp: "Amaterasumon",
     next_evolutions: ["U-098"],
     stage: 6,
     sprite: "amaterasumon",
@@ -7614,7 +7614,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Amphimon",
-    name_jp: "AMPHIMON",
+    name_jp: "Amphimon",
     next_evolutions: [],
     stage: 6,
     sprite: "amphimon",
@@ -7740,7 +7740,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Arcturusmon",
-    name_jp: "ARCTURUSMON",
+    name_jp: "Arcturusmon",
     next_evolutions: ["U-209","U-217"],
     stage: 6,
     sprite: "arcturusmon",
@@ -7749,7 +7749,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ariemon",
-    name_jp: "ARIEMON",
+    name_jp: "Ariemon",
     next_evolutions: ["U-098"],
     stage: 6,
     sprite: "ariemon",
@@ -7758,7 +7758,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Armamon",
-    name_jp: "ARMAMON",
+    name_jp: "Armamon",
     next_evolutions: [],
     stage: 6,
     sprite: "armamon",
@@ -7767,7 +7767,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Babamon",
-    name_jp: "BABAMON",
+    name_jp: "Babamon",
     next_evolutions: ["U-228"],
     stage: 6,
     sprite: "babamon",
@@ -7776,7 +7776,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bacchusmon",
-    name_jp: "BACCHUSMON",
+    name_jp: "Bacchusmon",
     next_evolutions: [],
     stage: 6,
     sprite: "bacchusmon",
@@ -7803,7 +7803,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BanchoGolemon",
-    name_jp: "BANCHOGOLEMON",
+    name_jp: "BanchoGolemon",
     next_evolutions: [],
     stage: 6,
     sprite: "banchogolemon",
@@ -7839,7 +7839,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BanchoStingmon",
-    name_jp: "BANCHOSTINGMON",
+    name_jp: "BanchoStingmon",
     next_evolutions: ["U-134"],
     stage: 6,
     sprite: "banchostingmon",
@@ -7857,7 +7857,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BeelStarmon",
-    name_jp: "BEELSTARMON",
+    name_jp: "BeelStarmon",
     next_evolutions: ["SU-006"],
     stage: 6,
     sprite: "beelstarmon",
@@ -7865,8 +7865,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=beelstarmon",
   },
   {
-    name_en: "BeelStarmon X",
-    name_jp: "BeelStarmon X",
+    name_en: "BeelStarmon (X Antibody)",
+    name_jp: "BeelStarmon (X Antibody)",
     next_evolutions: ["SU-013","SU-005"],
     stage: 6,
     sprite: "beelstarmon-x",
@@ -7883,8 +7883,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=beelzebumon",
   },
   {
-    name_en: "Beelzemon (2010 Anime Version)",
-    name_jp: "BEELZEBUMON-XWARS",
+    name_en: "Beelzemon (2010)",
+    name_jp: "Beelzebumon (2010)",
     next_evolutions: ["SU-006"],
     stage: 6,
     sprite: "beelzemon-2010",
@@ -7901,8 +7901,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=belialvamdemon",
   },
   {
-    name_en: "Belphemon: Rage Mode",
-    name_jp: "Belphemon: Rage Mode",
+    name_en: "Belphemon (Rage Mode)",
+    name_jp: "Belphemon (Rage Mode)",
     next_evolutions: ["SU-033","U-167","SU-007"],
     stage: 6,
     sprite: "belphemon-rage-mode",
@@ -7911,7 +7911,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BigUkkomon",
-    name_jp: "BIGUKKOMON",
+    name_jp: "BigUkkomon",
     next_evolutions: [],
     stage: 6,
     sprite: "bigukkomon",
@@ -7920,7 +7920,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackSaintGargomon",
-    name_jp: "BLACKSAINTGALGOMON",
+    name_jp: "BlackSaintGalgomon",
     next_evolutions: ["U-233"],
     stage: 6,
     sprite: "blackmegagargomon",
@@ -7929,7 +7929,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackSeraphimon",
-    name_jp: "BLACKSERAPHIMON",
+    name_jp: "BlackSeraphimon",
     next_evolutions: ["U-078"],
     stage: 6,
     sprite: "blackseraphimon",
@@ -7938,7 +7938,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "BlackWarGreymon",
-    name_jp: "BLACKWARGREYMON",
+    name_jp: "BlackWarGreymon",
     next_evolutions: ["SU-035","SU-037"],
     stage: 6,
     sprite: "blackwargreymon",
@@ -7946,8 +7946,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=blackwargreymon",
   },
   {
-    name_en: "BlackWarGreymon X",
-    name_jp: "BlackWarGreymon X",
+    name_en: "BlackWarGreymon (X Antibody)",
+    name_jp: "BlackWarGreymon (X Antibody)",
     next_evolutions: ["SU-012","SU-004","SU-022"],
     stage: 6,
     sprite: "blackwargreymon-x",
@@ -7956,7 +7956,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Blastmon",
-    name_jp: "BLASTMON",
+    name_jp: "Blastmon",
     next_evolutions: [],
     stage: 6,
     sprite: "blastmon",
@@ -7974,7 +7974,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Bloomlordmon",
-    name_jp: "BLOOMLORDMON",
+    name_jp: "Bloomlordmon",
     next_evolutions: [],
     stage: 6,
     sprite: "bloomlordmon",
@@ -8001,7 +8001,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Brigadramon",
-    name_jp: "BRIGADRAMON",
+    name_jp: "Brigadramon",
     next_evolutions: [],
     stage: 6,
     sprite: "brigadramon",
@@ -8019,7 +8019,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Callismon",
-    name_jp: "CALLISMON",
+    name_jp: "Callismon",
     next_evolutions: [],
     stage: 6,
     sprite: "callismon",
@@ -8028,7 +8028,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cannondramon",
-    name_jp: "CANNONDRAMON",
+    name_jp: "Cannondramon",
     next_evolutions: ["U-072"],
     stage: 6,
     sprite: "cannondramon",
@@ -8037,7 +8037,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cendrillmon",
-    name_jp: "CENDRILLMON",
+    name_jp: "Cendrillmon",
     next_evolutions: [],
     stage: 6,
     sprite: "cendrillmon",
@@ -8046,7 +8046,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ceresmon",
-    name_jp: "CERESMON",
+    name_jp: "Ceresmon",
     next_evolutions: [],
     stage: 6,
     sprite: "ceresmon",
@@ -8055,7 +8055,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cernumon",
-    name_jp: "CERNUMON",
+    name_jp: "Cernumon",
     next_evolutions: [],
     stage: 6,
     sprite: "cernumon",
@@ -8063,8 +8063,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cerunumon",
   },
   {
-    name_en: "Chaosdramon X",
-    name_jp: "Chaosdramon X",
+    name_en: "Chaosdramon (X Antibody)",
+    name_jp: "Chaosdramon (X Antibody)",
     next_evolutions: ["SU-012","SU-013","SU-029"],
     stage: 6,
     sprite: "chaosdramon-x",
@@ -8073,7 +8073,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ChaosGallantmon",
-    name_jp: "CHAOSDUKEMON",
+    name_jp: "ChaosDukemon",
     next_evolutions: ["U-192"],
     stage: 6,
     sprite: "chaosgallantmon",
@@ -8081,7 +8081,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=chaosdukemon",
   },
   {
-    name_en: "Cherubimon (Virtue)",
+    name_en: "Cherubimon (Good)",
     name_jp: "Cherubimon (Virtue)",
     next_evolutions: ["U-211"],
     stage: 6,
@@ -8091,7 +8091,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cherubimon (Black)",
-    name_jp: "CHERUBIMON-VICE",
+    name_jp: "Cherubimon (Vice)",
     next_evolutions: ["U-063"],
     stage: 6,
     sprite: "cherubimon-vice",
@@ -8099,8 +8099,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cherubimon-vice",
   },
   {
-    name_en: "Cherubimon (Virtue) X",
-    name_jp: "Cherubimon (Virtue) X",
+    name_en: "Cherubimon (Good) (X Antibody)",
+    name_jp: "Cherubimon (Virtue) (X Antibody)",
     next_evolutions: ["SU-042","SU-041"],
     stage: 6,
     sprite: "cherubimon-virtue-x",
@@ -8108,8 +8108,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cherubimon_x",
   },
   {
-    name_en: "Cherubimon (Vice) X",
-    name_jp: "Cherubimon (Vice) X",
+    name_en: "Cherubimon (Black) (X Antibody)",
+    name_jp: "Cherubimon (Vice) (X Antibody)",
     next_evolutions: ["SU-007","SU-004","U-062"],
     stage: 6,
     sprite: "cherubimon-vice-x",
@@ -8117,8 +8117,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=cherubimondark_x",
   },
   {
-    name_en: "Chronomon: Destroy Mode",
-    name_jp: "CHRONOMON：DESTROYMODE",
+    name_en: "Chronomon (Destroy Mode)",
+    name_jp: "Chronomon (Destroy Mode)",
     next_evolutions: ["U-065"],
     stage: 6,
     sprite: "chronomon-destroy-mode",
@@ -8126,8 +8126,8 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=chronomon_destroy",
   },
   {
-    name_en: "Chronomon: Holy Mode",
-    name_jp: "CHRONOMON：HOLYMODE",
+    name_en: "Chronomon (Holy Mode)",
+    name_jp: "Chronomon (Holy Mode)",
     next_evolutions: ["U-290"],
     stage: 6,
     sprite: "chronomon-holy-mode",
@@ -8139,7 +8139,7 @@ const RAW_PART_3: readonly RawDigimonRecord[] = [
 const RAW_PART_4: readonly RawDigimonRecord[] = [
   {
     name_en: "ClavisAngemon",
-    name_jp: "CLAVISANGEMON",
+    name_jp: "ClavisAngemon",
     next_evolutions: [],
     stage: 6,
     sprite: "clavisangemon",
@@ -8166,7 +8166,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Eaglemon",
-    name_jp: "CROSSMON",
+    name_jp: "Crossmon",
     next_evolutions: ["U-004"],
     stage: 6,
     sprite: "eaglemon",
@@ -8175,7 +8175,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Cthyllamon",
-    name_jp: "CTHYLLAMON",
+    name_jp: "Cthyllamon",
     next_evolutions: [],
     stage: 6,
     sprite: "cthyllamon",
@@ -8184,7 +8184,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Dalphomon",
-    name_jp: "DALPHOMON",
+    name_jp: "Dalphomon",
     next_evolutions: [],
     stage: 6,
     sprite: "dalphomon",
@@ -8201,8 +8201,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=darkdramon",
   },
   {
-    name_en: "DarkKnightmon X",
-    name_jp: "DarkKnightmon X",
+    name_en: "DarkKnightmon (X Antibody)",
+    name_jp: "DarkKnightmon (X Antibody)",
     next_evolutions: ["SU-029","SU-011","SU-004"],
     stage: 6,
     sprite: "darkknightmon-x",
@@ -8211,7 +8211,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DexDorugoramon",
-    name_jp: "DEATH-X-DORUGORAMON",
+    name_jp: "Death-X-DORUgoramon",
     next_evolutions: ["SU-037"],
     stage: 6,
     sprite: "dexdorugoramon",
@@ -8220,7 +8220,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "DeathXmon",
-    name_jp: "DEATH-X-MON",
+    name_jp: "Death-X-Mon",
     next_evolutions: ["U-074"],
     stage: 6,
     sprite: "deathxmon",
@@ -8238,7 +8238,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ghoulmon (Black)",
-    name_jp: "DEATHMON-BLACK",
+    name_jp: "Deathmon (Black)",
     next_evolutions: [],
     stage: 6,
     sprite: "ghoulmon-black",
@@ -8256,7 +8256,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Devitamamon",
-    name_jp: "DEVITAMAMON",
+    name_jp: "Devitamamon",
     next_evolutions: ["U-179"],
     stage: 6,
     sprite: "devitamamon",
@@ -8265,7 +8265,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Diaboromon",
-    name_jp: "DIABLOMON",
+    name_jp: "Diablomon",
     next_evolutions: ["SU-003","SU-006","SU-013"],
     stage: 6,
     sprite: "diaboromon",
@@ -8283,7 +8283,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Diarbbitmon",
-    name_jp: "DIARBBITMON",
+    name_jp: "Diarbbitmon",
     next_evolutions: [],
     stage: 6,
     sprite: "diarbbitmon",
@@ -8292,7 +8292,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Dijiangmon",
-    name_jp: "DIJIANGMON",
+    name_jp: "Dijiangmon",
     next_evolutions: ["U-237"],
     stage: 6,
     sprite: "dijiangmon",
@@ -8301,7 +8301,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Dinomon",
-    name_jp: "DINOMON",
+    name_jp: "Dinomon",
     next_evolutions: [],
     stage: 6,
     sprite: "dinomon",
@@ -8328,7 +8328,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Dominimon",
-    name_jp: "DOMINIMON",
+    name_jp: "Dominimon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "dominimon",
@@ -8372,8 +8372,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=dukemon",
   },
   {
-    name_en: "Gallantmon: Crimson Mode",
-    name_jp: "DUKEMON:CRIMSONMODE",
+    name_en: "Gallantmon (Crimson Mode)",
+    name_jp: "Dukemon (Crimson Mode)",
     next_evolutions: ["SU-015"],
     stage: 6,
     sprite: "gallantmon-crimson-mode",
@@ -8400,7 +8400,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ebemon",
-    name_jp: "EBEMON",
+    name_jp: "Ebemon",
     next_evolutions: ["U-096"],
     stage: 6,
     sprite: "ebemon",
@@ -8408,8 +8408,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ebemon",
   },
   {
-    name_en: "Ebemon X",
-    name_jp: "Ebemon X",
+    name_en: "Ebemon (X Antibody)",
+    name_jp: "Ebemon (X Antibody)",
     next_evolutions: ["SU-020","SU-028","SU-018","SU-024"],
     stage: 6,
     sprite: "ebemon-x",
@@ -8418,7 +8418,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Eldradimon",
-    name_jp: "ELDORADIMON",
+    name_jp: "Eldoradimon",
     next_evolutions: ["U-267"],
     stage: 6,
     sprite: "eldradimon",
@@ -8427,7 +8427,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Enmamon",
-    name_jp: "ENMAMON",
+    name_jp: "Enmamon",
     next_evolutions: [],
     stage: 6,
     sprite: "enmamon",
@@ -8445,7 +8445,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Erlangmon",
-    name_jp: "ERLANGMON",
+    name_jp: "Erlangmon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "erlangmon",
@@ -8454,7 +8454,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fenriloogamon",
-    name_jp: "FENRILOOGAMON",
+    name_jp: "Fenriloogamon",
     next_evolutions: ["U-102"],
     stage: 6,
     sprite: "fenriloogamon",
@@ -8462,8 +8462,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=fenriloogamon",
   },
   {
-    name_en: "Fenriloogamon: Takemikazuchi",
-    name_jp: "FENRILOOGAMON：TAKEMIKAZUCHI",
+    name_en: "Fenriloogamon (Takemikazuchi)",
+    name_jp: "Fenriloogamon (Takemikazuchi)",
     next_evolutions: [],
     stage: 6,
     sprite: "fenriloogamon-takemikazuchi",
@@ -8472,7 +8472,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "FrosVelgrmon",
-    name_jp: "FROSVELGRMON",
+    name_jp: "FrosVelgrmon",
     next_evolutions: [],
     stage: 6,
     sprite: "frosvelgrmon",
@@ -8481,7 +8481,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Fujinmon",
-    name_jp: "FUJINMON",
+    name_jp: "Fujinmon",
     next_evolutions: ["U-219"],
     stage: 6,
     sprite: "fujinmon",
@@ -8498,8 +8498,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=gaioumon",
   },
   {
-    name_en: "Gaiomon: Itto Mode",
-    name_jp: "GAIOUMON_ITTO",
+    name_en: "Gaiomon (Itto Mode)",
+    name_jp: "Gaioumon (Itto Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "gaiomon-itto-mode",
@@ -8534,8 +8534,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=goddramon",
   },
   {
-    name_en: "Goldramon X",
-    name_jp: "Goddramon X",
+    name_en: "Goldramon (X Antibody)",
+    name_jp: "Goddramon (X Antibody)",
     next_evolutions: ["SU-018","SU-024"],
     stage: 6,
     sprite: "goldramon-x",
@@ -8544,7 +8544,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Reapermon",
-    name_jp: "GOKUMON",
+    name_jp: "Gokumon",
     next_evolutions: [],
     stage: 6,
     sprite: "reapermon",
@@ -8598,7 +8598,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Gulfmon",
-    name_jp: "GULFMON",
+    name_jp: "Gulfmon",
     next_evolutions: ["U-287"],
     stage: 6,
     sprite: "gulfmon",
@@ -8625,7 +8625,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "HeavyMetaldramon",
-    name_jp: "HEAVYMETALDRAMON",
+    name_jp: "HeavyMetaldramon",
     next_evolutions: [],
     stage: 6,
     sprite: "heavymetaldramon",
@@ -8643,7 +8643,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "HerculesKabuterimon (X Antibody)",
-    name_jp: "HERAKLEKABUTERIMON_X",
+    name_jp: "HerakleKabuterimon (X Antibody)",
     next_evolutions: [],
     stage: 6,
     sprite: "herculeskabuterimon-x",
@@ -8678,8 +8678,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=holydramon",
   },
   {
-    name_en: "Magnadramon X",
-    name_jp: "Holydramon X",
+    name_en: "Magnadramon (X Antibody)",
+    name_jp: "Holydramon (X Antibody)",
     next_evolutions: ["SU-030","SU-028","SU-042","SU-041"],
     stage: 6,
     sprite: "magnadramon-x",
@@ -8696,8 +8696,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=hououmon",
   },
   {
-    name_en: "Phoenixmon X",
-    name_jp: "Hououmon X",
+    name_en: "Phoenixmon (X Antibody)",
+    name_jp: "Hououmon (X Antibody)",
     next_evolutions: ["SU-016","SU-028"],
     stage: 6,
     sprite: "phoenixmon-x",
@@ -8714,8 +8714,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=huanglongmon",
   },
   {
-    name_en: "Fanglongmon: Ruin Mode",
-    name_jp: "HUANGLONGMON: RUIN MODE",
+    name_en: "Fanglongmon (Ruin Mode)",
+    name_jp: "Huanglongmon (Ruin Mode)",
     next_evolutions: ["U-129"],
     stage: 6,
     sprite: "fanglongmon-ruin-mode",
@@ -8724,7 +8724,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Hydramon",
-    name_jp: "HYDRAMON",
+    name_jp: "Hydramon",
     next_evolutions: ["U-057"],
     stage: 6,
     sprite: "hydramon",
@@ -8732,8 +8732,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=hydramon",
   },
   {
-    name_en: "Imperialdramon: Dragon Mode (Black)",
-    name_jp: "IMPERIALDRAMON:DRAGON MODE_BLACK",
+    name_en: "Imperialdramon (Black) (Dragon Mode)",
+    name_jp: "Imperialdramon (Black) (Dragon Mode)",
     next_evolutions: ["SU-023"],
     stage: 6,
     sprite: "imperialdramon-dragon-mode-black",
@@ -8741,8 +8741,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=imperialdramon_dragon_black",
   },
   {
-    name_en: "Imperialdramon: Dragon Mode",
-    name_jp: "IMPERIALDRAMON:DRAGONMODE",
+    name_en: "Imperialdramon (Dragon Mode)",
+    name_jp: "Imperialdramon (Dragon Mode)",
     next_evolutions: ["SU-022","SU-023"],
     stage: 6,
     sprite: "imperialdramon-dragon-mode",
@@ -8750,8 +8750,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=imperialdramondragonmode",
   },
   {
-    name_en: "Imperialdramon: Fighter Mode (Black)",
-    name_jp: "IMPERIALDRAMON： FIGHTERMODE（BLACK）",
+    name_en: "Imperialdramon (Black) (Fighter Mode)",
+    name_jp: "Imperialdramon (Black) (Fighter Mode)",
     next_evolutions: ["SU-023"],
     stage: 6,
     sprite: "imperialdramon-fighter-mode-black",
@@ -8760,7 +8760,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Invisimon",
-    name_jp: "INVISIMON",
+    name_jp: "Invisimon",
     next_evolutions: [],
     stage: 6,
     sprite: "invisimon",
@@ -8778,7 +8778,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "JetMervamon",
-    name_jp: "JETMERVAMON",
+    name_jp: "JetMervamon",
     next_evolutions: [],
     stage: 6,
     sprite: "jetmervamon",
@@ -8787,7 +8787,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Jijimon",
-    name_jp: "JIJIMON",
+    name_jp: "Jijimon",
     next_evolutions: ["U-284"],
     stage: 6,
     sprite: "jijimon",
@@ -8796,7 +8796,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Jougamon",
-    name_jp: "JOUGAMON",
+    name_jp: "Jougamon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "jougamon",
@@ -8805,7 +8805,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "JumboGamemon",
-    name_jp: "JUMBOGAMEMON",
+    name_jp: "JumboGamemon",
     next_evolutions: ["U-284"],
     stage: 6,
     sprite: "jumbogamemon",
@@ -8814,7 +8814,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Junomon",
-    name_jp: "JUNOMON",
+    name_jp: "Junomon",
     next_evolutions: [],
     stage: 6,
     sprite: "junomon",
@@ -8823,7 +8823,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Jupitermon",
-    name_jp: "JUPITERMON",
+    name_jp: "Jupitermon",
     next_evolutions: [],
     stage: 6,
     sprite: "jupitermon",
@@ -8831,8 +8831,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=jupitermon",
   },
   {
-    name_en: "Justimon: Blitz Arm",
-    name_jp: "Justimon: Blitz Arm",
+    name_en: "Justimon (Blitz Arm)",
+    name_jp: "Justimon (Blitz Arm)",
     next_evolutions: ["SU-022"],
     stage: 6,
     sprite: "justimon-blitz-arm",
@@ -8840,8 +8840,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=justimon_blitzarm",
   },
   {
-    name_en: "Justimon X",
-    name_jp: "Justimon X",
+    name_en: "Justimon (X Antibody)",
+    name_jp: "Justimon (X Antibody)",
     next_evolutions: ["SU-020","SU-028"],
     stage: 6,
     sprite: "justimon-x",
@@ -8850,7 +8850,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kaguyamon",
-    name_jp: "KAGUYAMON",
+    name_jp: "Kaguyamon",
     next_evolutions: ["U-098"],
     stage: 6,
     sprite: "kaguyamon",
@@ -8868,7 +8868,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "KingChessmon",
-    name_jp: "KINGCHESSMON",
+    name_jp: "KingChessmon",
     next_evolutions: [],
     stage: 6,
     sprite: "kingchessmon",
@@ -8886,7 +8886,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Kuzuhamon",
-    name_jp: "KUZUHAMON",
+    name_jp: "Kuzuhamon",
     next_evolutions: ["U-234"],
     stage: 6,
     sprite: "kuzuhamon",
@@ -8895,7 +8895,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Lampmon",
-    name_jp: "LAMPMON",
+    name_jp: "Lampmon",
     next_evolutions: [],
     stage: 6,
     sprite: "lampmon",
@@ -8940,7 +8940,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "LovelyAngemon",
-    name_jp: "LOVELYANGEMON",
+    name_jp: "LovelyAngemon",
     next_evolutions: [],
     stage: 6,
     sprite: "lovelyangemon",
@@ -8948,8 +8948,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lovelyangemon",
   },
   {
-    name_en: "Lucemon: Larva",
-    name_jp: "LUCEMON:LARVA",
+    name_en: "Lucemon (Larva)",
+    name_jp: "Lucemon (Larva)",
     next_evolutions: [],
     stage: 6,
     sprite: "lucemon-larmon",
@@ -8957,8 +8957,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lucemonlarva",
   },
   {
-    name_en: "Lucemon: Satan Mode",
-    name_jp: "Lucemon: Satan Mode",
+    name_en: "Lucemon (Satan Mode)",
+    name_jp: "Lucemon (Satan Mode)",
     next_evolutions: ["U-167"],
     stage: 6,
     sprite: "lucemon-satan-mode",
@@ -8967,7 +8967,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MagnaKidmon",
-    name_jp: "MAGNAKIDMON",
+    name_jp: "MagnaKidmon",
     next_evolutions: [],
     stage: 6,
     sprite: "magnakidmon",
@@ -8985,7 +8985,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Marsmon",
-    name_jp: "MARSMON",
+    name_jp: "Marsmon",
     next_evolutions: ["A-196"],
     stage: 6,
     sprite: "marsmon",
@@ -8994,7 +8994,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MedievalGallantmon",
-    name_jp: "MEDIEVALDUKEMON",
+    name_jp: "MedievalDukemon",
     next_evolutions: ["SU-015"],
     stage: 6,
     sprite: "medievalgallantmon",
@@ -9003,7 +9003,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Medusamon",
-    name_jp: "MEDUSAMON",
+    name_jp: "Medusamon",
     next_evolutions: [],
     stage: 6,
     sprite: "medusamon",
@@ -9020,8 +9020,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=megidramon",
   },
   {
-    name_en: "Megidramon X",
-    name_jp: "Megidramon X",
+    name_en: "Megidramon (X Antibody)",
+    name_jp: "Megidramon (X Antibody)",
     next_evolutions: ["SU-015"],
     stage: 6,
     sprite: "megidramon-x",
@@ -9030,7 +9030,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mercurymon",
-    name_jp: "MERCURYMON",
+    name_jp: "Mercurymon",
     next_evolutions: ["SU-042","SU-009"],
     stage: 6,
     sprite: "mercurymon",
@@ -9039,7 +9039,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mervamon",
-    name_jp: "MERVAMON",
+    name_jp: "Mervamon",
     next_evolutions: ["U-137","U-249"],
     stage: 6,
     sprite: "mervamon",
@@ -9066,7 +9066,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MetalGarurumon (Black)",
-    name_jp: "METALGARURUMON_BLACK",
+    name_jp: "MetalGarurumon (Black)",
     next_evolutions: ["SU-035","SU-037"],
     stage: 6,
     sprite: "metalgarurumon-black",
@@ -9074,8 +9074,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=metalgarurumon_black",
   },
   {
-    name_en: "MetalGarurumon X",
-    name_jp: "MetalGarurumon X",
+    name_en: "MetalGarurumon (X Antibody)",
+    name_jp: "MetalGarurumon (X Antibody)",
     next_evolutions: ["SU-037","SU-035"],
     stage: 6,
     sprite: "metalgarurumon-x",
@@ -9111,7 +9111,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Millenniummon",
-    name_jp: "MILLENNIUMON",
+    name_jp: "Millenniumon",
     next_evolutions: ["U-287"],
     stage: 6,
     sprite: "millenniummon",
@@ -9120,7 +9120,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Minervamon",
-    name_jp: "MINERVAMON",
+    name_jp: "Minervamon",
     next_evolutions: ["U-166","SU-032","U-230"],
     stage: 6,
     sprite: "minervamon",
@@ -9137,8 +9137,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=miragegaogamon",
   },
   {
-    name_en: "MirageGaogamon: Burst Mode",
-    name_jp: "MIRAGEGAOGAMON:BURSTMODE",
+    name_en: "MirageGaogamon (Burst Mode)",
+    name_jp: "MirageGaogamon (Burst Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "miragegaogamon-burst-mode",
@@ -9147,7 +9147,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Mitamamon",
-    name_jp: "MITAMAMON",
+    name_jp: "Mitamamon",
     next_evolutions: [],
     stage: 6,
     sprite: "mitamamon",
@@ -9156,7 +9156,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "MoonMillenniummon",
-    name_jp: "MOONMILLENNIUMON",
+    name_jp: "MoonMillenniumon",
     next_evolutions: ["U-287"],
     stage: 6,
     sprite: "moonmillenniummon",
@@ -9183,7 +9183,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "NeoMyotismon",
-    name_jp: "NEOVAMDEMON",
+    name_jp: "NeoVamdemon",
     next_evolutions: [],
     stage: 6,
     sprite: "neomyotismon",
@@ -9192,7 +9192,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Neptunemon",
-    name_jp: "NEPTUNEMON",
+    name_jp: "Neptunemon",
     next_evolutions: ["SU-042"],
     stage: 6,
     sprite: "neptunemon",
@@ -9201,7 +9201,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Nezhamon",
-    name_jp: "NEZHAMON",
+    name_jp: "Nezhamon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "nezhamon",
@@ -9236,8 +9236,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ofanimon",
   },
   {
-    name_en: "Ophanimon X",
-    name_jp: "Ofanimon X",
+    name_en: "Ophanimon (X Antibody)",
+    name_jp: "Ofanimon (X Antibody)",
     next_evolutions: ["SU-014","SU-041"],
     stage: 6,
     sprite: "ophanimon-x",
@@ -9245,8 +9245,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ofanimon_x",
   },
   {
-    name_en: "Ophanimon: Falldown Mode",
-    name_jp: "OFANIMON:FALLDOWNMODE",
+    name_en: "Ophanimon (Falldown Mode)",
+    name_jp: "Ofanimon (Falldown Mode)",
     next_evolutions: ["SU-038","U-187"],
     stage: 6,
     sprite: "ophanimon-falldown-mode",
@@ -9254,8 +9254,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ofanimonfalldownmode",
   },
   {
-    name_en: "Ophanimon: Falldown Mode X",
-    name_jp: "Ofanimon: Falldown Mode X",
+    name_en: "Ophanimon (Falldown Mode) (X Antibody)",
+    name_jp: "Ofanimon (Falldown Mode) (X Antibody)",
     next_evolutions: ["SU-027","SU-004"],
     stage: 6,
     sprite: "ophanimon-falldown-mode-x",
@@ -9264,7 +9264,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Olegmon",
-    name_jp: "OLEGMON",
+    name_jp: "Olegmon",
     next_evolutions: ["U-249"],
     stage: 6,
     sprite: "olegmon",
@@ -9273,7 +9273,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Omnimon Alter-B",
-    name_jp: "OMEGAMON_ALTER-B",
+    name_jp: "Omegamon Alter-B",
     next_evolutions: ["SU-036"],
     stage: 6,
     sprite: "omnimon-alter-b",
@@ -9281,8 +9281,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=omegamon_alter-b",
   },
   {
-    name_en: "Omnimon: Merciful Mode",
-    name_jp: "OMEGAMON:MERCIFUL MODE",
+    name_en: "Omnimon (Merciful Mode)",
+    name_jp: "Omegamon (Merciful Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "omnimon-merciful-mode",
@@ -9291,7 +9291,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Omnimon Zwart",
-    name_jp: "OMEGAMON_ZWART",
+    name_jp: "Omegamon Zwart",
     next_evolutions: ["SU-035"],
     stage: 6,
     sprite: "omnimon-zwart",
@@ -9300,7 +9300,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Omnimon Zwart Defeat",
-    name_jp: "OMEGAMONZWART_D",
+    name_jp: "Omegamon Zwart D",
     next_evolutions: ["U-192"],
     stage: 6,
     sprite: "omnimon-zwart-defeat",
@@ -9327,7 +9327,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Parasimon",
-    name_jp: "PARASIMON",
+    name_jp: "Parasimon",
     next_evolutions: [],
     stage: 6,
     sprite: "parasimon",
@@ -9336,7 +9336,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Pharaohmon",
-    name_jp: "PHARAOHMON",
+    name_jp: "Pharaohmon",
     next_evolutions: ["U-019"],
     stage: 6,
     sprite: "pharaohmon",
@@ -9354,7 +9354,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "PileVolcanomon",
-    name_jp: "PILEVOLCAMON",
+    name_jp: "PileVolcamon",
     next_evolutions: ["U-017"],
     stage: 6,
     sprite: "pilevolcanomon",
@@ -9389,8 +9389,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=plesiomon",
   },
   {
-    name_en: "Plesiomon X",
-    name_jp: "Plesiomon X",
+    name_en: "Plesiomon (X Antibody)",
+    name_jp: "Plesiomon (X Antibody)",
     next_evolutions: ["SU-037","SU-041"],
     stage: 6,
     sprite: "plesiomon-x",
@@ -9399,7 +9399,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Plutomon",
-    name_jp: "PLUTOMON",
+    name_jp: "Plutomon",
     next_evolutions: [],
     stage: 6,
     sprite: "plutomon",
@@ -9408,7 +9408,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "PrinceMamemon",
-    name_jp: "PRINCEMAMEMON",
+    name_jp: "PrinceMamemon",
     next_evolutions: ["U-177","U-208"],
     stage: 6,
     sprite: "princemamemon",
@@ -9416,8 +9416,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=princemamemon",
   },
   {
-    name_en: "PrinceMamemon X",
-    name_jp: "PrinceMamemon X",
+    name_en: "PrinceMamemon (X Antibody)",
+    name_jp: "PrinceMamemon (X Antibody)",
     next_evolutions: ["SU-012","SU-013","SU-029"],
     stage: 6,
     sprite: "princemamemon-x",
@@ -9426,7 +9426,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Proximamon",
-    name_jp: "PROXIMAMON",
+    name_jp: "Proximamon",
     next_evolutions: [],
     stage: 6,
     sprite: "proximamon",
@@ -9453,7 +9453,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Quantumon",
-    name_jp: "QUANTUMON",
+    name_jp: "Quantumon",
     next_evolutions: [],
     stage: 6,
     sprite: "quantumon",
@@ -9462,7 +9462,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Quartzmon",
-    name_jp: "QUARTZMON",
+    name_jp: "Quartzmon",
     next_evolutions: [],
     stage: 6,
     sprite: "quartzmon",
@@ -9471,7 +9471,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "QueenBeemon",
-    name_jp: "QUEENBEEMON",
+    name_jp: "QueenBeemon",
     next_evolutions: [],
     stage: 6,
     sprite: "queenbeemon",
@@ -9480,7 +9480,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "QueenChessmon",
-    name_jp: "QUEENCHESSMON",
+    name_jp: "QueenChessmon",
     next_evolutions: [],
     stage: 6,
     sprite: "queenchessmon",
@@ -9498,7 +9498,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Galacticmon",
-    name_jp: "RAGNAMON",
+    name_jp: "Ragnamon",
     next_evolutions: [],
     stage: 6,
     sprite: "galacticmon",
@@ -9516,7 +9516,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Raidenmon",
-    name_jp: "RAIDENMON",
+    name_jp: "Raidenmon",
     next_evolutions: [],
     stage: 6,
     sprite: "raidenmon",
@@ -9525,7 +9525,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Raijinmon",
-    name_jp: "RAIJINMON",
+    name_jp: "Raijinmon",
     next_evolutions: ["U-219"],
     stage: 6,
     sprite: "raijinmon",
@@ -9533,8 +9533,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=raijinmon",
   },
   {
-    name_en: "Rapidmon X",
-    name_jp: "Rapidmon X",
+    name_en: "Rapidmon (X Antibody)",
+    name_jp: "Rapidmon (X Antibody)",
     next_evolutions: ["SU-030","SU-010"],
     stage: 6,
     sprite: "rapidmon-x",
@@ -9551,8 +9551,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=rasenmon",
   },
   {
-    name_en: "Rasenmon: Fury Mode",
-    name_jp: "Rasenmon: Fury Mode",
+    name_en: "Rasenmon (Fury Mode)",
+    name_jp: "Rasenmon (Fury Mode)",
     next_evolutions: ["SU-013","U-222"],
     stage: 6,
     sprite: "rasenmon-fury-mode",
@@ -9578,8 +9578,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ravmon",
   },
   {
-    name_en: "Ravemon: Burst Mode",
-    name_jp: "RAVMON:BURSTMODE",
+    name_en: "Ravemon (Burst Mode)",
+    name_jp: "Ravmon (Burst Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "ravemon-burst-mode",
@@ -9605,8 +9605,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=rosemon",
   },
   {
-    name_en: "Rosemon X",
-    name_jp: "Rosemon X",
+    name_en: "Rosemon (X Antibody)",
+    name_jp: "Rosemon (X Antibody)",
     next_evolutions: ["SU-027","SU-004","SU-007"],
     stage: 6,
     sprite: "rosemon-x",
@@ -9614,8 +9614,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=rosemon_x",
   },
   {
-    name_en: "Rosemon: Burst Mode",
-    name_jp: "ROSEMON:BURSTMODE",
+    name_en: "Rosemon (Burst Mode)",
+    name_jp: "Rosemon (Burst Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "rosemon-burst-mode",
@@ -9624,7 +9624,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Ryugumon",
-    name_jp: "RYUGUMON",
+    name_jp: "Ryugumon",
     next_evolutions: ["U-023"],
     stage: 6,
     sprite: "ryugumon",
@@ -9651,7 +9651,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Sakuyamon",
-    name_jp: "SAKUYAMON",
+    name_jp: "Sakuyamon",
     next_evolutions: ["U-236"],
     stage: 6,
     sprite: "sakuyamon",
@@ -9659,8 +9659,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=sakuyamon",
   },
   {
-    name_en: "Sakuyamon: Maid Mode",
-    name_jp: "SAKUYAMON:MIKOMODE",
+    name_en: "Sakuyamon (Maid Mode)",
+    name_jp: "Sakuyamon (Miko Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "sakuyamon-maid-mode",
@@ -9668,8 +9668,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=sakuyamon:mikomode",
   },
   {
-    name_en: "Sakuyamon X",
-    name_jp: "Sakuyamon X",
+    name_en: "Sakuyamon (X Antibody)",
+    name_jp: "Sakuyamon (X Antibody)",
     next_evolutions: ["SU-015"],
     stage: 6,
     sprite: "sakuyamon-x",
@@ -9678,7 +9678,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "SeitenGokuumon",
-    name_jp: "SEITENGOKUWMON",
+    name_jp: "SeitenGokuwmon",
     next_evolutions: ["U-240","U-098"],
     stage: 6,
     sprite: "seitengokuumon",
@@ -9696,7 +9696,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shagaramon",
-    name_jp: "SHAGARAMON",
+    name_jp: "Shagaramon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "shagaramon",
@@ -9705,7 +9705,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shakamon",
-    name_jp: "SHAKAMON",
+    name_jp: "Shakamon",
     next_evolutions: [],
     stage: 6,
     sprite: "shakamon",
@@ -9722,8 +9722,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=shinegreymon",
   },
   {
-    name_en: "ShineGreymon: Ruin Mode",
-    name_jp: "SHINEGREYMON： RUINMODE",
+    name_en: "ShineGreymon (Ruin Mode)",
+    name_jp: "ShineGreymon (Ruin Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "shinegreymon-ruin-mode",
@@ -9731,8 +9731,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=shinegreymon_ruin",
   },
   {
-    name_en: "ShineGreymon: Burst Mode",
-    name_jp: "SHINEGREYMON:BURSTMODE",
+    name_en: "ShineGreymon (Burst Mode)",
+    name_jp: "ShineGreymon (Burst Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "shinegreymon-burst-mode",
@@ -9750,7 +9750,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shivamon",
-    name_jp: "SHIVAMON",
+    name_jp: "Shivamon",
     next_evolutions: [],
     stage: 6,
     sprite: "shivamon",
@@ -9759,7 +9759,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shoutmon EX6",
-    name_jp: "SHOUTMON EX6",
+    name_jp: "Shoutmon EX6",
     next_evolutions: ["U-249"],
     stage: 6,
     sprite: "shoutmon-ex6",
@@ -9768,7 +9768,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shoutmon DX",
-    name_jp: "SHOUTMONDX",
+    name_jp: "Shoutmon DX",
     next_evolutions: ["U-248"],
     stage: 6,
     sprite: "shoutmon-dx",
@@ -9777,7 +9777,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shoutmon X7",
-    name_jp: "SHOUTMONX7",
+    name_jp: "Shoutmon X7",
     next_evolutions: ["U-249"],
     stage: 6,
     sprite: "shoutmon-x7",
@@ -9785,8 +9785,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=shoutmonx7",
   },
   {
-    name_en: "Shoutmon X7: Superior Mode",
-    name_jp: "SHOUTMONX7_SUPERIOR",
+    name_en: "Shoutmon X7 (Superior Mode)",
+    name_jp: "Shoutmon X7 (Superior Mode)",
     next_evolutions: [],
     stage: 6,
     sprite: "shoutmon-x7-superior-mode",
@@ -9795,7 +9795,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Shroudmon",
-    name_jp: "SHROUDMON",
+    name_jp: "Shroudmon",
     next_evolutions: [],
     stage: 6,
     sprite: "shroudmon",
@@ -9804,7 +9804,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Siriusmon",
-    name_jp: "SIRIUSMON",
+    name_jp: "Siriusmon",
     next_evolutions: ["U-209","U-217"],
     stage: 6,
     sprite: "siriusmon",
@@ -9813,7 +9813,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Skadimon",
-    name_jp: "SKADIMON",
+    name_jp: "Skadimon",
     next_evolutions: [],
     stage: 6,
     sprite: "skadimon",
@@ -9830,8 +9830,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=skullmammon",
   },
   {
-    name_en: "SkullMammothmon X",
-    name_jp: "SkullMammon X",
+    name_en: "SkullMammothmon (X Antibody)",
+    name_jp: "SkullMammon (X Antibody)",
     next_evolutions: ["SU-026","SU-004"],
     stage: 6,
     sprite: "skullmammothmon-x",
@@ -9867,7 +9867,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Spinomon",
-    name_jp: "SPINOMON",
+    name_jp: "Spinomon",
     next_evolutions: ["SU-042"],
     stage: 6,
     sprite: "spinomon",
@@ -9876,7 +9876,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Suijinmon",
-    name_jp: "SUIJINMON",
+    name_jp: "Suijinmon",
     next_evolutions: ["U-219"],
     stage: 6,
     sprite: "suijinmon",
@@ -9885,7 +9885,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Surfimon",
-    name_jp: "SURFIMON",
+    name_jp: "Surfimon",
     next_evolutions: [],
     stage: 6,
     sprite: "surfimon",
@@ -9903,7 +9903,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tactimon",
-    name_jp: "TACTIMON",
+    name_jp: "Tactimon",
     next_evolutions: [],
     stage: 6,
     sprite: "tactimon",
@@ -9912,7 +9912,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Takutoumon",
-    name_jp: "TAKUTOUMON",
+    name_jp: "Takutoumon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "takutoumon",
@@ -9921,7 +9921,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tengumon",
-    name_jp: "TENGUMON",
+    name_jp: "Tengumon",
     next_evolutions: ["U-098","U-240"],
     stage: 6,
     sprite: "tengumon",
@@ -9948,7 +9948,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Tlalocmon",
-    name_jp: "TLALOCMON",
+    name_jp: "Tlalocmon",
     next_evolutions: [],
     stage: 6,
     sprite: "tlalocmon",
@@ -9957,7 +9957,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "TonosamaMamemon",
-    name_jp: "TONOSAMAMAMEMON",
+    name_jp: "TonosamaMamemon",
     next_evolutions: [],
     stage: 6,
     sprite: "tonosamamamemon",
@@ -9966,7 +9966,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "TyrantKabuterimon",
-    name_jp: "TYRANTKABUTERIMON",
+    name_jp: "TyrantKabuterimon",
     next_evolutions: ["SU-037"],
     stage: 6,
     sprite: "tyrantkabuterimon",
@@ -9993,7 +9993,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "UltimateChaosmon",
-    name_jp: "ULTIMATECHAOSMON",
+    name_jp: "UltimateChaosmon",
     next_evolutions: [],
     stage: 6,
     sprite: "ultimatechaosmon",
@@ -10029,7 +10029,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Venusmon",
-    name_jp: "VENUSMON",
+    name_jp: "Venusmon",
     next_evolutions: ["U-126"],
     stage: 6,
     sprite: "venusmon",
@@ -10038,7 +10038,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "VictoryGreymon",
-    name_jp: "VICTORYGREYMON",
+    name_jp: "VictoryGreymon",
     next_evolutions: ["U-195"],
     stage: 6,
     sprite: "victorygreymon",
@@ -10065,7 +10065,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Vulcanusmon",
-    name_jp: "VULCANUSMON",
+    name_jp: "Vulcanusmon",
     next_evolutions: ["U-184"],
     stage: 6,
     sprite: "vulcanusmon",
@@ -10082,8 +10082,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=wargreymon",
   },
   {
-    name_en: "WarGreymon X",
-    name_jp: "WarGreymon X",
+    name_en: "WarGreymon (X Antibody)",
+    name_jp: "WarGreymon (X Antibody)",
     next_evolutions: ["SU-037","SU-035"],
     stage: 6,
     sprite: "wargreymon-x",
@@ -10092,7 +10092,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Xiangpengmon",
-    name_jp: "XIANGPENGMON",
+    name_jp: "Xiangpengmon",
     next_evolutions: ["U-240"],
     stage: 6,
     sprite: "xiangpengmon",
@@ -10110,7 +10110,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Zanbamon",
-    name_jp: "ZANBAMON",
+    name_jp: "Zanbamon",
     next_evolutions: ["U-098"],
     stage: 6,
     sprite: "zanbamon",
@@ -10119,7 +10119,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ZeedGarurumon",
-    name_jp: "ZDGARURUMON",
+    name_jp: "ZDGarurumon",
     next_evolutions: ["U-195"],
     stage: 6,
     sprite: "zeedgarurumon",
@@ -10128,7 +10128,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ZeedMillenniummon",
-    name_jp: "ZEEDMILLENNIUMON",
+    name_jp: "ZeedMillenniumon",
     next_evolutions: ["P-048"],
     stage: 6,
     sprite: "zeedmillenniummon",
@@ -10137,7 +10137,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "ZeigGreymon",
-    name_jp: "ZEKEGREYMON",
+    name_jp: "ZekeGreymon",
     next_evolutions: ["U-024","U-247","U-246"],
     stage: 6,
     sprite: "zeiggreymon",
@@ -10146,7 +10146,7 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
   },
   {
     name_en: "Zephagamon",
-    name_jp: "ZEPHAGAMON",
+    name_jp: "Zephagamon",
     next_evolutions: [],
     stage: 6,
     sprite: "zephagamon",
@@ -10172,8 +10172,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=agumon_kizuna",
   },
   {
-    name_en: "Alphamon: Ouryuken",
-    name_jp: "Alphamon: Ouryuken",
+    name_en: "Alphamon (Ouryuken)",
+    name_jp: "Alphamon (Ouryuken)",
     next_evolutions: ["U-075"],
     stage: 7,
     sprite: "alphamon-ouryuken",
@@ -10190,8 +10190,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=armagemon",
   },
   {
-    name_en: "Barbamon X",
-    name_jp: "Barbamon X",
+    name_en: "Barbamon (X Antibody)",
+    name_jp: "Barbamon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "barbamon-x",
@@ -10199,8 +10199,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=barbamon_x",
   },
   {
-    name_en: "Beelzemon X",
-    name_jp: "Beelzebumon X",
+    name_en: "Beelzemon (X Antibody)",
+    name_jp: "Beelzebumon (X Antibody)",
     next_evolutions: ["U-037"],
     stage: 7,
     sprite: "beelzemon-x",
@@ -10208,8 +10208,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=beelzebumon_x",
   },
   {
-    name_en: "Beelzemon: Blast Mode",
-    name_jp: "Beelzebumon: Blast Mode",
+    name_en: "Beelzemon (Blast Mode)",
+    name_jp: "Beelzebumon (Blast Mode)",
     next_evolutions: ["U-037"],
     stage: 7,
     sprite: "beelzebumonblastmode",
@@ -10217,8 +10217,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=beelzebumonblastmode",
   },
   {
-    name_en: "Belphemon X",
-    name_jp: "Belphemon X",
+    name_en: "Belphemon (X Antibody)",
+    name_jp: "Belphemon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "belphemon-x",
@@ -10244,8 +10244,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=chaosmon",
   },
   {
-    name_en: "Craniamon X",
-    name_jp: "Craniummon X",
+    name_en: "Craniamon (X Antibody)",
+    name_jp: "Craniummon (X Antibody)",
     next_evolutions: ["U-006"],
     stage: 7,
     sprite: "craniamon-x",
@@ -10262,8 +10262,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=darknessbagramon",
   },
   {
-    name_en: "Creepymon X",
-    name_jp: "Demon X",
+    name_en: "Creepymon (X Antibody)",
+    name_jp: "Demon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "demon_x",
@@ -10271,8 +10271,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=demon_x",
   },
   {
-    name_en: "Diaboromon X",
-    name_jp: "Diablomon X",
+    name_en: "Diaboromon (X Antibody)",
+    name_jp: "Diablomon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "diaboromon_x",
@@ -10280,8 +10280,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=diablomon_x",
   },
   {
-    name_en: "Leopardmon X",
-    name_jp: "Duftmon X",
+    name_en: "Leopardmon (X Antibody)",
+    name_jp: "Duftmon (X Antibody)",
     next_evolutions: [],
     stage: 7,
     sprite: "leopardmon-x",
@@ -10289,8 +10289,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=duftmon_x",
   },
   {
-    name_en: "Gallantmon X",
-    name_jp: "Dukemon X",
+    name_en: "Gallantmon (X Antibody)",
+    name_jp: "Dukemon (X Antibody)",
     next_evolutions: ["U-091"],
     stage: 7,
     sprite: "gallantmon-x",
@@ -10298,8 +10298,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=dukemon_x",
   },
   {
-    name_en: "Dynasmon X",
-    name_jp: "Dynasmon X",
+    name_en: "Dynasmon (X Antibody)",
+    name_jp: "Dynasmon (X Antibody)",
     next_evolutions: ["U-270"],
     stage: 7,
     sprite: "dynasmon-x",
@@ -10316,8 +10316,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=examon",
   },
   {
-    name_en: "Examon X",
-    name_jp: "Examon X",
+    name_en: "Examon (X Antibody)",
+    name_jp: "Examon (X Antibody)",
     next_evolutions: [],
     stage: 7,
     sprite: "examon-x",
@@ -10334,8 +10334,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=gabumon_kizuna",
   },
   {
-    name_en: "Gankoomon X",
-    name_jp: "Gankoomon X",
+    name_en: "Gankoomon (X Antibody)",
+    name_jp: "Gankoomon (X Antibody)",
     next_evolutions: ["SU-025"],
     stage: 7,
     sprite: "gankoomon-x",
@@ -10352,8 +10352,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=gracenovamon",
   },
   {
-    name_en: "Imperialdramon: Fighter Mode",
-    name_jp: "Imperialdramon: Fighter Mode",
+    name_en: "Imperialdramon (Fighter Mode)",
+    name_jp: "Imperialdramon (Fighter Mode)",
     next_evolutions: ["U-281"],
     stage: 7,
     sprite: "imperialdramon-fighter-mode",
@@ -10361,8 +10361,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=imperialdramonfightermode",
   },
   {
-    name_en: "Imperialdramon: Paladin Mode",
-    name_jp: "Imperialdramon: Paladin Mode",
+    name_en: "Imperialdramon (Paladin Mode)",
+    name_jp: "Imperialdramon (Paladin Mode)",
     next_evolutions: ["U-133"],
     stage: 7,
     sprite: "imperialdramon-paladin-mode",
@@ -10370,8 +10370,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=imperialdramonpaladinmode",
   },
   {
-    name_en: "Jesmon X",
-    name_jp: "Jesmon X",
+    name_en: "Jesmon (X Antibody)",
+    name_jp: "Jesmon (X Antibody)",
     next_evolutions: ["U-136"],
     stage: 7,
     sprite: "jesmon-x",
@@ -10388,8 +10388,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=jesmongx",
   },
   {
-    name_en: "Leviamon X",
-    name_jp: "Leviamon X",
+    name_en: "Leviamon (X Antibody)",
+    name_jp: "Leviamon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "leviamon-x",
@@ -10397,8 +10397,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=leviamon_x",
   },
   {
-    name_en: "Lilithmon X",
-    name_jp: "Lilithmon X",
+    name_en: "Lilithmon (X Antibody)",
+    name_jp: "Lilithmon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "lilithmon-x",
@@ -10406,8 +10406,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lilithmon_x",
   },
   {
-    name_en: "LordKnightmon X",
-    name_jp: "LordKnightmon X",
+    name_en: "LordKnightmon (X Antibody)",
+    name_jp: "LordKnightmon (X Antibody)",
     next_evolutions: [],
     stage: 7,
     sprite: "lordknightmon-x",
@@ -10415,8 +10415,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lordknightmon_x",
   },
   {
-    name_en: "Lucemon X",
-    name_jp: "Lucemon X",
+    name_en: "Lucemon (X Antibody)",
+    name_jp: "Lucemon (X Antibody)",
     next_evolutions: ["SU-034"],
     stage: 7,
     sprite: "lucemon-x",
@@ -10424,8 +10424,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=lucemon_x",
   },
   {
-    name_en: "Magnamon X",
-    name_jp: "Magnamon X",
+    name_en: "Magnamon (X Antibody)",
+    name_jp: "Magnamon (X Antibody)",
     next_evolutions: ["H-019","AR-027"],
     stage: 7,
     sprite: "mangamon-x",
@@ -10442,8 +10442,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=mastemon",
   },
   {
-    name_en: "Minervamon X",
-    name_jp: "Minervamon X",
+    name_en: "Minervamon (X Antibody)",
+    name_jp: "Minervamon (X Antibody)",
     next_evolutions: [],
     stage: 7,
     sprite: "minervamon-x",
@@ -10460,8 +10460,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=ogudomon",
   },
   {
-    name_en: "Ogudomon X",
-    name_jp: "Ogudomon X",
+    name_en: "Ogudomon (X Antibody)",
+    name_jp: "Ogudomon (X Antibody)",
     next_evolutions: [],
     stage: 7,
     sprite: "ogudomon-x",
@@ -10487,8 +10487,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=omegamon-alter-s",
   },
   {
-    name_en: "Omnimon X",
-    name_jp: "Omegamon X",
+    name_en: "Omnimon (X Antibody)",
+    name_jp: "Omegamon (X Antibody)",
     next_evolutions: ["SU-035"],
     stage: 7,
     sprite: "omnimon-x",
@@ -10523,8 +10523,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=rusttyranomon",
   },
   {
-    name_en: "Kentaurosmon X",
-    name_jp: "Sleipmon X",
+    name_en: "Kentaurosmon (X Antibody)",
+    name_jp: "Sleipmon (X Antibody)",
     next_evolutions: ["U-006"],
     stage: 7,
     sprite: "kentaurosmon-x",
@@ -10532,8 +10532,8 @@ const RAW_PART_4: readonly RawDigimonRecord[] = [
     url: "https://digimon.net/reference_en/detail.php?directory_name=sleipmon_x",
   },
   {
-    name_en: "UlforceVeedramon X",
-    name_jp: "UlforceV-dramon X",
+    name_en: "UlforceVeedramon (X Antibody)",
+    name_jp: "UlforceV-dramon (X Antibody)",
     next_evolutions: ["U-270"],
     stage: 7,
     sprite: "ulforceveedramon-x",
