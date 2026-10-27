@@ -10,7 +10,7 @@ const eggNode: DigimonNode = {
   nameJp: "Egg JP",
   nextEvolutions: [],
   sprite: "egg",
-  stage: 0,
+  stage: "digitama",
   url: "https://example.test/0-001",
 }
 const catalog = {
@@ -22,7 +22,7 @@ const catalog = {
       nameJp: "Child JP",
       nextEvolutions: [],
       sprite: "child",
-      stage: 3,
+      stage: "child",
       url: "https://example.test/3-001",
     },
   ],

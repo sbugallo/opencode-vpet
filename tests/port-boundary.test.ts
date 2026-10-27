@@ -5,6 +5,7 @@ import { chmod, mkdir, readFile, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 
 import { MONSTER_FRAME_CATALOG, type MonsterFrame } from "../src/data/monster-frame-catalog.ts"
+import type { DigimonStage } from "../src/domain/stage.ts"
 import entryPlugin, { createCommandConfig, plugin } from "../src/index.ts"
 import tuiPlugin from "../src/tui.tsx"
 import type { MonsterAnimationOutput } from "../src/tui/monster-animation.ts"
@@ -17,7 +18,7 @@ import {
   type PackageFixture,
 } from "./package-fixture.ts"
 
-const partnerInputs = (sprite: string, stage = 3) => ({
+const partnerInputs = (sprite: string, stage: DigimonStage = "child") => ({
   kind: "partner" as const,
   node: {
     id: "C-003",
@@ -84,7 +85,7 @@ const renderBuiltSidebar = async (
       notifications: true,
       stageLabels: {
         en: {
-          egg: "DigiEgg",
+          digitama: "DigiEgg",
           babyI: "In Training I",
           babyII: "In Training II",
           child: "Rookie",
@@ -92,20 +93,26 @@ const renderBuiltSidebar = async (
           perfect: "Ultimate",
           ultimate: "Mega",
           superUltimate: "Ultra",
+          hybrid: "Hybrid",
+          armor: "Armor",
+          unknown: "Unknown",
         },
         jp: {
-          egg: "Digitama",
+          digitama: "Digitama",
           babyI: "Baby I",
           babyII: "Baby II",
           child: "Child",
           adult: "Adult",
           perfect: "Perfect",
           ultimate: "Ultimate",
-          superUltimate: "SuperUltimate",
+          superUltimate: "Super Ultimate",
+          hybrid: "Hybrid",
+          armor: "Armor",
+          unknown: "Unknown",
         },
       },
       stageThresholds: {
-        egg: 1_000,
+        digitama: 1_000,
         babyI: 5_000,
         babyII: 25_000,
         child: 100_000,
@@ -113,6 +120,9 @@ const renderBuiltSidebar = async (
         perfect: 2_500_000,
         ultimate: 5_000_000,
         superUltimate: 10_000_000,
+        hybrid: 15_000_000,
+        armor: 15_000_000,
+        unknown: 2_500_000,
       },
     },
     {
@@ -200,7 +210,8 @@ describe("lightweight package boundary", () => {
     expect(entryPlugin).toBe(plugin)
     expect(entryPlugin.id).toBe("opencode-vpet")
     expect(entryPlugin.setup).toBeFunction()
-    expect(createCommandConfig()).toEqual({
+    const commandConfig: Record<string, { readonly description: string }> = createCommandConfig()
+    expect(commandConfig).toEqual({
       "vpet-spawn": {
         description: "Spawn a new virtual pet.",
       },
@@ -252,7 +263,7 @@ describe("lightweight package boundary", () => {
 
   test("Given an isolated built TUI When a consumer ticks Digitama, walking, and unavailable partners Then it observes activity subscriptions and renders the private bundled behavior", async () => {
     const fixture = getFixture()
-    const digitama = await renderBuiltSidebar(fixture, () => partnerInputs("digitama-deep-savers", 0))
+    const digitama = await renderBuiltSidebar(fixture, () => partnerInputs("digitama-deep-savers", "digitama"))
     const unavailable = await renderBuiltSidebar(fixture, () => partnerInputs("unknown-sprite"))
     const empty = await renderBuiltSidebar(fixture, () => partnerInputs(""))
     const noPartner = await renderBuiltSidebar(fixture, () => ({ kind: "no_partner" }))
@@ -275,7 +286,9 @@ describe("lightweight package boundary", () => {
     expect(digitama.unsubscribeCalls).toBe(4)
     const rightFacingFrame = firstRightFacingAnimation(walking)
     if (rightFacingFrame === undefined) throw new Error("Expected built right-facing animation frame")
-    expect(rightFacingFrame).toEqual(MONSTER_FRAME_CATALOG.get("agumon", "walk_2"))
+    const expectedWalkFrame = MONSTER_FRAME_CATALOG.get("agumon", "walk_2")
+    if (expectedWalkFrame === undefined) throw new Error("Expected agumon walk_2 frame")
+    expect(rightFacingFrame).toEqual(expectedWalkFrame)
     expect(unavailable.frame).toContain("Artwork unavailable: unknown-sprite")
     expect(empty.frame).toContain("Artwork unavailable: (empty)")
     expect(noPartner.frame).toContain("No active partner")
@@ -311,7 +324,7 @@ import entryPlugin, { createCommandConfig } from "opencode-vpet"
 import serverPlugin from "opencode-vpet/server"
 import { testRender } from "@opentui/solid"
 
-const settings = { language: "jp", stageLabels: { en: { egg: "DigiEgg", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "SuperUltimate" }, jp: { egg: "Digitama", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "SuperUltimate" } }, stageThresholds: { egg: 1000, babyI: 5000, babyII: 25000, child: 100000, adult: 500000, perfect: 2500000, ultimate: 5000000, superUltimate: 10000000 } }
+const settings = { language: "jp", stageLabels: { en: { digitama: "DigiEgg", babyI: "In Training I", babyII: "In Training II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "SuperUltimate", hybrid: "Hybrid", armor: "Armor", unknown: "Unknown" }, jp: { digitama: "Digitama", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "Super Ultimate", hybrid: "Hybrid", armor: "Armor", unknown: "Unknown" } }, stageThresholds: { digitama: 1000, babyI: 5000, babyII: 25000, child: 100000, adult: 500000, perfect: 2500000, ultimate: 5000000, superUltimate: 10000000, hybrid: 15000000, armor: 15000000, unknown: 2500000 } }
 const originalRandom = Math.random
 try {
 Math.random = () => 0
@@ -336,11 +349,11 @@ const commandConfigs = Object.keys(createCommandConfig()).sort()
 if (!privateTuiRejected) throw new Error("Private TUI module exported")
  if (!privateCommandRejected) throw new Error("Private command module exported")
 if (commandConfigs.join(",") !== "vpet-freeze,vpet-set,vpet-spawn,vpet-spawn-deep-savers,vpet-spawn-dragons-roar,vpet-spawn-jungle-troopers,vpet-spawn-metal-empire,vpet-spawn-nature-spirits,vpet-spawn-nightmare-soldiers,vpet-spawn-virus-busters,vpet-spawn-wind-guardians,vpet-unfreeze") throw new Error("Packed command configuration missing")
-const walking = await render(() => partner("agumon", 3), 58)
+const walking = await render(() => partner("agumon", "child"), 58)
 if (!walking.outputs.some((output) => output.kind === "walking" && output.facing === "right" && output.offset === -32)) throw new Error("Right-facing animation transition failed")
 if (walking.subscriptions.join(",") !== "session.text.delta,session.tool.called,session.execution.succeeded,session.status") throw new Error("Activity subscriptions missing")
-let retainedInputs = partner("digitama-deep-savers", 0)
-const retained = await render(() => retainedInputs, 6, () => { retainedInputs = partner("agumon", 3) })
+let retainedInputs = partner("digitama-deep-savers", "digitama")
+const retained = await render(() => retainedInputs, 6, () => { retainedInputs = partner("agumon", "child") })
 const retainedMovement = retained.outputs.some((output) => output.kind === "walking" && output.offset === -1 && output.facing === "left")
 const retainedAction = retained.outputs.some((output) => output.kind === "action" && output.offset === -5 && output.facing === "left")
 if (!retainedMovement) throw new Error("Installed package retained-width movement failed")
@@ -394,7 +407,7 @@ process.exit(Number(process.env.OPENCODE_FAKE_EXIT ?? "0"))
       OPENCODE_CONFIG_DIR: join(fixture.root, "opencode"),
       OPENCODE_FAKE_CALLS: callsPath,
       OPENCODE_FAKE_EXIT: String(exitCode),
-      PATH: `${fakeBinDirectory}:${process.env.PATH ?? ""}`,
+      PATH: `${fakeBinDirectory}:${process.env["PATH"] ?? ""}`,
     })
     const runCli = (arguments_: readonly string[], exitCode = 0) =>
       Bun.spawnSync([process.execPath, cliPath, ...arguments_], {

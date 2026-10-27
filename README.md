@@ -129,7 +129,7 @@ Available settings are:
 | --- | --- |
 | `notifications` | Enables or disables notifications. |
 | `language` | Sets the naming convention. Valid values are `jp` (Japanese, e.g., Omegamon, Child, Adult...) and `en` (English, e.g., Omnimon, Rookie, Champion...). |
-| `stageThresholds` | Defines the experience thresholds for each evolution stage. |
+| `stageThresholds` | Defines the experience thresholds for each evolution stage. Keys are the stage ids: `digitama`, `babyI`, `babyII`, `child`, `adult`, `perfect`, `ultimate`, `superUltimate`, `hybrid`, `armor`, `unknown`. |
 
 Default values are:
 
@@ -138,14 +138,17 @@ Default values are:
   "notifications": true,
   "language": "jp",
   "stageThresholds": {
-    "egg": 500000,
+    "digitama": 500000,
     "babyI": 1000000,
     "babyII": 2000000,
     "child": 4000000,
     "adult": 7500000,
     "perfect": 12500000,
     "ultimate": 20000000,
-    "superUltimate": 30000000
+    "superUltimate": 30000000,
+    "hybrid": 15000000,
+    "armor": 15000000,
+    "unknown": 12500000
   }
 }
 ```

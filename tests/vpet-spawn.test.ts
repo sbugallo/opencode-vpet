@@ -107,12 +107,12 @@ describe("vpet spawn command", () => {
     )
   })
 
-  test("Given every digitama field When eggs are resolved Then each slug maps to a stage-0 catalog node", async () => {
+  test("Given every digitama field When eggs are resolved Then each slug maps to a digitama catalog node", async () => {
     const catalog = await loadCatalog()
 
     for (const [, eggId] of Object.entries(DIGITAMA_FIELD_EGGS)) {
       const node = catalog.byId.get(eggId)
-      expect(node?.stage).toBe(0)
+      expect(node?.stage).toBe("digitama")
       expect(node?.nameEn.startsWith("Digiegg")).toBeTrue()
     }
   })

@@ -75,7 +75,7 @@ describe("TUI settings composition", () => {
         nameJp: "Agumon",
         nextEvolutions: [],
         sprite: "agumon",
-        stage: 3,
+        stage: "child",
         url: "https://example.test/agumon",
       },
       gauge: 42,
@@ -129,7 +129,7 @@ describe("TUI settings composition", () => {
         nameJp: "Tailmon",
         nextEvolutions: [],
         sprite: "tailmon",
-        stage: 4,
+        stage: "adult",
         url: "https://example.test/tailmon",
       },
       gauge: 777,
@@ -194,7 +194,7 @@ describe("TUI settings composition", () => {
   })
 
   test.each([
-    ["missing", async (_configPath: string) => undefined],
+    ["missing", async (_configPath: string): Promise<undefined> => undefined],
     [
       "invalid",
       async (configPath: string) =>
@@ -222,7 +222,7 @@ describe("TUI settings composition", () => {
               nameJp: "Tailmon",
               nextEvolutions: [],
               sprite: "tailmon",
-              stage: 4,
+              stage: "adult",
               url: "https://example.test/tailmon",
             },
             gauge: 7_500_000,

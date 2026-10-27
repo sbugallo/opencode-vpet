@@ -39,7 +39,7 @@ const toastNodes = [
     nameJp: "DigiTama",
     nextEvolutions: ["1-001"],
     sprite: "egg",
-    stage: 0,
+    stage: "digitama",
     url: "https://example.test/digitama",
   },
   {
@@ -48,7 +48,7 @@ const toastNodes = [
     nameJp: "Koromon JP",
     nextEvolutions: [],
     sprite: "koromon",
-    stage: 1,
+    stage: "babyI",
     url: "https://example.test/koromon",
   },
 ] as const satisfies readonly DigimonNode[]
@@ -218,7 +218,7 @@ describe("server plugin lifecycle", () => {
       loadSettings: async () => DEFAULT_VPET_SETTINGS,
       language: "en",
       evolutionSelector: () => 0,
-      evolutionThresholds: Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: 1 }),
+      evolutionThresholds: Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, digitama: 1 }),
       loadCatalog: async () => toastCatalog,
       notify: async (payload) => {
         delivered.push(payload)

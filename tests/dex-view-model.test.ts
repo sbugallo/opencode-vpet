@@ -12,7 +12,7 @@ const catalog = {
       nameJp: "Unseen Egg JP",
       nextEvolutions: [],
       sprite: "egg",
-      stage: 0,
+      stage: "digitama",
       url: "https://example.test/0-010",
     },
     {
@@ -21,7 +21,7 @@ const catalog = {
       nameJp: "Seen Egg JP",
       nextEvolutions: [],
       sprite: "egg",
-      stage: 0,
+      stage: "digitama",
       url: "https://example.test/0-002",
     },
     {
@@ -30,7 +30,7 @@ const catalog = {
       nameJp: "Unseen Child JP",
       nextEvolutions: [],
       sprite: "child",
-      stage: 3,
+      stage: "child",
       url: "https://example.test/3-010",
     },
     {
@@ -39,7 +39,7 @@ const catalog = {
       nameJp: "Seen Child JP",
       nextEvolutions: [],
       sprite: "child",
-      stage: 3,
+      stage: "child",
       url: "https://example.test/3-002",
     },
   ],

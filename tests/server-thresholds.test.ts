@@ -71,7 +71,7 @@ const reconcile = async (
   await cleanup()
 }
 
-const childThresholds: StageThresholds = Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 3: 1 })
+const childThresholds: StageThresholds = Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, child: 1 })
 
 const runPluginWithConfigHome = async (
   configHome: string,
@@ -125,7 +125,7 @@ await spawn.execute({ prompt: { text: "" } })
 if (process.env["VPET_UPDATED_THRESHOLD"] !== undefined) {
   await writeFile(
     join(process.env["HOME"] ?? "", ".config", "opencode-vpet.json"),
-    JSON.stringify({ stageThresholds: { egg: Number(process.env["VPET_UPDATED_THRESHOLD"]) } }),
+    JSON.stringify({ stageThresholds: { digitama: Number(process.env["VPET_UPDATED_THRESHOLD"]) } }),
   )
 }
 release()
@@ -227,7 +227,7 @@ describe("server threshold policy", () => {
       const appDataRoot = await createTempRoot()
       const configDirectory = join(configRoot, ".config")
       await mkdir(configDirectory)
-      await writeFile(join(configDirectory, "opencode-vpet.json"), JSON.stringify({ stageThresholds: { egg: 1 } }))
+      await writeFile(join(configDirectory, "opencode-vpet.json"), JSON.stringify({ stageThresholds: { digitama: 1 } }))
       await runPluginWithConfigHome(configRoot, appDataRoot)
 
       const repository = await createSqliteVpetRepository({
@@ -249,7 +249,7 @@ describe("server threshold policy", () => {
       const configDirectory = join(configRoot, ".config")
       const configPath = join(configDirectory, "opencode-vpet.json")
       await mkdir(configDirectory)
-      await writeFile(configPath, JSON.stringify({ stageThresholds: { egg: 1 } }))
+      await writeFile(configPath, JSON.stringify({ stageThresholds: { digitama: 1 } }))
       await runPluginWithConfigHome(configRoot, appDataRoot, 2)
 
       const repository = await createSqliteVpetRepository({

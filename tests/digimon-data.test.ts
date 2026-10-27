@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { DIGIMON_DATA, DIGIMON_ID_MIGRATION, DIGITAMA_FIELD_EGGS } from "../src/data/digimon-data"
+import { DIGIMON_DATA, DIGIMON_ID_MIGRATION, DIGIMON_STAGES, DIGITAMA_FIELD_EGGS } from "../src/data/digimon-data"
 
 const RAW_RECORD_KEYS = ["id", "name_en", "name_jp", "next_evolutions", "sprite", "stage", "url"]
 
@@ -12,8 +12,7 @@ describe("bundled Digimon data", () => {
 
     for (const record of DIGIMON_DATA) {
       expect(Object.keys(record).sort()).toEqual(RAW_RECORD_KEYS)
-      expect(record.stage).toBeGreaterThanOrEqual(0)
-      expect(record.stage).toBeLessThanOrEqual(7)
+      expect(DIGIMON_STAGES).toContain(record.stage)
       expect(record.id).toMatch(/^(D|BI|BII|C|A|AR|H|P|U|SU|UN)-\d{3}$/)
       expect(record.sprite).not.toBe("")
 
@@ -26,18 +25,18 @@ describe("bundled Digimon data", () => {
   test("Given the bundled catalog, when representative records are loaded, then their evolution data and URLs remain exact", () => {
     expect(DIGIMON_DATA.find((record) => record.id === "C-003")).toMatchObject({
       name_en: "Agumon",
-      stage: 3,
+      stage: "child",
       sprite: "agumon",
       url: "https://digimon.net/reference_en/detail.php?directory_name=agumon",
     })
     expect(DIGIMON_DATA.find((record) => record.id === "P-007")).toMatchObject({
       name_en: "Andromon",
-      stage: 5,
+      stage: "perfect",
       url: "https://digimon.net/reference_en/detail.php?directory_name=andromon",
     })
     expect(DIGIMON_DATA.find((record) => record.id === "SU-011")).toMatchObject({
       name_en: "DarknessBagramon",
-      stage: 7,
+      stage: "superUltimate",
       next_evolutions: [],
       url: "https://digimon.net/reference_en/detail.php?directory_name=darknessbagramon",
     })
@@ -50,10 +49,10 @@ describe("bundled Digimon data", () => {
   test("Given the latest source edge cases, when the records load, then the unknown-stage monster resolves through the graph", () => {
     const calumon = DIGIMON_DATA.find((record) => record.id === "UN-001")
 
-    expect(calumon).toMatchObject({ name_en: "Calumon", stage: 3, next_evolutions: ["C-112"] })
+    expect(calumon).toMatchObject({ name_en: "Calumon", stage: "unknown", next_evolutions: ["C-112"] })
   })
 
-  test("Given the digitama roster, when field eggs are read, then each family maps to its stage-0 egg", () => {
+  test("Given the digitama roster, when field eggs are read, then each family maps to its digitama-stage egg", () => {
     expect(DIGITAMA_FIELD_EGGS).toEqual({
       "deep-savers": "D-001",
       "dragons-roar": "D-002",
@@ -64,7 +63,7 @@ describe("bundled Digimon data", () => {
       "virus-busters": "D-007",
       "wind-guardians": "D-008",
     })
-    expect(DIGIMON_DATA.filter((record) => record.stage === 0).map((record) => record.id)).toEqual([
+    expect(DIGIMON_DATA.filter((record) => record.stage === "digitama").map((record) => record.id)).toEqual([
       "D-001",
       "D-002",
       "D-003",

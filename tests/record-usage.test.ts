@@ -14,7 +14,7 @@ const currentNode: DigimonNode = {
   nameJp: "Current",
   nextEvolutions: ["target"],
   sprite: "current.png",
-  stage: 0,
+  stage: "digitama",
   url: "https://example.test/current",
 }
 
@@ -24,7 +24,7 @@ const targetNode: DigimonNode = {
   nameJp: "Target",
   nextEvolutions: [],
   sprite: "target.png",
-  stage: 1,
+  stage: "babyI",
   url: "https://example.test/target",
 }
 
@@ -286,7 +286,7 @@ describe("record usage application use case", () => {
   test("Given a custom child threshold When recording usage Then the ledger evolves at the supplied threshold", () => {
     const thresholds: StageThresholds = Object.freeze({
       ...STAGE_GAUGE_THRESHOLDS,
-      0: 1,
+      digitama: 1,
     })
     const ledger = createLedger("applied", { ...activePartner, gauge: 0 })
 

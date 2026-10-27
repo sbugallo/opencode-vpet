@@ -5,7 +5,7 @@ import { DIGIMON_DATA } from "../src/data/digimon-data.ts"
 import type { DigimonNode as DomainDigimonNode } from "../src/domain/digimon-node.ts"
 import { applyTokenProgress, STAGE_GAUGE_THRESHOLDS, type StageThresholds } from "../src/domain/evolution.ts"
 import type { Partner, PartnerProgression } from "../src/domain/partner.ts"
-import { DIGIMON_STAGES, isDigimonStage } from "../src/domain/stage.ts"
+import { DIGIMON_STAGES, isDigimonStage, type DigimonStage } from "../src/domain/stage.ts"
 
 const controlledCurrent: DigimonNode = {
   id: "controlled-current",
@@ -13,7 +13,7 @@ const controlledCurrent: DigimonNode = {
   nameJp: "Controlled Current",
   nextEvolutions: ["controlled-target"],
   sprite: "controlled-current.png",
-  stage: 0,
+  stage: "digitama",
   url: "https://example.test/controlled-current",
 }
 
@@ -23,7 +23,7 @@ const controlledTarget: DigimonNode = {
   nameJp: "Controlled Target",
   nextEvolutions: [],
   sprite: "controlled-target.png",
-  stage: 1,
+  stage: "babyI",
   url: "https://example.test/controlled-target",
 }
 
@@ -128,7 +128,7 @@ describe("catalog and evolution", () => {
       name_jp: "Root",
       next_evolutions: ["1-001"],
       sprite: "egg",
-      stage: 0,
+      stage: "digitama",
       url: "https://example.test/root",
     }
 
@@ -183,7 +183,7 @@ describe("catalog and evolution", () => {
   test("Given a custom child threshold When token progress reaches it Then evolution crosses at the supplied policy boundary", () => {
     const thresholds: StageThresholds = Object.freeze({
       ...STAGE_GAUGE_THRESHOLDS,
-      0: 1,
+      digitama: 1,
     })
 
     const evolved = applyTokenProgress(
@@ -228,7 +228,7 @@ describe("catalog and evolution", () => {
   test("Given progress below a custom child threshold When token progress applies Then it only accumulates gauge", () => {
     const thresholds: StageThresholds = Object.freeze({
       ...STAGE_GAUGE_THRESHOLDS,
-      0: 2,
+      digitama: 2,
     })
 
     expect(
@@ -257,8 +257,8 @@ describe("catalog and evolution", () => {
   })
 
   test("Given a mutable threshold policy When token progress applies Then it rejects the policy before it can affect evolution", () => {
-    const thresholds = { ...STAGE_GAUGE_THRESHOLDS, 0: 1 }
-    thresholds[0] = 2
+    const thresholds: Record<DigimonStage, number> = { ...STAGE_GAUGE_THRESHOLDS, digitama: 1 }
+    thresholds["digitama"] = 2
 
     expect(() =>
       applyTokenProgress(
@@ -273,9 +273,9 @@ describe("catalog and evolution", () => {
 
   test("Given frozen policies with non-positive or non-finite thresholds When token progress applies Then it rejects each policy before evolution", () => {
     const policies = [
-      Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: 0 }),
-      Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: Number.NaN }),
-      Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: Number.POSITIVE_INFINITY }),
+      Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, digitama: 0 }),
+      Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, digitama: Number.NaN }),
+      Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, digitama: Number.POSITIVE_INFINITY }),
     ]
 
     for (const thresholds of policies) {
@@ -292,9 +292,9 @@ describe("catalog and evolution", () => {
   })
 
   test("Given a valid frozen threshold policy When mutation is attempted Then it remains safe for later evolution", () => {
-    const thresholds: StageThresholds = Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: 2 })
+    const thresholds: StageThresholds = Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, digitama: 2 })
 
-    expect(Reflect.set(thresholds, 0, 1)).toBeFalse()
+    expect(Reflect.set(thresholds, "digitama", 1)).toBeFalse()
     expect(
       applyTokenProgress(
         { current: controlledCurrent, gauge: 0, isTerminal: false },

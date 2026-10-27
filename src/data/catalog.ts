@@ -10,7 +10,7 @@ export type RawDigimonNode = {
   readonly name_jp: string
   readonly next_evolutions: readonly string[]
   readonly sprite: string
-  readonly stage: number
+  readonly stage: string
   readonly url: string
 }
 

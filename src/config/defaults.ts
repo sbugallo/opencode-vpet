@@ -1,7 +1,7 @@
 import type { ResolvedVpetSettings, StageLabels, StageThresholdSettings, VpetStageLabels } from "./types.ts"
 
 const EN_STAGE_LABELS = Object.freeze({
-  egg: "DigiEgg",
+  digitama: "DigiEgg",
   babyI: "In Training I",
   babyII: "In Training II",
   child: "Rookie",
@@ -9,17 +9,23 @@ const EN_STAGE_LABELS = Object.freeze({
   perfect: "Ultimate",
   ultimate: "Mega",
   superUltimate: "Ultra",
+  hybrid: "Hybrid",
+  armor: "Armor",
+  unknown: "Unknown",
 } as const satisfies StageLabels)
 
 const JP_STAGE_LABELS = Object.freeze({
-  egg: "Digitama",
+  digitama: "Digitama",
   babyI: "Baby I",
   babyII: "Baby II",
   child: "Child",
   adult: "Adult",
   perfect: "Perfect",
   ultimate: "Ultimate",
-  superUltimate: "SuperUltimate",
+  superUltimate: "Super Ultimate",
+  hybrid: "Hybrid",
+  armor: "Armor",
+  unknown: "Unknown",
 } as const satisfies StageLabels)
 
 export const VPET_STAGE_LABELS = Object.freeze({
@@ -28,7 +34,7 @@ export const VPET_STAGE_LABELS = Object.freeze({
 } as const satisfies VpetStageLabels)
 
 export const DEFAULT_STAGE_THRESHOLDS = Object.freeze({
-  egg: 500_000,
+  digitama: 500_000,
   babyI: 1_000_000,
   babyII: 2_000_000,
   child: 4_000_000,
@@ -36,6 +42,9 @@ export const DEFAULT_STAGE_THRESHOLDS = Object.freeze({
   perfect: 12_500_000,
   ultimate: 20_000_000,
   superUltimate: 30_000_000,
+  hybrid: 15_000_000,
+  armor: 15_000_000,
+  unknown: 12_500_000,
 } as const satisfies StageThresholdSettings)
 
 export const DEFAULT_VPET_SETTINGS = Object.freeze({

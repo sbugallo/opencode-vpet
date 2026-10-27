@@ -1,7 +1,19 @@
-export const DIGIMON_STAGES = [0, 1, 2, 3, 4, 5, 6, 7] as const
+export const DIGIMON_STAGES = Object.freeze([
+  "digitama",
+  "babyI",
+  "babyII",
+  "child",
+  "adult",
+  "perfect",
+  "ultimate",
+  "superUltimate",
+  "hybrid",
+  "armor",
+  "unknown",
+] as const)
 
 export type DigimonStage = (typeof DIGIMON_STAGES)[number]
 
-export const isDigimonStage = (value: number): value is DigimonStage => {
+export const isDigimonStage = (value: string): value is DigimonStage => {
   return DIGIMON_STAGES.some((stage) => stage === value)
 }

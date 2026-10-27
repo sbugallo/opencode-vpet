@@ -13,7 +13,7 @@ describe("static sidebar model", () => {
       nameJp: "Tailmon",
       nextEvolutions: [],
       sprite: "tailmon",
-      stage: 4,
+      stage: "adult",
       url: "https://example.test/tailmon",
     },
     gauge: 25_000,
@@ -31,19 +31,19 @@ describe("static sidebar model", () => {
     expect(Object.keys(model).sort()).toEqual([
       "frozen",
       "gauge",
+      "isDigitama",
       "isSetOverride",
       "isTerminal",
       "kind",
       "name",
       "sprite",
       "stage",
-      "stageNumber",
       "threshold",
       "url",
     ])
     expect(model.name).toBe("Tailmon")
     expect(model.stage).toBe("Adult")
-    expect(model.stageNumber).toBe(4)
+    expect(model.isDigitama).toBe(false)
     expect(model.url).toBe("https://example.test/tailmon")
     expect(model.gauge).toBe(25_000)
     expect(model.threshold).toBe(7_500_000)
@@ -72,7 +72,7 @@ describe("static sidebar model", () => {
     const model = buildSidebarCardModel(
       {
         ...partnerInputs,
-        node: { ...partnerInputs.node, stage: 0, sprite: "not-an-egg" },
+        node: { ...partnerInputs.node, stage: "digitama", sprite: "not-an-egg" },
       },
       DEFAULT_VPET_SETTINGS,
     )
@@ -80,7 +80,7 @@ describe("static sidebar model", () => {
     if (model.kind !== "partner") throw new Error("Expected partner sidebar model")
 
     expect(model.stage).toBe("Digitama")
-    expect(model.stageNumber).toBe(0)
+    expect(model.isDigitama).toBe(true)
     expect(model.sprite).toBe("not-an-egg")
   })
 

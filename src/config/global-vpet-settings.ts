@@ -12,9 +12,8 @@ type PathApi = Readonly<{
 }>
 
 export type GlobalVpetConfigOptions = Readonly<{
-  readonly env?: Readonly<{
-    readonly APPDATA?: string
-  }>
+  /** Environment snapshot; only APPDATA participates in VPet path resolution. */
+  readonly env?: Readonly<Record<string, string | undefined>>
   readonly home?: string
   readonly pathApi?: PathApi
   readonly platform?: NodeJS.Platform
@@ -26,7 +25,7 @@ export const resolveGlobalVpetConfigPath = (options: GlobalVpetConfigOptions = {
   const home = options.home ?? homedir()
 
   if ((options.platform ?? process.platform) === "win32") {
-    const { APPDATA } = env
+    const APPDATA = env["APPDATA"]
     return pathApi.join(APPDATA ?? pathApi.join(home, "AppData", "Roaming"), "opencode-vpet.json")
   }
 
