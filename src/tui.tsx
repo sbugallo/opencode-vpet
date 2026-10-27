@@ -119,9 +119,7 @@ export const createTui =
         controller.dispatch({
           kind: "partner_changed",
           partner:
-            cardModel.kind === "partner"
-              ? { sprite: cardModel.sprite, isDigitama: cardModel.stageNumber === 0 }
-              : undefined,
+            cardModel.kind === "partner" ? { sprite: cardModel.sprite, isDigitama: cardModel.isDigitama } : undefined,
         }),
       )
     }

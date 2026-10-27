@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Stage is now a string (`digitama`, `babyI`, `babyII`, `child`, `adult`, `perfect`, `ultimate`,
+  `superUltimate`, `hybrid`, `armor`, `unknown`) instead of the old `0`–`7` numbering, everywhere:
+  catalog data, evolution thresholds, settings, sidebar, and Dex. Armor (`AR-`) and hybrid (`H-`)
+  entries are no longer collapsed into the adult stage, and Calumon (`UN-001`) is filed as
+  `unknown`.
+- `stageThresholds` config keys follow the stage ids: `egg` was renamed to `digitama` and
+  `hybrid`, `armor`, and `unknown` were added. **This is a breaking change for existing
+  `opencode-vpet.json` files**: the old `egg` key is ignored and falls back to the default
+  threshold.
+- The Japanese `superUltimate` stage label is now displayed as `Super Ultimate`.
+
 ## [0.4.0] - 2026-10-26
 
 ### Added

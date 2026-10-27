@@ -1,5 +1,11 @@
 import { DEFAULT_STAGE_THRESHOLDS, DEFAULT_VPET_SETTINGS } from "./defaults.ts"
-import type { ResolvedVpetSettings, StageThresholdKey, VpetLanguage } from "./types.ts"
+import {
+  STAGE_THRESHOLD_KEYS,
+  type ResolvedVpetSettings,
+  type StageThresholdKey,
+  type StageThresholdSettings,
+  type VpetLanguage,
+} from "./types.ts"
 
 const isRecord = (value: unknown): value is Readonly<Record<string, unknown>> => {
   return typeof value === "object" && value !== null && !Array.isArray(value)
@@ -32,16 +38,9 @@ export const normalizeVpetSettings = (input: unknown): ResolvedVpetSettings => {
 
     const thresholdInput = read(input, "stageThresholds")
     const thresholds = isRecord(thresholdInput) ? thresholdInput : {}
-    const stageThresholds = Object.freeze({
-      egg: normalizeThreshold(thresholds, "egg"),
-      babyI: normalizeThreshold(thresholds, "babyI"),
-      babyII: normalizeThreshold(thresholds, "babyII"),
-      child: normalizeThreshold(thresholds, "child"),
-      adult: normalizeThreshold(thresholds, "adult"),
-      perfect: normalizeThreshold(thresholds, "perfect"),
-      ultimate: normalizeThreshold(thresholds, "ultimate"),
-      superUltimate: normalizeThreshold(thresholds, "superUltimate"),
-    } as const)
+    const stageThresholds = Object.freeze(
+      Object.fromEntries(STAGE_THRESHOLD_KEYS.map((key) => [key, normalizeThreshold(thresholds, key)])),
+    ) as StageThresholdSettings
 
     const language = read(input, "language")
     const notifications = read(input, "notifications")

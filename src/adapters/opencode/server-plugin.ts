@@ -74,16 +74,7 @@ const getStringOption = (options: Readonly<Record<string, unknown>>, name: strin
 }
 
 const toEvolutionThresholds = (settings: ResolvedVpetSettings): StageThresholds =>
-  Object.freeze({
-    0: settings.stageThresholds.egg,
-    1: settings.stageThresholds.babyI,
-    2: settings.stageThresholds.babyII,
-    3: settings.stageThresholds.child,
-    4: settings.stageThresholds.adult,
-    5: settings.stageThresholds.perfect,
-    6: settings.stageThresholds.ultimate,
-    7: settings.stageThresholds.superUltimate,
-  })
+  Object.freeze({ ...settings.stageThresholds })
 
 const toToastEvent = (result: UsageProcessingResult): VpetToastEvent | undefined => {
   switch (result.kind) {

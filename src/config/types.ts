@@ -1,19 +1,12 @@
+import { DIGIMON_STAGES, type DigimonStage } from "../domain/stage.ts"
+
 export const VPET_LANGUAGES = Object.freeze(["en", "jp"] as const)
 
 export type VpetLanguage = (typeof VPET_LANGUAGES)[number]
 
-export const STAGE_THRESHOLD_KEYS = Object.freeze([
-  "egg",
-  "babyI",
-  "babyII",
-  "child",
-  "adult",
-  "perfect",
-  "ultimate",
-  "superUltimate",
-] as const)
+export const STAGE_THRESHOLD_KEYS = DIGIMON_STAGES
 
-export type StageThresholdKey = (typeof STAGE_THRESHOLD_KEYS)[number]
+export type StageThresholdKey = DigimonStage
 
 export type StageThresholdSettings = Readonly<Record<StageThresholdKey, number>>
 

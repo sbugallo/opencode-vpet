@@ -115,13 +115,13 @@ const settings = {
   language: "jp",
   notifications: true,
   stageLabels: {
-    en: { egg: "DigiEgg", babyI: "In Training I", babyII: "In Training II", child: "Rookie", adult: "Champion", perfect: "Ultimate", ultimate: "Mega", superUltimate: "Ultra" },
-    jp: { egg: "Digitama", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "SuperUltimate" },
+    en: { digitama: "DigiEgg", babyI: "In Training I", babyII: "In Training II", child: "Rookie", adult: "Champion", perfect: "Ultimate", ultimate: "Mega", superUltimate: "Ultra", hybrid: "Hybrid", armor: "Armor", unknown: "Unknown" },
+    jp: { digitama: "Digitama", babyI: "Baby I", babyII: "Baby II", child: "Child", adult: "Adult", perfect: "Perfect", ultimate: "Ultimate", superUltimate: "Super Ultimate", hybrid: "Hybrid", armor: "Armor", unknown: "Unknown" },
   },
-  stageThresholds: { egg: 1000, babyI: 5000, babyII: 25000, child: 100000, adult: 500000, perfect: 2500000, ultimate: 5000000, superUltimate: 10000000 },
+  stageThresholds: { digitama: 1000, babyI: 5000, babyII: 25000, child: 100000, adult: 500000, perfect: 2500000, ultimate: 5000000, superUltimate: 10000000, hybrid: 15000000, armor: 15000000, unknown: 2500000 },
 }
 
-const partner = (sprite) => ({ kind: "partner", node: { id: "3-001", nameEn: "Agumon", nameJp: "Agumon", nextEvolutions: [], sprite, stage: 3, url: "https://example.test/agumon" }, gauge: 42, isTerminal: false, trainerTotalTokens: 100 })
+const partner = (sprite) => ({ kind: "partner", node: { id: "3-001", nameEn: "Agumon", nameJp: "Agumon", nextEvolutions: [], sprite, stage: "child", url: "https://example.test/agumon" }, gauge: 42, isTerminal: false, trainerTotalTokens: 100 })
 
 const render = async (inputs) => {
   let tick

@@ -23,7 +23,17 @@ const completedMessage = (id: string) => ({
 })
 
 const idleEvent = { type: "session.idle", data: { sessionID: "session-toast" } }
-const evolutionThresholds = Object.freeze({ ...STAGE_GAUGE_THRESHOLDS, 0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1 })
+const evolutionThresholds = Object.freeze({
+  ...STAGE_GAUGE_THRESHOLDS,
+  digitama: 1,
+  babyI: 1,
+  babyII: 1,
+  child: 1,
+  adult: 1,
+  perfect: 1,
+  ultimate: 1,
+  superUltimate: 1,
+})
 
 const dispatchIdle = async (
   repository: Awaited<ReturnType<typeof createSqliteVpetRepository>>,

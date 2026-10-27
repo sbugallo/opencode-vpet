@@ -20,7 +20,7 @@ const usage = (): VpetCommandResult => ({
 })
 
 const randomEgg = (catalog: DigimonCatalog, random: () => number): string | undefined => {
-  const eggs = catalog.nodes.filter((node) => node.stage === 0)
+  const eggs = catalog.nodes.filter((node) => node.stage === "digitama")
   if (eggs.length === 0) return undefined
   const sample = random()
   const index =

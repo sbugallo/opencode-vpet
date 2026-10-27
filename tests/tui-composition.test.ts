@@ -225,7 +225,7 @@ describe("TUI composition", () => {
   test("Given a mounted canonical egg When activity polling hatches it to a canonical partner Then the retained width resets, moves, and enters a deterministic cosmetic action without another resize", async () => {
     const source = sequenceRandom(0, 0)
     const harness = new TuiCompositionHarness()
-    let inputs: SidebarCardInputs = partnerInputs("digitama-deep-savers", { stage: 0 })
+    let inputs: SidebarCardInputs = partnerInputs("digitama-deep-savers", { stage: "digitama" })
     await harness.start(() => inputs, { random: source.random })
     if (harness.slot === undefined) throw new Error("Expected sidebar slot")
     const setup = await testRender(harness.slot, { width: 80, height: 24 })
@@ -235,7 +235,7 @@ describe("TUI composition", () => {
     expect(harness.observed).toEqual([expect.objectContaining({ kind: "digitama", offset: 0, facing: "left" })])
     expect(source.calls()).toBe(0)
 
-    inputs = partnerInputs("agumon", { stage: 3 })
+    inputs = partnerInputs("agumon", { stage: "child" })
     harness.eventBus.emit(sessionTextDelta("hatch"))
     await settle()
     await setup.renderOnce()
@@ -259,13 +259,13 @@ describe("TUI composition", () => {
   test("Given a mounted normal partner When activity refreshes a different stage-positive set override Then the retained width resets, moves, and enters a deterministic cosmetic action without another resize", async () => {
     const source = sequenceRandom(0, 0, 0)
     const harness = new TuiCompositionHarness()
-    let inputs: SidebarCardInputs = partnerInputs("agumon", { stage: 3 })
+    let inputs: SidebarCardInputs = partnerInputs("agumon", { stage: "child" })
     await harness.start(() => inputs, { random: source.random })
     if (harness.slot === undefined) throw new Error("Expected sidebar slot")
     const setup = await testRender(harness.slot, { width: 80, height: 24 })
     await setup.flush()
 
-    inputs = partnerInputs("gatomon", { stage: 4, isSetOverride: true })
+    inputs = partnerInputs("gatomon", { stage: "adult", isSetOverride: true })
     harness.eventBus.emit(sessionTextDelta("set"))
     await settle()
     await setup.renderOnce()

@@ -14,7 +14,7 @@ const nodes = [
     nameJp: "DigiTama",
     nextEvolutions: [],
     sprite: "egg",
-    stage: 0,
+    stage: "digitama",
     url: "https://example.test/digitama",
   },
   {
@@ -23,7 +23,7 @@ const nodes = [
     nameJp: "Koromon JP",
     nextEvolutions: [],
     sprite: "koromon",
-    stage: 1,
+    stage: "babyI",
     url: "https://example.test/koromon",
   },
 ] as const

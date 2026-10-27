@@ -8,7 +8,7 @@ const expectedDefaults = {
   notifications: true,
   stageLabels: {
     en: {
-      egg: "DigiEgg",
+      digitama: "DigiEgg",
       babyI: "In Training I",
       babyII: "In Training II",
       child: "Rookie",
@@ -16,20 +16,26 @@ const expectedDefaults = {
       perfect: "Ultimate",
       ultimate: "Mega",
       superUltimate: "Ultra",
+      hybrid: "Hybrid",
+      armor: "Armor",
+      unknown: "Unknown",
     },
     jp: {
-      egg: "Digitama",
+      digitama: "Digitama",
       babyI: "Baby I",
       babyII: "Baby II",
       child: "Child",
       adult: "Adult",
       perfect: "Perfect",
       ultimate: "Ultimate",
-      superUltimate: "SuperUltimate",
+      superUltimate: "Super Ultimate",
+      hybrid: "Hybrid",
+      armor: "Armor",
+      unknown: "Unknown",
     },
   },
   stageThresholds: {
-    egg: 500_000,
+    digitama: 500_000,
     babyI: 1_000_000,
     babyII: 2_000_000,
     child: 4_000_000,
@@ -37,6 +43,9 @@ const expectedDefaults = {
     perfect: 12_500_000,
     ultimate: 20_000_000,
     superUltimate: 30_000_000,
+    hybrid: 15_000_000,
+    armor: 15_000_000,
+    unknown: 12_500_000,
   },
 } as const satisfies ResolvedVpetSettings
 
@@ -48,7 +57,7 @@ const happyCases: readonly [string, unknown, ResolvedVpetSettings][] = [
       language: "en",
       notifications: false,
       stageThresholds: {
-        egg: 11,
+        digitama: 11,
         babyI: 22,
         babyII: 33,
         child: 44,
@@ -56,6 +65,9 @@ const happyCases: readonly [string, unknown, ResolvedVpetSettings][] = [
         perfect: 66,
         ultimate: 77,
         superUltimate: 88,
+        hybrid: 99,
+        armor: 111,
+        unknown: 222,
       },
     },
     {
@@ -63,7 +75,7 @@ const happyCases: readonly [string, unknown, ResolvedVpetSettings][] = [
       language: "en",
       notifications: false,
       stageThresholds: {
-        egg: 11,
+        digitama: 11,
         babyI: 22,
         babyII: 33,
         child: 44,
@@ -71,6 +83,9 @@ const happyCases: readonly [string, unknown, ResolvedVpetSettings][] = [
         perfect: 66,
         ultimate: 77,
         superUltimate: 88,
+        hybrid: 99,
+        armor: 111,
+        unknown: 222,
       },
     },
   ],
@@ -94,7 +109,7 @@ const fallbackCases: readonly [string, unknown, ResolvedVpetSettings][] = [
       language: "fr",
       unknown: true,
       stageThresholds: {
-        egg: 0,
+        digitama: 0,
         babyI: -1,
         babyII: 1.5,
         child: Number.MAX_SAFE_INTEGER + 1,
@@ -102,7 +117,10 @@ const fallbackCases: readonly [string, unknown, ResolvedVpetSettings][] = [
         perfect: Number.NaN,
         ultimate: "5",
         superUltimate: 88,
-        unknown: 99,
+        hybrid: -7,
+        armor: 0,
+        unknown: Number.NaN,
+        legendary: 99,
       },
     },
     {
@@ -208,9 +226,9 @@ describe("vpet settings normalization", () => {
         stageThresholds: Object.defineProperties(
           { child: 777 },
           {
-            egg: {
+            digitama: {
               get: () => {
-                throw new Error("egg")
+                throw new Error("digitama")
               },
             },
           },
@@ -237,9 +255,9 @@ describe("vpet settings normalization", () => {
           { child: 777 },
           {
             get: (_target, key) =>
-              key === "egg"
+              key === "digitama"
                 ? (() => {
-                    throw new Error("proxy egg")
+                    throw new Error("proxy digitama")
                   })()
                 : key === "child"
                   ? 777
@@ -261,10 +279,10 @@ describe("vpet settings normalization", () => {
     expect(Object.isFrozen(VPET_LANGUAGES)).toBeTrue()
     expect(Object.isFrozen(STAGE_THRESHOLD_KEYS)).toBeTrue()
     expect(() => Reflect.apply(Array.prototype.push, VPET_LANGUAGES, ["en"])).toThrow()
-    expect(() => Reflect.apply(Array.prototype.push, STAGE_THRESHOLD_KEYS, ["egg"])).toThrow()
+    expect(() => Reflect.apply(Array.prototype.push, STAGE_THRESHOLD_KEYS, ["digitama"])).toThrow()
     expect(VPET_LANGUAGES).toEqual(["en", "jp"])
     expect(STAGE_THRESHOLD_KEYS).toEqual([
-      "egg",
+      "digitama",
       "babyI",
       "babyII",
       "child",
@@ -272,6 +290,9 @@ describe("vpet settings normalization", () => {
       "perfect",
       "ultimate",
       "superUltimate",
+      "hybrid",
+      "armor",
+      "unknown",
     ])
   })
 })

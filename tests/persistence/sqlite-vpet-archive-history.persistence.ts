@@ -29,7 +29,7 @@ const catalogNodes = [
     nameJp: "Egg Japanese",
     nextEvolutions: [],
     sprite: "egg",
-    stage: 0,
+    stage: "digitama",
     url: "https://example.test/0-001",
   },
   {
@@ -38,7 +38,7 @@ const catalogNodes = [
     nameJp: "First Japanese",
     nextEvolutions: [],
     sprite: "first",
-    stage: 1,
+    stage: "babyI",
     url: "https://example.test/1-001",
   },
   {
@@ -47,7 +47,7 @@ const catalogNodes = [
     nameJp: "Second Japanese",
     nextEvolutions: [],
     sprite: "second",
-    stage: 2,
+    stage: "babyII",
     url: "https://example.test/2-001",
   },
   {
@@ -56,7 +56,7 @@ const catalogNodes = [
     nameJp: "Set-only Japanese",
     nextEvolutions: [],
     sprite: "set-only",
-    stage: 7,
+    stage: "superUltimate",
     url: "https://example.test/7-001",
   },
 ] as const satisfies readonly DigimonNode[]

@@ -69,7 +69,7 @@ export const partnerInputs = (sprite: string, options: PartnerInputOptions = {})
     nameJp: sprite,
     nextEvolutions: [],
     sprite,
-    stage: options.stage ?? 3,
+    stage: options.stage ?? "child",
     url: `https://example.test/${sprite}`,
   },
   gauge: options.isSetOverride ? 0 : 42,

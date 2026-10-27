@@ -74,7 +74,7 @@ describe("global VPet configuration paths", () => {
   )
 
   test.each([
-    ["missing", async (_root: string) => undefined],
+    ["missing", async (_root: string): Promise<undefined> => undefined],
     [
       "unreadable directory",
       async (root: string) => {
@@ -167,7 +167,7 @@ describe("global VPet configuration loading", () => {
   )
 
   test.each([
-    ["missing", async (_root: string) => undefined],
+    ["missing", async (_root: string): Promise<undefined> => undefined],
     [
       "unreadable directory",
       async (root: string) => {
