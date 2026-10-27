@@ -3,7 +3,9 @@
   "compilerOptions": {
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@opentui/solid"
+    "jsxImportSource": "@opentui/solid",
+    "rootDir": "."
   },
-  "include": ["src", "tests"]
+  "include": ["src", "tests"],
+  "exclude": []
 }

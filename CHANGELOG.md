@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   threshold.
 - The Japanese `superUltimate` stage label is now displayed as `Super Ultimate`.
 
+### Fixed
+
+- `bun run typecheck:tests` no longer silently skips the test tree (`tsconfig.test.json` inherited
+  the base `exclude` for `tests/`), and the test suite now typechecks cleanly.
+
 ## [0.4.0] - 2026-10-26
 
 ### Added
